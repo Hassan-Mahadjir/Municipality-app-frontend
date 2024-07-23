@@ -7,7 +7,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 type CustomInputProps = {
   name: string;
   text: string;
-  inputType?: 'text' | 'password'; // Define input types as text or password
+  inputType?:
+    | 'text'
+    | 'password'
+    | 'email'
+    | 'firstName'
+    | 'lastName'
+    | 'userName'; // Define input types
   rules?: any;
 };
 
@@ -23,6 +29,23 @@ const CustomInputComponent = ({
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const toggleSecureEntry = () => {
     setSecureTextEntry((prev) => !prev);
+  };
+
+  const getPlaceholder = () => {
+    switch (inputType) {
+      case 'password':
+        return '********';
+      case 'email':
+        return 'Email Address';
+      case 'firstName':
+        return 'First Name';
+      case 'lastName':
+        return 'Last Name';
+      case 'userName':
+        return 'User Name';
+      default:
+        return 'Enter text';
+    }
   };
 
   return (
@@ -49,6 +72,7 @@ const CustomInputComponent = ({
                 onChangeText={(val) => onChange(val)}
                 onBlur={onBlur}
                 mode="outlined"
+                placeholder={getPlaceholder()}
                 outlineColor="#848484"
                 outlineStyle={{ borderRadius: 12 }}
                 activeOutlineColor="#FF8B20"

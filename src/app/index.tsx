@@ -7,10 +7,13 @@ import { useTranslation } from 'react-i18next';
 import PhoneInputComponent from '@/components/PhoneInput';
 import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
+import SelectLanuageComponent from '@/components/SelectLanguage';
 import { LoginFormValues } from '@/types/login.type';
 
 function Login() {
   const { t } = useTranslation();
+
+  const phone_lable = t('phone_lable');
 
   const methods = useForm<LoginFormValues>({
     defaultValues: {
@@ -24,11 +27,12 @@ function Login() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, margin: 20 }}>
+      <SelectLanuageComponent />
       <FormProvider {...methods}>
         <PhoneInputComponent />
         <CustomInputComponent
-          text={t('password')}
+          text={phone_lable}
           name="password"
           inputType="password"
         />
