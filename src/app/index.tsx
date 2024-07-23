@@ -1,32 +1,47 @@
-import { Text, View, TouchableOpacity } from 'react-native';
-import i18next, { languageResources } from '@/services/i18next';
-import { useTranslation } from 'react-i18next';
-import languageList from '@/services/languagesList.json';
+import { Text, View } from 'react-native';
 import { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { Link, router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
-function Index() {
-  const [visible, setVisible] = useState(false);
+import PhoneInputComponent from '@/components/PhoneInput';
+import CustomInputComponent from '@/components/CustomInput';
+import SubmitButtonComponent from '@/components/SubmitButton';
+import { LoginFormValues } from '@/types/login.type';
+
+function Login() {
   const { t } = useTranslation();
 
-  const changeLng = (lng: string) => {
-    i18next.changeLanguage(lng);
-    setVisible(false);
+  const methods = useForm<LoginFormValues>({
+    defaultValues: {
+      phone: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    console.log('login form: ', data);
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text>{t('welcome')}</Text>
-      <TouchableOpacity style={{ padding: 10, backgroundColor: 'orange' }}>
-        <Text>{t('change-language')}</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1 }}>
+      <FormProvider {...methods}>
+        <PhoneInputComponent />
+        <CustomInputComponent
+          text={t('password')}
+          name="password"
+          inputType="password"
+        />
+        <CustomInputComponent text="text" name="text" inputType="text" />
+        <SubmitButtonComponent
+          mode="contained"
+          onPress={methods.handleSubmit(onSubmit)} // Ensure handleSubmit is called properly
+        >
+          {t('send_data')}
+        </SubmitButtonComponent>
+      </FormProvider>
     </View>
   );
 }
 
-export default Index;
+export default Login;

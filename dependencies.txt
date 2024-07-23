@@ -6,3 +6,10 @@ npx tailwindcss init
 npm install react-native-paper
 npm install react-native-safe-area-context
 npx pod-install
+
+npx expo install expo-localization
+
+npm i react-native-element-dropdown
+
+npm install react-hook-form
+npm i react-native-international-phone-number
