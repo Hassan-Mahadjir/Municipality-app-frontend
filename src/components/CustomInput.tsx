@@ -13,7 +13,8 @@ type CustomInputProps = {
     | 'email'
     | 'firstName'
     | 'lastName'
-    | 'userName'; // Define input types
+    | 'userName'
+    | 'confirmPassword'; // Define input types
   rules?: any;
 };
 
@@ -43,6 +44,8 @@ const CustomInputComponent = ({
         return 'Last Name';
       case 'userName':
         return 'User Name';
+      case 'confirmPassword':
+        return 'confirm Password';
       default:
         return 'Enter text';
     }
@@ -79,7 +82,7 @@ const CustomInputComponent = ({
                 secureTextEntry={inputType === 'password' && secureTextEntry}
                 {...props}
                 style={{
-                  height: 50,
+                  height: 45,
                   backgroundColor: '#fff',
                   paddingRight: inputType === 'password' ? 40 : 0,
                 }} // Add padding to make space for the toggle button
@@ -90,7 +93,7 @@ const CustomInputComponent = ({
                   style={{
                     position: 'absolute',
                     right: 10,
-                    top: 13,
+                    top: 10,
                   }}
                 >
                   <MaterialIcons

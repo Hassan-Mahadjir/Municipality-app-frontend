@@ -49,8 +49,11 @@ function RootLayoutNav() {
   const { t } = useTranslation();
   return (
     <PaperProvider>
-      <Stack>
+      <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="(user)" />
+        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="(admin)" />
       </Stack>
     </PaperProvider>
   );
