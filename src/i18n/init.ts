@@ -15,7 +15,7 @@ export const init18n = ({ resources, fallbackLng }: Init18n) => {
     .use(initReactI18next)
     .init({
       resources,
-      lng: 'tr',
+      lng: 'en',
       fallbackLng: fallbackChecker(resources, fallbackLng),
       compatibilityJSON: 'v3',
       interpolation: {
