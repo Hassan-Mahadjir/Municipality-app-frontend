@@ -67,6 +67,7 @@ const CustomInputComponent = ({
               style={{
                 position: 'relative',
                 width: '100%',
+                paddingBottom:20,
               }}
             >
               <TextInput
@@ -99,7 +100,7 @@ const CustomInputComponent = ({
                   <MaterialIcons
                     name={secureTextEntry ? 'visibility' : 'visibility-off'}
                     size={24}
-                    color="black"
+                    color="#FF8B20"
                   />
                 </TouchableOpacity>
               )}
