@@ -7,6 +7,8 @@ import { Fontisto } from '@expo/vector-icons';
 export default function userLayout() {
   return (
     <Tabs
+      // used to change default backgroundColor
+      // sceneContainerStyle={{ backgroundColor: "#fff" }}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#F64D00',

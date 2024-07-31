@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import * as SplashScreen from 'expo-splash-screen';
 
 import '../i18n/translation';
+import React from 'react';
 
 export {
   // Catch any errors thrown by the Layout component.

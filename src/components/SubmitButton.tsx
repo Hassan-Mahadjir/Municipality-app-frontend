@@ -7,7 +7,7 @@ const SubmitButtonComponent = ({
 }: PropsWithChildren & ButtonProps) => {
   return (
     <Button
-      className="rounded-md my-2"
+      // className="rounded-md my-2"
       contentStyle={{ backgroundColor: '#FF8B20', height: 45 }}
       labelStyle={{ color: '#fff', fontSize: 19, fontWeight: 'bold' }}
       {...props}
