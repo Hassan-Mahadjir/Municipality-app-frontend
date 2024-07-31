@@ -1,6 +1,14 @@
-import { Text, View ,TouchableOpacity ,Image, KeyboardAvoidingView, Platform,SafeAreaView} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+} from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
@@ -8,6 +16,7 @@ import SubmitButtonComponent from '@/components/SubmitButton';
 import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
+import { Checkbox } from 'react-native-paper';
 
 function Login() {
   const { t } = useTranslation();
@@ -15,7 +24,7 @@ function Login() {
 
   const methods = useForm<LoginFormValues>({
     defaultValues: {
-      phone: '',
+      email: '',
       password: '',
     },
   });
@@ -24,77 +33,93 @@ function Login() {
     console.log('login form: ', data);
   };
 
+  const [checked, setChecked] = useState(false);
+
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      style={{ flex: 1, backgroundColor: '#fff' }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
     >
       <KeyboardAwareScrollView>
         <SafeAreaView style={{ flex: 1 }}>
-    <View style={{ flex: 1, margin: 3, padding: 5, marginTop: 0, backgroundColor: 'white' }}>
-      <FormProvider {...methods}>
-        <SelectLanuageComponent />
-        <Text style={styles.title}>Sign In</Text>
-        <Text style={styles.subtitle}>Welcome back, you've been missed</Text>
-        <CustomInputComponent
-          name="username"
-          text="Email"
-          inputType="email"
-          
-        />
-        <CustomInputComponent
-          name="password"
-          text="Password"
-          inputType="password"
-          
-        />
-        <TouchableOpacity><Text style={styles.fpass}>Forgot Password?</Text></TouchableOpacity>
-        <View style={styles.horizontalLineContainer}>
-            <View style={styles.horizontalLine} />
-            <Text style={styles.orText}>Or Sign in with</Text>
-            <View style={styles.horizontalLine} />
+          <View
+            style={{
+              flex: 1,
+              margin: 3,
+              padding: 5,
+              marginTop: 0,
+              backgroundColor: 'white',
+            }}
+          >
+            <FormProvider {...methods}>
+              <SelectLanuageComponent />
+              <Text style={styles.title}>Sign In</Text>
+              <Text style={styles.subtitle}>
+                Welcome back, you've been missed
+              </Text>
+              <CustomInputComponent
+                name="username"
+                text="Email"
+                inputType="email"
+              />
+              <CustomInputComponent
+                name="password"
+                text="Password"
+                inputType="password"
+              />
+              <TouchableOpacity>
+                <Text style={styles.fpass}>Forgot Password?</Text>
+              </TouchableOpacity>
+              <View style={styles.horizontalLineContainer}>
+                <View style={styles.horizontalLine} />
+                <Text style={styles.orText}>Or Sign in with</Text>
+                <View style={styles.horizontalLine} />
+              </View>
+              <TouchableOpacity
+                style={[styles.buttonContainer, styles.googleButton]}
+              >
+                <Image
+                  source={{
+                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8zU_yLBGMXMOzE3dpORNzgZ8vh09KsVyszg&s',
+                  }}
+                  style={styles.icon}
+                />
+                <Text style={styles.googleText}>Google</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.buttonContainer, styles.appleButton]}
+              >
+                <Image
+                  source={{
+                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbT5z0ugE618RACSU2Uslw_LoM0IBFGaASeA&s',
+                  }}
+                  style={styles.icon}
+                />
+                <Text style={styles.appleText}>Apple</Text>
+              </TouchableOpacity>
+
+              <View style={styles.signupContainer}>
+                <Text style={styles.noAccountText}>
+                  Don't have an account?{' '}
+                </Text>
+                <TouchableOpacity>
+                  <Text style={styles.signupText}>Sign Up</Text>
+                </TouchableOpacity>
+              </View>
+
+              <SubmitButtonComponent
+                onPress={methods.handleSubmit(onSubmit)}
+                mode="contained"
+              >
+                {phone_label}
+              </SubmitButtonComponent>
+            </FormProvider>
           </View>
-          <TouchableOpacity
-            style={[styles.buttonContainer, styles.googleButton]}>
-            <Image
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8zU_yLBGMXMOzE3dpORNzgZ8vh09KsVyszg&s' }}
-              style={styles.icon}
-            />
-            <Text style={styles.googleText}>Google</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={[styles.buttonContainer, styles.appleButton]}
-            >
-            <Image
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbT5z0ugE618RACSU2Uslw_LoM0IBFGaASeA&s' }}
-              style={styles.icon}
-            />
-            <Text style={styles.appleText}>Apple</Text>
-          </TouchableOpacity>
-
-          <View style={styles.signupContainer}>
-            <Text style={styles.noAccountText}>Don't have an account? </Text>
-            <TouchableOpacity >
-              <Text style={styles.signupText}>Sign Up</Text>
-            </TouchableOpacity>
-          </View>
-
-
-      
-
-        <SubmitButtonComponent onPress={methods.handleSubmit(onSubmit)} mode="contained"
-        >
-          {phone_label}
-        </SubmitButtonComponent>
-      </FormProvider>
-    </View>
-    </SafeAreaView>
-             </KeyboardAwareScrollView>
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
     </KeyboardAvoidingView>
-    
-
   );
 }
 
@@ -113,10 +138,10 @@ const styles = StyleSheet.create({
     paddingBottom: 17,
   },
   fpass: {
-    textAlign: 'right', 
+    textAlign: 'right',
     paddingBottom: 15,
     paddingTop: 3,
-    color:'#FF8B20',
+    color: '#FF8B20',
     textDecorationLine: 'underline',
   },
   horizontalLineContainer: {
@@ -159,14 +184,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 2,
-    paddingBottom:10,
+    paddingBottom: 10,
     marginLeft: 180,
-    marginBottom:3,
-    
+    marginBottom: 3,
   },
   noAccountText: {
     color: '#989898',
-    
   },
   signupText: {
     color: '#FE834B',
@@ -185,9 +208,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     flexDirection: 'row',
   },
-
-
-
 });
 
 export default Login;
