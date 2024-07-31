@@ -6,10 +6,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
@@ -17,6 +16,7 @@ import SubmitButtonComponent from '@/components/SubmitButton';
 import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
+import { Checkbox } from 'react-native-paper';
 
 function Login() {
   const { t } = useTranslation();
@@ -33,6 +33,8 @@ function Login() {
     console.log('login form: ', data);
   };
 
+  const [checked, setChecked] = useState(false);
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: '#fff' }}
@@ -41,27 +43,33 @@ function Login() {
     >
       <KeyboardAwareScrollView>
         <SafeAreaView style={{ flex: 1 }}>
-          <StatusBar barStyle={'dark-content'} />
           <View
             style={{
-              // flex: 1,
-              margin: 5,
+              flex: 1,
+              margin: 3,
               padding: 5,
-              paddingVertical: 35,
+              marginTop: 0,
               backgroundColor: 'white',
             }}
           >
             <FormProvider {...methods}>
-              <View style={{ left: '65%' }}>
-                <SelectLanuageComponent />
-              </View>
-
-              <Text style={styles.title}>Sign In</Text>
+              <SelectLanuageComponent />
+              <Text style={styles.title}>Create Account</Text>
               <Text style={styles.subtitle}>
-                Welcome back, you've been missed
+                Fill your information below or register with your social account
               </Text>
               <CustomInputComponent
-                name="email"
+                name="fistname"
+                text="First Name"
+                inputType="firstName"
+              />
+              <CustomInputComponent
+                name="lastname"
+                text="Last Name"
+                inputType="lastName"
+              />
+              <CustomInputComponent
+                name="username"
                 text="Email"
                 inputType="email"
               />
@@ -70,9 +78,29 @@ function Login() {
                 text="Password"
                 inputType="password"
               />
-              <TouchableOpacity>
-                <Text style={styles.fpass}>Forgot Password?</Text>
-              </TouchableOpacity>
+              <CustomInputComponent
+                name="confpassword"
+                text="Confirm Password"
+                inputType="password"
+              />
+              <View style={styles.checkboxContainer}>
+                <View style={styles.checkboxWrapper}>
+                  <Checkbox
+                    status={checked ? 'checked' : 'unchecked'}
+                    onPress={() => setChecked(!checked)}
+                    color="#FE834B"
+                    uncheckedColor="#FE834B"
+                  />
+                </View>
+                <TouchableOpacity
+                  onPress={() => alert('Terms & Conditions clicked')}
+                >
+                  <Text style={styles.checkboxLabel}>
+                    Agree with{' '}
+                    <Text style={styles.link}>Terms & Conditions</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
               <View style={styles.horizontalLineContainer}>
                 <View style={styles.horizontalLine} />
                 <Text style={styles.orText}>Or Sign in with</Text>
@@ -95,7 +123,7 @@ function Login() {
               >
                 <Image
                   source={{
-                    uri: 'https://pixsector.com/cache/56f2646e/avd5cee2ff5ea9da4d328.png',
+                    uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbT5z0ugE618RACSU2Uslw_LoM0IBFGaASeA&s',
                   }}
                   style={styles.icon}
                 />
@@ -104,10 +132,10 @@ function Login() {
 
               <View style={styles.signupContainer}>
                 <Text style={styles.noAccountText}>
-                  Don't have an account?{' '}
+                  Already have an account?{' '}
                 </Text>
                 <TouchableOpacity>
-                  <Text style={styles.signupText}>Sign Up</Text>
+                  <Text style={styles.signupText}>Sign In</Text>
                 </TouchableOpacity>
               </View>
 
@@ -115,7 +143,7 @@ function Login() {
                 onPress={methods.handleSubmit(onSubmit)}
                 mode="contained"
               >
-                {phone_label}
+                Sign Up
               </SubmitButtonComponent>
             </FormProvider>
           </View>
@@ -187,7 +215,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 2,
     paddingBottom: 10,
-    marginLeft: 200,
+    marginLeft: 180,
     marginBottom: 3,
   },
   noAccountText: {
@@ -209,6 +237,28 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 30,
     flexDirection: 'row',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginLeft: 6,
+  },
+  checkboxWrapper: {
+    height: 35,
+    width: 33,
+    borderWidth: 1,
+    borderColor: '#FE834B',
+    borderRadius: 4,
+    overflow: 'hidden',
+    marginRight: 6,
+  },
+  checkboxLabel: {
+    fontSize: 16,
+    color: '#000',
+  },
+  link: {
+    color: '#FE834B',
   },
 });
 
