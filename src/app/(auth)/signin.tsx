@@ -46,20 +46,22 @@ function Login() {
           <View
             style={{
               flex: 1,
-              margin: 3,
+              margin: 5,
               padding: 5,
-              marginTop: 0,
+              marginVertical: 25,
               backgroundColor: 'white',
             }}
           >
             <FormProvider {...methods}>
-              <SelectLanuageComponent />
+              <View style={{ left: '65%' }}>
+                <SelectLanuageComponent />
+              </View>
               <Text style={styles.title}>Sign In</Text>
               <Text style={styles.subtitle}>
                 Welcome back, you've been missed
               </Text>
               <CustomInputComponent
-                name="username"
+                name="email"
                 text="Email"
                 inputType="email"
               />

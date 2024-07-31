@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import React, { useState } from 'react';
@@ -14,23 +15,29 @@ import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { LoginFormValues } from '@/types/login.type';
+import { RegisterFormValues } from '@/types/register.type';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { Checkbox } from 'react-native-paper';
+import { router } from 'expo-router';
 
 function Login() {
   const { t } = useTranslation();
   const phone_label = t('login');
 
-  const methods = useForm<LoginFormValues>({
+  const methods = useForm<RegisterFormValues>({
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
   });
 
   const onSubmit = (data: any) => {
-    console.log('login form: ', data);
+    console.log('Register form: ', data);
+    router.push('./verficationCode');
   };
 
   const [checked, setChecked] = useState(false);
@@ -43,33 +50,35 @@ function Login() {
     >
       <KeyboardAwareScrollView>
         <SafeAreaView style={{ flex: 1 }}>
+          <StatusBar barStyle={'dark-content'} />
           <View
             style={{
-              flex: 1,
               margin: 3,
               padding: 5,
-              marginTop: 0,
+              marginVertical: 25,
               backgroundColor: 'white',
             }}
           >
             <FormProvider {...methods}>
-              <SelectLanuageComponent />
+              <View style={{ left: '65%' }}>
+                <SelectLanuageComponent />
+              </View>
               <Text style={styles.title}>Create Account</Text>
               <Text style={styles.subtitle}>
                 Fill your information below or register with your social account
               </Text>
               <CustomInputComponent
-                name="fistname"
+                name="firstName"
                 text="First Name"
                 inputType="firstName"
               />
               <CustomInputComponent
-                name="lastname"
+                name="lastName"
                 text="Last Name"
                 inputType="lastName"
               />
               <CustomInputComponent
-                name="username"
+                name="email"
                 text="Email"
                 inputType="email"
               />
@@ -79,7 +88,7 @@ function Login() {
                 inputType="password"
               />
               <CustomInputComponent
-                name="confpassword"
+                name="confirmPassword"
                 text="Confirm Password"
                 inputType="password"
               />
@@ -134,7 +143,7 @@ function Login() {
                 <Text style={styles.noAccountText}>
                   Already have an account?{' '}
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('./signin')}>
                   <Text style={styles.signupText}>Sign In</Text>
                 </TouchableOpacity>
               </View>
