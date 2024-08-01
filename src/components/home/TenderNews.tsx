@@ -137,7 +137,7 @@ const style = StyleSheet.create({
     borderRadius: 5,
   },
   activeDot: {
-    backgroundColor: 'orange',
+    backgroundColor: '#F64D00',
     width: 25,
     height: 10,
   },
