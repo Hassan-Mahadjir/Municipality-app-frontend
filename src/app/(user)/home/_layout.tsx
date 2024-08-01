@@ -6,6 +6,7 @@ export default function UserHomeLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="tourism" options={{ headerShown: false }} />
     </Stack>
   );
 }
