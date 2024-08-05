@@ -62,7 +62,11 @@ export default function Header() {
 
         <View style={[style.subHeaderContianer, { gap: 25, marginRight: 10 }]}>
           {/* Press Notification */}
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              router.push('/');
+            }}
+          >
             <Ionicons name="notifications-circle" size={30} color="#fff" />
           </TouchableOpacity>
           {/* Press Change Language */}

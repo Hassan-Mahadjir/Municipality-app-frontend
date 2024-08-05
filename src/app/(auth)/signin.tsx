@@ -17,6 +17,7 @@ import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { Checkbox } from 'react-native-paper';
+import { router } from 'expo-router';
 
 function Login() {
   const { t } = useTranslation();
@@ -31,6 +32,7 @@ function Login() {
 
   const onSubmit = (data: any) => {
     console.log('login form: ', data);
+    router.push('/(user)');
   };
 
   const [checked, setChecked] = useState(false);

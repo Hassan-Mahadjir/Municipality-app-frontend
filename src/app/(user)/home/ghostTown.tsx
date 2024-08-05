@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import { router } from 'expo-router';
 
 const ghostTown = () => {
   return (
@@ -20,9 +21,7 @@ const ghostTown = () => {
           }}
         />
         <View style={styles.arrowContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Historical Places')}
-          >
+          <TouchableOpacity onPress={() => router.push('')}>
             <Image
               source={{
                 uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/7iqye9dnrse-535%3A1985?alt=media&token=b2edf32f-0532-44af-9dc8-b92414ae47dd',
