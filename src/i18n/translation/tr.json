@@ -1,4 +1,26 @@
 {
-  "welcome": "Hoş Geldiniz!",
-  "login": " jailhioe"
+	"createAccount": "Hesap Oluştur",
+	"createAccoutDescription": "Aşağıdaki bilgilerinizi doldurun veya sosyal\nmedya hesabınızla kaydolun",
+	"firstName": "Ad",
+	"lastName": "Soyadı",
+	"email": "E-posta",
+	"password": "şifre",
+	"confirmPassword": "Şifreyi Onayla",
+	"termsConditions": "Şartlar ve Koşulları kabul edin",
+	"signup": "Kaydol",
+	"signin": "Oturum Aç",
+	"signInWith": "veya şununla oturum aç",
+	"signUpWith": "Veya şununla kaydolun",
+	"haveAccount": "Zaten bir hesabınız var mı?",
+	"donotHave": "Hesabınız yok mu?",
+	"verifyCode": "Kodu Doğrula",
+	"enterCodeMsg": "Lütfen e-postanıza gönderilen kodu girin",
+	"didnotReceive": "OTP almadınız mı?",
+	"resend": "Kodu Tekrar Gönder",
+	"verify": "Doğrulamak",
+	"welcomeBack": "Tekrar hoş geldin, özlendin",
+	"forgetPassword": "Şifrenizi mi unuttunuz?",
+	"verified": "Doğrulandı",
+	"verifiedMsg": "Hesabınız başarıyla doğrulandı!",
+	"backToSignin": "Şarkı Söylemeye Geri Dön"
 }

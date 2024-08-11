@@ -1,3 +1,3 @@
 export type VerifyFormValue = {
-  email: string;
+	code: string;
 };

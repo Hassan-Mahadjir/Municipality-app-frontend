@@ -2,24 +2,18 @@ import React, { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
-import { MaterialIcons } from '@expo/vector-icons';
 import { scale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 
 type CustomInputProps = {
 	name: string;
 	text: string;
-	inputType?:
-		| 'text'
-		| 'password'
-		| 'email'
-		| 'firstName'
-		| 'lastName'
-		| 'confirmPassword'; // Define input types
+	inputType?: 'text';
+	// Define input types
 	rules?: any;
 };
 
-const CustomInputComponent = ({
+const VerficationInputComponent = ({
 	name,
 	rules,
 	text,
@@ -28,23 +22,8 @@ const CustomInputComponent = ({
 }: TextInputProps & CustomInputProps) => {
 	const { control } = useFormContext();
 
-	const [secureTextEntry, setSecureTextEntry] = useState(true);
-	const toggleSecureEntry = () => {
-		setSecureTextEntry((prev) => !prev);
-	};
-
 	const getPlaceholder = () => {
 		switch (inputType) {
-			case 'password':
-				return '********';
-			case 'email':
-				return 'example.gmail.com';
-			case 'firstName':
-				return 'e.g Hassan';
-			case 'lastName':
-				return 'e.g Barakat';
-			case 'confirmPassword':
-				return 'confirm Password';
 			default:
 				return '';
 		}
@@ -78,38 +57,19 @@ const CustomInputComponent = ({
 								onBlur={onBlur}
 								mode='outlined'
 								placeholder={getPlaceholder()}
-								outlineColor={COLORS.gray}
-								returnKeyType='next'
+								outlineColor='#848484'
+								returnKeyType='done'
+								keyboardType='numeric'
 								outlineStyle={{ borderRadius: scale(10) }}
 								activeOutlineColor={COLORS.primary}
-								secureTextEntry={inputType === 'password' && secureTextEntry}
 								{...props}
 								style={{
+									textAlign: 'center',
 									height: scale(30),
 									backgroundColor: '#fff',
-									paddingRight: inputType === 'password' ? 40 : 0,
 								}} // Add padding to make space for the toggle button
 							/>
-							{inputType === 'password' && (
-								<TouchableOpacity
-									onPress={toggleSecureEntry}
-									style={{
-										position: 'absolute',
-										right: 10,
-										top: scale(5),
-									}}
-								>
-									<MaterialIcons
-										name={secureTextEntry ? 'visibility' : 'visibility-off'}
-										size={24}
-										color={COLORS.primary}
-									/>
-								</TouchableOpacity>
-							)}
 						</View>
-						{error && (
-							<Text style={{ color: 'red' }}>{error.message || 'Error'}</Text>
-						)}
 					</>
 				)}
 			/>
@@ -117,4 +77,4 @@ const CustomInputComponent = ({
 	);
 };
 
-export default CustomInputComponent;
+export default VerficationInputComponent;

@@ -1,4 +1,27 @@
 {
   "singleQuote": true,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^@/services/(.*)$"]
+  "useTabs": true,
+  "tabWidth": 2,
+  "semi": true,
+  "jsxSingleQuote": true,
+  "singleQute": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@/services/(.*)$",
+    "^@/components/(.*)$",
+    "^@/layout/(.*)$",
+    "^@/ui/(.*)$",
+    "^@/providers/(.*)$",
+    "^@/constants/(.*)$",
+    "^@/types/(.*)$",
+    "^@/assets/(.*)$",
+    "^@/config/(.*)$",
+    "^@/store/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/api/(.*)$",
+    "^../(.*)",
+    "^./(.*)"
+  ],
+  "importOrderSepration": true
 }

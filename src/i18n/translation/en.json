@@ -1,4 +1,26 @@
 {
-  "welcome": "Welcome!",
-  "login": "Login"
+	"createAccount": "Create Account",
+	"createAccoutDescription": "Fill your information below or register\nwith your social account",
+	"firstName": "First Name",
+	"lastName": "Last Name",
+	"email": "Email",
+	"password": "Password",
+	"confirmPassword": "Confirm Password",
+	"termsConditions": "Agree with Terms & Conditions",
+	"signup": "Sign Up",
+	"signin": "Sign In",
+	"signUpWith": "or sign up with",
+	"signInWith": "or sign in with",
+	"haveAccount": "Already have an account?",
+	"donotHave": "Do not have an account?",
+	"verifyCode": "Verify Code",
+	"enterCodeMsg": "Please enter the code sent to your email",
+	"didnotReceive": "Did not receive OTP?",
+	"resend": "Resend Code",
+	"verify": "Verify",
+	"welcomeBack": "Welcome back, you've been missed",
+	"forgetPassword": "Forgot Password?",
+	"verified": "verified",
+	"verifiedMsg": "Your account has been verified successfully!",
+	"backToSignin": "Back to Sing in"
 }
