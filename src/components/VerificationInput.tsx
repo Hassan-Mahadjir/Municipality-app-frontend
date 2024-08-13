@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
-import { scale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 
 type CustomInputProps = {
@@ -47,7 +47,7 @@ const VerficationInputComponent = ({
 							style={{
 								position: 'relative',
 								width: '100%',
-								paddingBottom: scale(5),
+								paddingBottom: verticalScale(5),
 							}}
 						>
 							<TextInput
@@ -65,7 +65,7 @@ const VerficationInputComponent = ({
 								{...props}
 								style={{
 									textAlign: 'center',
-									height: scale(30),
+									height: verticalScale(30),
 									backgroundColor: '#fff',
 								}} // Add padding to make space for the toggle button
 							/>

@@ -3,7 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
-import { scale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 
 type CustomInputProps = {
@@ -68,7 +68,7 @@ const CustomInputComponent = ({
 							style={{
 								position: 'relative',
 								width: '100%',
-								paddingBottom: scale(5),
+								paddingBottom: verticalScale(5),
 							}}
 						>
 							<TextInput
@@ -85,7 +85,7 @@ const CustomInputComponent = ({
 								secureTextEntry={inputType === 'password' && secureTextEntry}
 								{...props}
 								style={{
-									height: scale(30),
+									height: verticalScale(30),
 									backgroundColor: '#fff',
 									paddingRight: inputType === 'password' ? 40 : 0,
 								}} // Add padding to make space for the toggle button
@@ -96,7 +96,7 @@ const CustomInputComponent = ({
 									style={{
 										position: 'absolute',
 										right: 10,
-										top: scale(5),
+										top: verticalScale(5),
 									}}
 								>
 									<MaterialIcons
