@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Health",
+    "image": "https://picsum.photos/150/200"
+  },
+  {
+    "name": "Traffic",
+    "image": "https://picsum.photos/350/200"
+  },
+  {
+    "name": "News",
+    "image": "https://picsum.photos/150/300"
+  },
+  {
+    "name": "Tourism",
+    "image": "https://picsum.photos/200/150"
+  }
+]
