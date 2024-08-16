@@ -22,6 +22,7 @@
 	"forgetPassword": "Şifrenizi mi unuttunuz?",
 	"verified": "Doğrulandı",
 	"verifiedMsg": "Hesabınız başarıyla doğrulandı!",
+<<<<<<< HEAD
 	"backToSignin": "Şarkı Söylemeye Geri Dön",
 	"Health": "Sağlık",
 	"Hospitals":"Hastaneler",
@@ -35,4 +36,7 @@
 	"searchbypharmacyname":"Eczane Adına Göre Arama",
 	"openthisweekend":"Bu hafta sonu açık",
 	"emulocation": "Mağusa, DAÜ,ana kapı "
+=======
+	"backToSignin": "Şarkı Söylemeye Geri Dön"
+>>>>>>> 4e2582932f176892c846e2a9933a2a6bdc1d75e3
 }

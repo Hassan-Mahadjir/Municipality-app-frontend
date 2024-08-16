@@ -22,6 +22,7 @@
 	"forgetPassword": "Forgot Password?",
 	"verified": "verified",
 	"verifiedMsg": "Your account has been verified successfully!",
+<<<<<<< HEAD
 	"backToSignin": "Back to Sing in",
 	"Health": "Health",
 	"Hospitals":"Hospitals",
@@ -35,4 +36,7 @@
 	"searchbypharmacyname":"Search by Pharmacy Name",
 	"openthisweekend":"Open this weekend",
 	"emulocation": "Famagusta, EMU, main-gate"
+=======
+	"backToSignin": "Back to Sing in"
+>>>>>>> 4e2582932f176892c846e2a9933a2a6bdc1d75e3
 }
