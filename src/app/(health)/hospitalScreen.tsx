@@ -21,7 +21,7 @@ const hospitalScreen = () => {
       <View style={styles.container}>
         <Header2
           title={Hospitals}
-          onBackPress={() => router.push('/(health)/healthMain')}
+          onBackPress={() => router.push('./(health)/healthMain')}
         />
         <SearchField
           placeholder={searchbyhospitalname}
@@ -32,13 +32,13 @@ const hospitalScreen = () => {
           <HealthItems
             name={emuhospital}
             location={emulocation}
-            onSeeLocation={() => router.push('/(health)/hospitalLocation')}
+            onSeeLocation={() => router.push('./(health)/hospitalLocation')}
             imageUri="https://th.bing.com/th/id/R.08480a644a8bf6a20d33aac8fdde047b?rik=r%2fszbI1jJczltQ&pid=ImgRaw&r=0"
           />
           <HealthItems
             name={emuhospital}
             location={emulocation}
-            onSeeLocation={() => router.push('/(health)/hospitalLocation')}
+            onSeeLocation={() => router.push('./(health)/hospitalLocation')}
             imageUri="https://th.bing.com/th/id/R.08480a644a8bf6a20d33aac8fdde047b?rik=r%2fszbI1jJczltQ&pid=ImgRaw&r=0"
           />
         </ScrollView>

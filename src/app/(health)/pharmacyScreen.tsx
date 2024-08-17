@@ -22,7 +22,7 @@ const PharmacyScreen = () => {
     <View style={styles.container}>
       <Header2
         title={Pharmacies}
-        onBackPress={() => router.push('/(health)/healthMain')}
+        onBackPress={() => router.push('./(health)/healthMain')}
       />
       <SearchField
         placeholder={searchbypharmacyname}
@@ -36,13 +36,13 @@ const PharmacyScreen = () => {
         <HealthItems
           name={emupharmacy}
           location={emulocation}
-          onSeeLocation={() => router.push('/(health)/pharmacyLocation')}
+          onSeeLocation={() => router.push('./(health)/pharmacyLocation')}
           imageUri="https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain"
         />
         <HealthItems
           name={emupharmacy}
           location={emulocation}
-          onSeeLocation={() => router.push('/(health)/pharmacyLocation')}
+          onSeeLocation={() => router.push('./(health)/pharmacyLocation')}
           imageUri="https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain"
         />
       </ScrollView>

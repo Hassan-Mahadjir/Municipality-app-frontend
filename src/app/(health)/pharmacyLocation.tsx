@@ -16,7 +16,7 @@ const PharmacyLocation = () => {
       <View style={{ flex: 1 }}>
         <Header2 
           title={emupharmacy} 
-          onBackPress={() => router.push('/(health)/pharmacyScreen')} 
+          onBackPress={() => router.push('./(health)/pharmacyScreen')} 
         />
 
         <ScrollView contentContainerStyle={styles.container}>
