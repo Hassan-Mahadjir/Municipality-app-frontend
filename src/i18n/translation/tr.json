@@ -22,5 +22,21 @@
 	"forgetPassword": "Şifrenizi mi unuttunuz?",
 	"verified": "Doğrulandı",
 	"verifiedMsg": "Hesabınız başarıyla doğrulandı!",
+<<<<<<< HEAD
+	"backToSignin": "Şarkı Söylemeye Geri Dön",
+	"Health": "Sağlık",
+	"Hospitals":"Hastaneler",
+	"Pharmacies": "Eczaneler",
+	"searchbyhospitalname":"Hastane Adına Göre Arama",
+	"emuhospital":"DAÜ Hastane",
+	"emupharmacy": "DAÜ Eczane",
+	"yourlocation":"Konumunuz",
+	"location": " 2972 Westheimer Caddesi. Santa Ana, Illinois 85486",
+	"showdirections":"Yol tarifini göster",
+	"searchbypharmacyname":"Eczane Adına Göre Arama",
+	"openthisweekend":"Bu hafta sonu açık",
+	"emulocation": "Mağusa, DAÜ,ana kapı "
+=======
 	"backToSignin": "Şarkı Söylemeye Geri Dön"
+>>>>>>> 4e2582932f176892c846e2a9933a2a6bdc1d75e3
 }

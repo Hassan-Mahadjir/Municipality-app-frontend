@@ -1,0 +1,25 @@
+[
+    {
+      "id": 1,
+      "description": "EMU Pharmacy",
+      "imageURL": "https://www.scrapehero.com/wp/wp-content/uploads/2020/11/pharmacist-holding-medicine-box-capsule-pack-pharmacy-drugstore-min-scaled.jpg",
+      "location": "Famagusta, EMU, main-gate",
+      "locationIconURL": " https://pluspng.com/img-png/png-location-big-image-png-1911.png"
+    },
+    {
+      "id": 2,
+      "description": "Sumer Pharmacy",
+      "imageURL": "https://th.bing.com/th/id/OIP.kjaCQy8bL_6Mrauf0VH80QHaHa?w=1080&h=1080&rs=1&pid=ImgDetMain",
+      "location": "Downtown area",
+      "locationIconURL": " https://pluspng.com/img-png/png-location-big-image-png-1911.png"
+      
+    },
+    {
+      "id": 3,
+      "description": "Osmankan Pharmacy",
+      "imageURL": "https://th.bing.com/th/id/OIP.QMyLQBb27X-54VE3LDbNigHaE8?w=696&h=465&rs=1&pid=ImgDetMain",
+      "location": "Next to the park",
+      "locationIconURL": " https://pluspng.com/img-png/png-location-big-image-png-1911.png"
+    }
+  ]
+  
