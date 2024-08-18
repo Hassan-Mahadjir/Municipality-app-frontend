@@ -22,21 +22,17 @@
 	"forgetPassword": "Forgot Password?",
 	"verified": "verified",
 	"verifiedMsg": "Your account has been verified successfully!",
-<<<<<<< HEAD
 	"backToSignin": "Back to Sing in",
 	"Health": "Health",
-	"Hospitals":"Hospitals",
+	"Hospitals": "Hospitals",
 	"Pharmacies": "Pharmacies",
-	"searchbyhospitalname":"Search by Hospital Name",
-	"emuhospital":"EMU Hospital",
+	"searchbyhospitalname": "Search by Hospital Name",
+	"emuhospital": "EMU Hospital",
 	"emupharmacy": "EMU Pharmacy",
-	"yourlocation":"Your Location",
+	"yourlocation": "Your Location",
 	"location": " 2972 Westheimer Rd. Santa Ana, Illinois 85486",
-	"showdirections":"Show Directions",
-	"searchbypharmacyname":"Search by Pharmacy Name",
-	"openthisweekend":"Open this weekend",
+	"showdirections": "Show Directions",
+	"searchbypharmacyname": "Search by Pharmacy Name",
+	"openthisweekend": "Open this weekend",
 	"emulocation": "Famagusta, EMU, main-gate"
-=======
-	"backToSignin": "Back to Sing in"
->>>>>>> 4e2582932f176892c846e2a9933a2a6bdc1d75e3
 }
