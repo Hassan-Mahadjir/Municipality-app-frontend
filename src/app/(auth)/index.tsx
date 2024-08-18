@@ -9,7 +9,7 @@ import {
 	StatusBar,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
@@ -20,7 +20,13 @@ import { scale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
 import { router } from 'expo-router';
 
+import { useLogin } from '@/services/api/auth';
+
+import axios from 'axios';
+
 function Login() {
+	const { mutateLogin } = useLogin();
+
 	const { t } = useTranslation();
 	const signin = t('signin');
 	const signup = t('signup');
@@ -38,9 +44,10 @@ function Login() {
 		},
 	});
 
-	const onSubmit = (data: any) => {
+	const onSubmit = async (data: any) => {
 		console.log('login form: ', data);
-		router.replace('/(user)');
+		mutateLogin(data);
+		// router.replace('/(user)');
 	};
 
 	const [checked, setChecked] = useState(false);
