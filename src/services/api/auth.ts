@@ -12,7 +12,7 @@ export const useLogin = () => {
 			console.log(`success from auth.ts ${data.data.data.accessToken}`);
 			setItem('token', data.data.data.accessToken);
 			if (await getItem('token')) {
-				router.push('/(user)');
+				// router.push('/(user)');
 			}
 		},
 	});
