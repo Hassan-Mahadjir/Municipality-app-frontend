@@ -26,9 +26,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useLogin } from '@/services/api/auth';
 
 import axios from 'axios';
-
+import Loading from '@/components/Loading';
 function Login() {
-	const { mutateLogin } = useLogin();
+	const { mutateLogin, isPending } = useLogin();
 
 	const { t } = useTranslation();
 	const signin = t('signin');
@@ -61,9 +61,8 @@ function Login() {
 	});
 
 	const onSubmit = (data: LoginFormValues) => {
-		console.log('login form: ', data);
-		// mutateLogin(data);
-		// router.replace('/(user)');
+		// console.log('login form: ', data);
+		mutateLogin(data);
 	};
 
 	const [checked, setChecked] = useState(false);
@@ -86,64 +85,68 @@ function Login() {
 							backgroundColor: '#fff',
 						}}
 					>
-						<FormProvider {...methods}>
-							<View style={{ position: 'relative', marginLeft: '85%' }}>
-								<SelectLanuageComponent />
-							</View>
-							<Text style={styles.title}>{signin}</Text>
-							<Text style={styles.subtitle}>{welcomeBack}</Text>
-							<CustomInputComponent
-								name='email'
-								text={email}
-								inputType='email'
-								returnKeyType='next'
-								ref={emailRef}
-								onSubmitEditing={() => passwordRef.current?.focus()}
-							/>
-							<CustomInputComponent
-								name='password'
-								text={password}
-								inputType='password'
-								returnKeyType='done'
-								ref={passwordRef}
-							/>
-
-							<View style={styles.forgetPassContainer}>
-								<TouchableOpacity>
-									<Text style={styles.forgetPassText}>{forgetPassword}</Text>
-								</TouchableOpacity>
-							</View>
-
-							<SubmitButtonComponent
-								onPress={methods.handleSubmit(onSubmit)}
-								title={signin}
-								fullWidth
-							/>
-
-							<View style={styles.horizontalLineContainer}>
-								<View style={styles.horizontalLine} />
-								<Text style={styles.orText}>{signInWith}</Text>
-								<View style={styles.horizontalLine} />
-							</View>
-							<TouchableOpacity
-								style={[styles.buttonContainer, styles.googleButton]}
-							>
-								<Image
-									source={{
-										uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8zU_yLBGMXMOzE3dpORNzgZ8vh09KsVyszg&s',
-									}}
-									style={styles.icon}
+						{isPending ? (
+							<Loading />
+						) : (
+							<FormProvider {...methods}>
+								<View style={{ position: 'relative', marginLeft: '75%' }}>
+									<SelectLanuageComponent />
+								</View>
+								<Text style={styles.title}>{signin}</Text>
+								<Text style={styles.subtitle}>{welcomeBack}</Text>
+								<CustomInputComponent
+									name='email'
+									text={email}
+									inputType='email'
+									returnKeyType='next'
+									ref={emailRef}
+									onSubmitEditing={() => passwordRef.current?.focus()}
 								/>
-								<Text style={styles.googleText}>Google</Text>
-							</TouchableOpacity>
+								<CustomInputComponent
+									name='password'
+									text={password}
+									inputType='password'
+									returnKeyType='done'
+									ref={passwordRef}
+								/>
 
-							<View style={styles.signupContainer}>
-								<Text style={styles.noAccountText}>{donotHave} </Text>
-								<TouchableOpacity onPress={() => router.push('/signUp')}>
-									<Text style={styles.signupText}>{signup}</Text>
+								<View style={styles.forgetPassContainer}>
+									<TouchableOpacity>
+										<Text style={styles.forgetPassText}>{forgetPassword}</Text>
+									</TouchableOpacity>
+								</View>
+
+								<SubmitButtonComponent
+									onPress={methods.handleSubmit(onSubmit)}
+									title={signin}
+									fullWidth
+								/>
+
+								<View style={styles.horizontalLineContainer}>
+									<View style={styles.horizontalLine} />
+									<Text style={styles.orText}>{signInWith}</Text>
+									<View style={styles.horizontalLine} />
+								</View>
+								<TouchableOpacity
+									style={[styles.buttonContainer, styles.googleButton]}
+								>
+									<Image
+										source={{
+											uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8zU_yLBGMXMOzE3dpORNzgZ8vh09KsVyszg&s',
+										}}
+										style={styles.icon}
+									/>
+									<Text style={styles.googleText}>Google</Text>
 								</TouchableOpacity>
-							</View>
-						</FormProvider>
+
+								<View style={styles.signupContainer}>
+									<Text style={styles.noAccountText}>{donotHave} </Text>
+									<TouchableOpacity onPress={() => router.push('/signUp')}>
+										<Text style={styles.signupText}>{signup}</Text>
+									</TouchableOpacity>
+								</View>
+							</FormProvider>
+						)}
 					</View>
 				</SafeAreaView>
 			</KeyboardAwareScrollView>

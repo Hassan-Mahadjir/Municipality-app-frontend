@@ -9,6 +9,7 @@ import { APIProvider } from '@/providers/api-provider';
 import '../i18n/translation';
 import React from 'react';
 
+import useCheckToken from '@/hooks/check-token';
 export {
 	// Catch any errors thrown by the Layout component.
 	ErrorBoundary,
@@ -48,6 +49,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
 	const { t } = useTranslation();
+	useCheckToken();
 	return (
 		<APIProvider>
 			<Stack screenOptions={{ headerShown: false }}>
