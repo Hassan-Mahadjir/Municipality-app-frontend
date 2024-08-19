@@ -2,6 +2,7 @@ import {
 	Text,
 	View,
 	TouchableOpacity,
+	TextInput,
 	Image,
 	KeyboardAvoidingView,
 	Platform,
@@ -9,7 +10,7 @@ import {
 	StatusBar,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
@@ -19,9 +20,12 @@ import { useTranslation } from 'react-i18next';
 import { Checkbox } from 'react-native-paper';
 import { router } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
-import { scale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
+import { z } from 'zod';
 
 import { styles } from '@/styles/signUp';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 function signUp() {
 	const { t } = useTranslation();
 	const creatAcount = t('createAccount');
@@ -37,6 +41,33 @@ function signUp() {
 	const signUpWith = t('signUpWith');
 	const haveAccount = t('haveAccount');
 
+	const firstNameValidation = t('firstNameValidation');
+	const lastNameValidation = t('lastNameValidation');
+	const passwordValidation = t('passwordValidation');
+	const emailValidation = t('emailValidation');
+	const passwordDontMatch = t('passwordDontMatch');
+
+	// References
+	const firstNameRef = useRef<TextInput>(null);
+	const lastNameRef = useRef<TextInput>(null);
+	const emailRef = useRef<TextInput>(null);
+	const passwordRef = useRef<TextInput>(null);
+	const confirmPasswordRef = useRef<TextInput>(null);
+
+	// Validation
+	const formSchema = z
+		.object({
+			firstName: z.string().min(1, { message: firstNameValidation }),
+			lastName: z.string().min(1, { message: lastNameValidation }),
+			email: z.string().email({ message: emailValidation }),
+			password: z.string().min(6, { message: passwordValidation }),
+			confirmPassword: z.string().min(6, { message: passwordValidation }),
+		})
+		.refine((data) => data.password === data.confirmPassword, {
+			message: passwordDontMatch,
+			path: ['confirmPassword'], // Field to attach the error message to
+		});
+
 	const methods = useForm<RegisterFormValues>({
 		defaultValues: {
 			firstName: '',
@@ -45,11 +76,12 @@ function signUp() {
 			password: '',
 			confirmPassword: '',
 		},
+		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: RegisterFormValues) => {
 		console.log('Register form: ', data);
-		router.push('./verficationCode');
+		// router.push('./verficationCode');
 	};
 
 	const [checked, setChecked] = useState(false);
@@ -65,14 +97,15 @@ function signUp() {
 					<StatusBar barStyle={'dark-content'} />
 					<View
 						style={{
-							margin: 10,
-							padding: 5,
-							marginVertical: 25,
-							backgroundColor: 'white',
+							flex: 1,
+							margin: scale(5),
+							padding: scale(5),
+							marginVertical: verticalScale(25),
+							backgroundColor: '#fff',
 						}}
 					>
 						<FormProvider {...methods}>
-							<View style={{ left: scale(240) }}>
+							<View style={{ position: 'relative', marginLeft: '85%' }}>
 								<SelectLanuageComponent />
 							</View>
 							<Text style={styles.title}>{creatAcount}</Text>
@@ -81,26 +114,41 @@ function signUp() {
 								name='firstName'
 								text={firstName}
 								inputType='firstName'
+								returnKeyType='next'
+								ref={firstNameRef}
+								onSubmitEditing={() => lastNameRef.current?.focus()}
 							/>
 							<CustomInputComponent
 								name='lastName'
 								text={lastName}
 								inputType='lastName'
+								returnKeyType='next'
+								ref={lastNameRef}
+								onSubmitEditing={() => emailRef.current?.focus()}
 							/>
 							<CustomInputComponent
 								name='email'
 								text={email}
 								inputType='email'
+								returnKeyType='next'
+								ref={emailRef}
+								onSubmitEditing={() => passwordRef.current?.focus()}
 							/>
 							<CustomInputComponent
 								name='password'
 								text={password}
 								inputType='password'
+								returnKeyType='next'
+								ref={passwordRef}
+								onSubmitEditing={() => confirmPasswordRef.current?.focus()}
 							/>
 							<CustomInputComponent
 								name='confirmPassword'
 								text={confirmPassword}
 								inputType='password'
+								returnKeyType='done'
+								ref={confirmPasswordRef}
+								// onSubmitEditing={methods.handleSubmit(onSubmit)}
 							/>
 							<View style={styles.checkboxContainer}>
 								<View>
@@ -121,10 +169,9 @@ function signUp() {
 							</View>
 							<SubmitButtonComponent
 								onPress={methods.handleSubmit(onSubmit)}
-								mode='contained'
-							>
-								{signup}
-							</SubmitButtonComponent>
+								title={signup}
+								fullWidth
+							/>
 							<View style={styles.horizontalLineContainer}>
 								<View style={styles.horizontalLine} />
 								<Text style={styles.orText}>{signUpWith}</Text>
@@ -140,18 +187,6 @@ function signUp() {
 									style={styles.icon}
 								/>
 								<Text style={styles.googleText}>Google</Text>
-							</TouchableOpacity>
-
-							<TouchableOpacity
-								style={[styles.buttonContainer, styles.appleButton]}
-							>
-								<Image
-									source={{
-										uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbT5z0ugE618RACSU2Uslw_LoM0IBFGaASeA&s',
-									}}
-									style={styles.icon}
-								/>
-								<Text style={styles.appleText}>Apple</Text>
 							</TouchableOpacity>
 
 							<View style={styles.signupContainer}>

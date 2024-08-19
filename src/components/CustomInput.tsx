@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, RefObject, forwardRef } from 'react';
+import { Feather } from '@expo/vector-icons';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { TextInput, TextInputProps } from 'react-native-paper';
-import { MaterialIcons } from '@expo/vector-icons';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { Text, View, TextInput, TextInputProps } from 'react-native';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
+import useBorderColor from '@/hooks/user-border-color';
 
-type CustomInputProps = {
+type CustomInputProps = TextInputProps & {
 	name: string;
 	text: string;
 	inputType?:
@@ -15,55 +15,51 @@ type CustomInputProps = {
 		| 'email'
 		| 'firstName'
 		| 'lastName'
-		| 'confirmPassword'; // Define input types
+		| 'confirmPassword';
 	rules?: any;
+	returnKeyType?: TextInputProps['returnKeyType'];
+	onSubmitEditing?: () => void; // This prop should be optional and a function
+	ref?: RefObject<TextInput>; // Ref for the input field
 };
 
-const CustomInputComponent = ({
-	name,
-	rules,
-	text,
-	inputType = 'text', // Default parameter for inputType
-	...props
-}: TextInputProps & CustomInputProps) => {
-	const { control } = useFormContext();
+const CustomInputComponent = forwardRef<TextInput, CustomInputProps>(
+	(
+		{ name, rules, text, inputType, onSubmitEditing, returnKeyType, ...props },
+		ref
+	) => {
+		const { control } = useFormContext();
+		const [secureTextEntry, setSecureTextEntry] = useState(true);
+		const toggleSecureEntry = () => setSecureTextEntry((prev) => !prev);
+		const { handleOnBlur, handleOnFocus, isOnFocus, borderColor } =
+			useBorderColor();
 
-	const [secureTextEntry, setSecureTextEntry] = useState(true);
-	const toggleSecureEntry = () => {
-		setSecureTextEntry((prev) => !prev);
-	};
+		const getPlaceholder = () => {
+			switch (inputType) {
+				case 'password':
+					return '********';
+				case 'email':
+					return 'example@gmail.com';
+				case 'firstName':
+					return 'e.g Hassan';
+				case 'lastName':
+					return 'e.g Barakat';
+				case 'confirmPassword':
+					return 'Confirm Password';
+				default:
+					return '';
+			}
+		};
 
-	const getPlaceholder = () => {
-		switch (inputType) {
-			case 'password':
-				return '********';
-			case 'email':
-				return 'example.gmail.com';
-			case 'firstName':
-				return 'e.g Hassan';
-			case 'lastName':
-				return 'e.g Barakat';
-			case 'confirmPassword':
-				return 'confirm Password';
-			default:
-				return '';
-		}
-	};
-
-	return (
-		<>
-			{text && (
-				<Text style={{ fontSize: 18, marginBottom: scale(5) }}>{text}</Text>
-			)}
-			<Controller
-				control={control}
-				name={name}
-				rules={rules}
-				render={({
-					field: { onChange, onBlur, value },
-					fieldState: { error },
-				}) => (
-					<>
+		return (
+			<>
+				{text && (
+					<Text style={{ fontSize: 18, marginBottom: scale(5) }}>{text}</Text>
+				)}
+				<Controller
+					control={control}
+					name={name}
+					rules={rules} // Use the rules prop here
+					render={({ field: { onChange, value }, fieldState: { error } }) => (
 						<View
 							style={{
 								position: 'relative',
@@ -72,49 +68,53 @@ const CustomInputComponent = ({
 							}}
 						>
 							<TextInput
-								textColor='#000'
 								value={value}
 								onChangeText={(val) => onChange(val)}
-								onBlur={onBlur}
-								mode='outlined'
+								onBlur={handleOnBlur}
+								onFocus={handleOnFocus}
 								placeholder={getPlaceholder()}
-								outlineColor={COLORS.gray}
-								returnKeyType='next'
-								outlineStyle={{ borderRadius: scale(10) }}
-								activeOutlineColor={COLORS.primary}
+								returnKeyType={returnKeyType}
 								secureTextEntry={inputType === 'password' && secureTextEntry}
-								{...props}
 								style={{
-									height: verticalScale(30),
+									height: verticalScale(35),
 									backgroundColor: '#fff',
-									paddingRight: inputType === 'password' ? 40 : 0,
-								}} // Add padding to make space for the toggle button
+									borderColor: borderColor,
+									borderRadius: scale(10),
+									paddingHorizontal: scale(10),
+									borderWidth: isOnFocus ? 2 : 1,
+									fontSize: moderateScale(13),
+									color: '#000',
+								}}
+								ref={ref} // Attach the ref here
+								onSubmitEditing={onSubmitEditing} // Attach the onSubmitEditing handler here
+								{...props}
 							/>
 							{inputType === 'password' && (
-								<TouchableOpacity
+								<Feather
+									name={secureTextEntry ? 'eye' : 'eye-off'}
 									onPress={toggleSecureEntry}
 									style={{
 										position: 'absolute',
-										right: 10,
-										top: verticalScale(5),
+										marginLeft: '90%',
+										marginTop: verticalScale(8),
 									}}
-								>
-									<MaterialIcons
-										name={secureTextEntry ? 'visibility' : 'visibility-off'}
-										size={24}
-										color={COLORS.primary}
-									/>
-								</TouchableOpacity>
+									size={scale(20)}
+									color='black'
+								/>
+							)}
+							{error && (
+								<Text style={{ color: 'red', fontSize: moderateScale(12) }}>
+									{error.message}
+								</Text>
 							)}
 						</View>
-						{error && (
-							<Text style={{ color: 'red' }}>{error.message || 'Error'}</Text>
-						)}
-					</>
-				)}
-			/>
-		</>
-	);
-};
+					)}
+				/>
+			</>
+		);
+	}
+);
+
+CustomInputComponent.displayName = 'CustomInputComponent';
 
 export default CustomInputComponent;

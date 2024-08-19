@@ -1,5 +1,6 @@
 import {
 	Text,
+	TextInput,
 	View,
 	TouchableOpacity,
 	Image,
@@ -9,16 +10,18 @@ import {
 	StatusBar,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
-import { scale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
 import { router } from 'expo-router';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useLogin } from '@/services/api/auth';
 
@@ -37,16 +40,29 @@ function Login() {
 	const donotHave = t('donotHave');
 	const forgetPassword = t('forgetPassword');
 
+	const passwordValidation = t('passwordValidation');
+	const emailValidation = t('emailValidation');
+
+	// References
+	const emailRef = useRef<TextInput>(null);
+	const passwordRef = useRef<TextInput>(null);
+
+	const formSchema = z.object({
+		email: z.string().email({ message: emailValidation }),
+		password: z.string().min(6, { message: passwordValidation }),
+	});
+
 	const methods = useForm<LoginFormValues>({
 		defaultValues: {
 			email: '',
 			password: '',
 		},
+		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit = async (data: any) => {
+	const onSubmit = (data: LoginFormValues) => {
 		console.log('login form: ', data);
-		mutateLogin(data);
+		// mutateLogin(data);
 		// router.replace('/(user)');
 	};
 
@@ -64,14 +80,14 @@ function Login() {
 					<View
 						style={{
 							flex: 1,
-							margin: 5,
-							padding: 5,
-							marginVertical: 25,
-							backgroundColor: 'white',
+							margin: scale(5),
+							padding: scale(5),
+							marginVertical: verticalScale(25),
+							backgroundColor: '#fff',
 						}}
 					>
 						<FormProvider {...methods}>
-							<View style={{ left: scale(240) }}>
+							<View style={{ position: 'relative', marginLeft: '85%' }}>
 								<SelectLanuageComponent />
 							</View>
 							<Text style={styles.title}>{signin}</Text>
@@ -80,11 +96,16 @@ function Login() {
 								name='email'
 								text={email}
 								inputType='email'
+								returnKeyType='next'
+								ref={emailRef}
+								onSubmitEditing={() => passwordRef.current?.focus()}
 							/>
 							<CustomInputComponent
 								name='password'
 								text={password}
 								inputType='password'
+								returnKeyType='done'
+								ref={passwordRef}
 							/>
 
 							<View style={styles.forgetPassContainer}>
@@ -95,10 +116,9 @@ function Login() {
 
 							<SubmitButtonComponent
 								onPress={methods.handleSubmit(onSubmit)}
-								mode='contained'
-							>
-								{signin}
-							</SubmitButtonComponent>
+								title={signin}
+								fullWidth
+							/>
 
 							<View style={styles.horizontalLineContainer}>
 								<View style={styles.horizontalLine} />
@@ -115,18 +135,6 @@ function Login() {
 									style={styles.icon}
 								/>
 								<Text style={styles.googleText}>Google</Text>
-							</TouchableOpacity>
-
-							<TouchableOpacity
-								style={[styles.buttonContainer, styles.appleButton]}
-							>
-								<Image
-									source={{
-										uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbT5z0ugE618RACSU2Uslw_LoM0IBFGaASeA&s',
-									}}
-									style={styles.icon}
-								/>
-								<Text style={styles.appleText}>Apple</Text>
 							</TouchableOpacity>
 
 							<View style={styles.signupContainer}>

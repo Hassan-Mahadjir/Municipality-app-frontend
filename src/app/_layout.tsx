@@ -1,5 +1,4 @@
 import { Stack } from 'expo-router';
-import { PaperProvider } from 'react-native-paper';
 import { useFonts } from 'expo-font';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useEffect } from 'react';
@@ -51,14 +50,12 @@ function RootLayoutNav() {
 	const { t } = useTranslation();
 	return (
 		<APIProvider>
-			<PaperProvider>
-				<Stack screenOptions={{ headerShown: false }}>
-					<Stack.Screen name='index' />
-					<Stack.Screen name='(user)' />
-					<Stack.Screen name='(auth)' />
-					<Stack.Screen name='(admin)' />
-				</Stack>
-			</PaperProvider>
+			<Stack screenOptions={{ headerShown: false }}>
+				<Stack.Screen name='index' />
+				<Stack.Screen name='(user)' />
+				<Stack.Screen name='(auth)' />
+				<Stack.Screen name='(admin)' />
+			</Stack>
 		</APIProvider>
 	);
 }

@@ -34,5 +34,11 @@
 	"showdirections": "Show Directions",
 	"searchbypharmacyname": "Search by Pharmacy Name",
 	"openthisweekend": "Open this weekend",
-	"emulocation": "Famagusta, EMU, main-gate"
+	"emulocation": "Famagusta, EMU, main-gate",
+
+	"firstNameValidation": "first name must contain at least 1 character(s)",
+	"lastNameValidation": "last name must contain at least 1 character(s)",
+	"passwordValidation": "Password must contain at least 6 character(s)",
+	"emailValidation": "Invalid email",
+	"passwordDontMatch": "Passwords don't match"
 }

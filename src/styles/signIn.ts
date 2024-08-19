@@ -41,17 +41,6 @@ export const styles = StyleSheet.create({
 		color: COLORS.primary,
 		marginLeft: scale(10),
 	},
-	appleButton: {
-		borderWidth: 1,
-		borderColor: COLORS.primary,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	appleText: {
-		color: COLORS.primary,
-		marginLeft: scale(10),
-	},
 	signupContainer: {
 		display: 'flex',
 		flexDirection: 'row',

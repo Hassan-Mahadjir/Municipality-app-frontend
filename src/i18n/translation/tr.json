@@ -34,5 +34,11 @@
 	"showdirections": "Yol tarifini göster",
 	"searchbypharmacyname": "Eczane Adına Göre Arama",
 	"openthisweekend": "Bu hafta sonu açık",
-	"emulocation": "Mağusa, DAÜ,ana kapı "
+	"emulocation": "Mağusa, DAÜ,ana kapı ",
+
+	"firstNameValidation": "Ad en az 1 karakter içermelidir",
+	"lastNameValidation": "Soyad en az 1 karakter içermelidir",
+	"passwordValidation": "Şifre en az 6 karakter içermelidir",
+	"emailValidation": "Geçersiz e-posta",
+	"passwordDontMatch": "Şifreler eşleşmiyor"
 }

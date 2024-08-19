@@ -1,24 +1,64 @@
-import React, { PropsWithChildren } from 'react';
-import { Button, ButtonProps } from 'react-native-paper';
-import { scale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
+import React from 'react';
+import {
+	StyleProp,
+	StyleSheet,
+	Text,
+	TextStyle,
+	TouchableOpacity,
+	TouchableOpacityProps,
+	ViewStyle,
+} from 'react-native';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+
+type CButtonProps = {
+	onPress: () => void;
+	title: string;
+	fullWidth?: boolean;
+	style?: StyleProp<ViewStyle>; // Optional style prop
+	textStyle?: StyleProp<TextStyle>; // Optional style prop for Text
+};
+
+const defaultStyle = StyleSheet.create({
+	button: {
+		backgroundColor: COLORS.primary,
+		height: verticalScale(40),
+		borderRadius: scale(10),
+		justifyContent: 'center',
+		alignItems: 'center',
+		alignSelf: 'flex-start',
+		paddingHorizontal: scale(16),
+	},
+	text: {
+		color: '#fff',
+		fontSize: moderateScale(19),
+		fontWeight: 'bold',
+	},
+	fullWidth: {
+		alignSelf: 'auto',
+	},
+});
 
 const SubmitButtonComponent = ({
-	children,
+	onPress,
+	title,
+	style,
+	textStyle,
+	fullWidth,
 	...props
-}: PropsWithChildren & ButtonProps) => {
+}: CButtonProps & TouchableOpacityProps) => {
 	return (
-		<Button
-			style={{ borderRadius: scale(10) }}
-			contentStyle={{
-				backgroundColor: COLORS.primary,
-				height: scale(35),
-			}}
-			labelStyle={{ color: '#fff', fontSize: 19, fontWeight: 'bold' }}
+		<TouchableOpacity
+			onPress={onPress}
+			style={[defaultStyle.button, style, fullWidth && defaultStyle.fullWidth]} // Merging styles with array
 			{...props}
 		>
-			{children}
-		</Button>
+			<Text
+				style={[defaultStyle.text, textStyle]} // Merging styles with array
+			>
+				{title}
+			</Text>
+		</TouchableOpacity>
 	);
 };
 
