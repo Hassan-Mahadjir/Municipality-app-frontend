@@ -4,36 +4,43 @@ import { scale, verticalScale } from 'react-native-size-matters';
 
 const HealthServicesComponent = ({ title, backgroundImage, onPress }: { title: string; backgroundImage: { uri: string }; onPress: () => void }) => {
   return (
-    <View style={styles.container}>
-      <ImageBackground source={backgroundImage} style={styles.Imagestyle}>
-        <TouchableOpacity onPress={onPress} style={styles.touchable}>
-          <Text style={styles.title}>{title}</Text>
-        </TouchableOpacity>
-      </ImageBackground>
+    <View style={styles.pageContainer}>
+      <View style={styles.container}>
+        <ImageBackground source={backgroundImage} style={styles.Imagestyle}>
+          <TouchableOpacity onPress={onPress} style={styles.touchable}>
+            <Text style={styles.title}>{title}</Text>
+          </TouchableOpacity>
+        </ImageBackground>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: '90%',
-    height: verticalScale(200),
+  pageContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: verticalScale(10),
-    borderRadius: scale(10),
+  },
+  container: {
+    width: '84%',
+    height: verticalScale(153),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: verticalScale(8),
+    borderRadius: scale(8),
     overflow: 'hidden',
-    marginLeft: scale(20),
-    marginTop: verticalScale(30),
+   // marginLeft: scale(10),
+    marginTop: verticalScale(32),
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: verticalScale(10) },
-    shadowOpacity: 0.5,
-    shadowRadius: scale(15),
-    elevation: 15,
+    shadowOffset: { width: 0, height: verticalScale(8) },
+    shadowOpacity: 0.4,
+    shadowRadius: scale(12),
+    elevation: 12,
   },
   Imagestyle: {
     width: '100%',
-    height: verticalScale(214),
+    height: verticalScale(160),
   },
   touchable: {
     flex: 1,
@@ -43,7 +50,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    fontSize: scale(25),
+    fontSize: scale(20),
     fontWeight: 'bold',
     color: '#fff',
   },

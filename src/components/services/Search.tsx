@@ -35,23 +35,23 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderWidth: scale(1), // Scaled border width
 		borderColor: COLORS.primary, // Orange border
-		borderRadius: scale(25), // Scaled border radius
-		padding: scale(10), // Scaled padding
+		borderRadius: scale(20), // Reduced border radius
+		padding: scale(8), // Reduced padding
 		backgroundColor: '#FFF',
-		marginTop: verticalScale(20), // Scaled top margin
-		marginLeft: scale(9), // Scaled left margin
-		width: '96%',
+		marginTop: verticalScale(15), // Reduced top margin
+		marginLeft: scale(8), // Reduced left margin
+		width: '96%', // Reduced width
 	},
 	icon: {
-		width: scale(24), // Increased scaled image width
-		height: verticalScale(24), // Increased scaled image height
-		marginRight: scale(10), // Scaled right margin
+		width: scale(22), // Reduced image width
+		height: verticalScale(24), // Reduced image height
+		marginRight: scale(8), // Reduced right margin
 	},
 	searchInput: {
 		flex: 1,
-		fontSize: scale(14), // Scaled font size
+		fontSize: scale(12), // Reduced font size
 		color: COLORS.secondary,
-		marginLeft: scale(10), // Scaled left margin
+		marginLeft: scale(8), // Reduced left margin
 	},
 });
 

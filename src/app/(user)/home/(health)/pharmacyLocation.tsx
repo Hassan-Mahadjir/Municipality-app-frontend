@@ -1,10 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView, ScrollView } from 'react-native';
-import Header2 from '@/components/services/Header2';
-import NavBar from '@/components/NavBar';
+import { View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView, ScrollView ,StatusBar} from 'react-native';
 import {styles} from '@/styles/pharmacyLocation';
 import { useTranslation } from 'react-i18next';
-import { router } from 'expo-router';
+import {Stack} from 'expo-router';
 const PharmacyLocation = () => {
   const { t } = useTranslation();
   const emupharmacy = t('emupharmacy');
@@ -13,11 +11,10 @@ const PharmacyLocation = () => {
   const showdirections= t('showdirections');
   return (
     <SafeAreaView style={{ flex: 1,backgroundColor:"#fff", }}>
+      <StatusBar barStyle={'dark-content'} />
+      <Stack.Screen options={{ title: "Location" }} />
       <View style={{ flex: 1 }}>
-        <Header2 
-          title={emupharmacy} 
-          onBackPress={() => router.push('./(health)/pharmacyScreen')} 
-        />
+        
 
         <ScrollView contentContainerStyle={styles.container}>
           <Image
@@ -35,12 +32,7 @@ const PharmacyLocation = () => {
         </ScrollView>
       </View>
       
-      <NavBar
-        onHomePress={() => router.push('/home')}
-        onAppointmentsPress={() => router.push('/appointment')}
-        onProfilePress={() => router.push('/profile')}
-        onReportPress={()=> console.log('Report pressed') }
-      />
+    
     </SafeAreaView>
   );
 };

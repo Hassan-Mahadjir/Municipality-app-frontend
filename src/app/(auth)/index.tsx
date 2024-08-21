@@ -111,7 +111,7 @@ function Login() {
 								/>
 
 								<View style={styles.forgetPassContainer}>
-									<TouchableOpacity>
+									<TouchableOpacity onPress={() => router.push('/(user)/home/(health)')}>
 										<Text style={styles.forgetPassText}>{forgetPassword}</Text>
 									</TouchableOpacity>
 								</View>

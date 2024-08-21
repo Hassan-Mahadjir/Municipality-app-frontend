@@ -28,11 +28,11 @@ const screenWidth = Dimensions.get('window').width - scale(40);
 
 const renderItem = ({ item }: { item: SliderItem }) => {
   return (
-    <View>
+    <View style={style.pharmacyNewsContainer}>
       <ImageBackground
         source={{ uri: item.imageURL }}
         resizeMode="cover"
-        style={style.pharmacyNewsContainer}
+        style={style.imageBackground}
       >
         <LinearGradient
           colors={['rgba(40,53,86,0.9)', 'transparent']}
@@ -106,11 +106,15 @@ export default function PharmacyCard() {
 
 const style = StyleSheet.create({
   pharmacyNewsContainer: {
-    width: scale(360),
+    width: screenWidth,
     height: verticalScale(180),
     marginTop: verticalScale(4),
     borderRadius: scale(10),
     overflow: 'hidden',
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   linearGradientStyle: {
     position: 'absolute',
@@ -120,19 +124,17 @@ const style = StyleSheet.create({
     bottom: 0,
   },
   description: {
-    position: 'absolute',
-    top: verticalScale(100), // Moved slightly up
     marginLeft: scale(10),
+    marginBottom: verticalScale(20),
     fontWeight: 'bold',
     color: '#fff',
     width: '80%',
   },
   locationContainer: {
-    position: 'absolute',
-    top: verticalScale(130), // Adjusted positioning
-    marginLeft: scale(10),
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: scale(10),
+    marginBottom: verticalScale(10),
   },
   locationIcon: {
     width: scale(20),
@@ -145,8 +147,8 @@ const style = StyleSheet.create({
   },
   readMore: {
     position: 'absolute',
-    right: scale(5), // Moved closer to the right edge
-    bottom: verticalScale(15), // Adjusted for better visibility
+    right: scale(2),
+    bottom: verticalScale(15),
     paddingVertical: verticalScale(8),
     paddingHorizontal: scale(15),
     backgroundColor: 'rgba(152, 152, 152, 0.6)',
@@ -170,7 +172,7 @@ const style = StyleSheet.create({
     borderRadius: scale(5),
   },
   activeDot: {
-    backgroundColor: '#F64D00',
+    backgroundColor: COLORS.primary,
     width: scale(25),
     height: scale(10),
   },

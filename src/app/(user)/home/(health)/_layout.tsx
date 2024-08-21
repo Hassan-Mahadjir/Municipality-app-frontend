@@ -11,8 +11,8 @@ const healthLayout = () => {
 				headerTitleAlign: 'center',
 			}}
 		>
-			<Stack.Screen name='index' options={{ headerShown: false }} />
-			<Stack.Screen name='pharamcy' />
+			<Stack.Screen name='index' options={{ headerShown: false  }} />
+			<Stack.Screen name='hospitalScreen' options={{ headerShown: true  }}/>
 		</Stack>
 	);
 };

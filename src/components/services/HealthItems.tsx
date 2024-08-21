@@ -24,25 +24,25 @@ const styles = StyleSheet.create({
   healthCard: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    padding: scale(10),
-    marginVertical: verticalScale(8),
-    borderRadius: scale(10),
+    padding: scale(7), // Reduced padding
+    marginVertical: verticalScale(6), // Reduced vertical margin
+    borderRadius: scale(8), // Reduced border radius
     alignItems: 'center',
     justifyContent: 'flex-start',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: verticalScale(2) },
     shadowOpacity: 0.1,
-    shadowRadius: scale(5),
-    elevation: 3,
+    shadowRadius: scale(4), // Reduced shadow radius
+    elevation: 2, // Reduced elevation
   },
   iconContainer: {
-    marginRight: scale(10),
-    paddingRight: scale(7),
+    marginRight: scale(8), // Reduced margin
+    paddingRight: scale(5), // Reduced padding
   },
   healthIcon: {
-    width: scale(70),
-    height: verticalScale(80),
-    borderRadius: scale(1), 
+    width: scale(60), // Reduced width
+    height: verticalScale(72), // Reduced height
+    borderRadius: scale(1),
     resizeMode: 'cover',
   },
   detailsContainer: {
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
   },
   healthName: {
     fontWeight: 'bold',
-    fontSize: scale(16),
+    fontSize: scale(14), // Reduced font size
   },
   healthLocation: {
     color: COLORS.gray,
-    marginVertical: verticalScale(5),
+    marginVertical: verticalScale(4), // Reduced vertical margin
   },
   seeLocation: {
     color: COLORS.primary,

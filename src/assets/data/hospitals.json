@@ -1,0 +1,15 @@
+[
+    {
+      "name": "emuhospital",
+      "location": "emulocation",
+      "imageUri": "https://th.bing.com/th/id/R.08480a644a8bf6a20d33aac8fdde047b?rik=r%2fszbI1jJczltQ&pid=ImgRaw&r=0",
+      "onPress": "hospitalLocation"
+    },
+    {
+      "name": "emuhospital",
+      "location": "emulocation",
+      "imageUri": "https://th.bing.com/th/id/R.08480a644a8bf6a20d33aac8fdde047b?rik=r%2fszbI1jJczltQ&pid=ImgRaw&r=0",
+      "onPress": "hospitalLocation"
+    }
+  ]
+  

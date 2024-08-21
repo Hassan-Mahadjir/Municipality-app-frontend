@@ -33,33 +33,33 @@ const Header = ({ title, backgroundImage, onBackPress }: HeaderProps) => {
 const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
-    height: verticalScale(200),
+    height: verticalScale(150),
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: verticalScale(15),
+   
   },
   backButton: {
     position: 'absolute',
     left: scale(15),
     top: scale(25),
-    padding: scale(10),
     borderRadius: scale(5),
   },
   backButtonImage: {
-    width: scale(30),
-    height: scale(30),
+    width: scale(27),
+    height: scale(27),
     resizeMode: 'contain',
   },
   headerText: {
-    fontSize: scale(24),
-    fontWeight: '600',
+    fontSize: scale(28),
+    fontWeight: '700',
     color: '#FFF',
+    textAlign: 'center',
   },
 });
 
