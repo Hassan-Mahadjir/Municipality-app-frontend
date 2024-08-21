@@ -61,7 +61,7 @@ function Login() {
 	});
 
 	const onSubmit = (data: LoginFormValues) => {
-		// console.log('login form: ', data);
+		console.log('login form: ', data);
 		mutateLogin(data);
 	};
 
