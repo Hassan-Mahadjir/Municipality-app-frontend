@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import tourismSections from '../../../../assets/data/toursimSections.json';
-import { verticalScale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/tourismMain';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
@@ -14,14 +14,13 @@ export default function tourismMain() {
 	const headerpic = require('../../../../assets/images/tourism-header.jpg');
 
 	return (
-		<ScrollView>
+		<View style={{ paddingBottom: scale(50) }}>
 			<Header
 				title='TOURISM SERVICES'
 				backgroundImage={headerpic}
 				onBackPress={() => router.back()}
 			/>
 			<FlatList
-				numColumns={1}
 				data={tourismSections}
 				contentContainerStyle={{ marginTop: 0 }}
 				keyExtractor={(item, index) => index.toString()}
@@ -37,6 +36,6 @@ export default function tourismMain() {
 					/>
 				)}
 			/>
-		</ScrollView>
+		</View>
 	);
 }

@@ -14,7 +14,7 @@ const healthLayout = () => {
 			<Stack.Screen name='index' options={{ headerShown: false }} />
 			<Stack.Screen name='hospitalScreen' options={{ headerShown: true }} />
 			<Stack.Screen name='[Location]' options={{ headerShown: true }} />
-			<Stack.Screen name='pharamacyScreen' options={{ headerShown: true }} />
+			<Stack.Screen name='pharamcyScreen' options={{ headerShown: true }} />
 		</Stack>
 	);
 };

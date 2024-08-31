@@ -26,9 +26,7 @@ export default function historicalPlaces() {
 					<View style={styles.itemContainer}>
 						<Image source={{ uri: item.image }} style={styles.pageImage} />
 						<TouchableOpacity
-							onPress={() =>
-								router.push('/(user)/home/(tourism)/' + item.pageName)
-							}
+							onPress={() => router.push('/(user)/home/(tourism)/100')}
 						>
 							<Text style={styles.imageText}>{item.placename}</Text>
 						</TouchableOpacity>
