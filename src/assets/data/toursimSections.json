@@ -1,0 +1,17 @@
+[
+    {
+        "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/gw1np47cik5-494%3A1982?alt=media&token=a1f0a9fb-a9d1-413e-8637-d05bcb2921b3",
+        "sectionName": "Historical Places",
+        "pageName": "historicalPlaces"
+    },
+    {
+        "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/b5thzlyqrw8-494%3A1985?alt=media&token=f8dfac1b-c3e1-4fee-b81a-fb18cb302c72",
+        "sectionName": "Restaurants",
+        "pageName": "historicalPlaces"
+    },
+    {
+        "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/pt1364fsoue-494%3A1988?alt=media&token=d9b13662-5aa5-4ae7-99a5-db6bbdb3e2a1",
+        "sectionName": "Payment Points",
+        "pageName": "historicalPlaces"
+    }
+]
