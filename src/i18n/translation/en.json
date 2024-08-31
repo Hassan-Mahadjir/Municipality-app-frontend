@@ -40,5 +40,7 @@
 	"lastNameValidation": "last name must contain at least 1 character(s)",
 	"passwordValidation": "Password must contain at least 6 character(s)",
 	"emailValidation": "Invalid email",
-	"passwordDontMatch": "Passwords don't match"
+	"passwordDontMatch": "Passwords don't match",
+
+	"searchbyplacename": "Search by place name"
 }

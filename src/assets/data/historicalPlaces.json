@@ -1,14 +1,22 @@
 [
     {
         "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/i7mhi5ix258-533%3A1980?alt=media&token=e00f3a9d-eae3-4684-a9b7-3a1e97957848",
-        "placename": "Ghost Town"
+        "placename": "Ghost Town",
+        "pageName": "ghostTown"
     },
     {
         "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/p0tyivvse89-533%3A1981?alt=media&token=af349848-1f0f-4d3e-a160-0bfdd2a0bc58",
-        "placename": "Ancient Ruins"
+        "placename": "Ancient Ruins",
+        "pageName": "ghostTown"
     },
     {
         "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/pev5h9foog8-533%3A1982?alt=media&token=ffcb5a8b-63af-46a7-a6c2-fce98a2d49de",
-        "placename": "Lala Mustafa Mosque"
+        "placename": "Lala Mustafa Mosque",
+        "pageName": "ghostTown"
+    },
+    {
+        "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/da79ysuco76-340%3A1292?alt=media&token=09fd946a-c4f4-4137-8fd9-398ffffbbf15",
+        "placename": "St. Barnabas",
+        "pageName": "ghostTown"
     }
 ]

@@ -1,11 +1,11 @@
-import { View, Text, ScrollView, Image, StyleSheet, TextInput, Dimensions} from 'react-native'
+import { View, Text, ScrollView, Image} from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import LinearGradient from 'react-native-linear-gradient'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { LinearGradient } from 'expo-linear-gradient'
+import { TouchableOpacity } from 'react-native'
 import { useState } from 'react'
-import { scale, verticalScale } from 'react-native-size-matters'
 import { router } from 'expo-router'
+import { styles } from '@/styles/ghostTown';
 
 export default function ghostTown() {
     const navigation = useNavigation();
@@ -49,6 +49,8 @@ export default function ghostTown() {
                     <Image source={{uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/5a14csqsccu-192%3A1099?alt=media&token=eb324012-4bf4-4665-b817-0e140eb32845'}} style={styles.starImage}/>
                     <Text style={styles.starText}>1,987 Reviews</Text>
                 </View>
+            </View>
+            <ScrollView style={{marginTop: 5}}>
                 <View style={{flexDirection: 'row'}}>
                     <Image source={{uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/01vrktrq36oe-39%3A726?alt=media&token=5e7fbab6-2e66-4e18-ac03-cfaf7865a40b'}} style={styles.clockIcon}/>
                     <Text style={styles.openText}>Open</Text>
@@ -61,9 +63,8 @@ export default function ghostTown() {
                     <Text style={styles.timeText1}>8.00 am - 11.59 pm</Text>
                     <Text style={styles.timeText2}>8.00 am - 11.59 pm</Text>
                 </View>
-            </View>
-            <ScrollView style={{marginTop: 5}}>
                 <View>
+                    <Text style={styles.historyText}>History</Text>
                     <Text style={styles.classicText}>Once a thriving resort and seaside town, the ghost town of Varosha has sat abandoned since the 1970s. While you're not allowed to enter the fenced-off areas, you can still have a stroll or bike ride around the area to explore the deserted buildings and
                     </Text>
                     {expanded && (
@@ -81,155 +82,4 @@ export default function ghostTown() {
                 <View style={{height: 500}}></View>
             </ScrollView>
         </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    container: {
-        height: 200,
-    },
-    headerImage: {
-        width: '100%',
-        height: '100%',
-    },
-    linearGradient: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
-    headerText: {
-        position: 'absolute',
-        top: 80,
-        left: 100,
-        color: 'white',
-        fontSize: 40,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    arrowImage: {
-        height: verticalScale(20),
-        width: scale(25),
-    },
-    arrowContainer: {
-        position: 'absolute',
-        top: 10,
-        left: 5,
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    starImage: {
-        height: 20,
-        width: 20,
-        marginVertical: 10,
-        marginLeft: 5,
-    },
-    starText: {
-        fontSize: 18,
-        position: 'absolute',
-        color: '#4E7E95',
-        marginTop: 30,
-    },
-    clockIcon: {
-        height: 30,
-        width: 30,
-        position: 'absolute',
-        top: 10,
-        left: 10,
-    },
-    openText: {
-        color: '#F1722A',
-        fontSize: 20,
-        fontWeight: 'bold',
-        position: 'absolute',
-        top: 10,
-        left: 45
-    },
-    weekText1: {
-        color: '#F1722A',
-        fontSize: 18,
-        position: 'absolute',
-        top: 40,
-        marginLeft: 50,
-        marginRight: 10,
-    },
-    weekText2: {
-        color: '#F1722A',
-        fontSize: 18,
-        position: 'absolute',
-        top: 40,
-        marginLeft: 250,
-        marginRight: 10,
-    },
-    timeText1: {
-        color: '#4E7E95',
-        fontSize: 18,
-        position: 'absolute',
-        top: 60,
-        marginLeft: 25,
-    },
-    timeText2: {
-        color: '#4E7E95',
-        fontSize: 18,
-        position: 'absolute',
-        top: 60,
-        marginLeft: 220,
-    },
-    shadowContainer: {
-        height: 140,
-        backgroundColor: '#fff',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: -3,
-        },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        elevation: 3,
-        zIndex: 10,
-    },
-    classicText: {
-        flexWrap: 'wrap',
-        flex: 1,
-        fontSize: 20,
-        fontWeight: 'normal',
-        color: 'black',
-        marginLeft: 15,
-    },
-    orangeText: {
-        fontSize: 18,
-        color: '#F1722A',
-        marginLeft: 15,
-    },
-    placeImage: {
-        height: 200,
-        width: 360,
-        borderRadius: 5,
-        marginTop: 15,
-        marginLeft: 15,
-    },
-    rectangle: {
-        height: 10,
-        width: 30,
-        borderRadius: 10,
-        backgroundColor: '#F1722A',
-    },
-    smallcircle: {
-        height: 10,
-        width: 10,
-        borderRadius: 5,
-        backgroundColor: 'lightgrey'
-    },
-    scrollView: {
-        width: Dimensions.get('window').width,
-        height: 200,
-    },
-    pagination: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10,
-    },
-});
+    )}

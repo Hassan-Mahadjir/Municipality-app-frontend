@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, ScrollView, Image, TextInput, FlatList } from 'react-native'
+import { View, Text, ScrollView, Image, FlatList } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import historicalplaces from "../../../../assets/data/historicalPlaces.json"
 import { router } from 'expo-router'
-import { scale, verticalScale } from 'react-native-size-matters'
+import SearchField from '@/components/services/Search';
+import { useTranslation } from 'react-i18next';
+import {styles} from '@/styles/historicalPlaces'
 
 export default function historicalPlaces() {
     const navigation = useNavigation();
+    const { t } = useTranslation();
+    const searchbyplacename = t('searchbyplacename');
   return (
     <ScrollView>
         <View style={styles.container}>
@@ -18,110 +22,23 @@ export default function historicalPlaces() {
             </View>
             <Text style={styles.headerText}>Historical Places</Text>
         </View>
-        <View style={styles.container2}>
-          <View style={styles.inputContainer}>
-            <Image
-              source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/quopjrofqa-33%3A1107?alt=media&token=9789991c-5509-4be4-8dd0-28c5cce1ed1c' }} 
-              style={styles.searchIcon}
-            />
-            <TextInput
-              placeholder="Search"
-              placeholderTextColor="grey"
-              style={styles.textInput}
-            />
-          </View>
-        </View>
+        <SearchField
+          placeholder={searchbyplacename} 
+          onChangeText={(text) => console.log("Search text:", text)}
+        />
         <FlatList
             numColumns={2}
             data={historicalplaces}
             contentContainerStyle={{ paddingVertical: 10 }}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <View style={{height:150}}>
-                <View style={{flexDirection: 'row'}}>
-                  <Image source={{ uri: item.image }} style={styles.pageImage} />
-                </View>
-                <TouchableOpacity onPress={() => router.push(`./(user)/home/(tourism)/${item.placename}`)}>
+              <View style={styles.itemContainer}>
+                <Image source={{ uri: item.image }} style={styles.pageImage} />
+                <TouchableOpacity onPress={() => router.push("/(user)/home/(tourism)/" + item.pageName)}>
                   <Text style={styles.imageText}>{item.placename}</Text>
                 </TouchableOpacity>
               </View>
             )}
         />
     </ScrollView>
-  )
-}
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        height: 100,
-        backgroundColor: '#4E7E95'
-    },
-    headerText: {
-        position: 'absolute',
-        top: 50,
-        left: 100,
-        color: 'white',
-        fontSize: 30,
-        fontWeight: '600',
-        textAlign: 'center',
-    },
-    arrowImage: {
-        height: 20,
-        width: 25,
-    },
-    arrowContainer: {
-        position: 'absolute',
-        top: 10,
-        left: 5,
-        width: 40, 
-        height: 40, 
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    pageImage: {
-        height: verticalScale(100),
-        width: scale(165),
-        borderRadius: 5,
-        marginRight: 5,
-        marginLeft: 10,
-    },
-    imageText: {
-        fontSize: 20,
-        fontWeight: '600',
-        color: '#F1722A',
-        position: 'absolute',
-        left: 45,
-        top: 10,
-    },
-    container2: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 10,
-    },
-    inputContainer: {
-      flexDirection: 'row',
-      borderRadius: 15,
-      borderWidth: 1,
-      borderColor: '#F1722A',
-      width: 395,
-      height: 50,
-    },
-    searchIcon: {
-      position: 'absolute',
-      marginTop: 10,
-      marginLeft: 20,
-      width: 24,
-      height: 24,
-      marginRight: 10,
-    },
-    textInput: {
-      position: 'absolute',
-      marginLeft: 50,
-      fontSize: 15,
-      color: 'grey',
-      flex: 1,
-    },
-})
+  )}
