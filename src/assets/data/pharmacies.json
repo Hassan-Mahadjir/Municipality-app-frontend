@@ -1,14 +1,14 @@
 [
-  {
-    "name": "emupharmacy",
-    "location": "emulocation",
-    "imageUri": "https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain",
-    "onPress": "pharmacyLocation"
-  },
-  {
-    "name": "emupharmacy",
-    "location": "emulocation",
-    "imageUri": "https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain",
-    "onPress": "pharmacyLocation"
-  }
+	{
+		"name": "emupharmacy",
+		"location": "emulocation",
+		"imageUri": "https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain",
+		"onPress": "pharmacyLocation"
+	},
+	{
+		"name": "emupharmacy2",
+		"location": "emulocation",
+		"imageUri": "https://th.bing.com/th/id/OIP.JpbFghckUoJ9IzMRsP12qwHaIP?rs=1&pid=ImgDetMain",
+		"onPress": "pharmacyLocation"
+	}
 ]
