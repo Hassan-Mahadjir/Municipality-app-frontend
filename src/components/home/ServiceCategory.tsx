@@ -8,17 +8,21 @@ import {
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Feather } from '@expo/vector-icons';
-import services from '@/assets/data/services.json';
+// import services from '@/assets/data/services.json';
 import { styles } from '@/styles/serviceCategory.home';
 import { router } from 'expo-router';
+import { useService } from '@/services/api/home';
 
 export default function ServiceCategory() {
+	const { servisesData } = useService();
+	const services = servisesData?.data.data;
+
 	return (
 		<View style={styles.servicesContainer}>
-			{services.map((service, index) => (
-				<View key={index}>
+			{services?.map((service, index) => (
+				<View key={service.id || index}>
 					<ImageBackground
-						source={{ uri: service.image }}
+						source={{ uri: 'https://picsum.photos/350/200' }}
 						resizeMode='cover'
 						style={styles.container}
 						imageStyle={styles.imageStyle}
@@ -36,7 +40,11 @@ export default function ServiceCategory() {
 						<View style={styles.detailsContainer}>
 							<Text style={styles.detialsText}>Details</Text>
 							<TouchableOpacity
-								onPress={() => router.push('(user)/home/(health)')}
+								onPress={() =>
+									router.push(
+										`/(user)/home/(${service.name.toLocaleLowerCase()})`
+									)
+								}
 							>
 								<Feather name='arrow-right' size={24} color='#fff' />
 							</TouchableOpacity>

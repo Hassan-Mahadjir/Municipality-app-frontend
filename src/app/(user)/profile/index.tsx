@@ -26,7 +26,7 @@ export default function userProfileIndex() {
 					<Pressable
 						onPress={() => {
 							removeItem('token');
-							router.replace('/');
+							router.replace('/(auth)');
 						}}
 					>
 						<MaterialIcons name='logout' size={24} color='#fff' />

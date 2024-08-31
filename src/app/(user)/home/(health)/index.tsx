@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, StatusBar,FlatList } from 'react-native';
+import {
+	StyleSheet,
+	View,
+	ScrollView,
+	StatusBar,
+	FlatList,
+} from 'react-native';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +27,7 @@ const HealthMain = () => {
 					backgroundImage={{
 						uri: 'https://th.bing.com/th/id/OIP.scDhVXtpEEcrlMeIhuDKzwHaE8?rs=1&pid=ImgDetMain',
 					}}
-					onBackPress={() => router.push('/(user)/home')}
+					onBackPress={() => router.back()}
 				/>
 				<HealthServicesComponent
 					title={Hospitals}
@@ -38,7 +44,6 @@ const HealthMain = () => {
 					onPress={() => router.push('/(user)/home/(health)/pharamcyScreen')}
 				/>
 			</ScrollView>
-			
 		</View>
 	);
 };
@@ -51,12 +56,12 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	header: {
-		height: verticalScale(200), 
+		height: verticalScale(200),
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	healthServiceComponent: {
-		margin: scale(10), 
-		padding: scale(15), 
+		margin: scale(10),
+		padding: scale(15),
 	},
 });

@@ -14,6 +14,7 @@ const SearchField = ({
 		<View style={styles.searchContainer}>
 			{/* Use URI for the search icon image */}
 			<Image
+				resizeMode='contain'
 				source={{
 					uri: 'https://th.bing.com/th/id/OIP._RTO9yp1xH5aQA0vS7fpHAHaHW?rs=1&pid=ImgDetMain',
 				}}
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
 		width: '96%', // Reduced width
 	},
 	icon: {
-		width: scale(22), // Reduced image width
-		height: verticalScale(24), // Reduced image height
+		width: scale(25), // Reduced image width
+		height: verticalScale(20), // Reduced image height
 		marginRight: scale(8), // Reduced right margin
 	},
 	searchInput: {
