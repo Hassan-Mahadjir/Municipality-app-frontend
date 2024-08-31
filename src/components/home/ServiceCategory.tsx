@@ -34,7 +34,7 @@ export default function ServiceCategory() {
 						<View style={styles.detailsBackground}></View>
 
 						<View style={styles.detailsContainer}>
-							<Text style={styles.detialsText}>Detials</Text>
+							<Text style={styles.detialsText}>Details</Text>
 							<TouchableOpacity
 								onPress={() => router.push('(user)/home/(health)')}
 							>

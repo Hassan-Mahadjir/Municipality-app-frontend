@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { s, scale, verticalScale } from 'react-native-size-matters';
 import { Dimensions } from 'react-native'
+import { COLORS } from '@/constants/Colors'
+
+const screenWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
     container: {
@@ -32,8 +35,8 @@ export const styles = StyleSheet.create({
     },
     arrowContainer: {
         position: 'absolute',
-        top: 10,
-        left: 5,
+        top: 40,
+        left: 10,
         width: 40,
         height: 40,
         justifyContent: 'center',
@@ -157,5 +160,133 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginTop: 10,
+    },
+    dotContainer: {
+		flexDirection: 'row',
+		marginTop: verticalScale(5),
+		alignSelf: 'center',
+	},
+	dot: {
+		marginHorizontal: 2,
+		width: scale(10),
+		height: verticalScale(10),
+		borderRadius: 5,
+	},
+	activeDot: {
+		backgroundColor: COLORS.primary,
+		width: scale(25),
+		height: verticalScale(10),
+	},
+	inactiveDot: {
+		backgroundColor: 'white',
+	},
+    image: {
+        width: screenWidth - 23,
+        height: verticalScale(150),
+        borderRadius: 5,
+    },
+    box: {
+        height: verticalScale(125),
+        width: scale(330),
+        borderRadius: 5,
+        marginLeft: scale(10),
+        marginBottom: 15,
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 15,
+    },
+    userPic: {
+        height: verticalScale(50),
+        width: scale(50),
+        marginLeft: scale(15),
+        marginTop: verticalScale(15),
+    },
+    userText: {
+        fontSize: 15,
+        color: 'black',
+        marginLeft: scale(75),
+        marginTop: verticalScale(-50),
+    },
+    userText2: {
+        fontSize: 12,
+        color: '#4E7E95',
+        marginLeft: scale(75),
+    },
+    smallstarImage: {
+        height: verticalScale(15),
+        width: scale(15),
+    },
+    smallText: {
+        fontSize: 15,
+        color: '#F1722A',
+        marginLeft: scale(280),
+    },
+    userTime: {
+        fontSize: 13,
+        color: '#4E7E95',
+        marginLeft: scale(20),
+    },
+    comment: {
+        flexWrap: 'wrap',
+        marginTop: verticalScale(-85),
+        marginLeft: scale(195),
+        marginRight: 5,
+        color: 'black',
+    },
+    container2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        borderWidth: 2,
+        borderColor: '#F1722A', 
+        borderRadius: 10,
+        marginTop: 5,
+        marginBottom: 30,
+        width: 360,
+        height: 50,
+        backgroundColor: 'white',
+    },
+    rating: {
+        fontSize: 18,
+        color: '#4E7E95',
+        marginLeft: scale(15),
+    },
+    whitestars: {
+        height: 20,
+        width: 20,
+        marginLeft: scale(5),
+    },
+    submitBox: {
+        height: verticalScale(30),
+        width: scale(100),
+        backgroundColor: '#F1722A',
+        borderRadius: 10,
+        marginLeft: scale(10),
+        marginTop: verticalScale(-5),
+        alignItems: 'center',
+    },
+    submitText: {
+        color: 'white',
+        fontSize: 18,
+        marginTop: verticalScale(2.5),
+        fontWeight: '600',
+    },
+    locationBox: {
+        height: verticalScale(30),
+        width: scale(150),
+        backgroundColor: '#F1722A',
+        borderRadius: 10,
+        marginLeft: scale(100),
+        marginTop: verticalScale(10),
+        alignItems: 'center',
     },
 });
