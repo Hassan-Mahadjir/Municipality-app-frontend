@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "userPic": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/nf8qcuembn-192%3A1140?alt=media&token=b3104fa9-8c36-46af-b1e1-7923dd84795b",
+        "username": "i_am_user",
+        "contributions": 11,
+        "visited": "May 2020",
+        "comment": "Best place I have visited in magusa yet, bike rides are amazing. Definitely recommend everyone to visit."
+    },
+    {
+        "id": 2,
+        "userPic": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/qz4cwqzdta-192%3A1141?alt=media&token=5499ecd4-58bc-4fd2-93b4-21afcda2c946",
+        "username": "user_23",
+        "contributions": 23,
+        "visited": "February 2019",
+        "comment": "Cannot believe a town like this was abandoned by its former residents. Very spooky. Must visit. Go sight-seeing on a boat."
+    },
+    {
+        "id": 3,
+        "userPic": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/dz5iovsgol9-192%3A1142?alt=media&token=d3999b58-1a44-43d8-bf66-d3e3e19d7377",
+        "username": "online_24",
+        "contributions": 8,
+        "visited": "September 2023",
+        "comment": "Went with friends. Had a good time. They took our ids and kept it for the whole time we were inside. Only part I didn’t enjoy."
+    }
+
+]

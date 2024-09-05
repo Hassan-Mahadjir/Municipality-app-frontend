@@ -42,5 +42,6 @@
 	"emailValidation": "Invalid email",
 	"passwordDontMatch": "Passwords don't match",
 
-	"searchbyplacename": "Search by place name"
+	"searchbyplacename": "Search by place name",
+	"GhostTown": "Ghost Town"
 }

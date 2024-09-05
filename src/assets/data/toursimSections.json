@@ -7,11 +7,11 @@
     {
         "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/b5thzlyqrw8-494%3A1985?alt=media&token=f8dfac1b-c3e1-4fee-b81a-fb18cb302c72",
         "sectionName": "Restaurants",
-        "pageName": "historicalPlaces"
+        "pageName": "restaurants"
     },
     {
         "image": "https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/pt1364fsoue-494%3A1988?alt=media&token=d9b13662-5aa5-4ae7-99a5-db6bbdb3e2a1",
         "sectionName": "Payment Points",
-        "pageName": "historicalPlaces"
+        "pageName": "paymentPoints"
     }
 ]

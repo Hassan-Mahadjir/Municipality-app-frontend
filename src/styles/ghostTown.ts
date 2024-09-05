@@ -1,61 +1,25 @@
 import { StyleSheet } from 'react-native';
-import { s, scale, verticalScale } from 'react-native-size-matters';
-import { Dimensions } from 'react-native'
-import { COLORS } from '@/constants/Colors'
+import { scale, verticalScale } from 'react-native-size-matters';
+import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
-    container: {
-        height: 200,
-    },
-    headerImage: {
-        width: '100%',
-        height: '100%',
-    },
-    linearGradient: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-    },
-    headerText: {
-        position: 'absolute',
-        top: 80,
-        left: 100,
-        color: 'white',
-        fontSize: 40,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    arrowImage: {
-        height: verticalScale(20),
-        width: scale(25),
-    },
-    arrowContainer: {
-        position: 'absolute',
-        top: 40,
-        left: 10,
-        width: 40,
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     starImage: {
-        height: 20,
-        width: 20,
-        marginVertical: 10,
-        marginLeft: 5,
+        height: verticalScale(20),
+        width: scale(20),
+        marginVertical: verticalScale(10),
+        marginLeft: scale(5),
     },
     starText: {
         fontSize: 18,
         position: 'absolute',
         color: '#4E7E95',
-        marginTop: 30,
+        marginTop: verticalScale(30),
     },
     shadowContainer: {
-        height: 60,
+        height: verticalScale(60),
+        alignItems: 'center',
         backgroundColor: '#fff',
         shadowColor: '#000',
         shadowOffset: {
@@ -67,61 +31,59 @@ export const styles = StyleSheet.create({
         elevation: 3,
         zIndex: 10,
     },
-    historyText: {
-        marginTop: 50, 
-        fontSize: 20, 
-        color: "#F1722A", 
-        fontWeight: '600',
-        marginLeft: 15
-    },
     clockIcon: {
-        height: 30,
-        width: 30,
+        height: verticalScale(30),
+        width: scale(30),
         position: 'absolute',
-        top: 10,
-        left: 10,
+        top: verticalScale(10),
+        left: scale(10),
     },
     openText: {
         color: '#F1722A',
         fontSize: 20,
         fontWeight: 'bold',
         position: 'absolute',
-        top: 10,
-        left: 45
+        top: verticalScale(10),
+        left: scale(45)
     },
     weekText1: {
         color: '#F1722A',
         fontSize: 18,
         position: 'absolute',
-        top: 40,
-        marginLeft: 50,
-        marginRight: 10,
+        top: verticalScale(40),
+        paddingRight: scale(200)
     },
     weekText2: {
         color: '#F1722A',
         fontSize: 18,
         position: 'absolute',
-        top: 40,
-        marginLeft: 240,
-        marginRight: 10,
+        top: verticalScale(40),
+        paddingLeft: scale(200)
     },
     timeText1: {
         color: '#4E7E95',
         fontSize: 18,
         position: 'absolute',
-        top: 60,
-        marginLeft: 25,
+        top: verticalScale(60),
+        paddingRight: scale(175),
     },
     timeText2: {
         color: '#4E7E95',
         fontSize: 18,
         position: 'absolute',
-        top: 60,
-        marginLeft: 210,
+        top: verticalScale(60),
+        paddingLeft: scale(175),
+    },
+    historyText: {
+        fontSize: 20, 
+        color: "#F1722A", 
+        fontWeight: '600',
+        marginLeft: scale(15),
+        marginTop: verticalScale(10),
     },
     classicText: {
         flexWrap: 'wrap',
-        flex: 1,
+        width: screenWidth - 20,
         fontSize: 20,
         fontWeight: 'normal',
         color: 'black',
@@ -133,160 +95,5 @@ export const styles = StyleSheet.create({
         color: '#F1722A',
         marginLeft: 15,
     },
-    placeImage: {
-        height: 200,
-        width: 360,
-        borderRadius: 5,
-        marginTop: 15,
-        marginLeft: 15,
-    },
-    rectangle: {
-        height: 10,
-        width: 30,
-        borderRadius: 10,
-        backgroundColor: '#F1722A',
-    },
-    smallcircle: {
-        height: 10,
-        width: 10,
-        borderRadius: 5,
-        backgroundColor: 'lightgrey'
-    },
-    scrollView: {
-        width: Dimensions.get('window').width,
-        height: 200,
-    },
-    pagination: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 10,
-    },
-    dotContainer: {
-		flexDirection: 'row',
-		marginTop: verticalScale(5),
-		alignSelf: 'center',
-	},
-	dot: {
-		marginHorizontal: 2,
-		width: scale(10),
-		height: verticalScale(10),
-		borderRadius: 5,
-	},
-	activeDot: {
-		backgroundColor: COLORS.primary,
-		width: scale(25),
-		height: verticalScale(10),
-	},
-	inactiveDot: {
-		backgroundColor: 'white',
-	},
-    image: {
-        width: screenWidth - 23,
-        height: verticalScale(150),
-        borderRadius: 5,
-    },
-    box: {
-        height: verticalScale(125),
-        width: scale(330),
-        borderRadius: 5,
-        marginLeft: scale(10),
-        marginBottom: 15,
-        backgroundColor: 'white',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 15,
-    },
-    userPic: {
-        height: verticalScale(50),
-        width: scale(50),
-        marginLeft: scale(15),
-        marginTop: verticalScale(15),
-    },
-    userText: {
-        fontSize: 15,
-        color: 'black',
-        marginLeft: scale(75),
-        marginTop: verticalScale(-50),
-    },
-    userText2: {
-        fontSize: 12,
-        color: '#4E7E95',
-        marginLeft: scale(75),
-    },
-    smallstarImage: {
-        height: verticalScale(15),
-        width: scale(15),
-    },
-    smallText: {
-        fontSize: 15,
-        color: '#F1722A',
-        marginLeft: scale(280),
-    },
-    userTime: {
-        fontSize: 13,
-        color: '#4E7E95',
-        marginLeft: scale(20),
-    },
-    comment: {
-        flexWrap: 'wrap',
-        marginTop: verticalScale(-85),
-        marginLeft: scale(195),
-        marginRight: 5,
-        color: 'black',
-    },
-    container2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        borderWidth: 2,
-        borderColor: '#F1722A', 
-        borderRadius: 10,
-        marginTop: 5,
-        marginBottom: 30,
-        width: 360,
-        height: 50,
-        backgroundColor: 'white',
-    },
-    rating: {
-        fontSize: 18,
-        color: '#4E7E95',
-        marginLeft: scale(15),
-    },
-    whitestars: {
-        height: 20,
-        width: 20,
-        marginLeft: scale(5),
-    },
-    submitBox: {
-        height: verticalScale(30),
-        width: scale(100),
-        backgroundColor: '#F1722A',
-        borderRadius: 10,
-        marginLeft: scale(10),
-        marginTop: verticalScale(-5),
-        alignItems: 'center',
-    },
-    submitText: {
-        color: 'white',
-        fontSize: 18,
-        marginTop: verticalScale(2.5),
-        fontWeight: '600',
-    },
-    locationBox: {
-        height: verticalScale(30),
-        width: scale(150),
-        backgroundColor: '#F1722A',
-        borderRadius: 10,
-        marginLeft: scale(100),
-        marginTop: verticalScale(10),
-        alignItems: 'center',
-    },
+
 });

@@ -1,11 +1,7 @@
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
+import {ScrollView, FlatList } from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import tourismSections from '../../../../assets/data/toursimSections.json';
-import { verticalScale } from 'react-native-size-matters';
-import { styles } from '@/styles/tourismMain';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 
