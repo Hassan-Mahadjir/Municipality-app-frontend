@@ -13,7 +13,10 @@ const tourismLayout = () => {
 		>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
 			<Stack.Screen name='historicalPlaces' options={{ headerShown: true }} />
-			<Stack.Screen name='[place]' options={{ headerShown: false }} />
+			<Stack.Screen name='ghostTown' options={{ headerShown: false }} />
+			<Stack.Screen name='restaurants' options={{ headerShown: true }} />
+			<Stack.Screen name='beckett' options={{ headerShown: false }} />
+			<Stack.Screen name='paymentPoints' options={{ headerShown: true }} />
 		</Stack>
 	);
 };

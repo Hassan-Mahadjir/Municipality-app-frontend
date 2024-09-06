@@ -1,7 +1,5 @@
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import tourismSections from '../../../../assets/data/toursimSections.json';
 import { scale, verticalScale } from 'react-native-size-matters';
