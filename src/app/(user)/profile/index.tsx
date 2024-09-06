@@ -10,6 +10,9 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { styles } from '@/styles/settings.profile';
 import { useProfile } from '@/services/api/profile';
+import RandomColoredBackground from '@/components/profile/RandomColoredBackground';
+import LanguagePicker from '@/components/profile/LanguagePicker';
+import { useState } from 'react';
 
 export default function userProfileIndex() {
 	const { profileData } = useProfile();
@@ -17,6 +20,7 @@ export default function userProfileIndex() {
 	const lastName = profileData?.data.data.lastName || '';
 	const fullName = `${firstName} ${lastName}`;
 	const avatar = profileData?.data.data.avatar;
+	const [isPickerVisible, setIsPickerVisible] = useState<boolean>(false);
 
 	return (
 		<View>
@@ -34,12 +38,14 @@ export default function userProfileIndex() {
 				</View>
 
 				<View style={{ alignSelf: 'center', alignItems: 'center' }}>
-					<Image
-						source={{
-							uri: avatar,
-						}}
+					{avatar ? (
+						<Image
+						source={{ uri: avatar }}
 						style={styles.profileImage}
-					/>
+						/>
+					) : (
+						<RandomColoredBackground name={fullName} />
+					)}
 					<Text style={styles.profileName}>{fullName}</Text>
 				</View>
 			</View>
@@ -84,9 +90,13 @@ export default function userProfileIndex() {
 							Change the language of the app
 						</Text>
 					</View>
-					<Pressable>
+					<Pressable onPress={() => setIsPickerVisible(true)}>
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
 					</Pressable>
+					<LanguagePicker
+						visible={isPickerVisible}
+						onClose={() => setIsPickerVisible(false)}
+					/>
 				</View>
 			</View>
 
@@ -100,7 +110,7 @@ export default function userProfileIndex() {
 						<Text style={styles.settingsTitleText}>Password</Text>
 						<Text style={{ color: COLORS.gray }}>Change your password</Text>
 					</View>
-					<Pressable>
+					<Pressable onPress={() => router.push('/(user)/profile/password')}>
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
 					</Pressable>
 				</View>

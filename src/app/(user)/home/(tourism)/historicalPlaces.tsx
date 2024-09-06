@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
+import { View, Text, Image, FlatList } from 'react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import historicalplaces from '../../../../assets/data/historicalPlaces.json';
