@@ -1,9 +1,8 @@
-import { ScrollView, FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import tourismSections from '../../../../assets/data/toursimSections.json';
-import { scale, verticalScale } from 'react-native-size-matters';
-import { styles } from '@/styles/tourismMain';
+import { scale } from 'react-native-size-matters';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 
@@ -29,7 +28,7 @@ export default function tourismMain() {
 							uri: item.image,
 						}}
 						onPress={() =>
-							router.push('/(user)/home/(tourism)/' + item.pageName)
+							router.push(`/(user)/home/(tourism)/${item.pageName}`)
 						}
 					/>
 				)}

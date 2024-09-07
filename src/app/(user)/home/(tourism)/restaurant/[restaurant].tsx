@@ -1,29 +1,22 @@
 import {
 	View,
 	Text,
-	Dimensions,
 	FlatList,
 	Image,
-	TouchableOpacity,
-	SafeAreaView,
+	Dimensions,
 	ScrollView,
 } from 'react-native';
-import React, { useState } from 'react';
-import { router } from 'expo-router';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/services/Header';
-import ghostown from '../../../../assets/data/ghostTown.json';
+import ghostown from '../../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
+import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
-import ImagesContainer from '@/components/tourism/imagesContainer';
 import CommentSection from '@/components/tourism/CommentSection';
-import commentsData from '../../../../assets/data/comments.json';
+import commentsData from '../../../../../assets/data/restaurantComments.json';
 
-const place = () => {
-	// for ReadMore
-	const [expanded, setExpanded] = useState(false);
-	const toggleExpansion = () => {
-		setExpanded(!expanded);
-	};
+const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
 
 	return (
@@ -33,7 +26,7 @@ const place = () => {
 				<Header
 					title='GHOST TOWN'
 					backgroundImage={{
-						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/i7mhi5ix258-533%3A1980?alt=media&token=e00f3a9d-eae3-4684-a9b7-3a1e97957848',
+						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/hmcwodc0uw-601%3A1977?alt=media&token=d347c041-36a2-4487-81fc-5e355777a110',
 					}}
 					onBackPress={() => router.back()}
 				/>
@@ -105,35 +98,12 @@ const place = () => {
 					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
 				</View>
 
-				<View style={{ paddingTop: verticalScale(30) }}>
-					<Text style={styles.historyText}>History</Text>
-					<Text style={styles.classicText}>
-						Once a thriving resort and seaside town, the ghost town of Varosha
-						has sat abandoned since the 1970s. While you're not allowed to enter
-						the fenced-off areas, you can still have a stroll or bike ride
-						around the area to explore the deserted buildings and
-					</Text>
-					{expanded && (
-						<Text style={styles.classicText}>
-							rubble—a time capsule of what was once the most glamorous spot in
-							Cyprus. A part of Varosha beach has recently been reopened, for a
-							peculiar beach day against the backdrop of the abandoned resort.
-							For a more typical beach holiday, you can head to the neighboring
-							Palm Beach first before starting your tour of the Ghost Town.
-						</Text>
-					)}
-					<TouchableOpacity onPress={toggleExpansion}>
-						<Text style={styles.orangeText}>
-							{expanded ? 'Read Less' : 'Read More'}
-						</Text>
-					</TouchableOpacity>
+				<View style={{ marginTop: verticalScale(50) }}>
+					<CommentSection comments={commentsData} />
 				</View>
-
-				<ImagesContainer images={ghostown[1].photos as { url: string }[]} />
-				<CommentSection comments={commentsData} />
 			</ScrollView>
 		</SafeAreaView>
 	);
 };
 
-export default place;
+export default restaurant;
