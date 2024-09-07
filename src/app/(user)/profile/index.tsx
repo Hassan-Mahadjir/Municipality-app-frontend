@@ -13,14 +13,20 @@ import { useProfile } from '@/services/api/profile';
 import RandomColoredBackground from '@/components/profile/RandomColoredBackground';
 import LanguagePicker from '@/components/profile/LanguagePicker';
 import { useState } from 'react';
+import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
 
 export default function userProfileIndex() {
 	const { profileData } = useProfile();
 	const firstName = profileData?.data.data.firstName;
 	const lastName = profileData?.data.data.lastName || '';
 	const fullName = `${firstName} ${lastName}`;
-	const avatar = profileData?.data.data.avatar;
+	let avatar = profileData?.data.data.avatar;
 	const [isPickerVisible, setIsPickerVisible] = useState<boolean>(false);
+
+	if (avatar === 'null') {
+		avatar = generateRandomAvatarUrl();
+		console.log(avatar);
+	}
 
 	return (
 		<View>
@@ -39,10 +45,7 @@ export default function userProfileIndex() {
 
 				<View style={{ alignSelf: 'center', alignItems: 'center' }}>
 					{avatar ? (
-						<Image
-						source={{ uri: avatar }}
-						style={styles.profileImage}
-						/>
+						<Image source={{ uri: avatar }} style={styles.profileImage} />
 					) : (
 						<RandomColoredBackground name={fullName} />
 					)}
@@ -69,7 +72,7 @@ export default function userProfileIndex() {
 					<Pressable
 						onPress={() =>
 							router.push({
-								pathname: './profile/myAccount',
+								pathname: './profile/account',
 							})
 						}
 					>

@@ -11,6 +11,7 @@ import { ProfileValue } from '@/types/profile.type';
 import { LoginFormValues } from '@/types/login.type';
 import PhoneInput from 'react-native-international-phone-number';
 import PhoneInputComponent from '@/components/PhoneInput';
+import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
 
 const userProfile = () => {
 	const { profileData } = useProfile();
@@ -20,9 +21,7 @@ const userProfile = () => {
 	const firstName = information?.firstName;
 	const lastName = information?.lastName || '';
 	const fullName = `${firstName} ${lastName}`;
-	const avatar =
-		information?.avatar ||
-		'https://cdn.pixabay.com/photo/2021/02/27/16/25/woman-6055084_1280.jpg';
+	const avatar = information?.avatar || generateRandomAvatarUrl();
 
 	const email = information?.user.email;
 	const phone = information?.phone;

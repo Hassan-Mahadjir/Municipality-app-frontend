@@ -12,7 +12,7 @@ export default function userProfileLayout() {
 			}}
 		>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
-			<Stack.Screen name='myAccount' />
+			<Stack.Screen name='account' />
 			<Stack.Screen name='password' options={{ headerShown: true }} />
 		</Stack>
 	);
