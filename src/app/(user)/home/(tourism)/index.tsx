@@ -11,7 +11,7 @@ export default function tourismMain() {
 	const headerpic = require('../../../../assets/images/tourism-header.jpg');
 
 	return (
-		<View style={{ paddingBottom: scale(50) }}>
+		<View style={{ flex: 1 }}>
 			<Header
 				title='TOURISM SERVICES'
 				backgroundImage={headerpic}

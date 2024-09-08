@@ -2,5 +2,5 @@ import { Redirect } from 'expo-router';
 import React from 'react';
 
 export default function rootIndex() {
-	return <Redirect href={'./(user)/home'} />;
+	return <Redirect href={'./(user)/home/(tourism)'} />;
 }

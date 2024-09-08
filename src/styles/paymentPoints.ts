@@ -13,14 +13,14 @@ export const styles = StyleSheet.create({
         marginTop: verticalScale(5),
     },
     mapImage: {
-        height: verticalScale(225),
+        height: verticalScale(190),
         width: screenWidth - 20,
         marginLeft: scale(10),
         borderRadius: 10
     },
     box: {
         padding: scale(15),
-        margin: 10,
+        margin: scale(10),
         borderRadius: 10,
         backgroundColor: 'white',
         shadowColor: '#000',

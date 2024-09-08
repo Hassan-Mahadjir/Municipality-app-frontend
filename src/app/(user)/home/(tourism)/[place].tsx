@@ -27,7 +27,7 @@ const place = () => {
 	const screenWidth = Dimensions.get('window').width;
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={{flex: 1}}>
 			{/* Header of the page */}
 			<View>
 				<Header
@@ -65,7 +65,7 @@ const place = () => {
 				</View>
 			</View>
 			{/* Body of the page */}
-			<ScrollView>
+			<ScrollView style={{flexGrow: 1}}>
 				<View style={{ flexDirection: 'row' }}>
 					<Image
 						source={{
@@ -128,7 +128,6 @@ const place = () => {
 						</Text>
 					</TouchableOpacity>
 				</View>
-
 				<ImagesContainer images={ghostown[1].photos as { url: string }[]} />
 				<CommentSection comments={commentsData} />
 			</ScrollView>

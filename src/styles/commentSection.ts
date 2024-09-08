@@ -1,13 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { Dimensions } from 'react-native'
-import { COLORS } from '@/constants/Colors'
-
-const screenWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
     headerText: {
-        marginTop: verticalScale(-15),
         marginLeft: scale(15),
         fontSize: 20,
         color: '#F1722A',
@@ -15,23 +11,22 @@ export const styles = StyleSheet.create({
     },
     box: {
         padding: scale(15),
-        margin: 10,
+        margin: scale(15),
         borderRadius: 10,
         backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 3,
-        elevation: 3
+        elevation: 3,
     },
     userInfoContainer: {               
-      marginLeft: '20%',
-      marginTop: '-20%'
+      marginLeft: scale(15)
     },
       userPic: {
         width: scale(50),
         height: verticalScale(50),
-        borderRadius: 25,
+        borderRadius: verticalScale(25),
         resizeMode: 'contain',
       },
       usernameText: {
@@ -51,13 +46,12 @@ export const styles = StyleSheet.create({
         marginRight: 5
       },
       visitedText: {
-        marginTop: verticalScale(-15),
         fontSize: 12,
         color: '#888'
       },
       comment: {
         fontSize: 16,
-        marginVertical: verticalScale(10)
+        marginVertical: verticalScale(10),
       },
       container2: {
         padding: 15
@@ -92,6 +86,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#F1722A',
         borderRadius: 15,
         alignItems: 'center',
+        justifyContent: 'center',
       },
       submitText: {
         fontSize: 22,
@@ -103,6 +98,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#F1722A',
         borderRadius: 15,
         alignItems: 'center',
+        justifyContent: 'center',
         marginLeft: '20%',
         marginTop: verticalScale(10),
       },

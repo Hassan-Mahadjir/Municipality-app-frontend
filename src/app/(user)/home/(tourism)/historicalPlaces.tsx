@@ -11,7 +11,7 @@ export default function historicalPlaces() {
 	const { t } = useTranslation();
 	const searchbyplacename = t('searchbyplacename');
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Stack.Screen options={{ title: 'Historical Places' }} />
 			<SearchField
 				placeholder={searchbyplacename}

@@ -9,7 +9,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { styles } from '@/styles/commentSection';
-import ghostown from '../../assets/data/ghostTown.json'; 
 
 // Define the type for props
 type CommentProps = {
@@ -23,42 +22,53 @@ type CommentProps = {
   }[];
 };
 
+const renderStars = (starUrl: string) => {
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      {Array.from({ length: 5 }).map((_, index) => (
+        <Image
+          key={index}
+          source={{ uri: starUrl }}
+          style={styles.smallStarImage}
+        />
+      ))}
+    </View>
+  );
+};
+
+const renderWhiteStars = (starUrl: string) => {
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      {Array.from({ length: 5 }).map((_, index) => (
+        <Image
+          key={index}
+          source={{ uri: starUrl }}
+          style={styles.whitestars}
+        />
+      ))}
+    </View>
+  );
+};
+
+const yellowStarImageUrl = 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/ui0s3xdrmua-192%3A1095?alt=media&token=cfb3c95f-3117-4a1d-8c9b-4295dbdb12d7';
 const whiteStarImageUrl = 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/7082gjtq1uv-195%3A1323?alt=media&token=b52d8bb2-91b5-4187-84c0-4e733c1fdd6c';
-const screenWidth = Dimensions.get('window').width;
 
 const CommentSection: React.FC<CommentProps> = ({ comments }) => {
-  const renderWhiteStar = ({ item }: { item: string }) => (
-    <Image source={{ uri: item }} style={styles.whitestars} />
-  );
-
   return (
     <View>
       <Text style={styles.headerText}>Comments</Text>
       {comments.map((comment) => (
         <View key={comment.id} style={styles.box}>
-          <Image source={{ uri: comment.userPic }} style={styles.userPic} />
-          <View style={styles.userInfoContainer}>
-            <Text style={styles.usernameText}>{comment.username}</Text>
-            <Text style={styles.contributionsText}>{comment.contributions} contributions</Text>
-            <View style={styles.starsContainer}>
-              <FlatList
-              data={ghostown}
-              keyExtractor={(item, index) => index.toString()}
-              contentContainerStyle={{ justifyContent: 'center' }}
-              renderItem={({ item }) => (
-                <View style={{ flexDirection: 'row'}}>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                    <Image
-                      key={index}
-                      source={{ uri: item.stars }}
-                      style={styles.smallStarImage}
-                  />
-                  ))}
-                </View>
-                )}
-              />
-          </View>
-          <Text style={styles.visitedText}>Visited: {comment.visited}</Text>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={{ uri: comment.userPic }} style={styles.userPic} />
+            <View style={styles.userInfoContainer}>
+              <Text style={styles.usernameText}>{comment.username}</Text>
+              <Text style={styles.contributionsText}>{comment.contributions} contributions</Text>
+              <View style={styles.starsContainer}>
+                {renderStars(yellowStarImageUrl)}
+              </View>
+              <Text style={styles.visitedText}>Visited: {comment.visited}</Text>
+            </View>
           </View>
           <Text style={styles.comment}>{comment.comment}</Text>
         </View>
@@ -74,13 +84,7 @@ const CommentSection: React.FC<CommentProps> = ({ comments }) => {
       </View>
       <View style={styles.ratingContainer}>
         <Text style={styles.rating}>Recommend</Text>
-        <FlatList
-          data={Array(5).fill(whiteStarImageUrl)}
-          renderItem={renderWhiteStar}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
+          {renderWhiteStars(whiteStarImageUrl)}
         <TouchableOpacity style={styles.submitBox}>
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>

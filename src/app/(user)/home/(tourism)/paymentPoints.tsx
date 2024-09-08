@@ -24,15 +24,15 @@ export default function historicalPlaces() {
 				onChangeText={(text) => console.log('Search text:', text)}
 			/>
             <Text style={styles.map}>MAP</Text>
-            <TouchableOpacity onPress={handlePress}>
+            <TouchableOpacity style={{height: 225}}onPress={handlePress}>
                 <Image source={{uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/ukggue1xyx-608%3A1976?alt=media&token=7af13b24-5e6f-4515-833c-7ab92e6a7059'}} style={styles.mapImage}/>
             </TouchableOpacity>
 			<FlatList
 				data={paymentPoints}
-				contentContainerStyle={{ paddingVertical: 10 }}
+				contentContainerStyle={{ paddingVertical: 0 }}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => (
-					<View style={[styles.box, {flex: 1}]}>
+					<View style={[styles.box]}>
 						<Image source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/8z51sldrhbe-256%3A2042?alt=media&token=e62a0361-18bd-4746-b23f-3ae79c5bb4ef' }} style={styles.pinImage} />
                         <Text style={styles.locationText}>See Location</Text>
 						<View style={{marginLeft: '40%', marginTop: '-35%'}}>

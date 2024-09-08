@@ -5,11 +5,11 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end', // Align at the bottom of the screen
         alignItems: 'center',
-        marginBottom: '13%'
       },
       modalContent: {
         width: '90%',
         height: '34%',
+        bottom: 0,
         backgroundColor: 'white',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
