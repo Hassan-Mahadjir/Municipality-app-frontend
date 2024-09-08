@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Modal, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 interface LanguagePickerProps {
   visible: boolean;
@@ -32,20 +33,30 @@ const LanguagePicker: React.FC<LanguagePickerProps> = ({ visible, onClose }) => 
       onRequestClose={onClose}
     >
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-          <FlatList
-            data={languages}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.item}
-                onPress={() => handleSelectLanguage(item)}
-              >
-                <Text style={styles.itemText}>{item}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+          <View style={styles.modalContent}>
+            <FlatList
+              ListHeaderComponent={
+                <View style={styles.headerRow}>
+                  <TouchableOpacity style={{ flex: 1, marginRight: -20 }} onPress={() => handleSelectLanguage(languages[0])}>
+                    <Text style={styles.itemText}>{languages[0]}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={onClose}>
+                    <Icon name="close" size={24} color="#000" />
+                  </TouchableOpacity>
+                </View>
+              }
+              data={languages.slice(1)}
+              keyExtractor={(item) => item}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.item}
+                  onPress={() => handleSelectLanguage(item)}
+                >
+                  <Text style={styles.itemText}>{item}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
       </View>
     </Modal>
   );
@@ -54,26 +65,39 @@ const LanguagePicker: React.FC<LanguagePickerProps> = ({ visible, onClose }) => 
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end', // Align at the bottom of the screen
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    marginBottom: '13%'
   },
   modalContent: {
-    width: 300,
+    width: '90%',
+    height: '34%',
     backgroundColor: 'white',
-    borderRadius: 10,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderBottomWidth: 0,
-    borderColor: '#F1722A'
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    // Add shadow
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 2, // for Android
   },
-  item: {
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#F1722A',
+    borderBottomColor: '#ccc',
+  },
+  item: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   itemText: {
     fontSize: 18,
+    textAlign: 'center',
   },
 });
 

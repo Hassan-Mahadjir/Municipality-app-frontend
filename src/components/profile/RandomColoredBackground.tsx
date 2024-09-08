@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
 	container: {
 		borderWidth: moderateScale(2),
 		borderColor: '#fff',
-		borderRadius: moderateScale(70),
+		borderRadius: moderateScale(50),
 		width: scale(100),
 		height: verticalScale(100),
+		justifyContent: 'center', // Center horizontally
+		alignItems: 'center', // Center vertically
 	},
 	letter: {
 		fontSize: moderateScale(30),
