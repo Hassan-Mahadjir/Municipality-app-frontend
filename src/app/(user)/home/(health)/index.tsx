@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-	StyleSheet,
-	View,
-	ScrollView,
-	StatusBar,
-	FlatList,
-} from 'react-native';
+import { StyleSheet, View, ScrollView, StatusBar } from 'react-native';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 import { useTranslation } from 'react-i18next';
