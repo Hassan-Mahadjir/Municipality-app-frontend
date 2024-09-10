@@ -40,5 +40,38 @@
 	"lastNameValidation": "Soyad en az 1 karakter içermelidir",
 	"passwordValidation": "Şifre en az 6 karakter içermelidir",
 	"emailValidation": "Geçersiz e-posta",
-	"passwordDontMatch": "Şifreler eşleşmiyor"
+	"passwordDontMatch": "Şifreler eşleşmiyor",
+
+	"searchbyplacename": "Yer adına göre ara",
+	"tourismServices": "TURİZM HİZMETLERİ",
+	"tourismSections": {
+		"Historical Places": "Tarihi Yerler",
+		"Restaurants": "Restoranlar",
+		"Payment Points": "Ödeme Noktaları"
+  	},
+	"placeNames": {
+		"Ghost Town": "Hayalet Şehir",
+		"Ancient Ruins": "Antik Kalıntılar",
+		"Lala Mustafa Mosque": "Lala Mustafa Camii",
+		"St. Barnabas": "St. Barnabas"
+	},
+	"restaurant": "Restoranlar",
+	"GhostTown": "Varosha",
+	"reviews": "Yorumlar",
+	"open": "Açık",
+	"weekdays": "Hafta içi",
+	"weekends": "Hafta sonu",
+	"history": "Tarih",
+	"histText": "Bir zamanlar canlı bir tatil köyü ve deniz kenarı kasabası olan Varosha'nın hayalet kenti, 1970'lerden beri terkedilmiş durumda. Çitle çevrili alanlara girmeye izin verilmemekle birlikte, bölgeyi keşfetmek için hala yürüyüş yapabilir veya bisiklet sürebilirsiniz",
+	"histTextContinued": "yıkıntılar—bir zamanlar Kıbrıs'ın en gözde yeri olan yerin bir zaman kapsülü. Varosha plajının bir kısmı yakın zamanda yeniden açıldı, terkedilmiş tatil köyünün arka planında sıradışı bir plaj günü için. Daha tipik bir plaj tatili için, önce komşu Palm Beach'e gidip ardından Hayalet Şehir turunuza başlayabilirsiniz.",
+	"readMore": "Daha Fazla Oku",
+  	"readLess": "Daha Az Oku",
+	"phoneNo": "Telefon Numarası",
+	"Comments": "Yorumlar",
+	"contributions": "Katkılar",
+	"Visited": "Ziyaret Edildi",
+	"addComment": "Bir yorum ekleyin...",
+	"Recommend": "Tavsiye Et",
+	"Submit": "Gönder",
+	"See Location": "Konumu Gör"
 }

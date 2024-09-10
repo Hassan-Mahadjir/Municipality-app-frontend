@@ -43,5 +43,37 @@
 	"passwordDontMatch": "Passwords don't match",
 
 	"searchbyplacename": "Search by place name",
-	"GhostTown": "Ghost Town"
+	"tourismServices": "TOURISM SERVICES",
+	"tourismSections": {
+		"Historical Places": "Historical Places",
+		"Restaurants": "Restaurants",
+		"Payment Points": "Payment Points"
+  	},
+	"histPlaces": "Historical Places",
+	"placeNames": {
+		"Ghost Town": "Ghost Town",
+		"Ancient Ruins": "Ancient Ruins",
+		"Lala Mustafa Mosque": "Lala Mustafa Mosque",
+		"St. Barnabas": "St. Barnabas"
+	},
+	"restaurant": "Restaurants",
+	"GhostTown": "Ghost Town",
+	"reviews": "Reviews",
+	"open": "Open",
+	"weekdays": "Weekdays",
+	"weekends": "Weekends",
+	"history": "History",
+	"histText": "Once a thriving resort and seaside town, the ghost town of Varosha has sat abandoned since the 1970s. While you're not allowed to enter the fenced-off areas, you can still have a stroll or bike ride around the area to explore the deserted buildings and",
+	"histTextContinued": "rubble—a time capsule of what was once the most glamorous spot in Cyprus. A part of Varosha beach has recently been reopened, for a peculiar beach day against the backdrop of the abandoned resort. For a more typical beach holiday, you can head to the neighboring Palm Beach first before starting your tour of the Ghost Town.",
+	"readMore": "Read More",
+  	"readLess": "Read Less",
+	"phoneNo": "Phone Number",
+	"Comments": "Comments",
+	"contributions": "contributions",
+	"Visited": "Visited",
+	"addComment": "Add a comment...",
+	"Recommend": "Recommend",
+	"Submit": "Submit",
+	"See Location": "See Location"
+	
 }

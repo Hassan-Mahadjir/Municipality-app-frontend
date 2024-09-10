@@ -15,16 +15,23 @@ import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import CommentSection from '@/components/tourism/CommentSection';
 import commentsData from '../../../../../assets/data/restaurantComments.json';
+import { useTranslation } from 'react-i18next';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
+	const {t} = useTranslation();
+	const reviews = t('reviews');
+	const open = t('open');
+	const weekdays = t('weekdays');
+	const weekends = t('weekends');
+	const phoneNo = t('phoneNo');
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={{flex: 1}}>
 			{/* Header of the page */}
 			<View>
 				<Header
-					title='GHOST TOWN'
+					title='BECKETT'
 					backgroundImage={{
 						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/hmcwodc0uw-601%3A1977?alt=media&token=d347c041-36a2-4487-81fc-5e355777a110',
 					}}
@@ -54,11 +61,11 @@ const restaurant = () => {
 							</View>
 						)}
 					/>
-					<Text style={styles.starText}>1,987 Reviews</Text>
+					<Text style={styles.starText}>2,597 {reviews}</Text>
 				</View>
 			</View>
 			{/* Body of the page */}
-			<ScrollView>
+			<ScrollView style={{flexGrow: 1}}>
 				<View style={{ flexDirection: 'row' }}>
 					<Image
 						source={{
@@ -67,7 +74,7 @@ const restaurant = () => {
 						style={styles.clockIcon}
 					/>
 					<View style={{ flexDirection: 'row' }}>
-						<Text style={styles.openText}>Open</Text>
+						<Text style={styles.openText}>{open}</Text>
 					</View>
 				</View>
 
@@ -81,8 +88,8 @@ const restaurant = () => {
 						top: verticalScale(30),
 					}}
 				>
-					<Text style={styles.weekText}>Weekdays</Text>
-					<Text style={styles.weekText}>Weekends</Text>
+					<Text style={styles.weekText}>{weekdays}</Text>
+					<Text style={styles.weekText}>{weekends}</Text>
 				</View>
 
 				<View
@@ -98,9 +105,12 @@ const restaurant = () => {
 					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
 				</View>
 
-				<View style={{ marginTop: verticalScale(50) }}>
-					<CommentSection comments={commentsData} />
+				<View style={{flexDirection: 'row', margin: scale(15), marginTop: verticalScale(45)}}>
+					<Text style={{color: '#F1722A', fontSize: 18, fontWeight: '600'}}>{phoneNo}: </Text>
+					<Text style={{color: '#4E7E95', fontSize: 18}}>+90 523 456 12 12</Text>
 				</View>
+
+				<CommentSection comments={commentsData}/>
 			</ScrollView>
 		</SafeAreaView>
 	);
