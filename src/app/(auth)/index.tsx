@@ -19,7 +19,7 @@ import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
-import { router } from 'expo-router';
+import { Href, router } from 'expo-router';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -111,7 +111,7 @@ function Login() {
 								/>
 
 								<View style={styles.forgetPassContainer}>
-									<TouchableOpacity>
+									<TouchableOpacity onPress={() => router.push('/(auth)/password')}>
 										<Text style={styles.forgetPassText}>{forgetPassword}</Text>
 									</TouchableOpacity>
 								</View>

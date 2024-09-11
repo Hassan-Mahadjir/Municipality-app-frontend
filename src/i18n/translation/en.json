@@ -22,7 +22,7 @@
 	"forgetPassword": "Forgot Password?",
 	"verified": "verified",
 	"verifiedMsg": "Your account has been verified successfully!",
-	"backToSignin": "Back to Sing in",
+	"backToSignin": "Back to Sign in",
 	"Health": "Health",
 	"Hospitals": "Hospitals",
 	"Pharmacies": "Pharmacies",
@@ -74,6 +74,21 @@
 	"addComment": "Add a comment...",
 	"Recommend": "Recommend",
 	"Submit": "Submit",
-	"See Location": "See Location"
+	"See Location": "See Location",
+
+	"forgotPassword": "Forgot Password",
+	"enterEmail": "Enter your account email below",
+
+	"confirmTextValidation": "Wrong digits! Try Again",
+	"checkEmail": "Verify your email!",
+	"enterDigits": "Please enter the 6-Digit verification code sent via email",
+	"digitCode": "6 Digit Code:",
+	"newPassword": "Create New Password",
+	"differentPassword": "Your new password must be different from your previously used password",
+	"newPass": "New Password",
+	"confirmNewPass": "Confirm New Password",
+	"changedSucess": "Success",
+	"changedSucessMsg": "Your password has been changed successfully"
+
 	
 }

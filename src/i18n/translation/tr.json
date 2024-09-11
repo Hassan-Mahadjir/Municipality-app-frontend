@@ -73,5 +73,19 @@
 	"addComment": "Bir yorum ekleyin...",
 	"Recommend": "Tavsiye Et",
 	"Submit": "Gönder",
-	"See Location": "Konumu Gör"
+	"See Location": "Konumu Gör",
+
+	"forgotPassword": "Şifremi Unuttum",
+	"enterEmail": "Aşağıya hesap emailinizi girin",
+
+	"confirmTextValidation": "Yanlış rakamlar! Tekrar deneyin",
+	"checkEmail": "E-postanızı kontrol edin!",
+	"enterDigits": "Lütfen e-posta ile gönderdiğimiz 6 haneli doğrulama kodunu girin:",
+	"digitCode": "6 Haneli Kod:",
+	"newPassword": "Yeni Şifre Oluştur",
+	"differentPassword": "Yeni şifreniz daha önce kullandığınız şifreden farklı olmalıdır",
+	"newPass": "Yeni Şifre",
+	"confirmNewPass": "Yeni Şifreyi Onayla",
+	"changedSucess": "Başarı",
+	"changedSucessMsg": "Şifreniz başarıyla değiştirildi"
 }
