@@ -12,6 +12,9 @@ const trafficLa = () => {
 			}}
 		>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
+			<Stack.Screen name='busTrack' />
+			<Stack.Screen name='collectedVehicle' />
+			<Stack.Screen name='disasterPoint' />
 		</Stack>
 	);
 };

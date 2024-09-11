@@ -2,7 +2,7 @@ import { FlatList, View } from 'react-native';
 import React from 'react';
 import { useRouter } from 'expo-router';
 import tourismSections from '../../../../assets/data/toursimSections.json';
-import { scale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import Header from '@/components/services/Header';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 
@@ -19,7 +19,8 @@ export default function tourismMain() {
 			/>
 			<FlatList
 				data={tourismSections}
-				contentContainerStyle={{ marginTop: 0 }}
+				contentContainerStyle={{ paddingBottom: verticalScale(80) }}
+				showsVerticalScrollIndicator={false}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => (
 					<HealthServicesComponent
