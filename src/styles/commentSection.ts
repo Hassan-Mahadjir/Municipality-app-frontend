@@ -43,7 +43,8 @@ export const styles = StyleSheet.create({
       smallStarImage: {
         width: scale(15),
         height: verticalScale(15),
-        marginRight: 5
+        marginRight: scale(2),
+        resizeMode: 'contain',
       },
       visitedText: {
         fontSize: 12,
@@ -78,7 +79,8 @@ export const styles = StyleSheet.create({
       whitestars: {
         width: scale(20),
         height: verticalScale(20),
-        marginRight: scale(5)
+        marginRight: scale(2),
+        resizeMode: 'contain',
       },
       submitBox: {
         height: verticalScale(30),

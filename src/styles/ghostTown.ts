@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
 		height: verticalScale(20),
 		width: scale(20),
 		marginVertical: verticalScale(10),
-		marginLeft: scale(5),
+		marginLeft: scale(2),
+		resizeMode: 'contain'
 	},
 	starText: {
 		fontSize: 18,
@@ -57,9 +58,9 @@ export const styles = StyleSheet.create({
 	},
 
 	historyText: {
-		fontSize: 16,
+		fontSize: 18,
 		color: '#F1722A',
-		fontWeight: 'bold',
+		fontWeight: '600',
 		marginLeft: scale(15),
 		marginTop: verticalScale(10),
 	},

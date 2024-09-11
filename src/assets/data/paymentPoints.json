@@ -3,18 +3,21 @@
         "branch": "Sönmez KKTCELL",
         "office": "BYT Magusa",
         "no.": "70002001",
-        "location": "35.1417, 33.9150"
+        "location": "35.1417, 33.9150",
+        "seeLocation": "https://www.google.com/maps/d/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.12928770688447%2C33.92991130971562&z=14"
     },
     {
        "branch": "Magusa Ambar 2",
         "office": "KIBTEK",
         "no.": "70003007",
-        "location": "35.1238, 33.9252"
+        "location": "35.1238, 33.9252",
+        "seeLocation": "https://www.google.com/maps/d/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.12422053271245%2C33.92973259365627&z=13"
     },
     {
-        "branch": "Sarpkan Daü",
+        "branch": "Sarpkan İletişim",
         "office": "KKTCELL",
-        "no.": "70002014",
-        "location": "35.1467, 33.9088"
+        "no.": "70002002",
+        "location": "35.1312, 33.9260",
+        "seeLocation": "https://www.google.com/maps/d/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.131247900000005%2C33.926053999999986&z=18"
     }
 ]

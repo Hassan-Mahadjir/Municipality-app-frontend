@@ -10,9 +10,10 @@ import { styles } from '@/styles/historicalPlaces';
 export default function historicalPlaces() {
 	const { t } = useTranslation();
 	const searchbyplacename = t('searchbyplacename');
+	const restaurant = t('restaurant')
 	return (
 		<View>
-			<Stack.Screen options={{ title: 'Restaurants' }} />
+			<Stack.Screen options={{ title: restaurant }} />
 			<SearchField
 				placeholder={searchbyplacename}
 				onChangeText={(text) => console.log('Search text:', text)}
@@ -27,7 +28,7 @@ export default function historicalPlaces() {
 						<Image source={{ uri: item.image }} style={styles.pageImage} />
 						<TouchableOpacity
 							onPress={() =>
-								router.push('/(user)/home/(tourism)/' + item.pageName)
+								router.push('/(user)/home/(tourism)/restaurant/1')
 							}
 						>
 							<Text style={styles.imageText}>{item.placename}</Text>

@@ -17,6 +17,7 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import ImagesContainer from '@/components/tourism/imagesContainer';
 import CommentSection from '@/components/tourism/CommentSection';
 import commentsData from '../../../../assets/data/comments.json';
+import { useTranslation } from 'react-i18next';
 
 const place = () => {
 	// for ReadMore
@@ -25,13 +26,22 @@ const place = () => {
 		setExpanded(!expanded);
 	};
 	const screenWidth = Dimensions.get('window').width;
+	const {t} = useTranslation();
+	const GhostTown = t('GhostTown');
+	const reviews = t('reviews');
+	const open = t('open');
+	const weekdays = t('weekdays');
+	const weekends = t('weekends');
+	const history = t('history');
+	const histText = t('histText');
+	const histTextContinued = t('histTextContinued');
 
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			{/* Header of the page */}
 			<View>
 				<Header
-					title='GHOST TOWN'
+					title={GhostTown}
 					backgroundImage={{
 						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/i7mhi5ix258-533%3A1980?alt=media&token=e00f3a9d-eae3-4684-a9b7-3a1e97957848',
 					}}
@@ -61,7 +71,7 @@ const place = () => {
 							</View>
 						)}
 					/>
-					<Text style={styles.starText}>1,987 Reviews</Text>
+					<Text style={styles.starText}>1,987 {reviews}</Text>
 				</View>
 			</View>
 			{/* Body of the page */}
@@ -74,7 +84,7 @@ const place = () => {
 						style={styles.clockIcon}
 					/>
 					<View style={{ flexDirection: 'row' }}>
-						<Text style={styles.openText}>Open</Text>
+						<Text style={styles.openText}>{open}</Text>
 					</View>
 				</View>
 
@@ -88,8 +98,8 @@ const place = () => {
 						top: verticalScale(30),
 					}}
 				>
-					<Text style={styles.weekText}>Weekdays</Text>
-					<Text style={styles.weekText}>Weekends</Text>
+					<Text style={styles.weekText}>{weekdays}</Text>
+					<Text style={styles.weekText}>{weekends}</Text>
 				</View>
 
 				<View
@@ -106,25 +116,18 @@ const place = () => {
 				</View>
 
 				<View style={{ paddingTop: verticalScale(30) }}>
-					<Text style={styles.historyText}>History</Text>
+					<Text style={styles.historyText}>{history}</Text>
 					<Text style={styles.classicText}>
-						Once a thriving resort and seaside town, the ghost town of Varosha
-						has sat abandoned since the 1970s. While you're not allowed to enter
-						the fenced-off areas, you can still have a stroll or bike ride
-						around the area to explore the deserted buildings and
+						{histText}
 					</Text>
 					{expanded && (
 						<Text style={styles.classicText}>
-							rubble—a time capsule of what was once the most glamorous spot in
-							Cyprus. A part of Varosha beach has recently been reopened, for a
-							peculiar beach day against the backdrop of the abandoned resort.
-							For a more typical beach holiday, you can head to the neighboring
-							Palm Beach first before starting your tour of the Ghost Town.
+							{histTextContinued}
 						</Text>
 					)}
 					<TouchableOpacity onPress={toggleExpansion}>
 						<Text style={styles.orangeText}>
-							{expanded ? 'Read Less' : 'Read More'}
+							{expanded ? t('readLess') : t('readMore')}
 						</Text>
 					</TouchableOpacity>
 				</View>
