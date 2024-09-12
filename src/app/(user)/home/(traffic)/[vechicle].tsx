@@ -1,8 +1,17 @@
-import { View, Text, StatusBar, Image, StyleSheet } from 'react-native';
+import {
+	View,
+	Text,
+	StatusBar,
+	Image,
+	StyleSheet,
+	TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
-import { verticalScale, scale } from 'react-native-size-matters';
+import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+import SubmitButtonComponent from '@/components/SubmitButton';
 
 const vechicle = () => {
 	const { vechicle } = useLocalSearchParams();
@@ -25,18 +34,39 @@ const vechicle = () => {
 					}}
 				/>
 				<View style={styles.line}></View>
-				<View>
-					<Text>XXXX Red car</Text>
-					<Text>Reason for collecting:</Text>
-					<Text>
+				<View style={{ margin: scale(10) }}>
+					<Text style={styles.keyDiscription}>XXXX Red car</Text>
+					<Text style={styles.reason}>Reason for collecting:</Text>
+					<Text style={{ textAlign: 'justify' }}>
 						orem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
 						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
 						aliquip ex ea commodo consequat.
 					</Text>
-					<Text>
-						Collectd Date:<Text></Text>
+					<Text style={{ marginTop: verticalScale(15), color: COLORS.primary }}>
+						Collectd Date: <Text style={{ color: '#000' }}>12/09/2024</Text>
 					</Text>
+					<View
+						style={{
+							flexDirection: 'row',
+							marginVertical: verticalScale(10),
+							marginLeft: scale(-5),
+						}}
+					>
+						<EvilIcons name='location' size={24} color={COLORS.primary} />
+						<Text>Famagusta, EMU maingate</Text>
+					</View>
+
+					<Text
+						style={{ color: COLORS.primary, marginBottom: verticalScale(15) }}
+					>
+						Fee: <Text style={{ color: '#000' }}>500 TL</Text>
+					</Text>
+
+					<SubmitButtonComponent title='Pay Fee' fullWidth onPress={() => {}} />
+					<TouchableOpacity>
+						<Text style={styles.getCar}>Get your car</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		</View>
@@ -61,5 +91,19 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: scale(4), // Reduced shadow radius
 		elevation: 2,
+	},
+	keyDiscription: {
+		fontSize: moderateScale(24),
+		fontWeight: '700',
+		marginBottom: verticalScale(8),
+	},
+	reason: {
+		color: COLORS.primary,
+		marginBottom: verticalScale(5),
+	},
+	getCar: {
+		textAlign: 'center',
+		color: COLORS.primary,
+		marginTop: verticalScale(5),
 	},
 });

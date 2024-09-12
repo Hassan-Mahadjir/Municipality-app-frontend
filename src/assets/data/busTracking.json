@@ -1,0 +1,34 @@
+[
+	{
+		"id": 1,
+		"line": "1",
+		"time": "Latest",
+		"from": "EMU",
+		"to": "Old City",
+		"day": "Sunday"
+	},
+	{
+		"id": 2,
+		"line": "2",
+		"time": "Latest",
+		"from": "EMU",
+		"to": "Old City",
+		"day": "Monday"
+	},
+	{
+		"id": 3,
+		"line": "3",
+		"time": "Latest",
+		"from": "EMU",
+		"to": "Old City",
+		"day": "Monday"
+	},
+	{
+		"id": 4,
+		"line": "4",
+		"time": "Latest",
+		"from": "EMU",
+		"to": "Old City",
+		"day": "Friday"
+	}
+]

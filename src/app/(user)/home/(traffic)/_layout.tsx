@@ -15,6 +15,8 @@ const trafficLa = () => {
 			<Stack.Screen name='busTrack' />
 			<Stack.Screen name='collectedVehicle' />
 			<Stack.Screen name='disasterPoint' />
+			<Stack.Screen name='[vechicle]' />
+			<Stack.Screen name='route' options={{ headerShown: false }} />
 		</Stack>
 	);
 };
