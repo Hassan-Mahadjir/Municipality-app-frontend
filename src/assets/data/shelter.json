@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"name": "EMU",
+		"location": "Famagusta, EMU, main-gate",
+		"imageUrl": "https://media.istockphoto.com/id/1148570769/vector/veterinary-clinic-vector-logo.jpg?s=612x612&w=0&k=20&c=soi94tMr2NiMQ9b9X48p4OMW3V2i7JlGORDfCNBEUSs="
+	},
+	{
+		"id": 2,
+		"name": "CIU",
+		"location": "Famagusta, EMU, main-gate",
+		"imageUrl": "https://media.istockphoto.com/id/1148570769/vector/veterinary-clinic-vector-logo.jpg?s=612x612&w=0&k=20&c=soi94tMr2NiMQ9b9X48p4OMW3V2i7JlGORDfCNBEUSs="
+	}
+]

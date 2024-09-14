@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"day": "Sunday",
+		"start": "3:00",
+		"end": "9:30",
+		"type": "Organic"
+	},
+	{
+		"id": 2,
+		"day": "Monday",
+		"start": "3:00",
+		"end": "9:30",
+		"type": "Organic"
+	},
+	{
+		"id": 3,
+		"day": "Tuesday",
+		"start": "3:00",
+		"end": "9:30",
+		"type": "Recyclable"
+	}
+]
