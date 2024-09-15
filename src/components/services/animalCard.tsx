@@ -24,7 +24,9 @@ const AnimalCard: React.FC<CardProps> = ({ data }) => {
 				// backgroundColor: '#fff',
 			}}
 		>
-			<Image source={{ uri: data.imageUrl }} style={styles.pageImage} />
+			<TouchableOpacity onPress={() => router.push(`./animal/${data.id}`)}>
+				<Image source={{ uri: data.imageUrl }} style={styles.pageImage} />
+			</TouchableOpacity>
 			<Text style={styles.numberText}>
 				Animal Number: <Text style={{ fontWeight: 'bold' }}>{data.id}</Text>
 			</Text>

@@ -4,7 +4,7 @@ import { Stack } from 'expo-router';
 const animalDetailLayout = () => {
 	return (
 		<Stack>
-			<Stack.Screen name='[id]' />
+			<Stack.Screen name='[id]' options={{ headerShown: false }} />
 		</Stack>
 	);
 };

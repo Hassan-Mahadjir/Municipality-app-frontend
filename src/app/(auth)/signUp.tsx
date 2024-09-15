@@ -105,7 +105,7 @@ function signUp() {
 						}}
 					>
 						<FormProvider {...methods}>
-							<View style={{ position: 'relative', marginLeft: '85%' }}>
+							<View style={{ position: 'relative', marginLeft: '75%' }}>
 								<SelectLanuageComponent />
 							</View>
 							<Text style={styles.title}>{creatAcount}</Text>

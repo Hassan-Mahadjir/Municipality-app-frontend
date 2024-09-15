@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
 			/>
 			<TouchableOpacity
 				onPress={() => {
-					router.push(`./(news)/${data.id}`);
+					router.push(`./${data.id}`);
 				}}
 			>
 				<Text style={styles.imageText} numberOfLines={2}>

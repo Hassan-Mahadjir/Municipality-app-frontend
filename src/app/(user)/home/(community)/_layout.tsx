@@ -17,12 +17,9 @@ const communityLayout = () => {
 			<Stack.Screen name='animalMain' />
 			<Stack.Screen name='wasteCollection' />
 			<Stack.Screen name='emergency' />
-			<Stack.Screen
-				name='municipalDepartment'
-				options={{ headerShown: false }}
-			/>
+			<Stack.Screen name='municipalDepartment' />
 			<Stack.Screen name='contactInfo' />
-			<Stack.Screen name='department' />
+			<Stack.Screen name='department' options={{ headerShown: false }} />
 		</Stack>
 	);
 };
