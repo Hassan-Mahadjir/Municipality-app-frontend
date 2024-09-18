@@ -7,7 +7,13 @@ import useBorderColor from '@/hooks/user-border-color';
 type CustomInputProps = TextInputProps & {
 	name: string;
 	text: string;
-	inputType?: 'text' | 'report' | 'purpose' | 'message';
+	inputType?:
+		| 'text'
+		| 'report'
+		| 'purpose'
+		| 'message'
+		| 'subject'
+		| 'location';
 	rules?: any;
 	returnKeyType?: TextInputProps['returnKeyType'];
 	onSubmitEditing?: () => void;
@@ -47,6 +53,10 @@ const InputComponent = forwardRef<TextInput, CustomInputProps>(
 					return 'Enter purpose of the appointmnet';
 				case 'message':
 					return 'Enter message';
+				case 'subject':
+					return 'Enter the subject';
+				case 'location':
+					return 'Enter your location';
 				default:
 					return '';
 			}
