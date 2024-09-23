@@ -33,7 +33,7 @@ const sectionData = [
 		image:
 			'https://media.istockphoto.com/id/1154370446/photo/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=kkZiaB9Q-GbY5gjf6WWURzEpLzNrpjZp_tn09GB21bI=',
 		sectionName: 'Animals',
-		pageName: 'animal',
+		pageName: 'animalMain',
 	},
 ];
 

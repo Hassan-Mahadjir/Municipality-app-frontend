@@ -1,5 +1,12 @@
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
-import React from 'react';
+import {
+	View,
+	Text,
+	Image,
+	StyleSheet,
+	ScrollView,
+	TouchableOpacity,
+} from 'react-native';
+import React, { useState } from 'react';
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
@@ -12,10 +19,48 @@ import { LoginFormValues } from '@/types/login.type';
 import PhoneInput from 'react-native-international-phone-number';
 import PhoneInputComponent from '@/components/PhoneInput';
 import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+
+const imgDir = FileSystem.documentDirectory + 'images/';
+
+const ensureDirExists = async () => {
+	const dirInfo = await FileSystem.getInfoAsync(imgDir);
+	if (!dirInfo.exists) {
+		await FileSystem.makeDirectoryAsync(imgDir, { intermediates: true });
+	}
+};
 
 const userProfile = () => {
+	const [image, setImage] = useState<string | null>(null);
+
+	const pickImage = async (useLibrary: boolean) => {
+		let result;
+
+		const options: ImagePicker.ImagePickerOptions = {
+			mediaTypes: ImagePicker.MediaTypeOptions.Images,
+			allowsEditing: true,
+			aspect: [4, 3],
+			quality: 1,
+		};
+
+		if (useLibrary) {
+			result = await ImagePicker.launchImageLibraryAsync(options);
+		} else {
+			await ImagePicker.requestCameraPermissionsAsync();
+
+			result = await ImagePicker.launchCameraAsync(options);
+		}
+
+		console.log(result);
+
+		if (!result.canceled) {
+			setImage(result.assets[0].uri);
+		}
+	};
+
 	const { profileData } = useProfile();
-	console.log(profileData?.data.data.avatar);
 	const information = profileData?.data.data;
 
 	const firstName = information?.firstName;
@@ -30,7 +75,7 @@ const userProfile = () => {
 	const address = information?.address;
 	const description = information?.description;
 
-	console.log(email);
+	// console.log(email);
 
 	const onSubmit = (data: ProfileValue<LoginFormValues>) => {
 		// console.log('login form: ', data);
@@ -50,17 +95,31 @@ const userProfile = () => {
 					marginTop: verticalScale(5),
 				}}
 			>
-				<Image
-					source={{
-						uri: avatar,
-					}}
-					style={styles.profileImage}
-				/>
+				<View>
+					<Image
+						source={{
+							uri: avatar,
+						}}
+						style={styles.profileImage}
+					/>
+					<TouchableOpacity
+						style={{
+							position: 'absolute',
+							right: 1,
+						}}
+						onPress={() => pickImage(true)}
+					>
+						<MaterialIcons name='add-a-photo' size={24} color='black' />
+					</TouchableOpacity>
+				</View>
 				<Text style={styles.profileName}>{fullName}</Text>
 			</View>
 
 			{/* Field to be modified */}
-			<ScrollView style={styles.scrollContainer}>
+			<ScrollView
+				style={styles.scrollContainer}
+				showsVerticalScrollIndicator={false}
+			>
 				<FormProvider {...methods}>
 					<CustomeProfileInput
 						name='firstName'
