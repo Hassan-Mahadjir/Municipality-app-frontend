@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { ForgotFormValues, LoginFormValues } from '@/types/login.type';
+import { ChangePassword, ForgotFormValues, LoginFormValues, ResetFormValues, ResetPassword } from '@/types/login.type';
 import authService from '../auth-service';
 import { getItem, setItem } from '@/utils/storage';
 import { router } from 'expo-router';
@@ -72,7 +72,6 @@ export const useForgetPassword=() =>{
 			// 	router.push('/(user)');
 			// }
 			router.push('/(auth)/password/confirmDigits');
-			console.log('created account successfully ');
 		},
 		onError: () => {
 			Alert.alert('email or password are incorrect');
@@ -80,5 +79,60 @@ export const useForgetPassword=() =>{
 	});
 
 	return { mutateForgetPassword, isPending, ...props };
+
+}
+
+export const useChangePassword=() =>{
+	const {
+		mutate: mutateChangePassword,
+		isPending,
+		...props
+	} = useMutation({
+		mutationFn: (data: ChangePassword) =>
+			authService.putChangePassword({newPassword:data.newPassword,oldPassword:data.oldPassword}),
+		onSuccess: async (data) => {
+			// console.log(`success from auth.ts ${data.data.data.accessToken}`);
+			// setItem('token', data.data.data.accessToken);
+			// if (await getItem('token')) {
+			// 	router.push('/(user)');
+			// }
+			router.push('/(user)/profile');
+			console.log('Password changed successfully ');
+		},
+		onError: () => {
+			Alert.alert('Password change error ');
+		},
+	});
+
+	return { mutateChangePassword, isPending, ...props };
+
+	
+}
+
+
+
+export const useValidateCode=() =>{
+	const {
+		mutate: mutateValidate,
+		isPending,
+		...props
+	} = useMutation({
+		mutationFn: (data: ResetFormValues) =>
+			authService.postValidateResetCode({resetCode:data.resetCode,email:data.email}),
+		onSuccess: async (data) => {
+			// console.log(`success from auth.ts ${data.data.data.accessToken}`);
+			// setItem('token', data.data.data.accessToken);
+			// if (await getItem('token')) {
+			// 	router.push('/(user)');
+			// }
+			router.push('/(auth)/password/newPassword');
+			
+		},
+		onError: () => {
+			Alert.alert('Password change error ');
+		},
+	});
+
+	return { mutateValidate, isPending, ...props };
 
 }

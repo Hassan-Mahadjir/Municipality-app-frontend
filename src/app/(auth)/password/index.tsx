@@ -26,6 +26,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useForgetPassword, useLogin } from '@/services/api/auth';
 
 import Loading from '@/components/Loading';
+import { setItem } from '@/utils/storage';
 function forgotPassword() {
 	const { mutateForgetPassword,isPending } = useForgetPassword();
 
@@ -53,6 +54,7 @@ function forgotPassword() {
 
 	const onSubmit = (data: ForgotFormValues) => {
 		console.log('login form: ', data);
+		setItem('forget-email', data.email);
 		mutateForgetPassword(data)
 	};
 

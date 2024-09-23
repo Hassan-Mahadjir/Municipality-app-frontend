@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import React from 'react';
-import { removeItem } from '@/utils/storage';
+import { removeItem, setItem } from '@/utils/storage';
 import { router } from 'expo-router';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
