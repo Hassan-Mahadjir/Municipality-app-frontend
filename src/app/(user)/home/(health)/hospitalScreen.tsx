@@ -40,15 +40,17 @@ const hospitalScreen = () => {
 					placeholder={searchbyhospitalname}
 					onChangeText={(text) => console.log('Search text:', text)}
 				/>
-				<ScrollView contentContainerStyle={styles.contentContainer}>
-					<Text style={styles.title}>{Hospitals}</Text>
-					<FlatList
-						data={hospitals}
-						renderItem={renderItem}
-						keyExtractor={(item) => item.name}
-						contentContainerStyle={styles.list}
-					/>
-				</ScrollView>
+				<ScrollView style={{ flexGrow: 1 }} contentContainerStyle={styles.contentContainer}>
+    <Text style={styles.title}>{Hospitals}</Text>
+    <View style={styles.list}>
+        {hospitals.map((item) => (
+            <View key={item.name}>
+                {renderItem({ item })}
+            </View>
+        ))}
+    </View>
+</ScrollView>
+
 			</View>
 		</SafeAreaView>
 	);

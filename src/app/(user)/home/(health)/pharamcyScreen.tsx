@@ -34,16 +34,19 @@ const PharmacyScreen = () => {
         onChangeText={(text) => console.log('Search text:', text)}
       />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={styles.openThisWeekendText}>{openthisweekend}</Text>
-        <PharmacyCard />
-        <Text style={styles.title}>{Pharmacies}</Text>
-        <FlatList
-          data={pharmacies}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.name}
-          contentContainerStyle={styles.list}
-        />
-      </ScrollView>
+  <Text style={styles.openThisWeekendText}>{openthisweekend}</Text>
+  <PharmacyCard />
+  <Text style={styles.title}>{Pharmacies}</Text>
+
+  <View style={styles.list}>
+    {pharmacies.map((item) => (
+      <View key={item.name}>
+        {renderItem({ item })}
+      </View>
+    ))}
+  </View>
+</ScrollView>
+
     </View>
   );
 };

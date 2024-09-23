@@ -25,8 +25,10 @@ import { z } from 'zod';
 
 import { styles } from '@/styles/signUp';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRegister } from '@/services/api/auth';
 
 function signUp() {
+	const {mutateRegister, isPending} = useRegister();
 	const { t } = useTranslation();
 	const creatAcount = t('createAccount');
 	const createAccoutDescription = t('createAccoutDescription');
@@ -81,6 +83,7 @@ function signUp() {
 
 	const onSubmit = (data: RegisterFormValues) => {
 		console.log('Register form: ', data);
+		mutateRegister(data)
 		// router.push('./verficationCode');
 	};
 

@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
-import { LoginFormValues } from '@/types/login.type';
+import { ForgotFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
@@ -23,11 +23,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-import { useLogin } from '@/services/api/auth';
+import { useForgetPassword, useLogin } from '@/services/api/auth';
 
 import Loading from '@/components/Loading';
 function forgotPassword() {
-	const { isPending } = useLogin();
+	const { mutateForgetPassword,isPending } = useForgetPassword();
 
 	const { t } = useTranslation();
 	const forgotPassword = t('forgotPassword');
@@ -44,12 +44,18 @@ function forgotPassword() {
 		email: z.string().email({ message: emailValidation }),
 	});
 
-	const methods = useForm<LoginFormValues>({
+	const methods = useForm<ForgotFormValues>({
 		defaultValues: {
 			email: ''
 		},
 		resolver: zodResolver(formSchema),
 	});
+
+	const onSubmit = (data: ForgotFormValues) => {
+		console.log('login form: ', data);
+		mutateForgetPassword(data)
+	};
+
 
 	return (
 		<KeyboardAvoidingView
@@ -93,7 +99,7 @@ function forgotPassword() {
 								/>
 								<View style={{height: verticalScale(15)}}/>
 								<SubmitButtonComponent
-									onPress={() => router.push('/(auth)/password/confirmDigits')}
+									onPress={methods.handleSubmit(onSubmit)}
 									title={Submit}
 									fullWidth
 								/>
