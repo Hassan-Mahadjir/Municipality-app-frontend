@@ -6,3 +6,4 @@ export type LoginFormValues = {
 export type ForgotFormValues = {
   email: string;
 };
+

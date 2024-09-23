@@ -9,7 +9,7 @@ const useCheckToken = () => {
 	const checkToken = async () => {
 		const token = await getItem('token');
 		if (token) {
-			router.replace('/(user)/home/(news)');
+			router.replace('/(user)');
 		} else {
 			router.replace('/');
 		}
