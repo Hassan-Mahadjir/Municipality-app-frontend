@@ -4,6 +4,8 @@ import { useForm, FormProvider, useFormContext } from 'react-hook-form';
 import { Stack } from 'expo-router';
 import CustomInputComponent from '@/components/CustomInput';
 import { styles } from '@/styles/password';
+import { useChangePassword } from '@/services/api/auth';
+import { ChangePassword } from '@/types/login.type';
 
 type FormValues = {
   oldPassword: string;
@@ -12,6 +14,7 @@ type FormValues = {
 };
 
 export default function PasswordScreen() {
+  const { mutateChangePassword, isPending } = useChangePassword();
   const methods = useForm<FormValues>();
   const { register, setValue, watch, formState: { errors } } = methods;
 
@@ -22,23 +25,9 @@ export default function PasswordScreen() {
     register('confirmPassword');
   }, [register]);
 
-  const onSubmit = (data: FormValues) => {
-    if (data.newPassword !== data.confirmPassword) {
-      Alert.alert(
-        '', // No title
-        'New password and confirm password do not match!',
-        [{ text: 'OK' }],
-        { cancelable: true }
-      );
-    } else {
-      Alert.alert(
-        '', // No title
-        'Password changed successfully!',
-        [{ text: 'OK' }],
-        { cancelable: true }
-      );
-      console.log(data);
-    }
+  const onSubmit = (data: ChangePassword) => {
+    mutateChangePassword(data)
+ 
   };
 
   return (

@@ -13,17 +13,23 @@ import React, { useRef, useState } from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTranslation } from 'react-i18next';
 import { scale, verticalScale } from 'react-native-size-matters';
-import { useLogin } from '@/services/api/auth';
+import { useForgetPassword, useLogin, useValidateCode } from '@/services/api/auth';
 import Loading from '@/components/Loading';
 import { COLORS } from '@/constants/Colors';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { router } from 'expo-router';
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import { Ionicons } from '@expo/vector-icons';
+import { FormProvider, useForm } from 'react-hook-form';
+import { LoginFormValues, ResetFormValues } from '@/types/login.type';
+import { getItem } from '@/utils/storage';
+import CustomInputComponent from '@/components/CustomInput';
 
 // Define SixDigitCodeInput separately
 const SixDigitCodeInput = () => {
+
     const [code, setCode] = useState(['', '', '', '', '', '']);
+    const { mutateForgetPassword, isPending } = useForgetPassword();
     
     const inputRefs = useRef<(TextInput | null)[]>([]);
 
@@ -70,7 +76,8 @@ const SixDigitCodeInput = () => {
 };
 
 function confirmDigits() {
-	const { mutateLogin, isPending } = useLogin();
+	const { mutateValidate, isPending } = useValidateCode();
+    const methods = useForm<LoginFormValues>();
 
 	const { t } = useTranslation();
     const checkEmail = t('checkEmail');
@@ -78,6 +85,15 @@ function confirmDigits() {
     const resend = t('resend');
     const Submit = t('Submit');
 
+    const onSubmit = async (data: ResetFormValues) => {
+        const email = await  getItem('forget-email');
+        const code = data['resetCode']; 
+        console.log(data);
+        const info = {resetCode:code, email:email}
+        console.log(info)
+        mutateValidate(data)
+     
+      };
 	return (
 		<KeyboardAvoidingView
 			style={{ flex: 1, backgroundColor: '#fff' }}
@@ -110,9 +126,15 @@ function confirmDigits() {
                                 </View>
 								<Text style={styles.title}>{checkEmail}</Text>
 								<Text style={styles.subtitle}>{enterDigits}</Text>
-
+                                <FormProvider {...methods}>
                                 {/* Use the SixDigitCodeInput here */}
-								<SixDigitCodeInput />
+								{/* <SixDigitCodeInput /> */}
+                                <CustomInputComponent
+          name="resetCode"
+          text=""
+          inputType="text"
+          placeholder=""
+        />
 
                                 <View style={styles.forgetPassContainer}>
 									<TouchableOpacity>
@@ -121,10 +143,10 @@ function confirmDigits() {
 								</View>
 
                                 <SubmitButtonComponent
-									onPress={() => router.push('/(auth)/password/newPassword')}
+									onPress={methods.handleSubmit(onSubmit)}
 									title={Submit}
 									fullWidth
-								/>
+								/></FormProvider>
 							</View>
 						)}
 					</View>
