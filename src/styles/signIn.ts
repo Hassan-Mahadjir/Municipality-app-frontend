@@ -77,4 +77,11 @@ export const styles = StyleSheet.create({
 		textAlign: 'right',
 		textDecorationLine: 'underline',
 	},
+	webViewContainer: {
+		flex: 1,
+		justifyContent: 'center',
+	},
+	webView: {
+		flex: 1,
+	},
 });

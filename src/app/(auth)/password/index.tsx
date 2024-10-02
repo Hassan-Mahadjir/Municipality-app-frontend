@@ -6,7 +6,7 @@ import {
 	Platform,
 	SafeAreaView,
 	StatusBar,
-	TouchableOpacity
+	TouchableOpacity,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import React, { useRef } from 'react';
@@ -14,9 +14,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import SelectLanuageComponent from '@/components/SelectLanguage';
 import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
-import { ForgotFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,8 +26,9 @@ import { useForgetPassword, useLogin } from '@/services/api/auth';
 
 import Loading from '@/components/Loading';
 import { setItem } from '@/utils/storage';
+import { sendEamilValues } from '@/types/login.type';
 function forgotPassword() {
-	const { mutateForgetPassword,isPending } = useForgetPassword();
+	const { mutateForgetPassword, isPending } = useForgetPassword();
 
 	const { t } = useTranslation();
 	const forgotPassword = t('forgotPassword');
@@ -45,19 +45,18 @@ function forgotPassword() {
 		email: z.string().email({ message: emailValidation }),
 	});
 
-	const methods = useForm<ForgotFormValues>({
+	const methods = useForm<sendEamilValues>({
 		defaultValues: {
-			email: ''
+			email: '',
 		},
 		resolver: zodResolver(formSchema),
 	});
 
-	const onSubmit = (data: ForgotFormValues) => {
+	const onSubmit = (data: sendEamilValues) => {
 		console.log('login form: ', data);
 		setItem('forget-email', data.email);
-		mutateForgetPassword(data)
+		mutateForgetPassword(data);
 	};
-
 
 	return (
 		<KeyboardAvoidingView
@@ -81,14 +80,29 @@ function forgotPassword() {
 							<Loading />
 						) : (
 							<FormProvider {...methods}>
-								<View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-                                    <TouchableOpacity onPress={()=> router.back()}>
-                                        <Ionicons name="arrow-back" size={24} color="black" />
-                                    </TouchableOpacity>
-                                    <View style={{ position: 'relative', marginLeft: '75%' }}>
-                                        <SelectLanuageComponent />
-                                    </View>
-                                </View>
+								<View
+									style={{
+										flexDirection: 'row',
+										justifyContent: 'space-evenly',
+									}}
+								>
+									<TouchableOpacity onPress={() => router.back()}>
+										<Ionicons
+											name='arrow-back'
+											size={36}
+											color='black'
+											style={{ marginRight: scale(25) }}
+										/>
+									</TouchableOpacity>
+									<View
+										style={{
+											position: 'relative',
+											marginLeft: moderateScale(190),
+										}}
+									>
+										<SelectLanuageComponent />
+									</View>
+								</View>
 								<Text style={styles.title}>{forgotPassword}</Text>
 								<Text style={styles.subtitle}>{enterEmail}</Text>
 								<CustomInputComponent
@@ -97,9 +111,11 @@ function forgotPassword() {
 									inputType='email'
 									returnKeyType='next'
 									ref={emailRef}
-									onSubmitEditing={() => router.push('/(auth)/password/confirmDigits')}
+									onSubmitEditing={() =>
+										router.push('/(auth)/password/confirmDigits')
+									}
 								/>
-								<View style={{height: verticalScale(15)}}/>
+								<View style={{ height: verticalScale(15) }} />
 								<SubmitButtonComponent
 									onPress={methods.handleSubmit(onSubmit)}
 									title={Submit}

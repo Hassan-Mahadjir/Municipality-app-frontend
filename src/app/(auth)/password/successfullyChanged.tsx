@@ -4,6 +4,7 @@ import {
 	Image,
 	SafeAreaView,
 	TouchableOpacity,
+	StatusBar,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
@@ -11,7 +12,6 @@ import React from 'react';
 import { router } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
 import { scale } from 'react-native-size-matters';
-import SelectLanuageComponent from '@/components/SelectLanguage';
 
 function Verify() {
 	const { t } = useTranslation();
@@ -21,10 +21,8 @@ function Verify() {
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
-            <View style={{ position: 'relative', marginLeft: '75%'}}>
-                <SelectLanuageComponent />
-            </View>
 			<View style={styles.container}>
+				<StatusBar barStyle={'dark-content'} />
 				<Image
 					source={{
 						uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYInVIiHF4IlVh8fREiBrdi0os47t_S1v3g&s',

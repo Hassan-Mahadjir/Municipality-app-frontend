@@ -1,21 +1,29 @@
 export type LoginFormValues = {
-  email: string;
-  password: string;
-  resetCode?:string
+	email: string;
+	password: string;
+	resetCode?: string;
 };
 
-export type ForgotFormValues = {
-  email: string;
+export type sendEamilValues = {
+	email: string;
 };
-export type ResetFormValues = {
-  email:string;
-  resetCode: string;
+export type validationFormValues = {
+	email: string;
+	resetCode: string[];
 };
-export type ResetPassword={
-  password: string;
-  confirmPassword: string;
-}
-export type ChangePassword={
-  oldPassword: string;
-  newPassword: string;
-}
+export type validationValues = {
+	email: string;
+	resetCode: string;
+};
+export type ResetPassword = {
+	password: string;
+	email: string;
+};
+export type ChangePassword = {
+	oldPassword: string;
+	newPassword: string;
+};
+
+export type googleLoginResponse = {
+	url: string;
+};

@@ -4,6 +4,7 @@ import {
 	Image,
 	SafeAreaView,
 	TouchableOpacity,
+	StatusBar,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
@@ -21,6 +22,7 @@ function Verify() {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			<View style={styles.container}>
+				<StatusBar barStyle={'dark-content'} />
 				<Image
 					source={{
 						uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDYInVIiHF4IlVh8fREiBrdi0os47t_S1v3g&s',

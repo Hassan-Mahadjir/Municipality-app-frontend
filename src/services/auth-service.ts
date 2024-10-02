@@ -1,6 +1,13 @@
 import BaseService from './base-service';
 import http from './api/http';
-import { ChangePassword, ForgotFormValues, LoginFormValues, ResetFormValues } from '@/types/login.type';
+import {
+	ChangePassword,
+	sendEamilValues,
+	LoginFormValues,
+	validationValues,
+	ResetPassword,
+	googleLoginResponse,
+} from '@/types/login.type';
 import { AppResponse, AuthDataType } from '@/types/common.type';
 import { RegisterFormValues } from '@/types/register.type';
 
@@ -12,35 +19,35 @@ class AuthService extends BaseService {
 		);
 		return response;
 	}
-	async postRegister(data:RegisterFormValues){
-		const response = await http.post<AppResponse<AuthDataType>>(
+	async postRegister(data: RegisterFormValues) {
+		const response = await http.post<AppResponse<RegisterFormValues>>(
 			'/user',
 			data
 		);
 		return response;
 	}
-	async postForgetPassword(data:ForgotFormValues){
+	async postSendEmail(data: sendEamilValues) {
 		const response = await http.post<AppResponse<AuthDataType>>(
-			'auth/forget-password',
+			'auth/send-code-email',
 			data
 		);
 		return response;
 	}
-	async postValidateResetCode(data:ResetFormValues){
-		const response = await http.post<AppResponse<AuthDataType>>(
+	async postValidateResetCode(data: validationValues) {
+		const response = await http.post<AppResponse<validationValues>>(
 			'auth/validate-resetCode',
 			data
 		);
 		return response;
 	}
-	async postResetPassword(data:LoginFormValues){
-		const response = await http.post<AppResponse<AuthDataType>>(
-			'auth/forget-password',
+	async patchResetPassword(data: ResetPassword) {
+		const response = await http.patch<AppResponse<ResetPassword>>(
+			'auth/reset-password',
 			data
 		);
 		return response;
 	}
-	async putChangePassword(data:ChangePassword){
+	async putChangePassword(data: ChangePassword) {
 		const response = await http.put<AppResponse<AuthDataType>>(
 			'auth/validate-resetCode',
 			data
@@ -48,6 +55,12 @@ class AuthService extends BaseService {
 		return response;
 	}
 
+	async getGoogleLogin() {
+		const response = await http.get<AppResponse<googleLoginResponse>>(
+			'auth/google/login'
+		);
+		return response;
+	}
 }
 
 export default new AuthService();

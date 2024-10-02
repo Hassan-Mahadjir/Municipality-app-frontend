@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SelectCountry as SelectLanuageComponent } from 'react-native-element-dropdown';
 
 import { LANGUAGE_DATA } from '@/constants/language';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 const selectLanguage = (_props: any) => {
 	const [language, setLanguage] = useState('en');
@@ -45,15 +46,15 @@ const styles = StyleSheet.create({
 	dropdown: {
 		margin: 0,
 		padding: 0,
-		height: 40,
-		width: 100,
+		height: verticalScale(40),
+		width: scale(100),
 		backgroundColor: '#E6E2E290',
 		borderRadius: 12,
-		paddingHorizontal: 8,
+		paddingHorizontal: moderateScale(10),
 	},
 	imageStyle: {
-		width: 20,
-		height: 20,
+		width: scale(20),
+		height: verticalScale(20),
 		paddingRight: 10,
 	},
 	placeholderStyle: {
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 	},
 	iconStyle: {
-		width: 20,
-		height: 20,
+		width: scale(20),
+		height: verticalScale(20),
 		tintColor: 'black',
 	},
 	generalStyle: {

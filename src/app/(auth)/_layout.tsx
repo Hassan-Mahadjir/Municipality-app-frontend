@@ -6,8 +6,9 @@ export default function AuthLayout() {
 		<Stack screenOptions={{ headerShown: false }}>
 			<Stack.Screen name='index' />
 			<Stack.Screen name='signUp' />
-			<Stack.Screen name='verficationCode' />
 			<Stack.Screen name='verified' />
+			<Stack.Screen name='password' />
+			<Stack.Screen name='google-modal' />
 		</Stack>
 	);
 }

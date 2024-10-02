@@ -17,18 +17,20 @@ import CustomInputComponent from '@/components/CustomInput';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { LoginFormValues } from '@/types/login.type';
 import { useTranslation } from 'react-i18next';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/signIn';
-import { Href, router } from 'expo-router';
+import { router } from 'expo-router';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
 
-import { useLogin } from '@/services/api/auth';
+import { useGoogleLogin, useLogin } from '@/services/api/auth';
 
-import axios from 'axios';
 import Loading from '@/components/Loading';
 function Login() {
 	const { mutateLogin, isPending } = useLogin();
+	const { mutateGoogle, googleData } = useGoogleLogin();
 
 	const { t } = useTranslation();
 	const signin = t('signin');
@@ -65,6 +67,25 @@ function Login() {
 		mutateLogin(data);
 	};
 
+	const openGoogleLogin = async () => {
+		// use deep linking to create a redirect URI for the application
+		const redirectUri = Linking.createURL('auth');
+
+		let result = await WebBrowser.openAuthSessionAsync(
+			'http://192.168.0.108:3000/auth/google/login',
+			redirectUri
+		);
+
+		if (result.type === 'success' && result.url) {
+			const token = Linking.parse(result.url).queryParams.token;
+			console.log('Access token:', token);
+		} else {
+			console.log('Login Failed or canceled');
+		}
+
+		console.log(result);
+	};
+
 	const [checked, setChecked] = useState(false);
 
 	return (
@@ -89,7 +110,12 @@ function Login() {
 							<Loading />
 						) : (
 							<FormProvider {...methods}>
-								<View style={{ position: 'relative', marginLeft: '75%' }}>
+								<View
+									style={{
+										position: 'relative',
+										marginLeft: moderateScale(250),
+									}}
+								>
 									<SelectLanuageComponent />
 								</View>
 								<Text style={styles.title}>{signin}</Text>
@@ -111,7 +137,9 @@ function Login() {
 								/>
 
 								<View style={styles.forgetPassContainer}>
-									<TouchableOpacity onPress={() => router.push('/(auth)/password')}>
+									<TouchableOpacity
+										onPress={() => router.push('/(auth)/password')}
+									>
 										<Text style={styles.forgetPassText}>{forgetPassword}</Text>
 									</TouchableOpacity>
 								</View>
@@ -129,6 +157,7 @@ function Login() {
 								</View>
 								<TouchableOpacity
 									style={[styles.buttonContainer, styles.googleButton]}
+									onPress={openGoogleLogin}
 								>
 									<Image
 										source={{

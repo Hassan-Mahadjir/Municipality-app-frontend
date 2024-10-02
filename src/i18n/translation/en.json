@@ -48,7 +48,7 @@
 		"Historical Places": "Historical Places",
 		"Restaurants": "Restaurants",
 		"Payment Points": "Payment Points"
-  	},
+	},
 	"histPlaces": "Historical Places",
 	"placeNames": {
 		"Ghost Town": "Ghost Town",
@@ -66,7 +66,7 @@
 	"histText": "Once a thriving resort and seaside town, the ghost town of Varosha has sat abandoned since the 1970s. While you're not allowed to enter the fenced-off areas, you can still have a stroll or bike ride around the area to explore the deserted buildings and",
 	"histTextContinued": "rubble—a time capsule of what was once the most glamorous spot in Cyprus. A part of Varosha beach has recently been reopened, for a peculiar beach day against the backdrop of the abandoned resort. For a more typical beach holiday, you can head to the neighboring Palm Beach first before starting your tour of the Ghost Town.",
 	"readMore": "Read More",
-  	"readLess": "Read Less",
+	"readLess": "Read Less",
 	"phoneNo": "Phone Number",
 	"Comments": "Comments",
 	"contributions": "contributions",
@@ -82,13 +82,13 @@
 	"confirmTextValidation": "Wrong digits! Try Again",
 	"checkEmail": "Verify your email!",
 	"enterDigits": "Please enter the 6-Digit verification code sent via email",
-	"digitCode": "6 Digit Code:",
+	"digitCode": "6 Digit Code",
 	"newPassword": "Create New Password",
 	"differentPassword": "Your new password must be different from your previously used password",
 	"newPass": "New Password",
 	"confirmNewPass": "Confirm New Password",
 	"changedSucess": "Success",
-	"changedSucessMsg": "Your password has been changed successfully"
-
-	
+	"changedSucessMsg": "Your password has been changed successfully",
+	"didnotRecieveCode": "Did not receive code?",
+	"ResendCode": "Resend Code"
 }

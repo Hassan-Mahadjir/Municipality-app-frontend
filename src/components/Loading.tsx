@@ -5,7 +5,12 @@ import { COLORS } from '@/constants/Colors';
 const loadingComponent = () => {
 	return (
 		<SafeAreaView
-			style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+			style={{
+				flex: 1,
+				justifyContent: 'center',
+				alignItems: 'center',
+				marginTop: '50%',
+			}}
 		>
 			<ActivityIndicator size='large' color={COLORS.primary} />
 		</SafeAreaView>

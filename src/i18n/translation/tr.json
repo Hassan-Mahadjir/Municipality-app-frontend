@@ -48,7 +48,7 @@
 		"Historical Places": "Tarihi Yerler",
 		"Restaurants": "Restoranlar",
 		"Payment Points": "Ödeme Noktaları"
-  	},
+	},
 	"placeNames": {
 		"Ghost Town": "Hayalet Şehir",
 		"Ancient Ruins": "Antik Kalıntılar",
@@ -65,7 +65,7 @@
 	"histText": "Bir zamanlar canlı bir tatil köyü ve deniz kenarı kasabası olan Varosha'nın hayalet kenti, 1970'lerden beri terkedilmiş durumda. Çitle çevrili alanlara girmeye izin verilmemekle birlikte, bölgeyi keşfetmek için hala yürüyüş yapabilir veya bisiklet sürebilirsiniz",
 	"histTextContinued": "yıkıntılar—bir zamanlar Kıbrıs'ın en gözde yeri olan yerin bir zaman kapsülü. Varosha plajının bir kısmı yakın zamanda yeniden açıldı, terkedilmiş tatil köyünün arka planında sıradışı bir plaj günü için. Daha tipik bir plaj tatili için, önce komşu Palm Beach'e gidip ardından Hayalet Şehir turunuza başlayabilirsiniz.",
 	"readMore": "Daha Fazla Oku",
-  	"readLess": "Daha Az Oku",
+	"readLess": "Daha Az Oku",
 	"phoneNo": "Telefon Numarası",
 	"Comments": "Yorumlar",
 	"contributions": "Katkılar",
@@ -81,11 +81,13 @@
 	"confirmTextValidation": "Yanlış rakamlar! Tekrar deneyin",
 	"checkEmail": "E-postanızı kontrol edin!",
 	"enterDigits": "Lütfen e-posta ile gönderdiğimiz 6 haneli doğrulama kodunu girin:",
-	"digitCode": "6 Haneli Kod:",
+	"digitCode": "6 Haneli Kod",
 	"newPassword": "Yeni Şifre Oluştur",
 	"differentPassword": "Yeni şifreniz daha önce kullandığınız şifreden farklı olmalıdır",
 	"newPass": "Yeni Şifre",
 	"confirmNewPass": "Yeni Şifreyi Onayla",
 	"changedSucess": "Başarı",
-	"changedSucessMsg": "Şifreniz başarıyla değiştirildi"
+	"changedSucessMsg": "Şifreniz başarıyla değiştirildi",
+	"didnotRecieveCode": "Kod almadınız mı?",
+	"ResendCode": "Kodu Yeniden Gönder"
 }

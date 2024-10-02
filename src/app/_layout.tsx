@@ -49,7 +49,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
 	const { t } = useTranslation();
-	useCheckToken();
+	// useCheckToken();
 	return (
 		<APIProvider>
 			<Stack screenOptions={{ headerShown: false }}>
