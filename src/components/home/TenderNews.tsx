@@ -6,7 +6,7 @@ import {
 	TouchableOpacity,
 	Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Added useEffect and useRef imports
 import { LinearGradient } from 'expo-linear-gradient';
 import tenderNews from '../../assets/data/tenderNews.json';
 import { scale, verticalScale } from 'react-native-size-matters';
@@ -29,7 +29,7 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 		<View>
 			<ImageBackground
 				source={{ uri: item.imageURL }}
-				// resizeMode='cover'
+				// resizeMode='cover' 
 				imageStyle={{ borderRadius: scale(10) }}
 				style={{
 					width: screenWidth,
@@ -55,6 +55,22 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 
 export default function TenderNews() {
 	const [activeIndex, setActiveIndex] = useState(0);
+	const flatListRef = useRef<FlatList<SliderItem>>(null); // Reference for the FlatList to auto-scroll
+
+	// Auto-scroll functionality
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveIndex((prevIndex) => {
+				const nextIndex = (prevIndex + 1) % terder_News.length; // Looping to the first item
+				flatListRef.current?.scrollToIndex({ index: nextIndex }); // Scroll to the next index
+				return nextIndex; // Update active index
+			});
+		}, 3000); // Set interval time (e.g., 3000 ms for 3 seconds)
+
+		// Clear interval on component unmount
+		return () => clearInterval(interval);
+	}, []);
+// end of Auto-scroll functionality
 
 	const handleScroll = (event: {
 		nativeEvent: { contentOffset: { x: number } };
@@ -83,6 +99,7 @@ export default function TenderNews() {
 		<View>
 			<View style={{ marginHorizontal: 10 }}>
 				<FlatList
+					ref={flatListRef} // Assigning ref to the FlatList for auto-scroll
 					data={terder_News}
 					horizontal={true}
 					bounces={false}

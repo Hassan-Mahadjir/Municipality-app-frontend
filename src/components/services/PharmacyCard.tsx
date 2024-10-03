@@ -1,14 +1,5 @@
-import {
-  View,
-  Text,
-  FlatList,
-  ImageBackground,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, FlatList, ImageBackground, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import pharmacyInfo from '../../assets/data/pharmacyInfo.json';
 import { COLORS } from '@/constants/Colors';
@@ -63,6 +54,22 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 
 export default function PharmacyCard() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const flatListRef = useRef<FlatList>(null);
+
+  // Function to handle scrolling
+  const scrollToNextItem = () => {
+    if (flatListRef.current) {
+      const nextIndex = (activeIndex + 1) % pharmacy_News.length;
+      flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
+      setActiveIndex(nextIndex);
+    }
+  };
+
+  // Auto-scroll effect
+  useEffect(() => {
+    const interval = setInterval(scrollToNextItem, 3000); // Scroll every 3 seconds
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [activeIndex]);
 
   const handleScroll = (event: { nativeEvent: { contentOffset: { x: number } } }) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
@@ -88,6 +95,7 @@ export default function PharmacyCard() {
     <View>
       <View style={{ marginHorizontal: scale(10) }}>
         <FlatList
+          ref={flatListRef}
           data={pharmacy_News}
           horizontal={true}
           bounces={false}
