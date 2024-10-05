@@ -6,10 +6,12 @@ import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { COLORS } from '@/constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 
 const newsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		// Simulating an API call to fetch content

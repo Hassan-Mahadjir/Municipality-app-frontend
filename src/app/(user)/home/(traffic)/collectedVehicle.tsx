@@ -1,9 +1,10 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React from 'react';
 import { router, Stack } from 'expo-router';
 import SearchField from '@/components/services/Search';
 import VechileCard from '@/components/services/VechileCard';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 const data = [
 	{
@@ -55,12 +56,15 @@ const data = [
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
 	},
 ];
+
 const collectedVehicle = () => {
+	const { t } = useTranslation();
+
 	return (
 		<View style={{ flex: 1 }}>
-			<Stack.Screen options={{ title: 'Collected Vehicle' }} />
+			<Stack.Screen options={{ title: t('collectedVehicle') }} />
 			<SearchField
-				placeholder={'search by plate number'}
+				placeholder={t('searchByPlate')}
 				onChangeText={(text) => console.log('Search text:', text)}
 			/>
 			<View style={{ margin: scale(10) }}>

@@ -90,5 +90,56 @@
 	"changedSucess": "Success",
 	"changedSucessMsg": "Your password has been changed successfully",
 	"didnotRecieveCode": "Did not receive code?",
-	"ResendCode": "Resend Code"
+	"ResendCode": "Resend Code",
+
+
+
+
+	
+	"wasteCollection": "Waste Collection",
+
+	"municipalityDepartments": "Municipality Departments",
+	"Traffic": "Traffic",
+	"contact": "Contact",
+
+	"community": "Community",
+	"Waste Collection": "Waste Collection",
+	"Emergency Contacts": "Emergency Contacts",
+	"Municipal Departments": "Municipal Departments",
+	"Contact Information": "Contact Information",
+	"Animals": "Animals",
+
+	"contactInformation": "Contact Information",
+	"getInTouch": "Get in Touch",
+	"inquiriesMessage": "If you have any inquiries, get in touch with us.",
+	"socialMedia": "Social Media",
+
+	"news": "news",
+
+	"paymentPoints": "Payment Points",
+    "map": "MAP",
+    "branch": "Branch",
+    "office": "Office",
+    "no": "No",
+    "seeLocation": "See Location",
+
+	"traffic": "Traffic",
+    "collectedVehicle": "Collected Vehicle",
+    "busTracking": "Bus Tracking",
+    "disasterGatheringPoints": "Disaster Gathering Points",
+
+	"busTrack": "Bus Track",
+    "all": "All",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+
+	"searchByPlate": "Search by plate number"
+
+	
+	
 }

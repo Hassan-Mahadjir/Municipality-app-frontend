@@ -5,6 +5,8 @@ import { COLORS } from '@/constants/Colors';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Entypo from '@expo/vector-icons/Entypo';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+
 const info = [
 	{
 		id: 1,
@@ -19,13 +21,20 @@ const info = [
 ];
 
 const contactInfo = () => {
+	const { t } = useTranslation(); 
+	const contactInfo= t('contactInformation');
+	const socialMedia= t('socialMedia');
+	const getInTouch= t('getInTouch');
+	const inquiriesMessage= t('If you have any inquiries, get in touch with us.');
+
+
 	return (
 		<View>
-			<Stack.Screen options={{ title: 'contact Information' }} />
+			<Stack.Screen options={{ title: t('contactInformation') }} /> {/* Translated title */}
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>Get in Touch</Text>
+				<Text style={styles.get}>{t('getInTouch')}</Text> {/* Translated text */}
 				<Text style={{ color: COLORS.gray }}>
-					If you Have any inquires get touch with us{' '}
+					{t('inquiriesMessage')} {/* Translated inquiry message */}
 				</Text>
 			</View>
 
@@ -48,7 +57,7 @@ const contactInfo = () => {
 			/>
 
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>Social Media</Text>
+				<Text style={styles.get}>{t('socialMedia')}</Text> {/* Translated social media text */}
 				<View
 					style={{
 						flexDirection: 'row',

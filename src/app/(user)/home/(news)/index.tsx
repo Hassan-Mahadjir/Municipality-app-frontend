@@ -7,8 +7,13 @@ import NewsCategory from '@/components/services/NewsCategory';
 import Card from '@/components/services/Card';
 import news from '@/assets/data/news.json';
 const types = ['Latest', 'Treding', 'Sport', 'Science'];
+import { useTranslation } from 'react-i18next';
+
 const newsIndex = () => {
 	const [selectedCategory, setSelectedCategory] = useState('Latest');
+	const { t } = useTranslation();
+	
+	
 
 	const filteredNews =
 		selectedCategory === 'Latest'
@@ -18,7 +23,7 @@ const newsIndex = () => {
 	return (
 		<View>
 			<Header
-				title='News'
+				title={t('news')}
 				backgroundImage={{
 					uri: 'https://about.fb.com/wp-content/uploads/2023/09/GettyImages-686732223.jpg',
 				}}
