@@ -17,7 +17,7 @@ const AnimalMain = () => {
 	const filteredData = selectedCategory === 'Shelter' ? shelter : animal;
 	const { t } = useTranslation();
 
-	const renderItem = ({ item }) => {
+	const renderItem = ({ item }: {item: any}) =>  {
 		if (selectedCategory === 'Shelter') {
 			// Render Shelter data
 			return (
