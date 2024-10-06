@@ -160,17 +160,3 @@ export const useResetPassword = () => {
 
 	return { mutateResetPassword, isPending, ...props };
 };
-
-export const useGoogleLogin = () => {
-	const { mutate: mutateGoogle, data: googleData } = useMutation({
-		mutationFn: () => authService.getGoogleLogin(),
-		onSuccess: async (data) => {
-			if (data?.data.data.url) {
-				// Open Google login page in a browser
-				await WebBrowser.openBrowserAsync(data?.data.data.url);
-			}
-		},
-	});
-
-	return { mutateGoogle, googleData };
-};

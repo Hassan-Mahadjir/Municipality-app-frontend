@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	Pressable,
+	Image,
+	ScrollView,
+} from 'react-native';
 import React from 'react';
 import { removeItem, setItem } from '@/utils/storage';
 import { router } from 'expo-router';
@@ -29,7 +36,7 @@ export default function userProfileIndex() {
 	}
 
 	return (
-		<View>
+		<ScrollView>
 			<View style={styles.headerContainer}>
 				<View style={styles.logoutContainer}>
 					<Text style={styles.logoutText}>Logout</Text>
@@ -118,6 +125,6 @@ export default function userProfileIndex() {
 					</Pressable>
 				</View>
 			</View>
-		</View>
+		</ScrollView>
 	);
 }

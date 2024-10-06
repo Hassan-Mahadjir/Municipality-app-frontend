@@ -54,13 +54,6 @@ class AuthService extends BaseService {
 		);
 		return response;
 	}
-
-	async getGoogleLogin() {
-		const response = await http.get<AppResponse<googleLoginResponse>>(
-			'auth/google/login'
-		);
-		return response;
-	}
 }
 
 export default new AuthService();
