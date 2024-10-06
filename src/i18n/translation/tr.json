@@ -89,5 +89,55 @@
 	"changedSucess": "Başarı",
 	"changedSucessMsg": "Şifreniz başarıyla değiştirildi",
 	"didnotRecieveCode": "Kod almadınız mı?",
-	"ResendCode": "Kodu Yeniden Gönder"
+	"ResendCode": "Kodu Yeniden Gönder",
+
+
+
+
+    "Waste Collection": "Atık Toplama",
+
+	"municipalityDepartments": "Belediye Departmanları",
+	"Traffic": "Trafik",
+	"contact": "İletişim",
+
+	"community": "Topluluk",
+	"Emergency Contacts": "Acil İletişim",
+	"Municipal Departments": "Belediye Departmanları",
+	"Contact Information": "İletişim Bilgileri",
+	"Animals": "Hayvanlar",
+
+	"contactInformation": "İletişim Bilgileri",
+	"getInTouch": "Bizimle İletişime Geçin",
+	"inquiriesMessage": "Herhangi bir sorunuz varsa, bizimle iletişime geçin.",
+	"socialMedia": "Sosyal Medya",
+
+	"news": "Haberler",
+
+	"paymentPoints": "Ödeme Noktaları",
+  	"map": "HARİTA",
+  	"branch": "Şube",
+  	"office": "Ofis",
+  	"no": "No",
+  	"seeLocation": "Konumu Gör",
+
+	"traffic": "Trafik",
+   "collectedVehicle": "Toplanan Araçlar",
+   "busTracking": "Otobüs Takip",
+   "disasterGatheringPoints": "Afet Toplanma Noktaları",
+
+   "busTrack": "Otobüs Takip",
+   "all": "Hepsi",
+   "monday": "Pazartesi",
+   "tuesday": "Salı",
+   "wednesday": "Çarşamba",
+   "thursday": "Perşembe",
+   "friday": "Cuma",
+   "saturday": "Cumartesi",
+   "sunday": "Pazar"
+
+
+
+
+
+
 }

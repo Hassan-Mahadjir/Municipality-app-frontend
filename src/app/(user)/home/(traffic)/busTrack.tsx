@@ -1,31 +1,35 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React, { useState } from 'react';
 import { Stack } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
 import BusCard from '@/components/services/BusCard';
 import busTracking from '@/assets/data/busTracking.json';
-const days = [
-	'All',
-	'Monday',
-	'Tuesday',
-	'Wendnsday',
-	'Thursday',
-	'Friday',
-	'Sunday',
-	'Saturday',
-];
+import { useTranslation } from 'react-i18next';
+
 const busTrack = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
+	const { t } = useTranslation();
+
+	const days = [
+		t('all'),
+		t('monday'),
+		t('tuesday'),
+		t('wednesday'),
+		t('thursday'),
+		t('friday'),
+		t('saturday'),
+		t('sunday'),
+	];
 
 	const filteredNews =
-		selectedCategory === 'All'
-			? busTracking // Show all news when "Latest" is selected
-			: busTracking.filter((item) => item.day === selectedCategory); // Filter for other types
+		selectedCategory === t('all')
+			? busTracking // Show all buses when "All" is selected
+			: busTracking.filter((item) => item.day === selectedCategory); // Filter for other days
 
 	return (
 		<View>
-			<Stack.Screen options={{ title: 'Bus Track' }} />
+			<Stack.Screen options={{ title: t('busTrack') }} />
 
 			<FlatList
 				data={filteredNews}

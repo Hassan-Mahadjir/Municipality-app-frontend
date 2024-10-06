@@ -2,10 +2,11 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { router, Stack } from 'expo-router';
 import DepartmentCard from '@/components/services/DepartmentCard';
+import { useTranslation} from 'react-i18next';
 const departments = [
 	{
 		id: 1,
-		name: 'Health',
+		name: ('Health'),
 		description:
 			'orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		contact: 'hm.mahadjir@gmail.com',
@@ -14,7 +15,7 @@ const departments = [
 	},
 	{
 		id: 2,
-		name: 'Traffic',
+		name: ('Traffic'),
 		description:
 			'orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 		contact: 'hm.mahadjir@gmail.com',
@@ -23,9 +24,14 @@ const departments = [
 	},
 ];
 const municipalDepartment = () => {
+	const { t } = useTranslation();
+	const Health= t('Health');
+	const Traffic= t('Traffic');
+	const municipalityDepartments= t('municipalityDepartments');
+
 	return (
 		<View>
-			<Stack.Screen options={{ title: 'Municipality Departments' }} />
+			<Stack.Screen options={{ title: t('municipalityDepartments') }} />
 			<FlatList
 				data={departments}
 				renderItem={({ item }) => (

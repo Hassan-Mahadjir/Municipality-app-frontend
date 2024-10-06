@@ -7,12 +7,12 @@ import { useTranslation } from 'react-i18next';
 import { styles } from '@/styles/paymentPoints';
 import { TouchableOpacity } from 'react-native';
 
-export default function historicalPlaces() {
+export default function PaymentPoints() {
 	const { t } = useTranslation();
 	const searchbyplacename = t('searchbyplacename');
 
     const handlePress = () => {
-        const url = 'https://www.google.com/maps/d/u/0/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.24891578265986%2C33.669542874735434&z=10'; // Replace with your URL
+        const url = 'https://www.google.com/maps/d/u/0/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.24891578265986%2C33.669542874735434&z=10'; 
         Linking.openURL(url).catch(err => console.error('An error occurred', err));
     };
 
@@ -42,14 +42,14 @@ export default function historicalPlaces() {
                 style={styles.pinImage}
                 />
                 <TouchableOpacity onPress={() => handleSeeLocation(item.seeLocation)}>
-                    <Text style={styles.locationText}>See Location</Text>
+                    <Text style={styles.locationText}>{t('seeLocation')}</Text>
                 </TouchableOpacity>
             </View>
             <View style={{flexDirection: 'column'}}>
-                <Text style={styles.orangeText}>Branch:</Text>
-                <Text style={styles.orangeText}>Office:</Text>
-                <Text style={styles.orangeText}>No:</Text>
-                <Text style={styles.orangeText}>Location:</Text>
+                <Text style={styles.orangeText}>{t('branch')}:</Text>
+                <Text style={styles.orangeText}>{t('office')}:</Text>
+                <Text style={styles.orangeText}>{t('no')}:</Text>
+                <Text style={styles.orangeText}>{t('location')}:</Text>
             </View>
             <View style={{flexDirection: 'column'}}>
                 <Text style={styles.blueText}>{item.branch}</Text>
@@ -62,14 +62,17 @@ export default function historicalPlaces() {
     
 	return (
 		<ScrollView style={{ flex: 1 }}>
-			<Stack.Screen options={{ title: 'Payment Points' }} />
+			<Stack.Screen options={{ title: t('paymentPoints') }} />
 			<SearchField
 				placeholder={searchbyplacename}
 				onChangeText={(text) => console.log('Search text:', text)}
 			/>
-            <Text style={styles.map}>MAP</Text>
+            <Text style={styles.map}>{t('map')}</Text>
             <TouchableOpacity onPress={handlePress}>
-                <Image source={{uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/ukggue1xyx-608%3A1976?alt=media&token=7af13b24-5e6f-4515-833c-7ab92e6a7059'}} style={styles.mapImage}/>
+                <Image 
+                    source={{uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/ukggue1xyx-608%3A1976?alt=media&token=7af13b24-5e6f-4515-833c-7ab92e6a7059'}} 
+                    style={styles.mapImage}
+                />
             </TouchableOpacity>
 			{paymentPoints.map((item, index) => (
                 <React.Fragment key={index.toString()}>
