@@ -11,6 +11,7 @@ import TenderNews from '@/components/home/TenderNews';
 import ServiceCategory from '@/components/home/ServiceCategory';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
+import { router } from 'expo-router';
 
 export default function userHomeIndex() {
 	return (
@@ -22,7 +23,11 @@ export default function userHomeIndex() {
 
 				<View style={style.categoryWapper}>
 					<Text style={style.sectionTitle}>Service Category</Text>
-					<TouchableOpacity onPress={() => {}}>
+					<TouchableOpacity
+						onPress={() => {
+							router.push('./service');
+						}}
+					>
 						<Text style={style.seeall}>see all</Text>
 					</TouchableOpacity>
 				</View>

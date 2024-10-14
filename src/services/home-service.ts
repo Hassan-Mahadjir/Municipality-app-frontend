@@ -4,9 +4,10 @@ import BaseService from './base-service';
 import { ServiceValues } from '@/types/home-services.type';
 
 class HomeService extends BaseService {
-	async getServices() {
+	async getServices(params?: { limit?: number }) {
 		const response = await http.get<AppResponse<ServiceValues[]>>(
-			'/department'
+			'/department',
+			{ params }
 		);
 		return response;
 	}

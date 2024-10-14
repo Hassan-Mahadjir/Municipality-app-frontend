@@ -14,7 +14,7 @@ import { router } from 'expo-router';
 import { useService } from '@/services/api/home';
 
 export default function ServiceCategory() {
-	const { servisesData } = useService();
+	const { servisesData } = useService({ limit: 4 });
 	const services = servisesData?.data.data;
 
 	return (
@@ -41,9 +41,7 @@ export default function ServiceCategory() {
 							<Text style={styles.detialsText}>Details</Text>
 							<TouchableOpacity
 								onPress={() =>
-									router.push(
-										`/(user)/home/(${service.name.toLocaleLowerCase()})`
-									)
+									router.push(`./home/(${service.name.toLocaleLowerCase()})`)
 								}
 							>
 								<Feather name='arrow-right' size={24} color='#fff' />
