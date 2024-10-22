@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import { useForm, FormProvider, useFormContext } from 'react-hook-form';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useForm, FormProvider } from 'react-hook-form';
 import { Stack } from 'expo-router';
 import CustomInputComponent from '@/components/CustomInput';
 import { styles } from '@/styles/password';
 import { useChangePassword } from '@/services/api/auth';
 import { ChangePassword } from '@/types/login.type';
+import { useTranslation } from 'react-i18next'; // Import translation hook
 
 type FormValues = {
   oldPassword: string;
@@ -14,9 +15,10 @@ type FormValues = {
 };
 
 export default function PasswordScreen() {
-  const { mutateChangePassword, isPending } = useChangePassword();
+  const { mutateChangePassword } = useChangePassword();
   const methods = useForm<FormValues>();
   const { register, setValue, watch, formState: { errors } } = methods;
+  const { t } = useTranslation(); // Translation function
 
   // Register inputs
   React.useEffect(() => {
@@ -26,20 +28,19 @@ export default function PasswordScreen() {
   }, [register]);
 
   const onSubmit = (data: ChangePassword) => {
-    mutateChangePassword(data)
- 
+    mutateChangePassword(data);
   };
 
   return (
     <FormProvider {...methods}>
-      <Stack.Screen options={{ title: 'Change Password' }} />
+      {/* Use translated title */}
+      <Stack.Screen options={{ title: t('changePassword') }} />
       <View style={styles.container}>
-        <Text style={styles.label}>Old Password</Text>
+        <Text style={styles.label}>{t('oldPassword')}</Text>
         <CustomInputComponent
           name="oldPassword"
-          text=""
           inputType="password"
-          placeholder="Enter old password"
+          placeholder={t('enterOldPassword')}
           secureTextEntry={true}
           onChangeText={(text) => setValue('oldPassword', text)}
           value={watch('oldPassword')}
@@ -47,12 +48,11 @@ export default function PasswordScreen() {
         />
         {errors.oldPassword && <Text style={{ color: 'red', fontSize: 12 }}>{errors.oldPassword.message}</Text>}
 
-        <Text style={styles.label}>New Password</Text>
+        <Text style={styles.label}>{t('newPassword')}</Text>
         <CustomInputComponent
           name="newPassword"
-          text=""
           inputType="password"
-          placeholder="Enter new password"
+          placeholder={t('enterNewPassword')}
           secureTextEntry={true}
           onChangeText={(text) => setValue('newPassword', text)}
           value={watch('newPassword')}
@@ -60,12 +60,11 @@ export default function PasswordScreen() {
         />
         {errors.newPassword && <Text style={{ color: 'red', fontSize: 12 }}>{errors.newPassword.message}</Text>}
 
-        <Text style={styles.label}>Confirm Password</Text>
+        <Text style={styles.label}>{t('confirmPassword')}</Text>
         <CustomInputComponent
           name="confirmPassword"
-          text=""
           inputType="password"
-          placeholder="Confirm new password"
+          placeholder={t('confirmNewPassword')}
           secureTextEntry={true}
           onChangeText={(text) => setValue('confirmPassword', text)}
           value={watch('confirmPassword')}
@@ -77,7 +76,7 @@ export default function PasswordScreen() {
           style={styles.button}
           onPress={methods.handleSubmit(onSubmit)}
         >
-          <Text style={styles.buttonText}>Change Password</Text>
+          <Text style={styles.buttonText}>{t('changePassword')}</Text>
         </TouchableOpacity>
       </View>
     </FormProvider>

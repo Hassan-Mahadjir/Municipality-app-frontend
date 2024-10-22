@@ -32,53 +32,51 @@ const ensureDirExists = async () => {
 	}
 };
 
-const userProfile = () => {
+const kullaniciProfili = () => {
 	const [image, setImage] = useState<string | null>(null);
 
-	const pickImage = async (useLibrary: boolean) => {
-		let result;
+	const resimSec = async (kutuphaneKullan: boolean) => {
+		let sonuc;
 
-		const options: ImagePicker.ImagePickerOptions = {
+		const secenekler: ImagePicker.ImagePickerOptions = {
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
 			allowsEditing: true,
 			aspect: [4, 3],
 			quality: 1,
 		};
 
-		if (useLibrary) {
-			result = await ImagePicker.launchImageLibraryAsync(options);
+		if (kutuphaneKullan) {
+			sonuc = await ImagePicker.launchImageLibraryAsync(secenekler);
 		} else {
 			await ImagePicker.requestCameraPermissionsAsync();
 
-			result = await ImagePicker.launchCameraAsync(options);
+			sonuc = await ImagePicker.launchCameraAsync(secenekler);
 		}
 
-		console.log(result);
+		console.log(sonuc);
 
-		if (!result.canceled) {
-			setImage(result.assets[0].uri);
+		if (!sonuc.canceled) {
+			setImage(sonuc.assets[0].uri);
 		}
 	};
 
 	const { profileData } = useProfile();
-	const information = profileData?.data.data;
+	const bilgi = profileData?.data.data;
 
-	const firstName = information?.firstName;
-	const lastName = information?.lastName || '';
-	const fullName = `${firstName} ${lastName}`;
-	const avatar = information?.avatar || generateRandomAvatarUrl();
+	const ad = bilgi?.firstName;
+	const soyad = bilgi?.lastName || '';
+	const tamAd = `${ad} ${soyad}`;
+	const avatar = bilgi?.avatar || generateRandomAvatarUrl();
 
-	const email = information?.user.email;
-	const phone = information?.phone;
-	const gender = information?.gender;
-	const dateofBirth = information?.dateofBirth;
-	const address = information?.address;
-	const description = information?.description;
+	const email = bilgi?.user.email;
+	const telefon = bilgi?.phone;
+	const cinsiyet = bilgi?.gender;
+	const dogumTarihi = bilgi?.dateofBirth;
+	const adres = bilgi?.address;
+	const aciklama = bilgi?.description;
 
-	// console.log(email);
-
-	const onSubmit = (data: ProfileValue<LoginFormValues>) => {
-		// console.log('login form: ', data);
+	const gonder = (data: ProfileValue<LoginFormValues>) => {
+		// console.log('giriş formu: ', data);
 	};
 	const methods = useForm<ProfileValue<LoginFormValues>>({
 		defaultValues: {},
@@ -86,7 +84,7 @@ const userProfile = () => {
 
 	return (
 		<View style={{ flex: 1 }}>
-			<Stack.Screen options={{ title: 'Account Information' }} />
+			<Stack.Screen options={{ title: 'Hesap Bilgileri' }} />
 
 			<View
 				style={{
@@ -100,80 +98,80 @@ const userProfile = () => {
 						source={{
 							uri: avatar,
 						}}
-						style={styles.profileImage}
+						style={styles.profilResmi}
 					/>
 					<TouchableOpacity
 						style={{
 							position: 'absolute',
 							right: 1,
 						}}
-						onPress={() => pickImage(true)}
+						onPress={() => resimSec(true)}
 					>
 						<MaterialIcons name='add-a-photo' size={24} color='black' />
 					</TouchableOpacity>
 				</View>
-				<Text style={styles.profileName}>{fullName}</Text>
+				<Text style={styles.profilAdi}>{tamAd}</Text>
 			</View>
 
-			{/* Field to be modified */}
+			{/* Değiştirilecek Alanlar */}
 			<ScrollView
 				style={styles.scrollContainer}
 				showsVerticalScrollIndicator={false}
 			>
 				<FormProvider {...methods}>
 					<CustomeProfileInput
-						name='firstName'
-						text='First Name'
+						name='ad'
+						text='Ad'
 						inputType='firstName'
-						defaultValue={firstName}
+						defaultValue={ad}
 					/>
 					<CustomeProfileInput
-						name='lastName'
-						text='Last Name'
+						name='soyad'
+						text='Soyad'
 						inputType='lastName'
-						defaultValue={lastName}
+						defaultValue={soyad}
 					/>
 
 					<CustomeProfileInput
-						name='emailaddress'
-						text='email'
+						name='email'
+						text='E-posta'
 						inputType='email'
 						defaultValue={email}
 					/>
 					<PhoneInputComponent />
 
 					<CustomeProfileInput
-						name='gender'
-						text='gender'
+						name='cinsiyet'
+						text='Cinsiyet'
 						inputType='gender'
-						defaultValue={gender}
+						defaultValue={cinsiyet}
 					/>
 
 					<CustomeProfileInput
-						name='dateofBirth'
-						text='Date of Birth'
+						name='dogumTarihi'
+						text='Doğum Tarihi'
 						inputType='dateofBirth'
-						defaultValue={dateofBirth}
+						defaultValue={dogumTarihi}
 					/>
 
 					<CustomeProfileInput
-						name='address'
-						text='Address'
+						name='adres'
+						text='Adres'
 						inputType='address'
-						defaultValue={address}
+						defaultValue={adres}
 					/>
 
 					<CustomeProfileInput
-						name='description'
-						text='Description'
+						name='aciklama'
+						text='Açıklama'
 						inputType='description'
-						defaultValue={description}
+						defaultValue={aciklama}
 					/>
 
 					<SubmitButtonComponent
 						style={{ marginTop: verticalScale(10) }}
-						title='Update profile'
-						onPress={methods.handleSubmit(onSubmit)}
+						title='Profili Güncelle'
+						onPress={methods.handleSubmit(gonder)}
 						fullWidth
 					/>
 				</FormProvider>
@@ -182,17 +180,17 @@ const userProfile = () => {
 	);
 };
 
-export default userProfile;
+export default kullaniciProfili;
 
 const styles = StyleSheet.create({
-	profileImage: {
+	profilResmi: {
 		borderWidth: moderateScale(3),
 		borderColor: '#fff',
 		borderRadius: moderateScale(70),
 		width: scale(80),
 		height: verticalScale(80),
 	},
-	profileName: {
+	profilAdi: {
 		color: COLORS.primary,
 		fontWeight: '700',
 		fontSize: moderateScale(20),

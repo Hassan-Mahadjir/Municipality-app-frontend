@@ -4,6 +4,7 @@ import { Stack } from 'expo-router';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import Feather from '@expo/vector-icons/Feather';
 import { COLORS } from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 const info = [
 	{
@@ -18,9 +19,12 @@ const info = [
 	},
 ];
 const emergency = () => {
+	const { t } = useTranslation();
+	const emergencyContact= t('Emergency Contact');
+	
 	return (
 		<View>
-			<Stack.Screen options={{ title: 'Emergency Contact' }} />
+			<Stack.Screen options={{ title: t('emergencyContact') }} />
 			<FlatList
 				data={info}
 				style={{ marginTop: verticalScale(20) }}

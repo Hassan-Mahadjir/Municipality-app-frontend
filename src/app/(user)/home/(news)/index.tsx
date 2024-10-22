@@ -12,11 +12,11 @@ import { useTranslation } from 'react-i18next';
 const newsIndex = () => {
 	const [selectedCategory, setSelectedCategory] = useState('Latest');
 	const { t } = useTranslation();
-	
+	const latest= t('Latest');
 	
 
 	const filteredNews =
-		selectedCategory === 'Latest'
+		selectedCategory === t('Latest')
 			? news // Show all news when "Latest" is selected
 			: news.filter((item) => item.type === selectedCategory); // Filter for other types
 

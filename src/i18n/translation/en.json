@@ -43,7 +43,6 @@
 	"passwordDontMatch": "Passwords don't match",
 
 	"searchbyplacename": "Search by place name",
-	"tourismServices": "TOURISM SERVICES",
 	"tourismSections": {
 		"Historical Places": "Historical Places",
 		"Restaurants": "Restaurants",
@@ -114,7 +113,6 @@
 	"inquiriesMessage": "If you have any inquiries, get in touch with us.",
 	"socialMedia": "Social Media",
 
-	"news": "news",
 
 	"paymentPoints": "Payment Points",
     "map": "MAP",
@@ -138,8 +136,129 @@
     "saturday": "Saturday",
     "sunday": "Sunday",
 
-	"searchByPlate": "Search by plate number"
+	"searchByPlate": "Search by Plate Number",
+	"collectedDate": "Collected Date",
+	"5 Days": "5 Days",
+
+	"disasterPoint": "Gathering Points",
+    "capacity": "Capacity",
+
+  "wasteTypes": {
+    "all": "All",
+    "organic": "Organic",
+    "recyclable": "Recyclable",
+    "nonRecyclable": "Non-Recyclable"
+  },
+
+  
+	"news_title": "The human impact on Everest could lead to",
+	"time_ago": "10min ago",
+	"content": "The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban. Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets. That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill. American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.",
+
+	"news": "News",
+	"News1": "The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban. Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets. That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill. American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.",
+	"Min": "10 Minutes Ago",
+
+	"Tourism": "Tourism Services",
+
+	"Bus": "Bus Tracking",
+
+	"xxx": "XXX Red Car",
 
 	
-	
+
+		
+			"collectedVehicle": "Collected Vehicles",
+			"collectedDate": "Collected Date",
+			"searchByPlate": "Search by Plate Number",
+			"fiveDays": "5 Days",
+
+			
+				"XXXX Red Car": "XXXX Red Car",
+				"Reason for collecting": "Reason for collecting",
+				"Reason random info to change later on.": "Reason random info to change later on.",
+				"Collected Date": "Collected Date",
+				"Famagusta, EMU Maingate": "Famagusta, EMU Maingate",
+				"Fee": "Fee",
+				"Pay Fee": "Pay Fee",
+				"Get your car": "Get your car",
+
+				
+					"collectedVehicle": "Collected Vehicle",
+					"collectedDate": "Collected Date",
+					"searchByPlate": "Search by Plate Number",
+					"fiveDays": "5 Days",
+
+					"busTrack": "Bus Tracking",
+
+					"animals": "Animals",
+
+					
+					
+					
+						"tenderNews": "Tender News",
+						"serviceCategory": "Service Category",
+						"seeAll": "See All",
+						"health": "Health",
+						"tourism": "Tourism",
+						"traffic": "Traffic",
+						"comm": "community",
+						"news": "News",
+						"home": "Home",
+						"prettySunny": "Pretty Sunny",
+						"hello": "Hello",
+						"readMore": "Read More",
+						"details": "Details",
+
+						
+							"changePassword": "Change Password",
+							"oldPassword": "Old Password",
+							"enterOldPassword": "Enter old password",
+							"newPassword": "New Password",
+							"enterNewPassword": "Enter new password",
+							"confirmPassword": "Confirm Password",
+							"confirmNewPassword": "Confirm new password",
+
+							
+								"logout": "Logout",
+								"myAccount": "My Account",
+								"makeChangesToAccount": "Make changes to your account",
+								"language": "Language",
+								"changeAppLanguage": "Change the language of the app",
+								"password": "Password",
+								"changePassword": "Change your password",
+
+								"emergencyContact": "Emergency Contact",
+
+								"latest": "Latest",
+
+								"history": "History",
+								"sentence": "Let's improve our city"
+
+							  
+							  
+						  
+						  
+					
+					
+					
+					
+					
+					
+					     
+				
+				
+			  
+			  
+		  
+		  
+		
+		
+		
+		
+	  
+	  
+
+
+
 }

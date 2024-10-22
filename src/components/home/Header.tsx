@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { styles } from '@/styles/header.home';
+import { useTranslation } from 'react-i18next';
 
 const languages = [
 	{
@@ -18,6 +19,7 @@ const languages = [
 	},
 ];
 const ModalPopUp = ({ visible, children }) => {
+	
 	const [showModal, setShowModal] = useState(visible);
 	useEffect(() => {
 		toggleModal();
@@ -47,11 +49,17 @@ export default function Header() {
 	const router = useRouter();
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
+	const { t } = useTranslation(); // Translation hook
+	const hello = t("hello");
+
+
+
+
 	return (
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Hassan</Text>
+					{hello},<Text style={styles.userName}> Hassan</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>

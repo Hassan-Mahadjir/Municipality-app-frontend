@@ -6,11 +6,12 @@ import {
 	TouchableOpacity,
 	Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import tenderNews from '../../assets/data/tenderNews.json';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { styles } from '@/styles/tenderNew.home';
+import { useTranslation } from 'react-i18next';
 
 type SliderItem = {
 	id: number;
@@ -18,18 +19,18 @@ type SliderItem = {
 	description: string;
 };
 
-const terder_News: SliderItem[] = tenderNews;
+const tender_News: SliderItem[] = tenderNews; // Corrected typo
 
 // Get screen Width
 const screenWidth = Dimensions.get('window').width - 25;
 
-// Render Items to FlatList
 const renderItem = ({ item }: { item: SliderItem }) => {
+	const { t } = useTranslation();
+
 	return (
 		<View>
 			<ImageBackground
 				source={{ uri: item.imageURL }}
-				// resizeMode='cover'
 				imageStyle={{ borderRadius: scale(10) }}
 				style={{
 					width: screenWidth,
@@ -55,21 +56,33 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 
 export default function TenderNews() {
 	const [activeIndex, setActiveIndex] = useState(0);
+	const flatListRef = useRef<FlatList<SliderItem>>(null);
 
-	const handleScroll = (event: {
-		nativeEvent: { contentOffset: { x: number } };
-	}) => {
+	useEffect(() => {
+		if (tender_News.length > 1) {
+			const interval = setInterval(() => {
+				setActiveIndex((prevIndex) => {
+					const nextIndex = (prevIndex + 1) % tender_News.length;
+					flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
+					return nextIndex;
+				});
+			}, 3000);
+
+			return () => clearInterval(interval);
+		}
+	}, []);
+
+	const handleScroll = (event: { nativeEvent: { contentOffset: { x: number } } }) => {
 		const scrollPosition = event.nativeEvent.contentOffset.x;
 		const index = Math.round(scrollPosition / screenWidth);
 		setActiveIndex(index);
 	};
 
-	// Render Scroll Indicators
 	const renderDotIndicators = (activeIndex: number) => {
-		return terder_News.map((dot, index) => {
+		return tender_News.map((dot, index) => {
 			return (
 				<View
-					key={index}
+					key={index.toString()}
 					style={[
 						styles.dot,
 						activeIndex === index ? styles.activeDot : styles.inactiveDot,
@@ -83,7 +96,8 @@ export default function TenderNews() {
 		<View>
 			<View style={{ marginHorizontal: 10 }}>
 				<FlatList
-					data={terder_News}
+					ref={flatListRef}
+					data={tender_News}
 					horizontal={true}
 					bounces={false}
 					pagingEnabled
@@ -92,6 +106,11 @@ export default function TenderNews() {
 					keyExtractor={(item) => item.id.toString()}
 					renderItem={renderItem}
 					onScroll={handleScroll}
+					getItemLayout={(data, index) => ({
+						length: screenWidth,
+						offset: screenWidth * index,
+						index,
+					})}
 				/>
 			</View>
 			<View style={styles.dotContainer}>

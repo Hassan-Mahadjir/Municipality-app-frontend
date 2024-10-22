@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 const busTrack = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
 	const { t } = useTranslation();
+	const busTrack = t('Bus Tracking')
 
 	const days = [
 		t('all'),

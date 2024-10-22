@@ -1,29 +1,29 @@
-import {
-	View,
-	Text,
-	StyleSheet,
-	ScrollView,
-	TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Header from '@/components/home/Header';
 import TenderNews from '@/components/home/TenderNews';
 import ServiceCategory from '@/components/home/ServiceCategory';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 export default function userHomeIndex() {
+	const { t } = useTranslation(); // Translation hook
+
 	return (
 		<View style={{ flex: 1 }}>
 			<Header />
 			<ScrollView style={{ flexGrow: 1 }}>
-				<Text style={style.sectionTitle}>Tender News</Text>
+				{/* Tender News translated */}
+				<Text style={style.sectionTitle}>{t('tenderNews')}</Text>
 				<TenderNews />
 
 				<View style={style.categoryWapper}>
-					<Text style={style.sectionTitle}>Service Category</Text>
+					{/* Service Category translated */}
+					<Text style={style.sectionTitle}>{t('serviceCategory')}</Text>
 					<TouchableOpacity onPress={() => {}}>
-						<Text style={style.seeall}>see all</Text>
+						{/* See All translated */}
+						<Text style={style.seeall}>{t('seeAll')}</Text>
 					</TouchableOpacity>
 				</View>
 				<ServiceCategory />

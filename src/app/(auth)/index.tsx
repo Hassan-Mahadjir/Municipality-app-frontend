@@ -25,12 +25,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as WebBrowser from 'expo-web-browser';
 import * as Linking from 'expo-linking';
 
-import { useGoogleLogin, useLogin } from '@/services/api/auth';
+import { useLogin } from '@/services/api/auth';
+
+WebBrowser.maybeCompleteAuthSession();
 
 import Loading from '@/components/Loading';
 function Login() {
 	const { mutateLogin, isPending } = useLogin();
-	const { mutateGoogle, googleData } = useGoogleLogin();
 
 	const { t } = useTranslation();
 	const signin = t('signin');
@@ -67,24 +68,7 @@ function Login() {
 		mutateLogin(data);
 	};
 
-	const openGoogleLogin = async () => {
-		// use deep linking to create a redirect URI for the application
-		const redirectUri = Linking.createURL('auth');
-
-		let result = await WebBrowser.openAuthSessionAsync(
-			'http://192.168.0.108:3000/auth/google/login',
-			redirectUri
-		);
-
-		if (result.type === 'success' && result.url) {
-			const token = Linking.parse(result.url).queryParams.token;
-			console.log('Access token:', token);
-		} else {
-			console.log('Login Failed or canceled');
-		}
-
-		console.log(result);
-	};
+	const openGoogleLogin = async () => {};
 
 	const [checked, setChecked] = useState(false);
 

@@ -43,7 +43,6 @@
 	"passwordDontMatch": "Şifreler eşleşmiyor",
 
 	"searchbyplacename": "Yer adına göre ara",
-	"tourismServices": "TURİZM HİZMETLERİ",
 	"tourismSections": {
 		"Historical Places": "Tarihi Yerler",
 		"Restaurants": "Restoranlar",
@@ -111,7 +110,6 @@
 	"inquiriesMessage": "Herhangi bir sorunuz varsa, bizimle iletişime geçin.",
 	"socialMedia": "Sosyal Medya",
 
-	"news": "Haberler",
 
 	"paymentPoints": "Ödeme Noktaları",
   	"map": "HARİTA",
@@ -122,8 +120,8 @@
 
 	"traffic": "Trafik",
    "collectedVehicle": "Toplanan Araçlar",
-   "busTracking": "Otobüs Takip",
-   "disasterGatheringPoints": "Afet Toplanma Noktaları",
+    "busTracking": "Otobüs Takip",
+   "disasterPoint": "Toplanma Noktaları",
 
    "busTrack": "Otobüs Takip",
    "all": "Hepsi",
@@ -135,11 +133,125 @@
    "saturday": "Cumartesi",
    "sunday": "Pazar",
 
-   "searchByPlate": "Plaka numarasıyla ara"
+
+   "searchByPlate": "Plaka Numarasına Göre Ara",
+   "collectedDate": "Toplanma Tarihi",
+   "5 Days": "5 Gün",
+
+"capacity": "Kapasite",
+
+"wasteCollection": "Atık Toplama",
+"wasteTypes": {
+  "all": "Hepsi",
+  "organic": "Organik",
+  "recyclable": "Geri Dönüştürülebilir",
+  "nonRecyclable": "Geri Dönüştürülemez" },
 
 
+  
+	"news_title": "Everest üzerindeki insan etkisi şuna yol açabilir",
+	"time_ago": "10 dakika önce",
+	"News1": "Cumartesi günü Meclis, Amerika Birleşik Devletleri'nde TikTok yasağına yol açabilecek bir yasayı ilerletti. Tasarı, TikTok'un Çinli sahibi ByteDance'e, yaklaşık bir yıl içinde Amerikan mülkiyetini güvence altına almasını veya iç yasakla karşı karşıya kalmasını zorunlu kılıyor. Yasanın önceki versiyonları ByteDance'e yeni bir sahip bulması için sadece altı ay veriyordu. İki partinin de desteklediği yasayı hızlandırmak için, Meclis Başkanı Mike Johnson, ABD'nin Rus varlıklarını elinden almasına izin veren bir yasa ile bunu birleştirdi. Yasalar birkaç gün içinde Senato'ya gidecek ve muhtemelen kabul edilecek. Şubat ayında, Senato TikTok yasasını içermeyen benzer bir 95,3 milyar dolarlık paketi onayladı. Amerikalı politikacılar, yıllardır ByteDance'in Çin hükümetiyle veri paylaşmak zorunda olduğu için TikTok konusunda güvenlik endişeleri dile getirdiler. TikTok'un sadece Amerika Birleşik Devletleri'nde tahmini 170 milyon kullanıcısı var.",
+	"news": "Haberler",
+	"Min": "10 Dakika Önce",
+
+	"Tourism": "Turizm Servisleri",
+
+	"Bus":"Otobus Takip",
+
+	"xxx": "XXX Kirmizi Araba",
+	
+
+	
+		"collectedVehicle": "Toplanan Araçlar",
+		"collectedDate": "Toplama Tarihi",
+		"searchByPlate": "Plaka Numarasına Göre Ara",
+		"fiveDays": "5 Gün",
+
+		
+			"XXXX Red Car": "XXXX Kırmızı Araba",
+			"Reason for collecting": "Toplanma Nedeni",
+			"Reason random info to change later on.": "Daha sonra değiştirilecek rastgele bilgi.",
+			"Collected Date": "Toplanma Tarihi",
+			"Famagusta, EMU Maingate": "Gazimağusa, DAÜ Ana Kapı",
+			"Fee": "Ücret",
+			"Pay Fee": "Ücreti Öde",
+			"Get your car": "Arabanı Al",
+
+			
+				"collectedVehicle": "Toplanan Araç",
+				"collectedDate": "Toplanma Gunu",
+				"searchByPlate": "Plaka Numarası ile Ara",
+				"fiveDays": "5 Gün",
+
+				"busTrack": "Otobüs Takip",
+
+				"animals": "Hayvanlar",
+
+				
+				
+				
+					"tenderNews": "İhale Haberleri",
+					"serviceCategory": "Hizmet Kategorisi",
+					"seeAll": "Hepsini Gör",
+					"health": "Sağlık",
+					"tourism": "Turizm",
+					"traffic": "Trafik",
+					"community": "Toplum",
+					"news": "Haberler",
+					"home": "Ana Sayfa",
+					"prettySunny": "Oldukça Güneşli",
+					"hello": "Merhaba",
+					"readMore": "Devamını Oku",
+					"details": "Detaylar",
 
 
+				
+				
+  "changePassword": "Şifreni Değiştir",
+  "oldPassword": "Eski Şifre",
+  "enterOldPassword": "Eski şifrenizi giriniz",
+  "newPassword": "Yeni Şifre",
+  "enterNewPassword": "Yeni şifrenizi giriniz",
+  "confirmPassword": "Şifreyi Onayla",
+  "confirmNewPassword": "Yeni şifreyi onaylayın",
+
+  
+	"logout": "Çıkış Yap",
+	"myAccount": "Hesabım",
+	"makeChangesToAccount": "Hesabınızda değişiklik yapın",
+	"language": "Dil",
+	"changeAppLanguage": "Uygulamanın dilini değiştirin",
+	"password": "Şifre",
+	"changePassword": "Şifrenizi değiştirin",
+
+	"emergencyContact": "Acil İletişim",
+	"latest": "En yeni",
+
+	"history": "Gecmis",
+
+
+	"sentence": "Sehrimizi gelistirelim!"
+  
+  
+
+
+				
+				
+
+			
+			
+		  
+		  
+	  
+	  
+
+
+	
+	
+		
+		
+	
 
 
 }

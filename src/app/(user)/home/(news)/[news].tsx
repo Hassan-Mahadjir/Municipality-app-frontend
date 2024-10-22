@@ -12,18 +12,12 @@ const newsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
 	const { t } = useTranslation();
+	const New1= "News1"
+	const Min= "Min"
 
 	useEffect(() => {
 		// Simulating an API call to fetch content
-		const fetchedContent = `
-			The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban.
-			Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets.
-			That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill.
-			American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban.
-			Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets.
-			That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill.
-			American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.
-		`;
+		const fetchedContent = t('News1');
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
@@ -51,7 +45,7 @@ const newsDetails = () => {
 			/>
 			<View style={{ margin: scale(10) }}>
 				<Text style={styles.subject}>
-					The human impact on Everest could lead to
+					The human impact on Everest could lead to 
 				</Text>
 
 				<View
@@ -67,7 +61,7 @@ const newsDetails = () => {
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
-						<Text style={{ color: COLORS.gray }}>10min ago</Text>
+						<Text style={{ color: COLORS.gray }}>10 Minutes Ago</Text>
 					</View>
 				</View>
 			</View>

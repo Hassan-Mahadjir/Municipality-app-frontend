@@ -25,7 +25,7 @@ const contactInfo = () => {
 	const contactInfo= t('contactInformation');
 	const socialMedia= t('socialMedia');
 	const getInTouch= t('getInTouch');
-	const inquiriesMessage= t('If you have any inquiries, get in touch with us.');
+	const inquiriesMessage= t('Inquiry Mess');
 
 
 	return (
