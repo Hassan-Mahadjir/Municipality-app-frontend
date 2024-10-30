@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Hassan</Text>
+					Hello,<Text style={styles.userName}> Mel</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>

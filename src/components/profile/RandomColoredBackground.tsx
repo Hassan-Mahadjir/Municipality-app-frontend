@@ -36,15 +36,15 @@ const styles = StyleSheet.create({
 	container: {
 		borderWidth: moderateScale(2),
 		borderColor: '#fff',
-		borderRadius: moderateScale(50),
-		width: scale(100),
-		height: verticalScale(100),
+		borderRadius: moderateScale(80) / 2,
+		width: scale(80),
+		height: scale(80),
 		justifyContent: 'center', // Center horizontally
 		alignItems: 'center', // Center vertically
 	},
 	letter: {
 		fontSize: moderateScale(30),
-		margin: scale(25),
+		margin: scale(20),
 		color: '#FFFFFF',
 		fontWeight: 'bold',
 		textAlign: 'center',

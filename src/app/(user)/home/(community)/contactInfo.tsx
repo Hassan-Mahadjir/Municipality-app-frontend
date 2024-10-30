@@ -21,23 +21,25 @@ const info = [
 ];
 
 const contactInfo = () => {
-	const { t } = useTranslation(); 
-	const contactInfo= t('contactInformation');
-	const socialMedia= t('socialMedia');
-	const getInTouch= t('getInTouch');
-	const inquiriesMessage= t('If you have any inquiries, get in touch with us.');
-
+	const { t } = useTranslation();
+	const contactInfo = t('contactInformation');
+	const socialMedia = t('socialMedia');
+	const getInTouch = t('getInTouch');
+	const inquiriesMessage = t(
+		'If you have any inquiries, get in touch with us.'
+	);
 
 	return (
 		<View>
-			<Stack.Screen options={{ title: t('contactInformation') }} /> {/* Translated title */}
+			<Stack.Screen options={{ title: t('contactInformation') }} />{' '}
+			{/* Translated title */}
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>{t('getInTouch')}</Text> {/* Translated text */}
+				<Text style={styles.get}>{t('getInTouch')}</Text>{' '}
+				{/* Translated text */}
 				<Text style={{ color: COLORS.gray }}>
-					{t('inquiriesMessage')} {/* Translated inquiry message */}
+					If you have any inquiries, get in touch with us.
 				</Text>
 			</View>
-
 			<FlatList
 				data={info}
 				style={{ marginTop: verticalScale(10) }}
@@ -55,9 +57,9 @@ const contactInfo = () => {
 					</View>
 				)}
 			/>
-
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>{t('socialMedia')}</Text> {/* Translated social media text */}
+				<Text style={styles.get}>{socialMedia}</Text>{' '}
+				{/* Translated social media text */}
 				<View
 					style={{
 						flexDirection: 'row',

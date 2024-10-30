@@ -25,7 +25,7 @@ export default function userHomeIndex() {
 					<Text style={style.sectionTitle}>Service Category</Text>
 					<TouchableOpacity
 						onPress={() => {
-							router.push('./service');
+							router.push('../home/service');
 						}}
 					>
 						<Text style={style.seeall}>see all</Text>

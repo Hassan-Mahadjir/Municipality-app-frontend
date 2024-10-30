@@ -64,66 +64,70 @@ export default function userProfileIndex() {
 			<View
 				style={{ marginTop: verticalScale(10), marginHorizontal: scale(10) }}
 			>
-				<View style={styles.settingsCard}>
-					<MaterialCommunityIcons
-						name='account-circle-outline'
-						size={34}
-						color={COLORS.secondary}
-					/>
-					<View style={styles.settingsText}>
-						<Text style={styles.settingsTitleText}>My Account</Text>
-						<Text style={{ color: COLORS.gray }}>
-							Make changes to your account
-						</Text>
-					</View>
-					<Pressable
-						onPress={() =>
-							router.push({
-								pathname: './profile/account',
-							})
-						}
-					>
+				<Pressable
+					onPress={() =>
+						router.push({
+							pathname: './profile/account',
+						})
+					}
+				>
+					<View style={styles.settingsCard}>
+						<MaterialCommunityIcons
+							name='account-circle-outline'
+							size={34}
+							color={COLORS.secondary}
+						/>
+						<View style={styles.settingsText}>
+							<Text style={styles.settingsTitleText}>My Account</Text>
+							<Text style={{ color: COLORS.gray }}>
+								Make changes to your account
+							</Text>
+						</View>
+
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
-					</Pressable>
-				</View>
+					</View>
+				</Pressable>
 			</View>
 
 			{/* Language COMPONENT */}
 			<View
 				style={{ marginTop: verticalScale(10), marginHorizontal: scale(10) }}
 			>
-				<View style={styles.settingsCard}>
-					<FontAwesome name='language' size={34} color={COLORS.secondary} />
-					<View style={styles.settingsText}>
-						<Text style={styles.settingsTitleText}>Language</Text>
-						<Text style={{ color: COLORS.gray }}>
-							Change the language of the app
-						</Text>
-					</View>
-					<Pressable onPress={() => setIsPickerVisible(true)}>
+				<Pressable onPress={() => setIsPickerVisible(true)}>
+					<View style={styles.settingsCard}>
+						<FontAwesome name='language' size={34} color={COLORS.secondary} />
+						<View style={styles.settingsText}>
+							<Text style={styles.settingsTitleText}>Language</Text>
+							<Text style={{ color: COLORS.gray }}>
+								Change the language of the app
+							</Text>
+						</View>
+
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
-					</Pressable>
-					<LanguagePicker
-						visible={isPickerVisible}
-						onClose={() => setIsPickerVisible(false)}
-					/>
-				</View>
+
+						<LanguagePicker
+							visible={isPickerVisible}
+							onClose={() => setIsPickerVisible(false)}
+						/>
+					</View>
+				</Pressable>
 			</View>
 
 			{/* Password COMPONENT */}
 			<View
 				style={{ marginTop: verticalScale(10), marginHorizontal: scale(10) }}
 			>
-				<View style={styles.settingsCard}>
-					<MaterialIcons name='password' size={34} color={COLORS.secondary} />
-					<View style={styles.settingsText}>
-						<Text style={styles.settingsTitleText}>Password</Text>
-						<Text style={{ color: COLORS.gray }}>Change your password</Text>
-					</View>
-					<Pressable onPress={() => router.push('/(user)/profile/password')}>
+				<Pressable onPress={() => router.push('/(user)/profile/password')}>
+					<View style={styles.settingsCard}>
+						<MaterialIcons name='password' size={34} color={COLORS.secondary} />
+						<View style={styles.settingsText}>
+							<Text style={styles.settingsTitleText}>Password</Text>
+							<Text style={{ color: COLORS.gray }}>Change your password</Text>
+						</View>
+
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
-					</Pressable>
-				</View>
+					</View>
+				</Pressable>
 			</View>
 		</ScrollView>
 	);

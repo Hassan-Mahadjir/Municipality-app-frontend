@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '@/constants/Colors';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
 	servicesContainer: {
@@ -9,11 +9,11 @@ export const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		justifyContent: 'space-evenly',
 		marginHorizontal: scale(10),
-		marginBottom: verticalScale(10),
+		marginBottom: verticalScale(8),
 	},
 	container: {
 		width: scale(160),
-		height: verticalScale(135),
+		height: verticalScale(125),
 		borderRadius: scale(10),
 		marginTop: verticalScale(10),
 		overflow: 'hidden',
@@ -30,10 +30,10 @@ export const styles = StyleSheet.create({
 		position: 'absolute',
 		top: '25%',
 		marginLeft: scale(10),
-		fontSize: 28,
+		fontSize: moderateScale(24),
 		fontWeight: 'bold',
 		color: '#fff',
-		width: '80%',
+		width: '85%',
 		textAlign: 'center',
 		textShadowColor: '#000',
 		textShadowOffset: { width: 1, height: 1 },
@@ -47,24 +47,24 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		position: 'absolute',
-		gap: scale(73),
-		top: '73%',
+		gap: scale(60),
+		top: verticalScale(85),
 		marginHorizontal: '5%',
 	},
 	touchDetails: {},
 	detailsBackground: {
 		backgroundColor: COLORS.secondary,
-		width: '90%',
+		width: scale(145),
 		height: verticalScale(35),
 		position: 'absolute',
-		top: '70%',
-		marginHorizontal: '5%',
+		top: verticalScale(80),
+		marginHorizontal: scale(10),
 		borderRadius: scale(10),
 		opacity: 0.6,
 	},
 	detialsText: {
 		color: '#fff',
-		fontSize: 16,
+		fontSize: moderateScale(16),
 		marginLeft: scale(8),
 		marginTop: verticalScale(3),
 	},

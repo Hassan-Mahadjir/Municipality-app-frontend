@@ -33,20 +33,26 @@ export default function ServiceCategory() {
 							start={{ x: 0, y: 1 }}
 							end={{ x: 0, y: 0 }}
 						/>
-						<Text style={styles.serviceName}>{service.name}</Text>
+						<Text
+							ellipsizeMode='tail'
+							numberOfLines={1}
+							style={styles.serviceName}
+						>
+							{service.name}
+						</Text>
 
 						<View style={styles.detailsBackground}></View>
+						<TouchableOpacity
+							onPress={() =>
+								router.push(`../home/(${service.name.toLocaleLowerCase()})`)
+							}
+						>
+							<View style={styles.detailsContainer}>
+								<Text style={styles.detialsText}>Details</Text>
 
-						<View style={styles.detailsContainer}>
-							<Text style={styles.detialsText}>Details</Text>
-							<TouchableOpacity
-								onPress={() =>
-									router.push(`./home/(${service.name.toLocaleLowerCase()})`)
-								}
-							>
 								<Feather name='arrow-right' size={24} color='#fff' />
-							</TouchableOpacity>
-						</View>
+							</View>
+						</TouchableOpacity>
 					</ImageBackground>
 				</View>
 			))}

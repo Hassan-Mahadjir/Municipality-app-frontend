@@ -16,28 +16,39 @@ const NewsCategory: React.FC<NewsCategoryProps> = ({
 }) => {
 	return (
 		<TouchableOpacity onPress={() => setSelectedCategory(item)}>
-			<Text
+			<View
 				style={[
-					styles.categoryName,
-					selectedCategory === item && { color: COLORS.primary },
+					styles.categoryContainer,
+					selectedCategory === item && { borderColor: COLORS.primary },
 				]}
 			>
-				{item}
-			</Text>
+				<Text
+					style={[
+						styles.categoryName,
+						selectedCategory === item && { color: COLORS.primary },
+					]}
+				>
+					{item}
+				</Text>
+			</View>
 		</TouchableOpacity>
 	);
 };
 
 export default NewsCategory;
 const styles = StyleSheet.create({
-	categoryName: {
-		fontSize: moderateScale(16),
-		marginHorizontal: scale(5),
-		textAlign: 'center',
-		color: COLORS.gray,
+	categoryContainer: {
+		borderWidth: 1,
+		borderColor: COLORS.gray,
+		borderRadius: scale(15),
+		backgroundColor: '#fff',
 		paddingHorizontal: scale(15),
 		paddingVertical: verticalScale(7),
-		borderRadius: scale(10),
-		backgroundColor: '#fff',
+		marginHorizontal: scale(5),
+	},
+	categoryName: {
+		fontSize: moderateScale(16),
+		textAlign: 'center',
+		color: COLORS.gray,
 	},
 });
