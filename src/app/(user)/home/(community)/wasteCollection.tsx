@@ -6,20 +6,31 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
 import WasteCard from '@/components/services/WasteCard';
 import { useTranslation } from 'react-i18next';
-const types = ['All', 'Organic', 'Recyclable', 'Non-Recyclable'];
 
 const wasteCollection = () => {
 	const { t } = useTranslation();
-	const wasteCollection = t('wasteCollection');
+
+	// Get the translated waste collection title
+	const wasteCollectionTitle = t('wasteCollection');
+
+	// Define the waste types with translations
+	const types = [
+		t('wasteTypes.all'), 
+		t('wasteTypes.organic'), 
+		t('wasteTypes.recyclable'), 
+		t('wasteTypes.nonRecyclable')
+	];
+
 	const [selectedCategory, setSelectedCategory] = useState('All');
 
 	const filteredData =
 		selectedCategory === 'All'
 			? waste // Show all news when "Latest" is selected
 			: waste.filter((item) => item.type === selectedCategory);
+
 	return (
 		<View>
-			<Stack.Screen options={{ title: t('wasteCollection') }} />
+			<Stack.Screen options={{ title: wasteCollectionTitle }} />
 			<FlatList
 				data={filteredData}
 				ListHeaderComponent={

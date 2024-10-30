@@ -12,16 +12,19 @@ import { COLORS } from '@/constants/Colors';
 import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import SubmitButtonComponent from '@/components/SubmitButton';
+import { useTranslation } from 'react-i18next';
+
 
 const vechicle = () => {
 	const { vechicle } = useLocalSearchParams();
+	const { t } = useTranslation(); // Access the translation function
+
 	return (
 		<View>
 			<Stack.Screen
 				options={{
 					title: `${vechicle}`,
 					headerStyle: { backgroundColor: '#fff' },
-					// '#f4511e'
 					headerTintColor: COLORS.primary,
 				}}
 			/>
@@ -35,16 +38,14 @@ const vechicle = () => {
 				/>
 				<View style={styles.line}></View>
 				<View style={{ margin: scale(10) }}>
-					<Text style={styles.keyDiscription}>XXXX Red car</Text>
-					<Text style={styles.reason}>Reason for collecting:</Text>
+					{/* Translation of text using t() */}
+					<Text style={styles.keyDiscription}>{t('XXXX Red Car')}</Text>
+					<Text style={styles.reason}>{t('Reason for collecting')}:</Text>
 					<Text style={{ textAlign: 'justify' }}>
-						orem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat.
+						{t('Reason random info to change later on.')}
 					</Text>
 					<Text style={{ marginTop: verticalScale(15), color: COLORS.primary }}>
-						Collectd Date: <Text style={{ color: '#000' }}>12/09/2024</Text>
+						{t('Collected Date')}: <Text style={{ color: '#000' }}>12/09/2024</Text>
 					</Text>
 					<View
 						style={{
@@ -54,18 +55,17 @@ const vechicle = () => {
 						}}
 					>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
-						<Text>Famagusta, EMU maingate</Text>
+						{/* Location info translated */}
+						<Text>{t('Famagusta, EMU Maingate')}</Text>
 					</View>
 
-					<Text
-						style={{ color: COLORS.primary, marginBottom: verticalScale(15) }}
-					>
-						Fee: <Text style={{ color: '#000' }}>500 TL</Text>
+					<Text style={{ color: COLORS.primary, marginBottom: verticalScale(15) }}>
+						{t('Fee')}: <Text style={{ color: '#000' }}>500 TL</Text>
 					</Text>
 
-					<SubmitButtonComponent title='Pay Fee' fullWidth onPress={() => {}} />
+					<SubmitButtonComponent title={t('Pay Fee')} fullWidth onPress={() => {}} />
 					<TouchableOpacity>
-						<Text style={styles.getCar}>Get your car</Text>
+						<Text style={styles.getCar}>{t('Get your car')}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

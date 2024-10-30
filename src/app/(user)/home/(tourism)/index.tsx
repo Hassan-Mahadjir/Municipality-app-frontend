@@ -11,12 +11,12 @@ export default function tourismMain() {
 	const router = useRouter();
 	const headerpic = require('../../../../assets/images/tourism-header.jpg');
 	const { t } = useTranslation();
-	const tourismServices = t('TOURISMSERVICES');
+	const tourism = t('Tourism');
 
 	return (
 		<View style={{ flex: 1 }}>
 			<Header
-				title={tourismServices}
+				title={tourism}
 				backgroundImage={headerpic}
 				onBackPress={() => router.back()}
 			/>

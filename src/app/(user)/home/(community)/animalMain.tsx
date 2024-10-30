@@ -16,8 +16,9 @@ const AnimalMain = () => {
 	const [selectedCategory, setSelectedCategory] = useState('lost&Found');
 	const filteredData = selectedCategory === 'Shelter' ? shelter : animal;
 	const { t } = useTranslation();
+	const animals = t('Animals')
 
-	const renderItem = ({ item }) => {
+	const renderItem = ({ item }: {item: any}) =>  {
 		if (selectedCategory === 'Shelter') {
 			// Render Shelter data
 			return (
@@ -42,7 +43,7 @@ const AnimalMain = () => {
 
 	return (
 		<View style={styles.container}>
-			<Stack.Screen options={{ title: 'Waste Collection' }} />
+			<Stack.Screen options={{ title: t('Animals') }} />
 			<FlatList
 				key={selectedCategory === 'lost&Found' ? 'lostFound' : 'shelter'}
 				data={filteredData}

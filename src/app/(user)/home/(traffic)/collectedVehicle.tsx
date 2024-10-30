@@ -10,7 +10,7 @@ const data = [
 	{
 		id: 1,
 		plateno: 'AB123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
@@ -18,7 +18,7 @@ const data = [
 	{
 		id: 2,
 		plateno: 'CD123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
@@ -26,7 +26,7 @@ const data = [
 	{
 		id: 3,
 		plateno: 'CD123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
@@ -34,7 +34,7 @@ const data = [
 	{
 		id: 4,
 		plateno: 'AB123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
@@ -42,7 +42,7 @@ const data = [
 	{
 		id: 5,
 		plateno: 'CD123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
@@ -50,23 +50,33 @@ const data = [
 	{
 		id: 6,
 		plateno: 'CD123',
-		date: '5 days',
+		date: '5 Days',
 		discription: 'Blue BMW',
 		imageurl:
 			'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
 	},
 ];
 
-const collectedVehicle = () => {
-	const { t } = useTranslation();
+const CollectedVehicle = () => {
+	const { t } = useTranslation(); // Initialize translation
+
+	// Translated strings
+	const collectedDate = t('collectedDate');
+	const searchPlaceholder = t('searchByPlate');
+	const fiveDays = t('fiveDays'); // Translation for "5 Days"
+	
 
 	return (
 		<View style={{ flex: 1 }}>
+			{/* Set translated title */}
 			<Stack.Screen options={{ title: t('collectedVehicle') }} />
+
+			{/* Search bar placeholder with translation */}
 			<SearchField
-				placeholder={t('searchByPlate')}
+				placeholder={searchPlaceholder}
 				onChangeText={(text) => console.log('Search text:', text)}
 			/>
+
 			<View style={{ margin: scale(10) }}>
 				<FlatList
 					data={data}
@@ -77,7 +87,8 @@ const collectedVehicle = () => {
 							keyDescription={item.discription}
 							imageUri={item.imageurl}
 							plateno={item.plateno}
-							date={item.date}
+							// Use translated string for date (e.g., "5 Days" -> "5 Gün")
+							date={fiveDays}
 							onSeeDetails={() => router.push(`./${item.id}`)}
 						/>
 					)}
@@ -87,4 +98,4 @@ const collectedVehicle = () => {
 	);
 };
 
-export default collectedVehicle;
+export default CollectedVehicle;
