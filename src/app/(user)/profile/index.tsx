@@ -6,7 +6,7 @@ import {
 	Image,
 	ScrollView,
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { removeItem, setItem } from '@/utils/storage';
 import { router } from 'expo-router';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
@@ -19,12 +19,11 @@ import { styles } from '@/styles/settings.profile';
 import { useProfile } from '@/services/api/profile';
 import RandomColoredBackground from '@/components/profile/RandomColoredBackground';
 import LanguagePicker from '@/components/profile/LanguagePicker';
-import { useTranslation } from 'react-i18next'; // Import translation hook
+import { useState } from 'react';
 import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
 
 export default function userProfileIndex() {
 	const { profileData } = useProfile();
-	const { t } = useTranslation(); // Translation function
 	const firstName = profileData?.data.data.firstName;
 	const lastName = profileData?.data.data.lastName || '';
 	const fullName = `${firstName} ${lastName}`;
@@ -72,9 +71,9 @@ export default function userProfileIndex() {
 						color={COLORS.secondary}
 					/>
 					<View style={styles.settingsText}>
-						<Text style={styles.settingsTitleText}>{t('myAccount')}</Text>
+						<Text style={styles.settingsTitleText}>My Account</Text>
 						<Text style={{ color: COLORS.gray }}>
-							{t('makeChangesToAccount')}
+							Make changes to your account
 						</Text>
 					</View>
 					<Pressable
@@ -96,8 +95,10 @@ export default function userProfileIndex() {
 				<View style={styles.settingsCard}>
 					<FontAwesome name='language' size={34} color={COLORS.secondary} />
 					<View style={styles.settingsText}>
-						<Text style={styles.settingsTitleText}>{t('language')}</Text>
-						<Text style={{ color: COLORS.gray }}>{t('changeAppLanguage')}</Text>
+						<Text style={styles.settingsTitleText}>Language</Text>
+						<Text style={{ color: COLORS.gray }}>
+							Change the language of the app
+						</Text>
 					</View>
 					<Pressable onPress={() => setIsPickerVisible(true)}>
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />

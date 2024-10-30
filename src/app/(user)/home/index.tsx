@@ -11,30 +11,24 @@ import TenderNews from '@/components/home/TenderNews';
 import ServiceCategory from '@/components/home/ServiceCategory';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
-import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
 
 export default function userHomeIndex() {
-	const { t } = useTranslation(); // Translation hook
-
 	return (
 		<View style={{ flex: 1 }}>
 			<Header />
 			<ScrollView style={{ flexGrow: 1 }}>
-				{/* Tender News translated */}
-				<Text style={style.sectionTitle}>{t('tenderNews')}</Text>
+				<Text style={style.sectionTitle}>Tender News</Text>
 				<TenderNews />
 
 				<View style={style.categoryWapper}>
-					{/* Service Category translated */}
-					<Text style={style.sectionTitle}>{t('serviceCategory')}</Text>
+					<Text style={style.sectionTitle}>Service Category</Text>
 					<TouchableOpacity
 						onPress={() => {
 							router.push('./service');
 						}}
 					>
-						{/* See All translated */}
-						<Text style={style.seeall}>{t('seeAll')}</Text>
+						<Text style={style.seeall}>see all</Text>
 					</TouchableOpacity>
 				</View>
 				<ServiceCategory />

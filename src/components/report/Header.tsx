@@ -5,7 +5,6 @@ import { useRouter } from 'expo-router';
 import { styles } from '@/styles/Appointment-report-Header';
 import { verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
-import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
 	selectedCategory: string;
@@ -24,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Mel</Text>
+					Hello,<Text style={styles.userName}> Hassan</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>

@@ -1,12 +1,8 @@
-import { Stack } from 'expo-router';
-import { useTranslation } from 'react-i18next';
+import { View, Text } from 'react-native';
 import React from 'react';
+import { Stack } from 'expo-router';
 
 export default function UserHomeLayout() {
-	const { t } = useTranslation(); // Translation hook
-	const health = t('health');
-	const tourism = t('tourism');
-
 	return (
 		<Stack>
 			<Stack.Screen name='index' options={{ headerShown: false }} />

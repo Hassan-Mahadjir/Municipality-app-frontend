@@ -10,36 +10,28 @@ const points = [
 		id: 1,
 		name: 'Hassan',
 		capacity: '300',
-		location: 'Karakol, Famagusta, Cyprus',
+		location: 'Karakol, Famagusta, Cyprus.',
 	},
 	{
 		id: 2,
 		name: 'Nour',
 		capacity: '300',
-		location: 'Karakol, Famagusta, Cyprus',
+		location: 'Karakol, Famagusta, Cyprus.',
 	},
 	{
-		id: 4,
-		name: 'Melisa',
+		id: 3,
+		name: 'Hassan',
 		capacity: '300',
-		location: 'Sakarya, Famagusta, Cyprus',
+		location: 'Karakol, Famagusta, Cyprus.',
 	},
-	{
-		id: 5,
-		name: 'Ayesha',
-		capacity: '300',
-		location: 'EMU, Famagusta, Cyprus',
-	}
-
 ];
 
 const disasterPoint = () => {
 	const { t } = useTranslation();
-	const disasterPoint= "Disaster Point";
 
 	return (
 		<View>
-			<Stack.Screen options={{ title: t('disasterPoint') }} />
+			<Stack.Screen options={{ title: t('disasterGatheringPoints') }} />
 
 			<FlatList
 				data={points}
@@ -56,4 +48,5 @@ const disasterPoint = () => {
 		</View>
 	);
 };
+
 export default disasterPoint;
