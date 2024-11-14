@@ -80,7 +80,7 @@ function Login() {
 							flex: 1,
 							margin: scale(5),
 							padding: scale(5),
-							marginVertical: verticalScale(25),
+							marginVertical: verticalScale(0),
 							backgroundColor: '#fff',
 						}}
 					>
@@ -88,12 +88,7 @@ function Login() {
 							<Loading />
 						) : (
 							<FormProvider {...methods}>
-								<View
-									style={{
-										flexDirection: 'row',
-										justifyContent: 'space-evenly',
-									}}
-								>
+								<View>
 									<TouchableOpacity onPress={() => router.back()}>
 										<Ionicons
 											name='arrow-back'
@@ -102,14 +97,6 @@ function Login() {
 											style={{ marginRight: scale(25) }}
 										/>
 									</TouchableOpacity>
-									<View
-										style={{
-											position: 'relative',
-											marginLeft: moderateScale(190),
-										}}
-									>
-										<SelectLanuageComponent />
-									</View>
 								</View>
 								<Text style={styles.title}>{newPassword}</Text>
 								<Text style={styles.subtitle}>{differentPassword}</Text>

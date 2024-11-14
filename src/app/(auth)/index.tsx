@@ -86,7 +86,7 @@ function Login() {
 							flex: 1,
 							margin: scale(5),
 							padding: scale(5),
-							marginVertical: verticalScale(25),
+							marginVertical: verticalScale(0),
 							backgroundColor: '#fff',
 						}}
 					>
@@ -97,7 +97,7 @@ function Login() {
 								<View
 									style={{
 										position: 'relative',
-										marginLeft: moderateScale(250),
+										marginLeft: moderateScale(230),
 									}}
 								>
 									<SelectLanuageComponent />

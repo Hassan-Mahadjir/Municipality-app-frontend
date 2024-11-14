@@ -72,7 +72,7 @@ function forgotPassword() {
 							flex: 1,
 							margin: scale(5),
 							padding: scale(5),
-							marginVertical: verticalScale(25),
+							marginVertical: verticalScale(0),
 							backgroundColor: '#fff',
 						}}
 					>
@@ -80,12 +80,7 @@ function forgotPassword() {
 							<Loading />
 						) : (
 							<FormProvider {...methods}>
-								<View
-									style={{
-										flexDirection: 'row',
-										justifyContent: 'space-evenly',
-									}}
-								>
+								<View>
 									<TouchableOpacity onPress={() => router.back()}>
 										<Ionicons
 											name='arrow-back'
@@ -94,14 +89,14 @@ function forgotPassword() {
 											style={{ marginRight: scale(25) }}
 										/>
 									</TouchableOpacity>
-									<View
+									{/* <View
 										style={{
 											position: 'relative',
 											marginLeft: moderateScale(190),
 										}}
 									>
 										<SelectLanuageComponent />
-									</View>
+									</View> */}
 								</View>
 								<Text style={styles.title}>{forgotPassword}</Text>
 								<Text style={styles.subtitle}>{enterEmail}</Text>

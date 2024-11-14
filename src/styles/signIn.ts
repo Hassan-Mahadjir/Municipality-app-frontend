@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { scale } from 'react-native-size-matters';
+import { moderateScale, scale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 export const styles = StyleSheet.create({
 	title: {
-		fontSize: 28,
+		fontSize: moderateScale(28),
 		textAlign: 'center',
 		fontWeight: 'bold',
 		paddingTop: scale(10),

@@ -4,6 +4,7 @@ import {
 	StyleSheet,
 	ScrollView,
 	TouchableOpacity,
+	StatusBar,
 } from 'react-native';
 import React from 'react';
 import Header from '@/components/home/Header';
@@ -16,6 +17,7 @@ import { router } from 'expo-router';
 export default function userHomeIndex() {
 	return (
 		<View style={{ flex: 1 }}>
+			<StatusBar barStyle={'default'} />
 			<Header />
 			<ScrollView style={{ flexGrow: 1 }}>
 				<Text style={style.sectionTitle}>Tender News</Text>

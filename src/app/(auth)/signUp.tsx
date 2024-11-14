@@ -107,7 +107,7 @@ function signUp() {
 							flex: 1,
 							margin: scale(5),
 							padding: scale(5),
-							marginVertical: verticalScale(25),
+							marginVertical: verticalScale(0),
 							backgroundColor: '#fff',
 						}}
 					>
@@ -118,7 +118,7 @@ function signUp() {
 								<View
 									style={{
 										position: 'relative',
-										marginLeft: moderateScale(250),
+										marginLeft: moderateScale(230),
 									}}
 								>
 									<SelectLanuageComponent />
@@ -166,7 +166,16 @@ function signUp() {
 									// onSubmitEditing={methods.handleSubmit(onSubmit)}
 								/>
 								<View style={styles.checkboxContainer}>
-									<View>
+									<View
+										style={{
+											borderColor: COLORS.primary,
+											borderWidth: 0.5,
+											marginRight: scale(8),
+											width: scale(30),
+											borderRadius: scale(8),
+											height: verticalScale(25),
+										}}
+									>
 										<Checkbox
 											status={checked ? 'checked' : 'unchecked'}
 											onPress={() => setChecked(!checked)}

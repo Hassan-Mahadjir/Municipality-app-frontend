@@ -45,28 +45,28 @@ export default selectLanguage;
 const styles = StyleSheet.create({
 	dropdown: {
 		margin: 0,
-		padding: 0,
-		height: verticalScale(40),
-		width: scale(100),
+		padding: 5,
+		height: verticalScale(35),
+		width: scale(115),
 		backgroundColor: '#E6E2E290',
 		borderRadius: 12,
 		paddingHorizontal: moderateScale(10),
 	},
 	imageStyle: {
-		width: scale(20),
+		width: scale(30),
 		height: verticalScale(20),
 		paddingRight: 10,
 	},
 	placeholderStyle: {
-		fontSize: 16,
+		fontSize: moderateScale(16),
 	},
 	selectedTextStyle: {
-		fontSize: 12,
+		fontSize: moderateScale(10),
 		marginLeft: 5,
 	},
 	iconStyle: {
 		width: scale(20),
-		height: verticalScale(20),
+		height: verticalScale(10),
 		tintColor: 'black',
 	},
 	generalStyle: {

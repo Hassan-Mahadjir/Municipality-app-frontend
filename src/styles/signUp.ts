@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
 	checkboxContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginBottom: scale(2),
+		marginBottom: scale(5),
 	},
 	checkboxLabel: {
 		fontSize: 14,
