@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 	},
 	description: {
 		position: 'absolute',
-		top: verticalScale(110),
+		top: verticalScale(120),
 		marginLeft: scale(10),
 		fontWeight: 'bold',
 		color: '#fff',

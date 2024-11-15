@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 	backButton: {
 		position: 'absolute',
 		left: scale(15),
-		top: scale(25),
+		top: scale(45),
 		borderRadius: scale(5),
 	},
 	backButtonImage: {
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
 	},
 	headerText: {
 		fontSize: scale(28),
+		marginTop: verticalScale(20),
 		fontWeight: '700',
 		color: '#FFF',
 		textAlign: 'center',

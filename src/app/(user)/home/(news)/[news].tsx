@@ -7,23 +7,21 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { COLORS } from '@/constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import { useGetAnnouncement } from '@/services/api/announcement';
 
 const newsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
 	const { t } = useTranslation();
 
+	const { AnnouncementData, isLoading } = useGetAnnouncement(+news);
+	const announcementInfo = AnnouncementData?.data.data;
+
+	if (!announcementInfo) return;
+
 	useEffect(() => {
 		// Simulating an API call to fetch content
-		const fetchedContent = `
-			The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban.
-			Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets.
-			That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill.
-			American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.The House advanced legislation on Saturday that could lead to a TikTok ban in the United States. The bill forces TikTok's Chinese owner, ByteDance, to secure American ownership in about a year or face a domestic ban.
-			Earlier versions of the legislation gave ByteDance just six months to find a new owner. To fast-track the bipartisan legislation, House Speaker Mike Johnson combined it with a bill to allow the US to confiscate Russian assets.
-			That package of legislation will head to the Senate in a matter of days, where it's likely to pass In February, the Senate approved a similar $95.3 billion package that did not include the TikTok bill.
-			American politicians have for years expressed security concerns over TikTok because ByteDance is obligated to share data with the Chinese government. TikTok has an estimated 170 million users in the United States alone.
-		`;
+		const fetchedContent = announcementInfo.body;
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
@@ -43,16 +41,14 @@ const newsDetails = () => {
 	return (
 		<View>
 			<Header
-				title={`${news}`}
+				title={announcementInfo.title}
 				backgroundImage={{
-					uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/i7mhi5ix258-533%3A1980?alt=media&token=e00f3a9d-eae3-4684-a9b7-3a1e97957848',
+					uri: `${announcementInfo.images[0].imageUrl}`,
 				}}
 				onBackPress={() => router.back()}
 			/>
 			<View style={{ margin: scale(10) }}>
-				<Text style={styles.subject}>
-					The human impact on Everest could lead to
-				</Text>
+				<Text style={styles.subject}>{announcementInfo.header}</Text>
 
 				<View
 					style={{
@@ -63,7 +59,9 @@ const newsDetails = () => {
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
-						<Text style={{ color: COLORS.primary }}>FAMAGUSTA</Text>
+						<Text style={{ color: COLORS.primary }}>
+							{announcementInfo.location}
+						</Text>
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
@@ -75,7 +73,7 @@ const newsDetails = () => {
 				style={{ borderBottomWidth: 2, borderBottomColor: COLORS.gray }}
 			></View>
 			<ScrollView
-				style={{ marginHorizontal: scale(10) }}
+				style={{ marginHorizontal: scale(10), flexGrow: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
 				{/* Loop through the content array and display each paragraph */}

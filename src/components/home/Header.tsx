@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import axios from 'axios';
 import { styles } from '@/styles/header.home';
 import { useTranslation } from 'react-i18next';
+import Loading from '../Loading';
 
 // Weather service function
 const getWeatherByLocation = async (
@@ -96,7 +97,7 @@ export default function Header() {
 			</View>
 
 			{isLoading ? (
-				<Text>Loading...</Text>
+				<Loading />
 			) : error ? (
 				<Text>Error: {error}</Text>
 			) : (

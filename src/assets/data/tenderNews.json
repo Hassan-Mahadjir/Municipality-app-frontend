@@ -1,17 +1,28 @@
 [
-  {
-    "id": 1,
-    "description": "Turkey firmly backs Hamas leaders, says President Erdogan | World News",
-    "imageURL": "https://picsum.photos/400/300"
-  },
-  {
-    "id": 2,
-    "description": "Turkey in the Final of Euro 2024!! | World News",
-    "imageURL": "https://picsum.photos/400/200"
-  },
-  {
-    "id": 3,
-    "description": "Turkey in the Final of Euro 2024!! | World News",
-    "imageURL": "https://picsum.photos/400/200"
-  }
+	{
+		"id": 1,
+		"header": "is simply dummy text of the printing and typesetting industry.",
+		"body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"createAt": "2024-11-03T17:58:14.506Z",
+		"location": "Famagusta",
+		"images": [
+			{
+				"id": 7,
+				"imageUrl": "https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg?semt=ais_hybrid"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"header": "is simply dummy text of the printing and typesetting industry.",
+		"body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"createAt": "2024-11-03T17:58:14.506Z",
+		"location": "Famagusta",
+		"images": [
+			{
+				"id": 8,
+				"imageUrl": "https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg?semt=ais_hybrid"
+			}
+		]
+	}
 ]
