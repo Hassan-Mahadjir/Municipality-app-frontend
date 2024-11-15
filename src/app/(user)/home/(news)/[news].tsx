@@ -7,6 +7,7 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { COLORS } from '@/constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import { formatDistanceToNow } from 'date-fns';
 import { useGetAnnouncement } from '@/services/api/announcement';
 
 const newsDetails = () => {
@@ -18,6 +19,10 @@ const newsDetails = () => {
 	const announcementInfo = AnnouncementData?.data.data;
 
 	if (!announcementInfo) return;
+
+	const timeSinceCreated = formatDistanceToNow(announcementInfo?.createAt, {
+		addSuffix: true, // Adds "ago" to the string
+	});
 
 	useEffect(() => {
 		// Simulating an API call to fetch content
@@ -65,7 +70,7 @@ const newsDetails = () => {
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
-						<Text style={{ color: COLORS.gray }}>10min ago</Text>
+						<Text style={{ color: COLORS.gray }}>{timeSinceCreated}</Text>
 					</View>
 				</View>
 			</View>
