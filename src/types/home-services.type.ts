@@ -3,5 +3,6 @@ export type ServiceValues = {
 	name: string;
 	phone: string;
 	email: string;
+	imageUrl: string;
 	description: string;
 };

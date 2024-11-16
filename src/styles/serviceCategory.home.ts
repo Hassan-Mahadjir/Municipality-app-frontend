@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
 	},
 	serviceName: {
 		position: 'absolute',
-		top: '25%',
+		top: '38%',
 		marginLeft: scale(10),
 		fontSize: moderateScale(24),
 		fontWeight: 'bold',

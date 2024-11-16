@@ -33,7 +33,13 @@ const screenWidth = Dimensions.get('window').width - 25;
 const renderItem = ({ item }: { item: SliderItem }) => {
 	return (
 		<TouchableOpacity
-			onPress={() => router.push(`/(user)/home/(news)/${item.id}`)}
+			onPress={() => {
+				if (item.id) {
+					router.push(`/(user)/home/(news)/${item.id}`);
+				} else {
+					console.warn('Item does not have a valid id');
+				}
+			}}
 		>
 			<View>
 				<ImageBackground
@@ -69,17 +75,29 @@ export default function TenderNews() {
 	// Auto-scroll functionality
 	useEffect(() => {
 		if (!terder_News || terder_News.length === 0) return;
+
 		const interval = setInterval(() => {
 			setActiveIndex((prevIndex) => {
-				const nextIndex = (prevIndex + 1) % terder_News.length; // Looping to the first item
-				flatListRef.current?.scrollToIndex({ index: nextIndex }); // Scroll to the next index
-				return nextIndex; // Update active index
-			});
-		}, 3000); // Set interval time (e.g., 3000 ms for 3 seconds)
+				const nextIndex = (prevIndex + 1) % terder_News.length;
 
-		// Clear interval on component unmount
-		return () => clearInterval(interval);
-	}, []);
+				if (flatListRef.current) {
+					try {
+						flatListRef.current.scrollToIndex({
+							index: nextIndex,
+							animated: true,
+						});
+					} catch (error) {
+						console.error('Auto-scroll failed:', error);
+					}
+				}
+
+				return nextIndex;
+			});
+		}, 3000);
+
+		return () => clearInterval(interval); // Clean up interval on unmount
+	}, [terder_News]);
+
 	// end of Auto-scroll functionality
 
 	const handleScroll = (event: {

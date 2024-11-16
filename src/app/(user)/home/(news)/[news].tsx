@@ -9,29 +9,30 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
 import { useGetAnnouncement } from '@/services/api/announcement';
+import Loading from '@/components/Loading';
 
-const newsDetails = () => {
+const NewsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
 	const { t } = useTranslation();
 
-	const { AnnouncementData, isLoading } = useGetAnnouncement(+news);
+	// Ensure `news` is a valid number
+	const newsId = news ? +news : null;
+
+	// Fetch only if `newsId` is valid
+	const { AnnouncementData, isLoading } = useGetAnnouncement(newsId || 0);
 	const announcementInfo = AnnouncementData?.data.data;
 
-	if (!announcementInfo) return;
-
-	const timeSinceCreated = formatDistanceToNow(announcementInfo?.createAt, {
-		addSuffix: true, // Adds "ago" to the string
-	});
-
 	useEffect(() => {
+		if (!announcementInfo) return;
+
 		// Simulating an API call to fetch content
 		const fetchedContent = announcementInfo.body;
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
 		setContent(paragraphs);
-	}, []);
+	}, [announcementInfo]);
 
 	// Function to split text into paragraphs by period ('.')
 	const splitTextIntoParagraphs = (text: string): string[] => {
@@ -42,6 +43,31 @@ const newsDetails = () => {
 			.filter((sentence) => sentence.length > 0) // Filter out any empty sentences
 			.map((sentence) => sentence + '.'); // Add the period back to each sentence
 	};
+
+	// Return a loading or fallback UI if `newsId` is invalid
+	if (!newsId) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>{t('Invalid News ID')}</Text>
+			</View>
+		);
+	}
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Loading />
+			</View>
+		);
+	}
+
+	if (!announcementInfo) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>{t('No announcement found')}</Text>
+			</View>
+		);
+	}
 
 	return (
 		<View>
@@ -70,7 +96,11 @@ const newsDetails = () => {
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
-						<Text style={{ color: COLORS.gray }}>{timeSinceCreated}</Text>
+						<Text style={{ color: COLORS.gray }}>
+							{formatDistanceToNow(new Date(announcementInfo.createAt), {
+								addSuffix: true, // Adds "ago" to the string
+							})}
+						</Text>
 					</View>
 				</View>
 			</View>
@@ -92,7 +122,7 @@ const newsDetails = () => {
 	);
 };
 
-export default newsDetails;
+export default NewsDetails;
 
 const styles = StyleSheet.create({
 	subject: {

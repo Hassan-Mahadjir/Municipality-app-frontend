@@ -10,19 +10,24 @@ import React from 'react';
 import { router, Stack } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
 import { useService } from '@/services/api/home';
+import { useTranslation } from 'react-i18next';
 
 export default function service() {
 	const { servisesData } = useService();
 	const services = servisesData?.data.data;
+	const { t } = useTranslation();
+	const back_label = t('back');
+	const services_lable = t('services');
 	return (
 		<View style={{ marginLeft: 10, marginTop: 10 }}>
 			<Stack.Screen
 				options={{
 					headerShown: true,
-					title: 'Services',
+					title: services_lable,
 					headerTintColor: '#fff',
 					headerStyle: { backgroundColor: COLORS.secondary },
 					headerTitleAlign: 'center',
+					headerBackTitle: back_label,
 				}}
 			/>
 			<FlatList
@@ -30,19 +35,20 @@ export default function service() {
 				contentContainerStyle={{ gap: 6 }}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item, index }) => (
-					<View style={style.serviceContainer}>
-						<Image
-							source={{ uri: 'https://picsum.photos/150/200' }}
-							style={style.serviceImage}
-						/>
-						<TouchableOpacity
-							onPress={() =>
-								router.push(`./(${item.name.toLocaleLowerCase()})`)
-							}
-						>
-							<Text style={style.servicesName}>{item.name} Services</Text>
-						</TouchableOpacity>
-					</View>
+					<TouchableOpacity
+						onPress={() => router.push(`./(${item.name.toLocaleLowerCase()})`)}
+					>
+						<View style={style.serviceContainer}>
+							<Image
+								source={{ uri: item.imageUrl }}
+								style={style.serviceImage}
+							/>
+
+							<Text style={style.servicesName}>
+								{item.name} {services_lable}
+							</Text>
+						</View>
+					</TouchableOpacity>
 				)}
 			/>
 		</View>
@@ -76,7 +82,7 @@ const style = StyleSheet.create({
 	},
 	servicesName: {
 		fontSize: 20,
-		color: '#F64D00',
+		color: COLORS.secondary,
 		textAlign: 'center',
 	},
 });

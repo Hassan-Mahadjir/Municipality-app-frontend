@@ -20,41 +20,42 @@ export default function ServiceCategory() {
 	return (
 		<View style={styles.servicesContainer}>
 			{services?.map((service, index) => (
-				<View key={service.id || index}>
-					<ImageBackground
-						source={{ uri: 'https://picsum.photos/350/200' }}
-						resizeMode='cover'
-						style={styles.container}
-						imageStyle={styles.imageStyle}
-					>
-						<LinearGradient
-							colors={['rgba(40,53,86,0.9)', 'transparent']}
-							style={styles.linearGradientSyley}
-							start={{ x: 0, y: 1 }}
-							end={{ x: 0, y: 0 }}
-						/>
-						<Text
-							ellipsizeMode='tail'
-							numberOfLines={1}
-							style={styles.serviceName}
+				<TouchableOpacity
+					onPress={() =>
+						router.push(`../home/(${service.name.toLocaleLowerCase()})`)
+					}
+				>
+					<View key={service.id || index}>
+						<ImageBackground
+							source={{ uri: service.imageUrl }}
+							resizeMode='cover'
+							style={styles.container}
+							imageStyle={styles.imageStyle}
 						>
-							{service.name}
-						</Text>
+							<LinearGradient
+								colors={['rgba(40,53,86,0.9)', 'transparent']}
+								style={styles.linearGradientSyley}
+								start={{ x: 0, y: 1 }}
+								end={{ x: 0, y: 0 }}
+							/>
+							<Text
+								ellipsizeMode='tail'
+								numberOfLines={1}
+								style={styles.serviceName}
+							>
+								{service.name}
+							</Text>
 
-						<View style={styles.detailsBackground}></View>
-						<TouchableOpacity
-							onPress={() =>
-								router.push(`../home/(${service.name.toLocaleLowerCase()})`)
-							}
-						>
+							{/* <View style={styles.detailsBackground}></View>
+
 							<View style={styles.detailsContainer}>
 								<Text style={styles.detialsText}>Details</Text>
 
 								<Feather name='arrow-right' size={24} color='#fff' />
-							</View>
-						</TouchableOpacity>
-					</ImageBackground>
-				</View>
+							</View> */}
+						</ImageBackground>
+					</View>
+				</TouchableOpacity>
 			))}
 		</View>
 	);

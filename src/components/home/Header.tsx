@@ -6,6 +6,7 @@ import axios from 'axios';
 import { styles } from '@/styles/header.home';
 import { useTranslation } from 'react-i18next';
 import Loading from '../Loading';
+import { useProfile } from '@/services/api/profile';
 
 // Weather service function
 const getWeatherByLocation = async (
@@ -67,6 +68,11 @@ export default function Header() {
 	const { i18n } = useTranslation(); // Get current language from i18n
 	const lang = i18n.language; // Use i18n's current language for the weather request
 	const { weatherData, isLoading, error } = useWeatherService(lat, lon, lang); // Pass lang here
+	const { profileData } = useProfile();
+
+	const { t } = useTranslation(); // Translate static content
+	const hello = t('hello');
+	const firstName = profileData?.data.data.firstName;
 
 	const weather = weatherData?.weather?.[0];
 	const iconUrl = weather
@@ -81,7 +87,7 @@ export default function Header() {
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Hassan</Text>
+					{hello},<Text style={styles.userName}> {firstName}</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>

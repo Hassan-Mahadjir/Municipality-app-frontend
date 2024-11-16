@@ -92,10 +92,6 @@
 	"didnotRecieveCode": "Did not receive code?",
 	"ResendCode": "Resend Code",
 
-
-
-
-	
 	"wasteCollection": "Waste Collection",
 
 	"municipalityDepartments": "Municipality Departments",
@@ -117,29 +113,33 @@
 	"news": "news",
 
 	"paymentPoints": "Payment Points",
-    "map": "MAP",
-    "branch": "Branch",
-    "office": "Office",
-    "no": "No",
-    "seeLocation": "See Location",
+	"map": "MAP",
+	"branch": "Branch",
+	"office": "Office",
+	"no": "No",
+	"seeLocation": "See Location",
 
 	"traffic": "Traffic",
-    "collectedVehicle": "Collected Vehicle",
-    "busTracking": "Bus Tracking",
-    "disasterGatheringPoints": "Disaster Gathering Points",
+	"collectedVehicle": "Collected Vehicle",
+	"busTracking": "Bus Tracking",
+	"disasterGatheringPoints": "Disaster Gathering Points",
 
 	"busTrack": "Bus Track",
-    "all": "All",
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "sunday": "Sunday",
+	"all": "All",
+	"monday": "Monday",
+	"tuesday": "Tuesday",
+	"wednesday": "Wednesday",
+	"thursday": "Thursday",
+	"friday": "Friday",
+	"saturday": "Saturday",
+	"sunday": "Sunday",
 
-	"searchByPlate": "Search by plate number"
+	"searchByPlate": "Search by plate number",
 
-	
-	
+	"hello": "Hello",
+	"municipalityAnnouncements": "Municipality's Announcements",
+	"serviceCategory": "Service Category",
+	"seeAll": "See All",
+	"back": "Back",
+	"services": "Services"
 }

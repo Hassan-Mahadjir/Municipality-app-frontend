@@ -91,10 +91,7 @@
 	"didnotRecieveCode": "Kod almadınız mı?",
 	"ResendCode": "Kodu Yeniden Gönder",
 
-
-
-
-    "Waste Collection": "Atık Toplama",
+	"Waste Collection": "Atık Toplama",
 
 	"municipalityDepartments": "Belediye Departmanları",
 	"Traffic": "Trafik",
@@ -114,30 +111,31 @@
 	"news": "Haberler",
 
 	"paymentPoints": "Ödeme Noktaları",
-  	"map": "HARİTA",
-  	"branch": "Şube",
-  	"office": "Ofis",
-  	"no": "No",
-  	"seeLocation": "Konumu Gör",
+	"map": "HARİTA",
+	"branch": "Şube",
+	"office": "Ofis",
+	"no": "No",
+	"seeLocation": "Konumu Gör",
 
 	"traffic": "Trafik",
-   "collectedVehicle": "Toplanan Araçlar",
-   "busTracking": "Otobüs Takip",
-   "disasterGatheringPoints": "Afet Toplanma Noktaları",
+	"collectedVehicle": "Toplanan Araçlar",
+	"busTracking": "Otobüs Takip",
+	"disasterGatheringPoints": "Afet Toplanma Noktaları",
 
-   "busTrack": "Otobüs Takip",
-   "all": "Hepsi",
-   "monday": "Pazartesi",
-   "tuesday": "Salı",
-   "wednesday": "Çarşamba",
-   "thursday": "Perşembe",
-   "friday": "Cuma",
-   "saturday": "Cumartesi",
-   "sunday": "Pazar"
+	"busTrack": "Otobüs Takip",
+	"all": "Hepsi",
+	"monday": "Pazartesi",
+	"tuesday": "Salı",
+	"wednesday": "Çarşamba",
+	"thursday": "Perşembe",
+	"friday": "Cuma",
+	"saturday": "Cumartesi",
+	"sunday": "Pazar",
 
-
-
-
-
-
+	"hello": "Merhaba",
+	"municipalityAnnouncements": "Belediye Duyuruları",
+	"serviceCategory": "Hizmet Kategorisi",
+	"seeAll": "Tümünü Gör",
+	"back": "Geri",
+	"services": "Hizmetler"
 }
