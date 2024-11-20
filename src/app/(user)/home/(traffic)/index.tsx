@@ -9,28 +9,20 @@ const sectionData = [
 	{
 		image:
 			'https://www.capitalleasegroup.com/wp-content/uploads/2020/10/vehicle-fleet-maintenance-services.jpg',
-		sectionName: ('Collected Vehicle'),
+		sectionName: 'Collected Vehicle',
 		pageName: 'collectedVehicle',
 	},
 	{
 		image: 'https://cyprus-mail.com/wp-content/uploads/2023/06/bus-1.jpg',
-		sectionName: ('Bus Tracking'),
+		sectionName: 'Bus Tracking',
 		pageName: 'busTrack',
-	},
-	{
-		image:
-			'https://thumbs.dreamstime.com/b/fire-assembly-point-sign-gathering-point-signboard-emergency-evacuation-vector-graphic-design-logo-website-social-media-fire-227395003.jpg',
-		sectionName: ('Disaster Gathering Points'),
-		pageName: 'disasterPoint',
 	},
 ];
 const trafficIndex = () => {
 	const { t } = useTranslation();
-	const collectedVehicle= "Collected Vehicle";
-	const busTrack= "Bus Tracking";
-	const disasterPoint= "Disaster Gathering Points";
-
-
+	const collectedVehicle = 'Collected Vehicle';
+	const busTrack = 'Bus Tracking';
+	const disasterPoint = 'Disaster Gathering Points';
 
 	return (
 		<View style={{ flex: 1 }}>

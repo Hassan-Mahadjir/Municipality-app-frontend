@@ -1,8 +1,8 @@
-import React from 'react';
 import { Stack } from 'expo-router';
+import React from 'react';
 import { COLORS } from '@/constants/Colors';
 
-const trafficLa = () => {
+const municipalityLayout = () => {
 	return (
 		<Stack
 			screenOptions={{
@@ -12,12 +12,11 @@ const trafficLa = () => {
 			}}
 		>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
-			<Stack.Screen name='busTrack' />
-			<Stack.Screen name='collectedVehicle' />
-			<Stack.Screen name='[vechicle]' />
-			<Stack.Screen name='route' options={{ headerShown: false }} />
+			<Stack.Screen name='municipalDepartment' />
+			<Stack.Screen name='contactInfo' />
+			<Stack.Screen name='department' options={{ headerShown: false }} />
 		</Stack>
 	);
 };
 
-export default trafficLa;
+export default municipalityLayout;

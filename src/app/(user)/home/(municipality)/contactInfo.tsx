@@ -34,7 +34,7 @@ const contactInfo = () => {
 			<Stack.Screen options={{ title: t('contactInformation') }} />{' '}
 			{/* Translated title */}
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>{t('getInTouch')}</Text>{' '}
+				<Text style={styles.get}>{getInTouch}</Text>
 				{/* Translated text */}
 				<Text style={{ color: COLORS.gray }}>
 					If you have any inquiries, get in touch with us.

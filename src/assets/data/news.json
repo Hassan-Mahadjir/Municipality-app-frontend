@@ -3,24 +3,32 @@
 		"id": 1,
 		"text": "The human impace on Everest Could ...",
 		"imageurl": "https://about.fb.com/wp-content/uploads/2023/09/GettyImages-686732223.jpg",
-		"type": "Latest"
+		"type": "Latest",
+		"date": "19/11/2024",
+		"time": "19:30"
 	},
 	{
 		"id": 2,
 		"text": "The human impace on Everest Could ...",
 		"imageurl": "https://about.fb.com/wp-content/uploads/2023/09/GettyImages-686732223.jpg",
-		"type": "Latest"
+		"type": "Latest",
+		"date": "19/11/2024",
+		"time": "19:30"
 	},
 	{
 		"id": 3,
 		"text": "The human impace on Everest Could ...",
 		"imageurl": "https://about.fb.com/wp-content/uploads/2023/09/GettyImages-686732223.jpg",
-		"type": "Sport"
+		"type": "Sport",
+		"date": "19/11/2024",
+		"time": "19:30"
 	},
 	{
 		"id": 4,
 		"text": "The human impace on Everest Could ...",
 		"imageurl": "https://about.fb.com/wp-content/uploads/2023/09/GettyImages-686732223.jpg",
-		"type": "Sport"
+		"type": "Sport",
+		"date": "19/11/2024",
+		"time": "19:30"
 	}
 ]

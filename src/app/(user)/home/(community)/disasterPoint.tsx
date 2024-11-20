@@ -30,7 +30,7 @@ const disasterPoint = () => {
 	const { t } = useTranslation();
 
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Stack.Screen options={{ title: t('disasterGatheringPoints') }} />
 
 			<FlatList

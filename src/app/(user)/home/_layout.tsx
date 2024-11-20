@@ -10,6 +10,7 @@ export default function UserHomeLayout() {
 			<Stack.Screen name='(tourism)' options={{ headerShown: false }} />
 			<Stack.Screen name='(traffic)' options={{ headerShown: false }} />
 			<Stack.Screen name='(news)' options={{ headerShown: false }} />
+			<Stack.Screen name='(municipality)' options={{ headerShown: false }} />
 			<Stack.Screen name='service' />
 			<Stack.Screen name='(community)' options={{ headerShown: false }} />
 		</Stack>
