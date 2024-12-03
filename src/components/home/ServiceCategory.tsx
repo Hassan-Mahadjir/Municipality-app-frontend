@@ -12,10 +12,15 @@ import { Feather } from '@expo/vector-icons';
 import { styles } from '@/styles/serviceCategory.home';
 import { router } from 'expo-router';
 import { useService } from '@/services/api/home';
+import { useTranslation } from 'react-i18next';
 
 export default function ServiceCategory() {
 	const { servisesData } = useService({ limit: 4 });
 	const services = servisesData?.data.data;
+
+	const { i18n } = useTranslation(); // Get current language from i18n
+	const lang = i18n.language.toLocaleUpperCase(); // Use i18n's current language for the weather request
+	console.log(lang);
 
 	return (
 		<View style={styles.servicesContainer}>
@@ -43,7 +48,11 @@ export default function ServiceCategory() {
 								numberOfLines={1}
 								style={styles.serviceName}
 							>
-								{service.name}
+								{service.language === lang
+									? service.name
+									: service.translations.find(
+											(translation) => translation.language === lang
+									  )?.name || service.name}
 							</Text>
 
 							{/* <View style={styles.detailsBackground}></View>
