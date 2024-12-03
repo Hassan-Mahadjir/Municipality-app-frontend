@@ -5,17 +5,20 @@ import { scale, verticalScale } from 'react-native-size-matters';
 
 const HealthItems = ({ name, location, onSeeLocation, imageUri }: { name: string; location: string; onSeeLocation: () => void; imageUri: string }) => {
   return (
-    <View style={styles.healthCard}>
+    <View >
+       <TouchableOpacity onPress={onSeeLocation} style={styles.healthCard}>
       <View style={styles.iconContainer}>
         <Image source={{ uri: imageUri }} style={styles.healthIcon} />
       </View>
       <View style={styles.detailsContainer}>
+       
         <Text style={styles.healthName}>{name}</Text>
         <Text style={styles.healthLocation}>{location}</Text>
-        <TouchableOpacity onPress={onSeeLocation}>
+        
           <Text style={styles.seeLocation}>See Location</Text>
-        </TouchableOpacity>
-      </View>
+          
+
+      </View></TouchableOpacity>
     </View>
   );
 };

@@ -15,19 +15,26 @@ import { useTranslation } from 'react-i18next';
 import { COLORS } from '@/constants/Colors';
 import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
-import hospitals from '@/assets/data/hospitals.json';
+import { useHospital } from '@/services/api/health';
+import { HospitalValues } from '@/types/health.type';
 
 const hospitalScreen = () => {
 	const { t } = useTranslation();
 	const Hospitals = t('Hospitals');
 	const searchbyhospitalname = t('searchbyhospitalname');
+	const {i18n}=useTranslation()
+	const lang= i18n.language.toUpperCase()
+	const {hospitalData, isLoading}= useHospital()
+	const hospitals= hospitalData?.data.data
 
-	const renderItem = ({ item }: { item: (typeof hospitals)[0] }) => (
+	const renderItem = ({ item }: { item: HospitalValues }) => (
 		<HealthItems
-			name={t(item.name)}
-			location={t(item.location)}
-			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.onPress}`)}
-			imageUri={item.imageUri}
+			name={item.name}
+			location={item.language === lang
+				? item.name
+				: item.translations.find(translation => translation.language === lang)?.location || item.name}
+			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
+			imageUri={item.imageUrl}
 		/>
 	);
 
@@ -43,8 +50,8 @@ const hospitalScreen = () => {
 				<ScrollView style={{ flexGrow: 1 }} contentContainerStyle={styles.contentContainer}>
     <Text style={styles.title}>{Hospitals}</Text>
     <View style={styles.list}>
-        {hospitals.map((item) => (
-            <View key={item.name}>
+        {hospitals?.map((item,index) => (
+            <View key={item.id}>
                 {renderItem({ item })}
             </View>
         ))}
@@ -64,7 +71,6 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		paddingBottom: verticalScale(60),
 	},
 	contentContainer: {
 		padding: scale(10),

@@ -4,6 +4,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import pharmacyInfo from '../../assets/data/pharmacyInfo.json';
 import { COLORS } from '@/constants/Colors';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
+import { PharmacyValues } from '@/types/health.type';
+import { usePharmacy } from '@/services/api/health';
 
 type SliderItem = {
   id: number;
@@ -13,15 +16,20 @@ type SliderItem = {
   locationIconURL?: string;
 };
 
-const pharmacy_News: SliderItem[] = pharmacyInfo;
+
 
 const screenWidth = Dimensions.get('window').width - scale(40);
 
-const renderItem = ({ item }: { item: SliderItem }) => {
+
+
+const renderItem = ({ item }: { item: PharmacyValues }) => {
+ 
+const {i18n}=useTranslation()
+const lang= i18n.language.toUpperCase()
   return (
     <View style={style.pharmacyNewsContainer}>
       <ImageBackground
-        source={{ uri: item.imageURL }}
+        source={{ uri: item.imageUrl }}
         resizeMode="cover"
         style={style.imageBackground}
       >
@@ -32,16 +40,18 @@ const renderItem = ({ item }: { item: SliderItem }) => {
           end={{ x: 0, y: 0 }}
         />
 
-        <Text style={style.description}>{item.description}</Text>
+        <Text style={style.description}>{item.name}</Text>
         {item.location && (
           <View style={style.locationContainer}>
-            {item.locationIconURL && (
+            {/* {item.imageUrl && (
               <Image
-                source={{ uri: item.locationIconURL }}
+                source={{ uri: item.imageUrl }}
                 style={style.locationIcon}
               />
-            )}
-            <Text style={style.location}>{item.location}</Text>
+            )} */}
+            <Text style={style.location}>{item.language === lang
+				? item.location
+				: item.translations.find(translation => translation.language === lang)?.location || item.location}</Text>
           </View>
         )}
         <TouchableOpacity style={style.readMore}>
@@ -53,13 +63,20 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 };
 
 export default function PharmacyCard() {
+  const {i18n}=useTranslation()
+	const lang= i18n.language.toUpperCase()
+  const {pharmacyData, isLoading}= usePharmacy()
+  const pharmacies= pharmacyData?.data.data
   const [activeIndex, setActiveIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
-
+  
+    // Filter pharmacies where `openthisWeek` is true
+    const openPharmacies = pharmacies?.filter(pharmacy => pharmacy.openthisWeek);
+console.log(openPharmacies)
   // Function to handle scrolling
   const scrollToNextItem = () => {
     if (flatListRef.current) {
-      const nextIndex = (activeIndex + 1) % pharmacy_News.length;
+      const nextIndex = (activeIndex + 1) % openPharmacies?.length;
       flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
       setActiveIndex(nextIndex);
     }
@@ -78,7 +95,7 @@ export default function PharmacyCard() {
   };
 
   const renderDotIndicators = (activeIndex: number) => {
-    return pharmacy_News.map((_, index) => {
+    return openPharmacies?.map((_, index) => {
       return (
         <View
           key={index}
@@ -96,7 +113,7 @@ export default function PharmacyCard() {
       <View style={{ marginHorizontal: scale(10) }}>
         <FlatList
           ref={flatListRef}
-          data={pharmacy_News}
+          data={openPharmacies}
           horizontal={true}
           bounces={false}
           pagingEnabled
@@ -133,7 +150,7 @@ const style = StyleSheet.create({
   },
   description: {
     marginLeft: scale(10),
-    marginBottom: verticalScale(20),
+    marginBottom: verticalScale(10),
     fontWeight: 'bold',
     color: '#fff',
     width: '80%',

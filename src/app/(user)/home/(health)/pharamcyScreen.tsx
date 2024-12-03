@@ -9,19 +9,27 @@ import { Stack } from 'expo-router';
 import { router } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { PharmacyValues } from '@/types/health.type';
+import { usePharmacy } from '@/services/api/health';
 
 const PharmacyScreen = () => {
   const { t } = useTranslation();
   const Pharmacies = t('Pharmacies');
   const searchbypharmacyname = t('searchbypharmacyname');
   const openthisweekend = t('openthisweekend');
+  const {i18n}=useTranslation()
+	const lang= i18n.language.toUpperCase()
+  const {pharmacyData, isLoading}= usePharmacy()
+  const pharmacies= pharmacyData?.data.data
 
-  const renderItem = ({ item }: { item: typeof pharmacies[0] }) => (
+  const renderItem = ({ item }: { item: PharmacyValues}) => (
     <HealthItems
-      name={t(item.name)}
-      location={t(item.location)}
-      onSeeLocation={() => router.push(`/(user)/home/(health)/${item.onPress}`)}
-      imageUri={item.imageUri}
+      name={item.name}
+      location={item.language === lang
+				? item.location
+				: item.translations.find(translation => translation.language === lang)?.location || item.location}
+      onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
+      imageUri={item.imageUrl}
     />
   );
 
@@ -39,8 +47,8 @@ const PharmacyScreen = () => {
   <Text style={styles.title}>{Pharmacies}</Text>
 
   <View style={styles.list}>
-    {pharmacies.map((item) => (
-      <View key={item.name}>
+    {pharmacies?.map((item,index) => (
+      <View key={item.id}>
         {renderItem({ item })}
       </View>
     ))}
