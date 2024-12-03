@@ -7,7 +7,7 @@ export const useAnnouncementService = (params?: any) => {
 		queryFn: () => annoucementService.getAnnouncemnets(params),
 		queryKey: ['announcement', params],
 	});
-	// console.log(profileData);
+
 	return { AnnouncementData, ...props };
 };
 
