@@ -63,7 +63,7 @@ const hospitalScreen = () => {
 	return (
 		<SafeAreaView style={styles.safeAreaView}>
 			<View style={styles.container}>
-				<StatusBar barStyle={'dark-content'} />
+				<StatusBar barStyle={'default'} />
 				<Stack.Screen options={{ title: Hospitals }} />
 				<SearchField
 					placeholder={searchbyhospitalname}

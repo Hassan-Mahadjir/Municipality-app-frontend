@@ -142,5 +142,11 @@
 	"seeAll": "See All",
 	"back": "Back",
 	"services": "Services",
-	"noResultFound": "No results found"
+	"noResultFound": "No results found",
+	"collecteddate": "Collectd Date :",
+	"searchbyplatenumber": "Search by plate number",
+	"reason":"Reason of collection",
+	"fee": "Fee:",
+	"payfee":"Pay Fee",
+	"getyourcar": "Get your car"
 }

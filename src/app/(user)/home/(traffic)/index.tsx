@@ -5,25 +5,24 @@ import { router } from 'expo-router';
 import HealthServicesComponent from '@/components/services/HealthServicesComponent';
 import { verticalScale } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-const sectionData = [
-	{
-		image:
-			'https://www.capitalleasegroup.com/wp-content/uploads/2020/10/vehicle-fleet-maintenance-services.jpg',
-		sectionName: 'Collected Vehicle',
-		pageName: 'collectedVehicle',
-	},
-	{
-		image: 'https://cyprus-mail.com/wp-content/uploads/2023/06/bus-1.jpg',
-		sectionName: 'Bus Tracking',
-		pageName: 'busTrack',
-	},
-];
+
 const trafficIndex = () => {
 	const { t } = useTranslation();
-	const collectedVehicle = 'Collected Vehicle';
-	const busTrack = 'Bus Tracking';
-	const disasterPoint = 'Disaster Gathering Points';
-
+	const collectedVehicle = t('collectedVehicle');
+	const busTrack = t('busTracking');
+	const sectionData = [
+		{
+			image:
+				'https://www.capitalleasegroup.com/wp-content/uploads/2020/10/vehicle-fleet-maintenance-services.jpg',
+			sectionName: collectedVehicle,
+			pageName: 'collectedVehicle',
+		},
+		{
+			image: 'https://cyprus-mail.com/wp-content/uploads/2023/06/bus-1.jpg',
+			sectionName: busTrack,
+			pageName: 'busTrack',
+		},
+	];
 	return (
 		<View style={{ flex: 1 }}>
 			<Header
