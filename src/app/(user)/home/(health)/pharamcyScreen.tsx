@@ -1,5 +1,12 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Text, StatusBar } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+	View,
+	StyleSheet,
+	ScrollView,
+	Text,
+	StatusBar,
+	RefreshControl,
+} from 'react-native';
 import SearchField from '@/components/services/Search';
 import HealthItems from '@/components/services/HealthItems';
 import PharmacyCard from '@/components/services/PharmacyCard';
@@ -11,34 +18,45 @@ import { PharmacyValues } from '@/types/health.type';
 import { usePharmacy } from '@/services/api/health';
 
 const PharmacyScreen = () => {
-	const { t } = useTranslation();
-	const Pharmacies = t('Pharmacies');
-	const searchbypharmacyname = t('searchbypharmacyname');
-	const openthisweekend = t('openthisweekend');
 	const { i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
-	const { pharmacyData, isLoading } = usePharmacy();
+	const { t } = useTranslation();
+	const Pharmacies = t('Pharmacies');
+	const { pharmacyData, isLoading, refetch, isFetched } = usePharmacy();
 	const pharmacies = pharmacyData?.data.data || []; // Ensure a fallback to an empty array
+
+	const searchbypharmacyname = t('searchbypharmacyname');
+	const openthisweekend = t('openthisweekend');
+	const noResultFound = t('noResultFound');
+
 	const [searchQuery, setSearchQuery] = useState('');
 	const [filteredPharmacies, setFilteredPharmacies] =
 		useState<PharmacyValues[]>(pharmacies);
-	const noResultFound = t('noResultFound');
+
+	const [refreshing, setRefreshing] = useState(false); // Track refreshing state
 
 	// Filter pharmacies based on search query
-	const handleSearch = (text: string) => {
-		setSearchQuery(text);
-		if (text.trim() === '') {
-			setFilteredPharmacies(pharmacies); // Reset to original data
+	// Update filtered hospitals whenever data or search query changes
+	useEffect(() => {
+		if (searchQuery.trim() === '') {
+			setFilteredPharmacies(pharmacies);
 		} else {
 			setFilteredPharmacies(
 				pharmacies.filter((pharmacy) =>
-					pharmacy.name.toLowerCase().includes(text.toLowerCase())
+					pharmacy.name.toLowerCase().includes(searchQuery.toLowerCase())
 				)
 			);
 		}
+	}, [pharmacies, searchQuery]);
+
+	// Pull-to-refresh handler
+	const onRefresh = async () => {
+		setRefreshing(true); // Start refreshing
+		await refetch();
+		setRefreshing(false); // Stop refreshing
 	};
 
-	const renderItem = ({ item }: { item: PharmacyValues }) => (
+	const renderItem = (item: PharmacyValues) => (
 		<HealthItems
 			name={item.name}
 			location={
@@ -55,23 +73,28 @@ const PharmacyScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<StatusBar barStyle={'dark-content'} />
+			<StatusBar barStyle={'default'} />
 			<Stack.Screen options={{ title: Pharmacies }} />
 			<SearchField
 				placeholder={searchbypharmacyname}
-				onChangeText={handleSearch} // Pass the handler here
+				onChangeText={setSearchQuery} // Pass the handler here
 			/>
-			<ScrollView contentContainerStyle={styles.contentContainer}>
+			<ScrollView
+				contentContainerStyle={styles.contentContainer}
+				refreshControl={
+					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+				}
+			>
 				<Text style={styles.openThisWeekendText}>{openthisweekend}</Text>
 				<PharmacyCard />
 				<Text style={styles.title}>{Pharmacies}</Text>
 				<View style={styles.list}>
 					{filteredPharmacies.length > 0 ? (
-						filteredPharmacies.map((item) => (
-							<View key={item.id}>{renderItem({ item })}</View>
-						))
+						filteredPharmacies.map((item) => renderItem(item))
 					) : (
-						<Text style={styles.noResultsText}>{noResultFound}</Text>
+						<Text style={styles.noResultsText}>
+							{searchQuery.trim() ? noResultFound : 'No pharmacies found.'}
+						</Text>
 					)}
 				</View>
 			</ScrollView>

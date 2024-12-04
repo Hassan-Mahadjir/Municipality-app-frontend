@@ -1,48 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	StyleSheet,
 	Text,
 	View,
 	SafeAreaView,
-	ScrollView,
 	StatusBar,
 	FlatList,
+	RefreshControl,
 } from 'react-native';
 import SearchField from '@/components/services/Search';
 import HealthItems from '@/components/services/HealthItems';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { COLORS } from '@/constants/Colors';
-import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { useHospital } from '@/services/api/health';
 import { HospitalValues } from '@/types/health.type';
 
 const hospitalScreen = () => {
-	const { t } = useTranslation();
-	const Hospitals = t('Hospitals');
-	const searchbyhospitalname = t('searchbyhospitalname');
 	const { i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
-	const { hospitalData, isLoading } = useHospital();
+	const { t } = useTranslation();
+	const { hospitalData, refetch, isFetching, isLoading } = useHospital();
 	const hospitals = hospitalData?.data.data || [];
+
+	const Hospitals = t('Hospitals');
+	const searchbyhospitalname = t('searchbyhospitalname');
+	const noResultFound = t('noResultFound');
+
 	const [searchQuery, setSearchQuery] = useState('');
 	const [filteredHospitals, setFilteredHospitals] =
 		useState<HospitalValues[]>(hospitals);
-	const noResultFound = t('noResultFound');
 
-	// Filter hospitals based on search query
-	const handleSearch = (text: string) => {
-		setSearchQuery(text);
-		if (text.trim() === '') {
-			setFilteredHospitals(hospitals); // Reset to original data
+	// Update filtered hospitals whenever data or search query changes
+	useEffect(() => {
+		if (searchQuery.trim() === '') {
+			setFilteredHospitals(hospitals);
 		} else {
 			setFilteredHospitals(
 				hospitals.filter((hospital) =>
-					hospital.name.toLowerCase().includes(text.toLowerCase())
+					hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
 				)
 			);
 		}
+	}, [hospitals, searchQuery]);
+
+	// Pull-to-refresh handler
+	const onRefresh = async () => {
+		await refetch();
 	};
 
 	const renderItem = ({ item }: { item: HospitalValues }) => (
@@ -50,10 +55,10 @@ const hospitalScreen = () => {
 			name={item.name}
 			location={
 				item.language === lang
-					? item.name
+					? item.location
 					: item.translations.find(
 							(translation) => translation.language === lang
-					  )?.location || item.name
+					  )?.location || item.location
 			}
 			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
 			imageUri={item.imageUrl}
@@ -63,28 +68,28 @@ const hospitalScreen = () => {
 	return (
 		<SafeAreaView style={styles.safeAreaView}>
 			<View style={styles.container}>
-				<StatusBar barStyle={'dark-content'} />
+				<StatusBar barStyle='default' />
 				<Stack.Screen options={{ title: Hospitals }} />
 				<SearchField
 					placeholder={searchbyhospitalname}
-					onChangeText={handleSearch}
+					onChangeText={setSearchQuery}
 				/>
-				<ScrollView
-					style={{ flexGrow: 1 }}
+				<FlatList
+					data={filteredHospitals}
+					keyExtractor={(item) => item.id.toString()}
+					refreshControl={
+						<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+					}
+					renderItem={renderItem}
 					contentContainerStyle={styles.contentContainer}
-				>
-					<Text style={styles.title}>{Hospitals}</Text>
-					<View style={styles.list}>
-						{/* Render filtered hospitals */}
-						{filteredHospitals.length > 0 ? (
-							filteredHospitals.map((item) => (
-								<View key={item.id}>{renderItem({ item })}</View>
-							))
-						) : (
-							<Text style={styles.noResultsText}>{noResultFound}</Text>
-						)}
-					</View>
-				</ScrollView>
+					ListEmptyComponent={
+						isLoading ? null : (
+							<Text style={styles.noResultsText}>
+								{searchQuery.trim() ? noResultFound : 'No hospitals found.'}
+							</Text>
+						)
+					}
+				/>
 			</View>
 		</SafeAreaView>
 	);
@@ -102,20 +107,9 @@ const styles = StyleSheet.create({
 	contentContainer: {
 		padding: scale(10),
 	},
-	title: {
-		fontSize: scale(19),
-		color: COLORS.primary,
-		marginTop: verticalScale(7),
-		marginBottom: verticalScale(3),
-		marginLeft: scale(8),
-	},
-	list: {
-		flexGrow: 1,
-		justifyContent: 'center',
-	},
 	noResultsText: {
-		color: COLORS.secondary,
 		fontSize: scale(16),
+		color: COLORS.secondary,
 		textAlign: 'center',
 		marginTop: verticalScale(10),
 	},
