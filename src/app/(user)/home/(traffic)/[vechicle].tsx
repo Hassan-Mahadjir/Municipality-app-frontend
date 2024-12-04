@@ -12,17 +12,27 @@ import { COLORS } from '@/constants/Colors';
 import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import SubmitButtonComponent from '@/components/SubmitButton';
+import { useTranslation } from 'react-i18next';
+import { useVehicle } from '@/services/api/vehicle';
+import { nan } from 'zod';
 
 const vechicle = () => {
 	const { vechicle } = useLocalSearchParams();
+	const { t } = useTranslation();
+	const { i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { vehicleData, isLoading } = useVehicle(+vechicle);
+	const vehicleinfo = vehicleData?.data.data;
 	return (
 		<View>
 			<Stack.Screen
 				options={{
-					title: `${vechicle}`,
-					headerStyle: { backgroundColor: '#fff' },
+					title: `${vehicleinfo?.plateNumber}`,
+					headerStyle: { backgroundColor: '#093D56' },
 					// '#f4511e'
-					headerTintColor: COLORS.primary,
+					headerTintColor: '#ffff',
+					headerTitleAlign: 'center',
+					
 				}}
 			/>
 			<StatusBar barStyle={'dark-content'} />
@@ -30,21 +40,24 @@ const vechicle = () => {
 				<Image
 					style={styles.image}
 					source={{
-						uri: 'https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg',
+						uri: vehicleinfo?.imageUrl
 					}}
 				/>
 				<View style={styles.line}></View>
 				<View style={{ margin: scale(10) }}>
-					<Text style={styles.keyDiscription}>XXXX Red car</Text>
-					<Text style={styles.reason}>Reason for collecting:</Text>
+					<Text style={styles.keyDiscription}>{vehicleinfo?.brand}</Text>
+					<Text style={styles.reason}>{t('reason')}</Text>
 					<Text style={{ textAlign: 'justify' }}>
-						orem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat.
+					{
+				vehicleinfo?.language === lang
+					? vehicleinfo?.reason
+					: vehicleinfo?.translations.find(
+							(translation) => translation.language === lang
+					  )?.reason || vehicleinfo?.reason
+			}
 					</Text>
 					<Text style={{ marginTop: verticalScale(15), color: COLORS.primary }}>
-						Collectd Date: <Text style={{ color: '#000' }}>12/09/2024</Text>
+						{t('collecteddate')} <Text style={{ color: '#000' }}>{vehicleinfo?.collectedDate.split('T')[0]}</Text>
 					</Text>
 					<View
 						style={{
@@ -54,18 +67,18 @@ const vechicle = () => {
 						}}
 					>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
-						<Text>Famagusta, EMU maingate</Text>
+						<Text>{vehicleinfo?.location}</Text>
 					</View>
 
 					<Text
 						style={{ color: COLORS.primary, marginBottom: verticalScale(15) }}
 					>
-						Fee: <Text style={{ color: '#000' }}>500 TL</Text>
+						{t('fee')} <Text style={{ color: '#000' }}>{vehicleinfo?.fee}</Text>
 					</Text>
 
-					<SubmitButtonComponent title='Pay Fee' fullWidth onPress={() => {}} />
+					<SubmitButtonComponent title={t('payfee')} fullWidth onPress={() => {}} />
 					<TouchableOpacity>
-						<Text style={styles.getCar}>Get your car</Text>
+						<Text style={styles.getCar}>{t('getyourcar')}</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

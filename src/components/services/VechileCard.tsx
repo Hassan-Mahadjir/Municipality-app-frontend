@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { COLORS } from '@/constants/Colors';
 import { scale, verticalScale } from 'react-native-size-matters';
+import { t } from 'i18next';
 
 const VechileCard = ({
 	keyDescription,
@@ -16,6 +17,7 @@ const VechileCard = ({
 	imageUri: string;
 	date: string;
 }) => {
+	const collecteddate=t('collecteddate')
 	return (
 		<TouchableOpacity onPress={onSeeDetails}>
 			<View style={styles.cardContianer}>
@@ -28,7 +30,7 @@ const VechileCard = ({
 					<Text style={styles.plateNumber}>{plateno}</Text>
 
 					<Text>
-						collected date: <Text style={styles.date}>{date}</Text>
+						{collecteddate} <Text style={styles.date}>{date}</Text>
 					</Text>
 				</View>
 			</View>

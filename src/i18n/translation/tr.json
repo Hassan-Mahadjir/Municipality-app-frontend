@@ -138,5 +138,11 @@
 	"seeAll": "Tümünü Gör",
 	"back": "Geri",
 	"services": "Hizmetler",
-	"noResultFound": "Sonuç bulunamadı"
+	"noResultFound": "Sonuç bulunamadı",
+	"collecteddate": "Toplama Tarihi :",
+	"searchbyplatenumber":"Plaka numarasıyla ara",
+	"reason": "Toplama Nedeni",
+	"fee":"Ücret:",
+	"payfee":"Ücret ödemek",
+	"getyourcar": "Arabanı al"
 }
