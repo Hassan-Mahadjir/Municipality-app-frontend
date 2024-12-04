@@ -137,5 +137,6 @@
 	"serviceCategory": "Hizmet Kategorisi",
 	"seeAll": "Tümünü Gör",
 	"back": "Geri",
-	"services": "Hizmetler"
+	"services": "Hizmetler",
+	"noResultFound": "Sonuç bulunamadı"
 }

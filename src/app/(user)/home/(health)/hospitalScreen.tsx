@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -22,17 +22,39 @@ const hospitalScreen = () => {
 	const { t } = useTranslation();
 	const Hospitals = t('Hospitals');
 	const searchbyhospitalname = t('searchbyhospitalname');
-	const {i18n}=useTranslation()
-	const lang= i18n.language.toUpperCase()
-	const {hospitalData, isLoading}= useHospital()
-	const hospitals= hospitalData?.data.data
+	const { i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { hospitalData, isLoading } = useHospital();
+	const hospitals = hospitalData?.data.data || [];
+	const [searchQuery, setSearchQuery] = useState('');
+	const [filteredHospitals, setFilteredHospitals] =
+		useState<HospitalValues[]>(hospitals);
+	const noResultFound = t('noResultFound');
+
+	// Filter hospitals based on search query
+	const handleSearch = (text: string) => {
+		setSearchQuery(text);
+		if (text.trim() === '') {
+			setFilteredHospitals(hospitals); // Reset to original data
+		} else {
+			setFilteredHospitals(
+				hospitals.filter((hospital) =>
+					hospital.name.toLowerCase().includes(text.toLowerCase())
+				)
+			);
+		}
+	};
 
 	const renderItem = ({ item }: { item: HospitalValues }) => (
 		<HealthItems
 			name={item.name}
-			location={item.language === lang
-				? item.name
-				: item.translations.find(translation => translation.language === lang)?.location || item.name}
+			location={
+				item.language === lang
+					? item.name
+					: item.translations.find(
+							(translation) => translation.language === lang
+					  )?.location || item.name
+			}
 			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
 			imageUri={item.imageUrl}
 		/>
@@ -45,19 +67,24 @@ const hospitalScreen = () => {
 				<Stack.Screen options={{ title: Hospitals }} />
 				<SearchField
 					placeholder={searchbyhospitalname}
-					onChangeText={(text) => console.log('Search text:', text)}
+					onChangeText={handleSearch}
 				/>
-				<ScrollView style={{ flexGrow: 1 }} contentContainerStyle={styles.contentContainer}>
-    <Text style={styles.title}>{Hospitals}</Text>
-    <View style={styles.list}>
-        {hospitals?.map((item,index) => (
-            <View key={item.id}>
-                {renderItem({ item })}
-            </View>
-        ))}
-    </View>
-</ScrollView>
-
+				<ScrollView
+					style={{ flexGrow: 1 }}
+					contentContainerStyle={styles.contentContainer}
+				>
+					<Text style={styles.title}>{Hospitals}</Text>
+					<View style={styles.list}>
+						{/* Render filtered hospitals */}
+						{filteredHospitals.length > 0 ? (
+							filteredHospitals.map((item) => (
+								<View key={item.id}>{renderItem({ item })}</View>
+							))
+						) : (
+							<Text style={styles.noResultsText}>{noResultFound}</Text>
+						)}
+					</View>
+				</ScrollView>
 			</View>
 		</SafeAreaView>
 	);
@@ -85,5 +112,11 @@ const styles = StyleSheet.create({
 	list: {
 		flexGrow: 1,
 		justifyContent: 'center',
+	},
+	noResultsText: {
+		color: COLORS.secondary,
+		fontSize: scale(16),
+		textAlign: 'center',
+		marginTop: verticalScale(10),
 	},
 });

@@ -141,5 +141,6 @@
 	"serviceCategory": "Service Category",
 	"seeAll": "See All",
 	"back": "Back",
-	"services": "Services"
+	"services": "Services",
+	"noResultFound": "No results found"
 }

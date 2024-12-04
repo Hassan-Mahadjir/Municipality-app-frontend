@@ -25,6 +25,9 @@ const SearchField = ({
 				placeholder={placeholder}
 				placeholderTextColor='#4E7E95'
 				onChangeText={onChangeText}
+				clearButtonMode='always'
+				autoCapitalize='none'
+				autoCorrect={false}
 			/>
 		</View>
 	);
