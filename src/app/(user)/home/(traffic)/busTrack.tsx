@@ -6,6 +6,7 @@ import NewsCategory from '@/components/services/NewsCategory';
 import BusCard from '@/components/services/BusCard';
 import busTracking from '@/assets/data/busTracking.json';
 import { useTranslation } from 'react-i18next';
+import { useBuses, useVehicles } from '@/services/api/traffic';
 
 const busTrack = () => {
 	const [selectedCategory, setSelectedCategory] = useState('All');
@@ -22,17 +23,22 @@ const busTrack = () => {
 		t('sunday'),
 	];
 
-	const filteredNews =
+	const { i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { busData, isLoading } = useBuses();
+	const buses = busData?.data.data || [];
+
+	const filteredBuses =
 		selectedCategory === t('all')
-			? busTracking // Show all buses when "All" is selected
-			: busTracking.filter((item) => item.day === selectedCategory); // Filter for other days
+			? buses // Show all buses when "All" is selected
+			: buses.filter((item) => item.sechdule.some(schedule => schedule.day === selectedCategory)); // Filter for other days
 
 	return (
 		<View>
 			<Stack.Screen options={{ title: t('busTrack') }} />
 
 			<FlatList
-				data={filteredNews}
+				data={filteredBuses}
 				ListHeaderComponent={
 					<>
 						<FlatList

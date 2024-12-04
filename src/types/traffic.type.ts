@@ -17,3 +17,29 @@ export type VehicleValues = {
 		language: string;
 	}[];
 };
+export type BusValues={
+	id: number;
+	from: string;
+	to: string;
+	toStations:{
+		id: number;
+		name:string;
+	}[]
+	sechdule:
+	{
+		id: number;
+		day:string;
+		language: string;
+		timeTable:{
+			id: number;
+			goTime:string;
+			returnTime:string;
+		}[]
+		translations:{
+			id:number;
+			language: string;
+			day: string;
+		}[]
+	}[]
+
+}

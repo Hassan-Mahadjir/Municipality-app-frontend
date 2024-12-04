@@ -5,6 +5,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 import { router } from 'expo-router';
+import { BusValues } from '@/types/traffic.type';
 
 type NewsData = {
 	id: number;
@@ -16,7 +17,7 @@ type NewsData = {
 };
 
 interface CardProps {
-	data: NewsData;
+	data: BusValues;
 }
 
 const BusCard: React.FC<CardProps> = ({ data }) => {
@@ -25,7 +26,7 @@ const BusCard: React.FC<CardProps> = ({ data }) => {
 			<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 					<FontAwesome5 name='bus' size={24} color='black' />
-					<Text style={{ marginLeft: scale(5) }}>Line {data.line}</Text>
+					<Text style={{ marginLeft: scale(5) }}>Line {data.id}</Text>
 				</View>
 				<TouchableOpacity onPress={() => router.push(`./route/${data.id}`)}>
 					<FontAwesome5
