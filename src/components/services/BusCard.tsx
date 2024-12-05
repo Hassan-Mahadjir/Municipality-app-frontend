@@ -1,34 +1,37 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-
 import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 import { router } from 'expo-router';
 import { BusValues } from '@/types/traffic.type';
+import { useTranslation } from 'react-i18next';
 
-type NewsData = {
+type BusValue = {
 	id: number;
-	line: string;
-	day: string;
-	time: string;
 	from: string;
 	to: string;
+	goTime: string;
+	line: number;
 };
-
 interface CardProps {
-	data: BusValues;
+	data: BusValue;
 }
 
 const BusCard: React.FC<CardProps> = ({ data }) => {
+	const { t } = useTranslation();
+
 	return (
 		<View style={styles.cardContainer}>
+			{/* Header with Line ID and Navigation */}
 			<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 					<FontAwesome5 name='bus' size={24} color='black' />
-					<Text style={{ marginLeft: scale(5) }}>Line {data.id}</Text>
+					<Text style={{ marginLeft: scale(5) }}>
+						{t('line')} {data.line}
+					</Text>
 				</View>
-				<TouchableOpacity onPress={() => router.push(`./route/${data.id}`)}>
+				<TouchableOpacity onPress={() => router.push(`./route/${data.line}`)}>
 					<FontAwesome5
 						name='arrow-circle-right'
 						size={24}
@@ -37,19 +40,17 @@ const BusCard: React.FC<CardProps> = ({ data }) => {
 				</TouchableOpacity>
 			</View>
 
+			{/* Column Headers */}
 			<View style={styles.textContainer}>
-				<Text style={styles.columnText}>Time</Text>
-				<Text style={[styles.columnText, { marginHorizontal: scale(80) }]}>
-					From
-				</Text>
-				<Text style={styles.columnText}>To</Text>
+				<Text style={styles.columnText}>{t('time')}</Text>
+				<Text style={styles.columnText}>{t('from')}</Text>
+				<Text style={styles.columnText}>{t('to')}</Text>
 			</View>
 
+			{/* Data Rows */}
 			<View style={styles.dataContainer}>
-				<Text style={styles.columnText}>{data.time}</Text>
-				<Text style={[styles.columnText, { marginHorizontal: scale(80) }]}>
-					{data.from}
-				</Text>
+				<Text style={styles.columnText}>{data.goTime}</Text>
+				<Text style={styles.columnText}>{data.from}</Text>
 				<Text style={styles.columnText}>{data.to}</Text>
 			</View>
 		</View>
@@ -84,7 +85,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: scale(10),
 	},
 	columnText: {
-		flex: 1, // Ensure equal width for each column
+		flex: 1,
 		textAlign: 'center',
+		fontSize: scale(14),
+		color: 'black',
 	},
 });

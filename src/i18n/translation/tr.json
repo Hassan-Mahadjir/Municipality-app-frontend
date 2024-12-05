@@ -140,9 +140,13 @@
 	"services": "Hizmetler",
 	"noResultFound": "Sonuç bulunamadı",
 	"collecteddate": "Toplama Tarihi :",
-	"searchbyplatenumber":"Plaka numarasıyla ara",
+	"searchbyplatenumber": "Plaka numarasıyla ara",
 	"reason": "Toplama Nedeni",
-	"fee":"Ücret:",
-	"payfee":"Ücret ödemek",
-	"getyourcar": "Arabanı al"
+	"fee": "Ücret:",
+	"payfee": "Ücret ödemek",
+	"getyourcar": "Arabanı al",
+	"line": "Hat numarası:",
+	"from": "Başlangıç",
+	"to": "Bitiş",
+	"time": "Zaman"
 }

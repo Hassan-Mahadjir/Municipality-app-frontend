@@ -26,11 +26,12 @@ export default function ServiceCategory() {
 		<View style={styles.servicesContainer}>
 			{services?.map((service, index) => (
 				<TouchableOpacity
+					key={service.id || index}
 					onPress={() =>
 						router.push(`../home/(${service.name.toLocaleLowerCase()})`)
 					}
 				>
-					<View key={service.id || index}>
+					<View>
 						<ImageBackground
 							source={{ uri: service.imageUrl }}
 							resizeMode='cover'

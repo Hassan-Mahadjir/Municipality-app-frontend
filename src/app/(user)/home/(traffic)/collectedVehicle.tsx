@@ -5,8 +5,8 @@ import SearchField from '@/components/services/Search';
 import VechileCard from '@/components/services/VechileCard';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
-import { useVehicle, useVehicles } from '@/services/api/vehicle';
-import { VehicleValues } from '@/types/vehicle.type';
+import { useVehicle, useVehicles } from '@/services/api/traffic';
+import { VehicleValues } from '@/types/traffic.type';
 import { COLORS } from '@/constants/Colors';
 
 const collectedVehicle = () => {

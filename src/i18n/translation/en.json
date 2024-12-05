@@ -145,8 +145,12 @@
 	"noResultFound": "No results found",
 	"collecteddate": "Collectd Date :",
 	"searchbyplatenumber": "Search by plate number",
-	"reason":"Reason of collection",
+	"reason": "Reason of collection",
 	"fee": "Fee:",
-	"payfee":"Pay Fee",
-	"getyourcar": "Get your car"
+	"payfee": "Pay Fee",
+	"getyourcar": "Get your car",
+	"line": "Line number:",
+	"from": "From",
+	"to": "To",
+	"time": "Time"
 }
