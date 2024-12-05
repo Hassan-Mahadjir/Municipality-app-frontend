@@ -11,7 +11,7 @@ class TrafficService extends BaseService {
 		return response;
 	}
 	async getOneVehicle(id: number) {
-		const response = await http.get<AppResponse<Stations>>(
+		const response = await http.get<AppResponse<VehicleValues>>(
 			`/collected-vehicle/${id}`
 		);
 		return response;
