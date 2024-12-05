@@ -35,7 +35,7 @@ const vechicle = () => {
 					
 				}}
 			/>
-			<StatusBar barStyle={'dark-content'} />
+			<StatusBar barStyle={'default'} />
 			<View>
 				<Image
 					style={styles.image}

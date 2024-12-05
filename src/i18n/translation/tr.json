@@ -150,5 +150,6 @@
 	"to": "Bitiş",
 	"time": "Zaman",
 	"Line": "Hat",
-	"routeStations": "Rota ve Duraklar"
+	"routeStations": "Rota ve Duraklar",
+	"defaultTitle": "Yükleniyor..."
 }

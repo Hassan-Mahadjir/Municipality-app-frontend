@@ -43,7 +43,7 @@
 	"passwordDontMatch": "Passwords don't match",
 
 	"searchbyplacename": "Search by place name",
-	"tourismServices": "TOURISM SERVICES",
+	"tourismServices": "Tourism Services",
 	"tourismSections": {
 		"Historical Places": "Historical Places",
 		"Restaurants": "Restaurants",
@@ -154,5 +154,6 @@
 	"to": "To",
 	"time": "Time",
 	"Line": "Line",
-	"routeStations": "Route & Stations"
+	"routeStations": "Route & Stations",
+	"defaultTitle": "Loading..."
 }
