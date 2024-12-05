@@ -13,7 +13,7 @@ import { verticalScale, scale, moderateScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { useTranslation } from 'react-i18next';
-import { useVehicle } from '@/services/api/vehicle';
+import { useVehicle } from '@/services/api/traffic';
 import { nan } from 'zod';
 
 const vechicle = () => {
