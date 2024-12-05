@@ -4,21 +4,23 @@ import { Stack, useLocalSearchParams } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { COLORS } from '@/constants/Colors';
-
-const stations = [
-	{ id: 1, name: 'EMU Station', time: 20 },
-	{ id: 2, name: 'Main Station', time: 15 },
-	{ id: 3, name: 'Last Station', time: 0 }, // Example of the last station
-];
+import { useTranslation } from 'react-i18next';
+import { useBus } from '@/services/api/traffic';
 
 const RouteDetails = () => {
 	const { id } = useLocalSearchParams();
+	const { t } = useTranslation();
+
+	const { busData, isLoading, isFetching } = useBus(+id);
+	const stationsData = busData?.data.data.toStations || [];
 
 	return (
 		<View>
-			<Stack.Screen options={{ title: `Line ${id} Route & Stations` }} />
+			<Stack.Screen
+				options={{ title: `${t('Line')} ${id} ${t('routeStations')}` }}
+			/>
 
-			{stations.map((station, index) => (
+			{stationsData.map((station, index) => (
 				<View key={station.id}>
 					<View
 						style={{
@@ -39,12 +41,9 @@ const RouteDetails = () => {
 					</View>
 
 					{/* Show the time and line only if it's not the last station */}
-					{index !== stations.length - 1 && (
+					{index !== stationsData.length - 1 && (
 						<View style={[styles.timeContainer]}>
 							<View style={styles.verticalLine}></View>
-							<Text
-								style={{ color: COLORS.primary }}
-							>{`${station.time} mins`}</Text>
 						</View>
 					)}
 				</View>

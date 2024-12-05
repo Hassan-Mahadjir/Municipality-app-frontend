@@ -17,6 +17,16 @@ export type VehicleValues = {
 		language: string;
 	}[];
 };
+export type Stations = {
+	id: number;
+	line: number;
+	from: string;
+	to: string;
+	toStations: {
+		id: number;
+		name: string;
+	}[];
+};
 export type BusValues = {
 	id: number;
 	day: string;

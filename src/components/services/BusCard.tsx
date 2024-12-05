@@ -22,38 +22,39 @@ const BusCard: React.FC<CardProps> = ({ data }) => {
 	const { t } = useTranslation();
 
 	return (
-		<View style={styles.cardContainer}>
-			{/* Header with Line ID and Navigation */}
-			<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-					<FontAwesome5 name='bus' size={24} color='black' />
-					<Text style={{ marginLeft: scale(5) }}>
-						{t('line')} {data.line}
-					</Text>
+		<TouchableOpacity onPress={() => router.push(`./route/${data.line}`)}>
+			<View style={styles.cardContainer}>
+				{/* Header with Line ID and Navigation */}
+				<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+						<FontAwesome5 name='bus' size={24} color={COLORS.secondary} />
+						<Text
+							style={{
+								marginLeft: scale(5),
+								fontSize: scale(14),
+								fontWeight: '600',
+							}}
+						>
+							{t('line')} {data.line}
+						</Text>
+					</View>
 				</View>
-				<TouchableOpacity onPress={() => router.push(`./route/${data.line}`)}>
-					<FontAwesome5
-						name='arrow-circle-right'
-						size={24}
-						color={COLORS.secondary}
-					/>
-				</TouchableOpacity>
-			</View>
 
-			{/* Column Headers */}
-			<View style={styles.textContainer}>
-				<Text style={styles.columnText}>{t('time')}</Text>
-				<Text style={styles.columnText}>{t('from')}</Text>
-				<Text style={styles.columnText}>{t('to')}</Text>
-			</View>
+				{/* Column Headers */}
+				<View style={styles.textContainer}>
+					<Text style={styles.columnText}>{t('time')}</Text>
+					<Text style={styles.columnText}>{t('from')}</Text>
+					<Text style={styles.columnText}>{t('to')}</Text>
+				</View>
 
-			{/* Data Rows */}
-			<View style={styles.dataContainer}>
-				<Text style={styles.columnText}>{data.goTime}</Text>
-				<Text style={styles.columnText}>{data.from}</Text>
-				<Text style={styles.columnText}>{data.to}</Text>
+				{/* Data Rows */}
+				<View style={styles.dataContainer}>
+					<Text style={styles.rowText}>{data.goTime}</Text>
+					<Text style={styles.rowText}>{data.from}</Text>
+					<Text style={styles.rowText}>{data.to}</Text>
+				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
@@ -85,6 +86,13 @@ const styles = StyleSheet.create({
 		paddingHorizontal: scale(10),
 	},
 	columnText: {
+		flex: 1,
+		textAlign: 'center',
+		fontSize: scale(14),
+		color: COLORS.secondary,
+		fontWeight: '600',
+	},
+	rowText: {
 		flex: 1,
 		textAlign: 'center',
 		fontSize: scale(14),

@@ -152,5 +152,7 @@
 	"line": "Line number:",
 	"from": "From",
 	"to": "To",
-	"time": "Time"
+	"time": "Time",
+	"Line": "Line",
+	"routeStations": "Route & Stations"
 }

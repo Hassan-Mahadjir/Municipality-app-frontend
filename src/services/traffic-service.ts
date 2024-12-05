@@ -1,7 +1,7 @@
 import { AppResponse } from '@/types/common.type';
 import http from './api/http';
 import BaseService from './base-service';
-import { BusValues, VehicleValues } from '@/types/traffic.type';
+import { BusValues, Stations, VehicleValues } from '@/types/traffic.type';
 
 class TrafficService extends BaseService {
 	async getVehicles() {
@@ -11,7 +11,7 @@ class TrafficService extends BaseService {
 		return response;
 	}
 	async getOneVehicle(id: number) {
-		const response = await http.get<AppResponse<VehicleValues>>(
+		const response = await http.get<AppResponse<Stations>>(
 			`/collected-vehicle/${id}`
 		);
 		return response;

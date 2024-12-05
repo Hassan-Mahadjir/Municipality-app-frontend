@@ -148,5 +148,7 @@
 	"line": "Hat numarası:",
 	"from": "Başlangıç",
 	"to": "Bitiş",
-	"time": "Zaman"
+	"time": "Zaman",
+	"Line": "Hat",
+	"routeStations": "Rota ve Duraklar"
 }
