@@ -22,7 +22,7 @@ const BusCard: React.FC<CardProps> = ({ data }) => {
 	const { t } = useTranslation();
 
 	return (
-		<TouchableOpacity onPress={() => router.push(`./route/${data.line}`)}>
+		<TouchableOpacity onPress={() => router.push(`./line/${data.line}`)}>
 			<View style={styles.cardContainer}>
 				{/* Header with Line ID and Navigation */}
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
