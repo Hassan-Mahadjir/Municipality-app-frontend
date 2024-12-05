@@ -5,21 +5,17 @@ import { router } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-
-type NewsData = {
-	id: number;
-	text: string;
-	imageurl: string;
-	type: string;
-	date: string;
-	time: string;
-};
+import { EventValues } from '@/types/community.type';
+import { useTranslation } from 'react-i18next';
 
 interface CardProps {
-	data: NewsData;
+	data: EventValues;
 }
 
 const Card: React.FC<CardProps> = ({ data }) => {
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase(); // Device language
+
 	return (
 		<View
 			style={{
@@ -38,8 +34,11 @@ const Card: React.FC<CardProps> = ({ data }) => {
 				<View style={{ flexDirection: 'row' }}>
 					<View style={{ width: '50%' }}>
 						<Text numberOfLines={3} style={styles.imageText}>
-							This game is the game of the centure where the best two team in
-							Northern Cyprus.
+							{data.language === lang
+								? data.header
+								: data.translations.find(
+										(translation) => translation.language === lang
+								  )?.header || data.header}
 						</Text>
 
 						<View
@@ -60,12 +59,12 @@ const Card: React.FC<CardProps> = ({ data }) => {
 							}}
 						>
 							<FontAwesome6 name='clock' size={20} color={COLORS.primary} />
-							<Text style={{ marginLeft: scale(5) }}>{data.time}</Text>
+							<Text style={{ marginLeft: scale(5) }}>{data.startTime}</Text>
 						</View>
 					</View>
 					<Image
 						resizeMode='cover'
-						source={{ uri: data.imageurl }}
+						source={{ uri: data.images[0].imageUrl }}
 						style={styles.pageImage}
 					/>
 				</View>

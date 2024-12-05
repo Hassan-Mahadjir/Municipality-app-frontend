@@ -5,18 +5,43 @@ import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import Card from '@/components/services/eventCard';
 import news from '@/assets/data/news.json';
-const types = ['All', 'Sport', 'Concert', 'Theater'];
+
 import { useTranslation } from 'react-i18next';
 import EventCategory from '@/components/services/eventCategory';
+import { useEvent } from '@/services/api/community';
 
 const event = () => {
-	const [selectedCategory, setSelectedCategory] = useState('All');
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase(); // Device language
+	const types = [t('all'), t('sport'), t('concert'), t('theater')];
+	const [selectedCategory, setSelectedCategory] = useState(t('all'));
 
-	const filteredNews =
-		selectedCategory === 'All'
-			? news // Show all news when "Latest" is selected
-			: news.filter((item) => item.type === selectedCategory); // Filter for other types
+	const { eventData, isLoading, isFetching } = useEvent();
+	const data = eventData?.data.data || [];
+
+	// Filter the data based on the selected category and device language
+	const filteredNews = data
+		.map((item) => {
+			// Find the translation matching the device language
+			const translation = item.translations.find((t) => t.language === lang);
+
+			// Return the item with translated data if a translation exists
+			return translation
+				? {
+						...item,
+						...translation, // Overwrite with translated fields
+				  }
+				: item; // Keep original if no translation is available
+		})
+		.filter((item) => {
+			// Filter by category (case-insensitive)
+			return (
+				selectedCategory === t('all') || // If 'All' is selected, include all items
+				item.category.toLowerCase() === selectedCategory.toLowerCase()
+			);
+		});
+
+	// Render filteredNews or handle the UI
 
 	return (
 		<View>

@@ -151,5 +151,9 @@
 	"time": "Zaman",
 	"Line": "Hat",
 	"routeStations": "Rota ve Duraklar",
-	"defaultTitle": "Yükleniyor..."
+	"defaultTitle": "Yükleniyor...",
+	"sport": "Spor",
+	"concert": "Konser",
+	"theater": "Tiyatro",
+	"event": "Etkinlik"
 }

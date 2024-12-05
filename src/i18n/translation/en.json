@@ -155,5 +155,9 @@
 	"time": "Time",
 	"Line": "Line",
 	"routeStations": "Route & Stations",
-	"defaultTitle": "Loading..."
+	"defaultTitle": "Loading...",
+	"sport": "Sport",
+	"concert": "Concert",
+	"Theater": "Theater",
+	"event": "Event"
 }
