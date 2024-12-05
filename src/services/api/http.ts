@@ -2,7 +2,7 @@ import { getItem, removeItem } from '@/utils/storage';
 import axios from 'axios';
 
 const http = axios.create({
-	baseURL: 'http://192.168.0.103:3000',
+	baseURL: 'http://192.168.3.87:3000',
 	headers: {
 		Accept: 'application/json',
 		'Content-Type': 'application/json',

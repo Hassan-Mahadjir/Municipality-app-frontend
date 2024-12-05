@@ -9,7 +9,7 @@ import {
 	ScrollView,
 } from 'react-native';
 import React, { useState } from 'react';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import Header from '@/components/services/Header';
 import ghostown from '../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
@@ -18,6 +18,7 @@ import ImagesContainer from '@/components/tourism/imagesContainer';
 import CommentSection from '@/components/tourism/CommentSection';
 import commentsData from '../../../../assets/data/comments.json';
 import { useTranslation } from 'react-i18next';
+import { usePlace } from '@/services/api/tourism';
 
 const place = () => {
 	// for ReadMore
@@ -35,15 +36,22 @@ const place = () => {
 	const history = t('history');
 	const histText = t('histText');
 	const histTextContinued = t('histTextContinued');
+	const { place } = useLocalSearchParams();
+	const { i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { placeData, isLoading } = usePlace(+place);
+	const placeinfo = placeData?.data.data;
+	if (!placeinfo || placeinfo.name === '') return;
+
 
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			{/* Header of the page */}
 			<View>
 				<Header
-					title={GhostTown}
+					title={placeinfo?.name || t('defaultTitle')}
 					backgroundImage={{
-						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/i7mhi5ix258-533%3A1980?alt=media&token=e00f3a9d-eae3-4684-a9b7-3a1e97957848',
+						uri: placeinfo?.images[0].imageUrl
 					}}
 					onBackPress={() => router.back()}
 				/>
@@ -71,7 +79,7 @@ const place = () => {
 							</View>
 						)}
 					/>
-					<Text style={styles.starText}>1,987 {reviews}</Text>
+					
 				</View>
 			</View>
 			{/* Body of the page */}
@@ -111,8 +119,8 @@ const place = () => {
 						top: verticalScale(30),
 					}}
 				>
-					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
-					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
+					<Text style={styles.timeText}>{placeinfo.openingHrWeekday}-{placeinfo.closingHrWeekday}</Text>
+					<Text style={styles.timeText}>{placeinfo.openingHrWeekend}-{placeinfo.closingHrWeekend}</Text>
 				</View>
 
 				<View style={{ paddingTop: verticalScale(30) }}>
@@ -122,7 +130,9 @@ const place = () => {
 					</Text>
 					{expanded && (
 						<Text style={styles.classicText}>
-							{histTextContinued}
+							console.log(placeinfo.history);
+							
+							{placeinfo.history}
 						</Text>
 					)}
 					<TouchableOpacity onPress={toggleExpansion}>

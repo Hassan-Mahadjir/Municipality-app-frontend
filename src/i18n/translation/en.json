@@ -43,7 +43,7 @@
 	"passwordDontMatch": "Passwords don't match",
 
 	"searchbyplacename": "Search by place name",
-	"tourismServices": "TOURISM SERVICES",
+	"tourismServices": "Tourism Services",
 	"tourismSections": {
 		"Historical Places": "Historical Places",
 		"Restaurants": "Restaurants",
@@ -152,5 +152,6 @@
 	"line": "Line number:",
 	"from": "From",
 	"to": "To",
-	"time": "Time"
+	"time": "Time",
+	"defaultTitle": "Loading..."
 }
