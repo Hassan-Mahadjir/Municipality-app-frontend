@@ -14,6 +14,8 @@ import { styles } from '@/styles/tenderNew.home';
 import { useAnnouncementService } from '@/services/api/announcement';
 import Loading from '../Loading';
 import { router } from 'expo-router';
+import { AnnoucementValues } from '@/types/annoucement.type';
+import { useTranslation } from 'react-i18next';
 
 type SliderItem = {
 	id: number;
@@ -30,7 +32,13 @@ const terder_News: SliderItem[] = tenderNews;
 const screenWidth = Dimensions.get('window').width - 25;
 
 // Render Items to FlatList
-const renderItem = ({ item }: { item: SliderItem }) => {
+const renderItem = ({
+	item,
+	lang,
+}: {
+	item: AnnoucementValues;
+	lang: string;
+}) => {
 	return (
 		<TouchableOpacity
 			onPress={() => {
@@ -59,7 +67,13 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 						end={{ x: 1, y: 0 }}
 					/>
 
-					<Text style={styles.description}>{item.header}</Text>
+					<Text style={styles.description}>
+						{item.language === lang
+							? item.header
+							: item.translations.find(
+									(translation) => translation.language === lang
+							  )?.header || item.header}
+					</Text>
 				</ImageBackground>
 			</View>
 		</TouchableOpacity>
@@ -70,7 +84,9 @@ export default function TenderNews() {
 	const { AnnouncementData, isLoading } = useAnnouncementService({ limit: 4 });
 	const terder_News = AnnouncementData?.data.data;
 	const [activeIndex, setActiveIndex] = useState(0);
-	const flatListRef = useRef<FlatList<SliderItem>>(null); // Reference for the FlatList to auto-scroll
+	const flatListRef = useRef<FlatList<AnnoucementValues>>(null); // Reference for the FlatList to auto-scroll
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase(); // Device language
 
 	// Auto-scroll functionality
 	useEffect(() => {
@@ -138,7 +154,7 @@ export default function TenderNews() {
 							showsHorizontalScrollIndicator={false}
 							contentContainerStyle={{ gap: scale(5) }}
 							keyExtractor={(item) => item.id.toString()}
-							renderItem={renderItem}
+							renderItem={({ item }) => renderItem({ item, lang })}
 							onScroll={handleScroll}
 						/>
 					</View>

@@ -6,47 +6,41 @@ import HealthServicesComponent from '@/components/services/HealthServicesCompone
 import { verticalScale } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 
-const sectionData = [
-	{
-		image:
-			'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg',
-		sectionName: 'Event',
-		pageName: 'event',
-	},
-	{
-		image:
-			'https://www.shutterstock.com/image-photo/men-who-dispose-rubbish-that-260nw-1579447720.jpg',
-		sectionName: 'Waste Collection',
-		pageName: 'wasteCollection',
-	},
-	{
-		image:
-			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQopTRgvWtY22LFQp-BszFAYlWw84ReD_fZBw&s',
-		sectionName: 'Emergency Contacts',
-		pageName: 'emergency',
-	},
-
-	{
-		image:
-			'https://media.istockphoto.com/id/1154370446/photo/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=kkZiaB9Q-GbY5gjf6WWURzEpLzNrpjZp_tn09GB21bI=',
-		sectionName: 'Animals',
-		pageName: 'animalMain',
-	},
-	{
-		image:
-			'https://thumbs.dreamstime.com/b/fire-assembly-point-sign-gathering-point-signboard-emergency-evacuation-vector-graphic-design-logo-website-social-media-fire-227395003.jpg',
-		sectionName: 'Disaster Gathering Points',
-		pageName: 'disasterPoint',
-	},
-];
-
 const communityIndex = () => {
 	const { t } = useTranslation();
-	const emergencyContacts = 'Emergency Contacts';
-	const contactInfo = 'Contact Information';
-	const animalMain = 'Animals';
-	const community = 'community';
+	const sectionData = [
+		{
+			image:
+				'https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?cs=srgb&dl=pexels-wendywei-1190298.jpg&fm=jpg',
+			sectionName: t('event'),
+			pageName: 'event',
+		},
+		{
+			image:
+				'https://www.shutterstock.com/image-photo/men-who-dispose-rubbish-that-260nw-1579447720.jpg',
+			sectionName: t('WasteCollection'),
+			pageName: 'wasteCollection',
+		},
+		{
+			image:
+				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQopTRgvWtY22LFQp-BszFAYlWw84ReD_fZBw&s',
+			sectionName: t('emergencyContacts'),
+			pageName: 'emergency',
+		},
 
+		{
+			image:
+				'https://media.istockphoto.com/id/1154370446/photo/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=kkZiaB9Q-GbY5gjf6WWURzEpLzNrpjZp_tn09GB21bI=',
+			sectionName: t('animals'),
+			pageName: 'animalMain',
+		},
+		{
+			image:
+				'https://thumbs.dreamstime.com/b/fire-assembly-point-sign-gathering-point-signboard-emergency-evacuation-vector-graphic-design-logo-website-social-media-fire-227395003.jpg',
+			sectionName: t('disasterGatheringPoints'),
+			pageName: 'disasterPoint',
+		},
+	];
 	return (
 		<View style={{ flex: 1 }}>
 			<StatusBar barStyle={'dark-content'} />

@@ -9,9 +9,10 @@ export type AnnoucementValues = {
 	images: { id: number; imageUrl: string }[];
 	translations: {
 		id: number;
+		header: string;
 		body: string;
 		title: string;
 		language: string;
 		location: string;
-	};
+	}[];
 };

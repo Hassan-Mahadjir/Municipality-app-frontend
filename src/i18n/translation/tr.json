@@ -91,17 +91,17 @@
 	"didnotRecieveCode": "Kod almadınız mı?",
 	"ResendCode": "Kodu Yeniden Gönder",
 
-	"Waste Collection": "Atık Toplama",
+	"WasteCollection": "Atık Toplama",
 
 	"municipalityDepartments": "Belediye Departmanları",
 	"Traffic": "Trafik",
 	"contact": "İletişim",
 
 	"community": "Topluluk",
-	"Emergency Contacts": "Acil İletişim",
-	"Municipal Departments": "Belediye Departmanları",
+	"emergencyContacts": "Acil İletişim",
+	"municipalDepartments": "Belediye Departmanları",
 	"Contact Information": "İletişim Bilgileri",
-	"Animals": "Hayvanlar",
+	"animals": "Hayvanlar",
 
 	"contactInformation": "İletişim Bilgileri",
 	"getInTouch": "Bizimle İletişime Geçin",
@@ -154,5 +154,7 @@
 	"sport": "Spor",
 	"concert": "Konser",
 	"theater": "Tiyatro",
-	"event": "Etkinlik"
+	"event": "Etkinlik",
+	"description": "Tanım",
+	"no_events_available": "Etkinlik yok"
 }

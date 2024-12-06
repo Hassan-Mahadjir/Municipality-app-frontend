@@ -13,29 +13,36 @@ import Loading from '@/components/Loading';
 import EventScrollCard from '@/components/services/EventScrollCard';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { useGetEvent } from '@/services/api/community';
 
 const eventDetails = () => {
 	const { id } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase(); // Device language
 
 	// Ensure `news` is a valid number
-	const eventId = id ? +id : null;
+	const eventId = id ? +id : 0;
 
 	// Fetch only if `newsId` is valid
-	const { AnnouncementData, isLoading } = useGetAnnouncement(eventId || 0);
-	const announcementInfo = AnnouncementData?.data.data;
+	const { eventData, isLoading } = useGetEvent(eventId);
+	const eventInfo = eventData?.data.data;
 
 	useEffect(() => {
-		if (!announcementInfo) return;
+		if (!eventInfo) return;
 
 		// Simulating an API call to fetch content
-		const fetchedContent = announcementInfo.body;
+		const fetchedContent =
+			eventInfo.language === lang
+				? eventInfo.description
+				: eventInfo.translations.find(
+						(translation) => translation.language === lang
+				  )?.description || eventInfo.description;
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
 		setContent(paragraphs);
-	}, [announcementInfo]);
+	}, [eventInfo]);
 
 	// Function to split text into paragraphs by period ('.')
 	const splitTextIntoParagraphs = (text: string): string[] => {
@@ -64,7 +71,7 @@ const eventDetails = () => {
 		);
 	}
 
-	if (!announcementInfo) {
+	if (!eventInfo) {
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>{t('No announcement found')}</Text>
@@ -75,14 +82,20 @@ const eventDetails = () => {
 	return (
 		<View style={{ flex: 1 }}>
 			<Header
-				title={announcementInfo.title}
+				title={eventInfo.title}
 				backgroundImage={{
-					uri: `${announcementInfo.images[0].imageUrl}`,
+					uri: `${eventInfo.images[0].imageUrl}`,
 				}}
 				onBackPress={() => router.back()}
 			/>
 			<View style={{ margin: scale(10) }}>
-				<Text style={styles.subject}>{announcementInfo.header}</Text>
+				<Text style={styles.subject}>
+					{eventInfo.language === lang
+						? eventInfo.header
+						: eventInfo.translations.find(
+								(translation) => translation.language === lang
+						  )?.header || eventInfo.header}
+				</Text>
 
 				<View
 					style={{
@@ -94,7 +107,11 @@ const eventDetails = () => {
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
 						<Text style={{ color: COLORS.primary }}>
-							{announcementInfo.location}
+							{eventInfo.language === lang
+								? eventInfo.location
+								: eventInfo.translations.find(
+										(translation) => translation.language === lang
+								  )?.location || eventInfo.location}
 						</Text>
 					</View>
 
@@ -105,12 +122,12 @@ const eventDetails = () => {
 						}}
 					>
 						<Fontisto name='date' size={20} color={COLORS.primary} />
-						<Text style={{ marginLeft: scale(5) }}>20/11/2024</Text>
+						<Text style={{ marginLeft: scale(5) }}>{eventInfo.date}</Text>
 					</View>
 
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<FontAwesome6 name='clock' size={20} color={COLORS.gray} />
-						<Text style={{ marginLeft: scale(5) }}>18:30</Text>
+						<FontAwesome6 name='clock' size={20} color={COLORS.primary} />
+						<Text style={{ marginLeft: scale(5) }}>{eventInfo.startTime}</Text>
 					</View>
 				</View>
 			</View>
@@ -122,8 +139,9 @@ const eventDetails = () => {
 				style={{ marginHorizontal: scale(10), flexGrow: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
-				<EventScrollCard />
+				<EventScrollCard images={eventInfo.images} />
 				{/* Loop through the content array and display each paragraph */}
+				<Text style={styles.description}>{t('description')}</Text>
 				{content.map((paragraph, index) => (
 					<Text key={index} style={styles.paragraph}>
 						{paragraph}
@@ -147,5 +165,10 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(14),
 		lineHeight: verticalScale(22),
 		textAlign: 'justify',
+	},
+	description: {
+		fontSize: moderateScale(14),
+		color: COLORS.primary,
+		fontWeight: '600',
 	},
 });

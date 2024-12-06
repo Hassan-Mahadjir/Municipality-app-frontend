@@ -99,11 +99,9 @@
 	"contact": "Contact",
 
 	"community": "Community",
-	"Waste Collection": "Waste Collection",
-	"Emergency Contacts": "Emergency Contacts",
-	"Municipal Departments": "Municipal Departments",
-	"Contact Information": "Contact Information",
-	"Animals": "Animals",
+	"emergencyContacts": "Emergency Contacts",
+	"municipalDepartments": "Municipal Departments",
+	"animals": "Animals",
 
 	"contactInformation": "Contact Information",
 	"getInTouch": "Get in Touch",
@@ -158,5 +156,7 @@
 	"sport": "Sport",
 	"concert": "Concert",
 	"Theater": "Theater",
-	"event": "Event"
+	"event": "Event",
+	"description": "Description",
+	"no_events_available": "No events available"
 }

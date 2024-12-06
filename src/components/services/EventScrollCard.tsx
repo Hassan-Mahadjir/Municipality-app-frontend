@@ -7,16 +7,17 @@ import {
 	Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import pharmacyInfo from '../../assets/data/pharmacyInfo.json';
 import { COLORS } from '@/constants/Colors';
 import { scale, verticalScale } from 'react-native-size-matters';
 
 type SliderItem = {
 	id: number;
-	imageURL: string;
+	imageUrl: string;
 };
 
-const pharmacy_News: SliderItem[] = pharmacyInfo;
+interface EventScrollCardProps {
+	images: SliderItem[];
+}
 
 const screenWidth = Dimensions.get('window').width - scale(30);
 
@@ -24,7 +25,7 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 	return (
 		<View style={style.pharmacyNewsContainer}>
 			<ImageBackground
-				source={{ uri: item.imageURL }}
+				source={{ uri: item.imageUrl }}
 				resizeMode='cover'
 				style={style.imageBackground}
 			>
@@ -39,14 +40,14 @@ const renderItem = ({ item }: { item: SliderItem }) => {
 	);
 };
 
-export default function EventScrollCard() {
+export default function EventScrollCard({ images }: EventScrollCardProps) {
 	const [activeIndex, setActiveIndex] = useState(0);
-	const flatListRef = useRef<FlatList>(null);
+	const flatListRef = useRef<FlatList<SliderItem>>(null);
 
 	// Function to handle scrolling
 	const scrollToNextItem = () => {
-		if (flatListRef.current) {
-			const nextIndex = (activeIndex + 1) % pharmacy_News.length;
+		if (flatListRef.current && images.length > 0) {
+			const nextIndex = (activeIndex + 1) % images.length;
 			flatListRef.current.scrollToIndex({ index: nextIndex, animated: true });
 			setActiveIndex(nextIndex);
 		}
@@ -54,9 +55,10 @@ export default function EventScrollCard() {
 
 	// Auto-scroll effect
 	useEffect(() => {
+		if (images.length === 0) return;
 		const interval = setInterval(scrollToNextItem, 3000); // Scroll every 3 seconds
 		return () => clearInterval(interval); // Cleanup on unmount
-	}, [activeIndex]);
+	}, [activeIndex, images]);
 
 	const handleScroll = (event: {
 		nativeEvent: { contentOffset: { x: number } };
@@ -67,17 +69,15 @@ export default function EventScrollCard() {
 	};
 
 	const renderDotIndicators = (activeIndex: number) => {
-		return pharmacy_News.map((_, index) => {
-			return (
-				<View
-					key={index}
-					style={[
-						style.dot,
-						activeIndex === index ? style.activeDot : style.inactiveDot,
-					]}
-				/>
-			);
-		});
+		return images.map((_, index) => (
+			<View
+				key={index}
+				style={[
+					style.dot,
+					activeIndex === index ? style.activeDot : style.inactiveDot,
+				]}
+			/>
+		));
 	};
 
 	return (
@@ -85,8 +85,8 @@ export default function EventScrollCard() {
 			<View style={{ marginHorizontal: scale(0) }}>
 				<FlatList
 					ref={flatListRef}
-					data={pharmacy_News}
-					horizontal={true}
+					data={images}
+					horizontal
 					bounces={false}
 					pagingEnabled
 					showsHorizontalScrollIndicator={false}
@@ -120,7 +120,6 @@ const style = StyleSheet.create({
 		top: 0,
 		bottom: 0,
 	},
-
 	dotContainer: {
 		flexDirection: 'row',
 		marginTop: verticalScale(5),

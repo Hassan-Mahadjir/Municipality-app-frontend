@@ -1,50 +1,51 @@
-import { View, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import { View, FlatList, RefreshControl } from 'react-native';
+import React, { useMemo, useState } from 'react';
 import Header from '@/components/services/Header';
 import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import Card from '@/components/services/eventCard';
-import news from '@/assets/data/news.json';
-
 import { useTranslation } from 'react-i18next';
 import EventCategory from '@/components/services/eventCategory';
 import { useEvent } from '@/services/api/community';
+import { EventValues } from '@/types/community.type';
 
 const event = () => {
 	const { t, i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase(); // Device language
-	const types = [t('all'), t('sport'), t('concert'), t('theater')];
+	const categories = {
+		all: t('all'),
+		sport: t('sport'),
+		concert: t('concert'),
+		theater: t('theater'),
+	};
+	const types = Object.values(categories);
 	const [selectedCategory, setSelectedCategory] = useState(t('all'));
 
-	const { eventData, isLoading, isFetching } = useEvent();
-	const data = eventData?.data.data || [];
+	const { eventData, isLoading, refetch, isFetching } = useEvent(); // Add `refetch` and `isFetching` for refresh control
+	const data: EventValues[] = eventData?.data.data || [];
 
-	// Filter the data based on the selected category and device language
-	const filteredNews = data
-		.map((item) => {
-			// Find the translation matching the device language
-			const translation = item.translations.find((t) => t.language === lang);
+	// Filter and translate the events
+	const filteredEvent = useMemo(() => {
+		return data
+			.map((item) => {
+				const translation = item.translations.find((t) => t.language === lang);
+				return translation ? { ...item, ...translation, id: item.id } : item;
+			})
+			.filter((item) => {
+				return (
+					selectedCategory === t('all') ||
+					item.category.toLowerCase() === selectedCategory.toLowerCase()
+				);
+			});
+	}, [data, lang, selectedCategory]);
 
-			// Return the item with translated data if a translation exists
-			return translation
-				? {
-						...item,
-						...translation, // Overwrite with translated fields
-				  }
-				: item; // Keep original if no translation is available
-		})
-		.filter((item) => {
-			// Filter by category (case-insensitive)
-			return (
-				selectedCategory === t('all') || // If 'All' is selected, include all items
-				item.category.toLowerCase() === selectedCategory.toLowerCase()
-			);
-		});
-
-	// Render filteredNews or handle the UI
+	// Pull-to-refresh handler
+	const onRefresh = async () => {
+		await refetch();
+	};
 
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Header
 				title={t('event')}
 				backgroundImage={{
@@ -54,7 +55,7 @@ const event = () => {
 			/>
 
 			<FlatList
-				data={filteredNews}
+				data={filteredEvent}
 				ListHeaderComponent={
 					<>
 						<FlatList
@@ -80,6 +81,9 @@ const event = () => {
 					gap: scale(10),
 					paddingBottom: verticalScale(200),
 				}}
+				refreshControl={
+					<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+				}
 			/>
 		</View>
 	);
