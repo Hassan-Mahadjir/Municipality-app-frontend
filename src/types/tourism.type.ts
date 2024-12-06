@@ -20,3 +20,26 @@ export type PlaceValues = {
         language:string;
 	}[];
 };
+export type RestaurantValues = {
+	id:number;
+	name: string;
+	open: string;
+	location:string;
+	phone: string;
+	openingHrWeekday:string;
+	openingHrWeekend: string;
+	closingHrWeekday:string;
+	closingHrWeekend:string;
+	language: string;
+	images:{id: number;
+        imageUrl: string;
+     }[];
+	
+    translations: {
+		id: number;
+		location: string;
+        language:string;
+	}[];
+
+
+}

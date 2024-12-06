@@ -1,14 +1,18 @@
 import { View, Text, ScrollView, Image, FlatList } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import restaurants from '../../../../assets/data/restaurants.json';
 import { router, Stack } from 'expo-router';
 import SearchField from '@/components/services/Search';
 import { useTranslation } from 'react-i18next';
 import { styles } from '@/styles/historicalPlaces';
+import { useRestaurants } from '@/services/api/tourism';
+import { RestaurantValues } from '@/types/tourism.type';
 
-export default function historicalPlaces() {
+export default function Restaurants() {
 	const { t } = useTranslation();
+	const { restData, isLoading, refetch, isFetching } = useRestaurants();
+	const rest = restData?.data.data || [];
+	const [filteredRestaurants, setFilteredPlaces] =useState<RestaurantValues[]>(rest);
 	const searchbyplacename = t('searchbyplacename');
 	const restaurant = t('restaurant')
 	return (
@@ -20,18 +24,16 @@ export default function historicalPlaces() {
 			/>
 			<FlatList
 				numColumns={2}
-				data={restaurants}
+				data={rest}
 				contentContainerStyle={{ paddingVertical: 10 }}
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => (
 					<View style={styles.itemContainer}>
-						<Image source={{ uri: item.image }} style={styles.pageImage} />
+						<Image source={{ uri: item.images[0].imageUrl }} style={styles.pageImage} />
 						<TouchableOpacity
-							onPress={() =>
-								router.push('/(user)/home/(tourism)/restaurant/1')
-							}
+							onPress={() => router.push(`./${item.id}`)}
 						>
-							<Text style={styles.imageText}>{item.placename}</Text>
+							<Text style={styles.imageText}>{item.name}</Text>
 						</TouchableOpacity>
 					</View>
 				)}

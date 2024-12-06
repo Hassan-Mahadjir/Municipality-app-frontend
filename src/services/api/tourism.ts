@@ -18,3 +18,32 @@ export const usePlace = (id: number) => {
   
     return { placeData, refetch, isLoading, isFetching, ...props };
   };
+
+  export const useRestaurants = () => {
+    const { data: restData, refetch, isLoading, isFetching, ...props } = useQuery({
+        queryFn: () => {
+            console.log('Fetching all restaurants...');
+            return TourismService.getRestaurants();
+        },
+        queryKey: ['restaurants'],
+    });
+
+    console.log('Fetched Restaurants Data:', restData);
+    return { restData, refetch, isLoading, isFetching, ...props };
+};
+
+
+export const useRestaurant = (id: number) => {
+  const { data: restData, refetch, isLoading, isFetching, ...props } = useQuery({
+      queryFn: () => {
+          console.log(`Fetching restaurant with ID: ${id}`);
+          return TourismService.getOneRestaurant(id);
+      },
+      queryKey: ['restaurant', id],
+  });
+
+  console.log('Fetched Restaurant Data:', restData);
+  return { restData, refetch, isLoading, isFetching, ...props };
+};
+
+  

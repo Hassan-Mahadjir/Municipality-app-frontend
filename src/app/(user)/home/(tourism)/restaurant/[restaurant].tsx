@@ -11,11 +11,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/services/Header';
 import ghostown from '../../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import CommentSection from '@/components/tourism/CommentSection';
 import commentsData from '../../../../../assets/data/restaurantComments.json';
 import { useTranslation } from 'react-i18next';
+import { useRestaurant } from '@/services/api/tourism';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
@@ -25,15 +26,20 @@ const restaurant = () => {
 	const weekdays = t('weekdays');
 	const weekends = t('weekends');
 	const phoneNo = t('phoneNo');
+	const { restaurant } = useLocalSearchParams();
+	const { i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { restData, isLoading } = useRestaurant(+restaurant);
+	const restinfo = restData?.data.data;
 
 	return (
 		<SafeAreaView style={{flex: 1}}>
 			{/* Header of the page */}
 			<View>
 				<Header
-					title='BECKETT'
+					title={restinfo?.name|| t('defaultTitle')}
 					backgroundImage={{
-						uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/hmcwodc0uw-601%3A1977?alt=media&token=d347c041-36a2-4487-81fc-5e355777a110',
+						uri: restinfo?.images?.[0]?.imageUrl || 'default-image-url',
 					}}
 					onBackPress={() => router.back()}
 				/>
@@ -101,13 +107,13 @@ const restaurant = () => {
 						top: verticalScale(30),
 					}}
 				>
-					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
-					<Text style={styles.timeText}>8.00 am - 11.59 pm</Text>
+					<Text style={styles.timeText}>{restinfo?.openingHrWeekday}-{restinfo?.closingHrWeekday}</Text>
+					<Text style={styles.timeText}>{restinfo?.openingHrWeekend}-{restinfo?.closingHrWeekend}</Text>
 				</View>
 
 				<View style={{flexDirection: 'row', margin: scale(15), marginTop: verticalScale(45)}}>
 					<Text style={{color: '#F1722A', fontSize: 18, fontWeight: '600'}}>{phoneNo}: </Text>
-					<Text style={{color: '#4E7E95', fontSize: 18}}>+90 523 456 12 12</Text>
+					<Text style={{color: '#4E7E95', fontSize: 18}}>{restinfo?.phone}</Text>
 				</View>
 
 				<CommentSection comments={commentsData}/>
