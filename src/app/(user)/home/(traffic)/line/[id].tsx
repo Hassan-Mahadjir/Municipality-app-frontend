@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { COLORS } from '@/constants/Colors';
 import { useTranslation } from 'react-i18next';
@@ -16,10 +16,9 @@ const RouteDetails = () => {
 
 	return (
 		<View>
-			<Stack.Screen
-				options={{ title: `${t('Line')} ${id} ${t('routeStations')}` }}
-			/>
-
+			<Text style={styles.lineText}>
+				{t('line')} {busData?.data.data.line}
+			</Text>
 			{stationsData.map((station, index) => (
 				<View key={station.id}>
 					<View
@@ -37,7 +36,7 @@ const RouteDetails = () => {
 								color='#fff'
 							/>
 						</View>
-						<Text>{station.name}</Text>
+						<Text style={styles.lineText}>{station.name}</Text>
 					</View>
 
 					{/* Show the time and line only if it's not the last station */}
@@ -74,5 +73,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginLeft: '10%',
 		marginBottom: verticalScale(5),
+	},
+	lineText: {
+		fontSize: moderateScale(16),
+		alignSelf: 'center',
+		marginVertical: verticalScale(8),
+		fontWeight: '600',
+		color: COLORS.secondary,
 	},
 });

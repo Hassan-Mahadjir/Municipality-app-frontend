@@ -21,7 +21,7 @@ class TrafficService extends BaseService {
 		return response;
 	}
 	async getOneBus(id: number) {
-		const response = await http.get<AppResponse<BusValues>>(`/bus/line/${id}`);
+		const response = await http.get<AppResponse<Stations>>(`/bus/line/${id}`);
 		return response;
 	}
 }

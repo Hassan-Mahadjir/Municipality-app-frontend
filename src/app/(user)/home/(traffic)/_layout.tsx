@@ -23,7 +23,10 @@ const TrafficLayout = () => {
 				<Stack.Screen name='busTrack' />
 				<Stack.Screen name='collectedVehicle' />
 				<Stack.Screen name='[vechicle]' />
-				<Stack.Screen name='line' options={{ headerShown: false }} />
+				<Stack.Screen
+					name='line'
+					options={{ headerShown: true, title: `${t('routeStations')}` }}
+				/>
 			</Stack>
 		</>
 	);
