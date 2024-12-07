@@ -12,9 +12,10 @@ export default function Restaurants() {
 	const { t } = useTranslation();
 	const { restData, isLoading, refetch, isFetching } = useRestaurants();
 	const rest = restData?.data.data || [];
-	const [filteredRestaurants, setFilteredPlaces] =useState<RestaurantValues[]>(rest);
+	const [filteredRestaurants, setFilteredPlaces] =
+		useState<RestaurantValues[]>(rest);
 	const searchbyplacename = t('searchbyplacename');
-	const restaurant = t('restaurant')
+	const restaurant = t('restaurant');
 	return (
 		<View>
 			<Stack.Screen options={{ title: restaurant }} />
@@ -29,9 +30,12 @@ export default function Restaurants() {
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => (
 					<View style={styles.itemContainer}>
-						<Image source={{ uri: item.images[0].imageUrl }} style={styles.pageImage} />
+						<Image
+							source={{ uri: item.images[0].imageUrl }}
+							style={styles.pageImage}
+						/>
 						<TouchableOpacity
-							onPress={() => router.push(`./${item.id}`)}
+							onPress={() => router.push(`./restaurant/${item.id}`)}
 						>
 							<Text style={styles.imageText}>{item.name}</Text>
 						</TouchableOpacity>

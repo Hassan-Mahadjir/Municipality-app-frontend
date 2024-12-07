@@ -158,5 +158,8 @@
 	"Theater": "Theater",
 	"event": "Event",
 	"description": "Description",
-	"no_events_available": "No events available"
+	"no_events_available": "No events available",
+	"organic": "Organic",
+	"recyclable": "Recyclable",
+	"nonRecyclable": "Non-Recyclable"
 }

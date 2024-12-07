@@ -91,7 +91,7 @@
 	"didnotRecieveCode": "Kod almadınız mı?",
 	"ResendCode": "Kodu Yeniden Gönder",
 
-	"WasteCollection": "Atık Toplama",
+	"wasteCollection": "Atık Toplama",
 
 	"municipalityDepartments": "Belediye Departmanları",
 	"Traffic": "Trafik",
@@ -156,5 +156,8 @@
 	"theater": "Tiyatro",
 	"event": "Etkinlik",
 	"description": "Tanım",
-	"no_events_available": "Etkinlik yok"
+	"no_events_available": "Etkinlik yok",
+	"organic": "Organik",
+	"recyclable": "Geri Dönüştürülebilir",
+	"nonRecyclable": "Geri Dönüştürülemez"
 }

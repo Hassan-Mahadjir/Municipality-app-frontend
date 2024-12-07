@@ -23,3 +23,25 @@ export type EventValues = {
 		category: string;
 	}[];
 };
+
+export type WasteSheduleValues = {
+	id: number;
+	type: string;
+	language: string;
+	sechdules: {
+		id: number;
+		day: string;
+		startTime: string;
+		endTime: string;
+		translations: {
+			id: number;
+			day: string;
+			language: string;
+		}[];
+	}[];
+	translations: {
+		id: number;
+		type: string;
+		language: string;
+	}[];
+};

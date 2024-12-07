@@ -18,7 +18,7 @@ const communityIndex = () => {
 		{
 			image:
 				'https://www.shutterstock.com/image-photo/men-who-dispose-rubbish-that-260nw-1579447720.jpg',
-			sectionName: t('WasteCollection'),
+			sectionName: t('wasteCollection'),
 			pageName: 'wasteCollection',
 		},
 		{

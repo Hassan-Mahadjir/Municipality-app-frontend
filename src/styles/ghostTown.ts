@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
 		width: scale(20),
 		marginVertical: verticalScale(10),
 		marginLeft: scale(2),
-		resizeMode: 'contain'
+		resizeMode: 'contain',
 	},
 	starText: {
 		fontSize: 18,

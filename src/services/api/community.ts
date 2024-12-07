@@ -19,3 +19,12 @@ export const useGetEvent = (id: number) => {
 
 	return { eventData, ...props };
 };
+
+export const useWasteSchedule = () => {
+	const { data: wasteSchduleData, ...props } = useQuery({
+		queryFn: () => communityService.getWasteSchedules(),
+		queryKey: ['wasteSchedules'],
+	});
+
+	return { wasteSchduleData, ...props };
+};

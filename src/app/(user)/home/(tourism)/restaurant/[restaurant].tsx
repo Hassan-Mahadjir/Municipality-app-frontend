@@ -20,7 +20,7 @@ import { useRestaurant } from '@/services/api/tourism';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const reviews = t('reviews');
 	const open = t('open');
 	const weekdays = t('weekdays');
@@ -33,11 +33,11 @@ const restaurant = () => {
 	const restinfo = restData?.data.data;
 
 	return (
-		<SafeAreaView style={{flex: 1}}>
+		<SafeAreaView style={{ flex: 1 }}>
 			{/* Header of the page */}
 			<View>
 				<Header
-					title={restinfo?.name|| t('defaultTitle')}
+					title={restinfo?.name || t('defaultTitle')}
 					backgroundImage={{
 						uri: restinfo?.images?.[0]?.imageUrl || 'default-image-url',
 					}}
@@ -71,7 +71,7 @@ const restaurant = () => {
 				</View>
 			</View>
 			{/* Body of the page */}
-			<ScrollView style={{flexGrow: 1}}>
+			<ScrollView style={{ flexGrow: 1 }}>
 				<View style={{ flexDirection: 'row' }}>
 					<Image
 						source={{
@@ -107,16 +107,30 @@ const restaurant = () => {
 						top: verticalScale(30),
 					}}
 				>
-					<Text style={styles.timeText}>{restinfo?.openingHrWeekday}-{restinfo?.closingHrWeekday}</Text>
-					<Text style={styles.timeText}>{restinfo?.openingHrWeekend}-{restinfo?.closingHrWeekend}</Text>
+					<Text style={styles.timeText}>
+						{restinfo?.openingHrWeekday}-{restinfo?.closingHrWeekday}
+					</Text>
+					<Text style={styles.timeText}>
+						{restinfo?.openingHrWeekend}-{restinfo?.closingHrWeekend}
+					</Text>
 				</View>
 
-				<View style={{flexDirection: 'row', margin: scale(15), marginTop: verticalScale(45)}}>
-					<Text style={{color: '#F1722A', fontSize: 18, fontWeight: '600'}}>{phoneNo}: </Text>
-					<Text style={{color: '#4E7E95', fontSize: 18}}>{restinfo?.phone}</Text>
+				<View
+					style={{
+						flexDirection: 'row',
+						margin: scale(15),
+						marginTop: verticalScale(45),
+					}}
+				>
+					<Text style={{ color: '#F1722A', fontSize: 18, fontWeight: '600' }}>
+						{phoneNo}:{' '}
+					</Text>
+					<Text style={{ color: '#4E7E95', fontSize: 18 }}>
+						{restinfo?.phone}
+					</Text>
 				</View>
 
-				<CommentSection comments={commentsData}/>
+				<CommentSection comments={commentsData} />
 			</ScrollView>
 		</SafeAreaView>
 	);
