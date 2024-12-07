@@ -45,3 +45,27 @@ export type WasteSheduleValues = {
 		language: string;
 	}[];
 };
+
+export type EmergencyContactValues = {
+	id: number;
+	name: string;
+	phone: number;
+	language: string;
+	translations: {
+		id: number;
+		name: string;
+		language: string;
+	}[];
+};
+
+export type DisasterPointValues = {
+	id: number;
+	location: string;
+	language: string;
+	capacity: number;
+	translations: {
+		id: number;
+		location: string;
+		language: string;
+	}[];
+};

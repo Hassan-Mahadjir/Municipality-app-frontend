@@ -3,21 +3,26 @@ import React from 'react';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { COLORS } from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 const GatherPointCard = ({
 	location,
 	capacity,
-	name,
+	pointNumber,
 }: {
 	location: string;
-	capacity: string;
-	name: string;
+	capacity: number;
+	pointNumber: number;
 }) => {
+	const { t } = useTranslation();
+
 	return (
 		<View style={styles.cardContianer}>
 			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
 				<FontAwesome6 name='arrows-down-to-people' size={24} color='black' />
-				<Text style={styles.name}>{name}</Text>
+				<Text style={styles.name}>
+					{t('disasterPoint')} {pointNumber}
+				</Text>
 			</View>
 
 			<View style={{ margin: scale(8) }}>

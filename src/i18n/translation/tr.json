@@ -159,5 +159,6 @@
 	"no_events_available": "Etkinlik yok",
 	"organic": "Organik",
 	"recyclable": "Geri Dönüştürülebilir",
-	"nonRecyclable": "Geri Dönüştürülemez"
+	"nonRecyclable": "Geri Dönüştürülemez",
+	"disasterPoint": "Afet noktası numarası:"
 }

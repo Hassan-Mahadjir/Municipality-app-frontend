@@ -28,3 +28,21 @@ export const useWasteSchedule = () => {
 
 	return { wasteSchduleData, ...props };
 };
+
+export const useEmergencyContact = () => {
+	const { data: emergencyContactData, ...props } = useQuery({
+		queryFn: () => communityService.getEmergencyContact(),
+		queryKey: ['emergencyContacts'],
+	});
+
+	return { emergencyContactData, ...props };
+};
+
+export const useDisaterPoints = () => {
+	const { data: disasterPointData, ...props } = useQuery({
+		queryFn: () => communityService.getDisasterPoints(),
+		queryKey: ['emergencyContacts'],
+	});
+
+	return { disasterPointData, ...props };
+};
