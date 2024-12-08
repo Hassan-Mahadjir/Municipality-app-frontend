@@ -167,5 +167,8 @@
 	"animalNumber": "Hayvan Numarası",
 	"status": "Durum",
 	"searchShelter": "Barınak adına göre ara",
-	"searchAnimal": "Hayvan numarasına göre ara"
+	"searchAnimal": "Hayvan numarasına göre ara",
+	"aboutMunicipality": "Belediye Hakkında",
+	"headofDepartment": "Bölüm Başkanı",
+	"inquiries": "Sorularınız varsa bizimle iletişime geçin."
 }

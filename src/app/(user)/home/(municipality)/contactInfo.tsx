@@ -1,4 +1,12 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import {
+	FlatList,
+	Image,
+	StyleSheet,
+	Text,
+	View,
+	Linking,
+	TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import { Stack } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
@@ -11,34 +19,34 @@ const info = [
 	{
 		id: 1,
 		icon: 'https://png.pngtree.com/png-clipart/20210216/ourmid/pngtree-phone-icon-in-circle-black-png-image_5994540.png',
-		details: '+90 (392) 630 05 00',
+		detail: '+90 (392) 630 05 00',
 	},
 	{
 		id: 2,
 		icon: 'https://png.pngtree.com/png-clipart/20210216/ourmid/pngtree-phone-icon-in-circle-black-png-image_5994540.png',
-		details: '+90 (392) 630 05 00',
+		detail: '444 4 GMB (444 4 462)',
+	},
+	{
+		id: 3,
+		icon: `https://icons.veryicon.com/png/o/system/dan_system/fax-11.png`,
+		detail: '+90 (392) 366 16 08',
 	},
 ];
 
 const contactInfo = () => {
 	const { t } = useTranslation();
-	const contactInfo = t('contactInformation');
 	const socialMedia = t('socialMedia');
 	const getInTouch = t('getInTouch');
-	const inquiriesMessage = t(
-		'If you have any inquiries, get in touch with us.'
-	);
+	const inquiriesMessage = t('inquiries');
 
 	return (
 		<View>
-			<Stack.Screen options={{ title: t('contactInformation') }} />{' '}
+			<Stack.Screen options={{ title: t('contactInformation') }} />
 			{/* Translated title */}
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
 				<Text style={styles.get}>{getInTouch}</Text>
 				{/* Translated text */}
-				<Text style={{ color: COLORS.gray }}>
-					If you have any inquiries, get in touch with us.
-				</Text>
+				<Text style={{ color: COLORS.gray }}>{inquiriesMessage}</Text>
 			</View>
 			<FlatList
 				data={info}
@@ -50,15 +58,19 @@ const contactInfo = () => {
 				showsVerticalScrollIndicator={false}
 				renderItem={({ item }) => (
 					<View style={styles.container}>
-						<View style={{ flexDirection: 'row' }}>
-							<Image source={{ uri: item.icon }} style={styles.icon} />
-							<Text style={styles.text}>{item.details}</Text>
-						</View>
+						<TouchableOpacity
+							onPress={() => Linking.openURL(`tel:${item.detail}`)}
+						>
+							<View style={{ flexDirection: 'row' }}>
+								<Image source={{ uri: item.icon }} style={styles.icon} />
+								<Text style={styles.text}>{item.detail}</Text>
+							</View>
+						</TouchableOpacity>
 					</View>
 				)}
 			/>
 			<View style={{ alignItems: 'center', marginVertical: verticalScale(10) }}>
-				<Text style={styles.get}>{socialMedia}</Text>{' '}
+				<Text style={styles.get}>{socialMedia}</Text>
 				{/* Translated social media text */}
 				<View
 					style={{
@@ -67,9 +79,25 @@ const contactInfo = () => {
 						marginTop: verticalScale(20),
 					}}
 				>
-					<Entypo name='facebook' size={42} color={COLORS.secondary} />
-					<Entypo name='instagram' size={42} color={COLORS.secondary} />
-					<FontAwesome6 name='whatsapp' size={42} color={COLORS.secondary} />
+					<TouchableOpacity
+						onPress={() =>
+							Linking.openURL(`https://www.facebook.com/GazimagusaBelediyesi`)
+						}
+					>
+						<Entypo name='facebook' size={42} color={COLORS.secondary} />
+					</TouchableOpacity>
+
+					<TouchableOpacity
+						onPress={() =>
+							Linking.openURL(`https://www.instagram.com/gazimagusabelediyesi`)
+						}
+					>
+						<Entypo name='instagram' size={42} color={COLORS.secondary} />
+					</TouchableOpacity>
+
+					<TouchableOpacity onPress={() => {}}>
+						<FontAwesome6 name='whatsapp' size={42} color={COLORS.secondary} />
+					</TouchableOpacity>
 				</View>
 			</View>
 		</View>
@@ -83,6 +111,7 @@ const styles = StyleSheet.create({
 		color: COLORS.primary,
 		fontSize: moderateScale(18),
 		fontWeight: 'bold',
+		marginBottom: verticalScale(8),
 	},
 	container: {
 		flex: 1,

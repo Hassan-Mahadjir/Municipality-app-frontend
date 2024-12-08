@@ -169,5 +169,8 @@
 	"animalNumber": "Animal Number",
 	"status": "Status",
 	"searchShelter": "Search by shelter name",
-	"searchAnimal": "Search by animal number"
+	"searchAnimal": "Search by animal number",
+	"aboutMunicipality": "About Municipality",
+	"headofDepartment": "Head of department",
+	"inquiries": "If you have any inquiries, get in touch with us."
 }
