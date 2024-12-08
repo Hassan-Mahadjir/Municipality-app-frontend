@@ -7,6 +7,8 @@ import {
 	DisasterPointValues,
 	EmergencyContactValues,
 	EventValues,
+	ReportedanimalValues,
+	ShelterValues,
 	WasteSheduleValues,
 } from '@/types/community.type';
 
@@ -40,6 +42,38 @@ class CommunityService extends BaseService {
 	async getDisasterPoints() {
 		const response = await http.get<AppResponse<DisasterPointValues[]>>(
 			'community/disaster-point'
+		);
+
+		return response;
+	}
+
+	async getShelters() {
+		const response = await http.get<AppResponse<ShelterValues[]>>(
+			'community/animal-shelter'
+		);
+
+		return response;
+	}
+
+	async getShelter(id: number) {
+		const response = await http.get<AppResponse<ShelterValues>>(
+			`community/animal-shelter/${id}`
+		);
+
+		return response;
+	}
+
+	async getReportedAnimals() {
+		const response = await http.get<AppResponse<ReportedanimalValues[]>>(
+			'community/animal-report'
+		);
+
+		return response;
+	}
+
+	async getReportedAnimal(id: number) {
+		const response = await http.get<AppResponse<ReportedanimalValues>>(
+			`community/animal-report/${id}`
 		);
 
 		return response;

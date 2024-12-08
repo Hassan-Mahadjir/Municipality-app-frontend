@@ -162,5 +162,12 @@
 	"organic": "Organic",
 	"recyclable": "Recyclable",
 	"nonRecyclable": "Non-Recyclable",
-	"disasterPoint": "Disaster point number:"
+	"disasterPoint": "Disaster point number:",
+	"animalService": "Animal Services",
+	"lostFound": "Lost and Found",
+	"shelter": "Shelter",
+	"animalNumber": "Animal Number",
+	"status": "Status",
+	"searchShelter": "Search by shelter name",
+	"searchAnimal": "Search by animal number"
 }

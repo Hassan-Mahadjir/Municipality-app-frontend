@@ -1,5 +1,11 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import {
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+	ActivityIndicator,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import Header from '@/components/services/Header';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
@@ -7,22 +13,84 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { COLORS } from '@/constants/Colors';
 import SubmitButtonComponent from '@/components/SubmitButton';
+import { useGetReportedAnimal } from '@/services/api/community';
+import { useTranslation } from 'react-i18next';
+import { formatDistanceToNow } from 'date-fns';
+import { Locale } from 'date-fns';
+import { enUS, tr } from 'date-fns/locale';
+import { useProfile } from '@/services/api/profile';
 
 const animalDetails = () => {
 	const { id } = useLocalSearchParams();
+	const { t, i18n } = useTranslation();
+	const { profileData } = useProfile();
+
+	const lang = i18n.language.toUpperCase();
+	const userId = profileData?.data.data.user.id || 0;
+
+	const localeMap: Record<string, Locale> = {
+		en: enUS,
+		tr: tr,
+	};
+	const currentLocale = localeMap[i18n.language] || enUS;
+
+	const { reportedAnimalData, isLoading } = useGetReportedAnimal(+id);
+	const reportDetails = reportedAnimalData?.data.data;
+
+	const [content, setContent] = useState<string[]>([]);
+
+	// Function to split text into paragraphs by period ('.')
+	const splitTextIntoParagraphs = (text: string): string[] => {
+		return text
+			.split('.')
+			.map((sentence) => sentence.trim())
+			.filter((sentence) => sentence.length > 0)
+			.map((sentence) => sentence + '.');
+	};
+
+	useEffect(() => {
+		if (!reportDetails) return;
+
+		const fetchedDescription =
+			reportDetails?.language === lang
+				? reportDetails?.description
+				: reportDetails?.translations?.find(
+						(translation) => translation.language === lang
+				  )?.description || reportDetails?.description;
+
+		const paragraphs = splitTextIntoParagraphs(fetchedDescription);
+		setContent(paragraphs);
+	}, [reportDetails, lang]);
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color={COLORS.primary} />
+			</View>
+		);
+	}
+
+	if (!reportDetails) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>{t('noResultFound')}</Text>
+			</View>
+		);
+	}
+
 	return (
 		<View>
 			<Header
 				title={''}
 				backgroundImage={{
-					uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtg6SNRxoTBGTHMxnV59khl2t1dAS0oynUMg&s',
+					uri: reportDetails.images[0].imageUrl,
 				}}
 				onBackPress={() => router.back()}
 			/>
 
 			<View style={{ margin: scale(10) }}>
 				<Text style={[styles.subject, { textAlign: 'center' }]}>
-					{`Ainmal no: ${id}`}
+					{t('animalNumber')}: {id}
 				</Text>
 
 				<View
@@ -34,17 +102,32 @@ const animalDetails = () => {
 				>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
-						<Text style={{ color: COLORS.primary }}>FAMAGUSTA</Text>
+						<Text style={{ color: COLORS.primary }}>
+							{reportDetails?.language === lang
+								? reportDetails?.location
+								: reportDetails?.translations?.find(
+										(translation) => translation.language === lang
+								  )?.location || reportDetails?.location}
+						</Text>
 					</View>
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 						<AntDesign name='questioncircleo' size={20} color={COLORS.gray} />
 						<Text style={{ color: COLORS.gray, marginLeft: scale(5) }}>
-							Lost
+							{reportDetails?.language === lang
+								? reportDetails?.status
+								: reportDetails?.translations?.find(
+										(translation) => translation.language === lang
+								  )?.status || reportDetails?.status}
 						</Text>
 					</View>
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
-						<Text style={{ color: COLORS.gray }}>10min ago</Text>
+						<Text style={{ color: COLORS.gray }}>
+							{formatDistanceToNow(new Date(reportDetails?.createAt), {
+								addSuffix: true,
+								locale: currentLocale,
+							})}
+						</Text>
 					</View>
 				</View>
 			</View>
@@ -54,26 +137,36 @@ const animalDetails = () => {
 			></View>
 
 			<View style={{ margin: scale(10) }}>
-				<Text style={styles.keyDiscription}>XXXX Red car</Text>
-				<Text style={styles.reason}>Description: </Text>
-				<Text style={{ textAlign: 'justify' }}>
-					orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-					veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-					ea commodo consequat.
+				<Text style={styles.keyDiscription}>
+					{reportDetails?.language === lang
+						? reportDetails?.title
+						: reportDetails?.translations?.find(
+								(translation) => translation.language === lang
+						  )?.title || reportDetails?.title}
 				</Text>
+
+				<Text style={styles.reason}>{t('description')}</Text>
+
+				{content.map((paragraph, index) => (
+					<Text key={index} style={styles.paragraph}>
+						{paragraph}
+					</Text>
+				))}
+
 				<Text
 					style={{ marginVertical: verticalScale(20), color: COLORS.primary }}
 				>
-					Contact Information:{' '}
-					<Text style={{ color: '#000' }}>+90 533 888 902</Text>
+					{t('contactInformation')}:{' '}
+					<Text style={{ color: '#000' }}>{reportDetails.contactInfo}</Text>
 				</Text>
 
-				<SubmitButtonComponent
-					title='Change Status'
-					fullWidth
-					onPress={() => {}}
-				/>
+				{userId === reportDetails?.user?.id && (
+					<SubmitButtonComponent
+						title='Change Status'
+						fullWidth
+						onPress={() => {}}
+					/>
+				)}
 			</View>
 		</View>
 	);
@@ -101,6 +194,7 @@ const styles = StyleSheet.create({
 	reason: {
 		color: COLORS.primary,
 		marginBottom: verticalScale(5),
+		fontSize: moderateScale(16),
 	},
 	getCar: {
 		textAlign: 'center',

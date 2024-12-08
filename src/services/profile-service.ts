@@ -6,9 +6,7 @@ import { LoginFormValues } from '@/types/login.type';
 
 class ProfileSrvice extends BaseService {
 	async getProfile() {
-		const response = await http.get<AppResponse<ProfileValue<LoginFormValues>>>(
-			'/user/profile'
-		);
+		const response = await http.get<AppResponse<ProfileValue>>('/user/profile');
 		return response;
 	}
 }

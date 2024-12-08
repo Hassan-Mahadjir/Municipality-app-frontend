@@ -10,11 +10,19 @@ import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
 import { useGetAnnouncement } from '@/services/api/announcement';
 import Loading from '@/components/Loading';
+import { tr, enUS } from 'date-fns/locale';
+import type { Locale } from 'date-fns';
 
 const NewsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	// Determine locale based on i18n.language
+	const localeMap: Record<string, Locale> = {
+		en: enUS,
+		tr: tr,
+	};
+	const currentLocale = localeMap[i18n.language] || enUS; // Default to English if not found
 
 	// Ensure `news` is a valid number
 	const newsId = news ? +news : null;
@@ -99,6 +107,7 @@ const NewsDetails = () => {
 						<Text style={{ color: COLORS.gray }}>
 							{formatDistanceToNow(new Date(announcementInfo.createAt), {
 								addSuffix: true, // Adds "ago" to the string
+								locale: currentLocale, //Specify the locale dynamically
 							})}
 						</Text>
 					</View>

@@ -69,3 +69,45 @@ export type DisasterPointValues = {
 		language: string;
 	}[];
 };
+
+export type ShelterValues = {
+	id: number;
+	name: string;
+	location: string;
+	logo: string;
+	language: string;
+	translations: {
+		id: number;
+		location: string;
+		language: string;
+	}[];
+};
+
+export type ReportedanimalValues = {
+	id: number;
+	title: string;
+	status: string;
+	description: string;
+	contactInfo: string;
+	location: string;
+	createAt: string;
+	language: string;
+	images: {
+		id: number;
+		imageUrl: string;
+	}[];
+	translations: {
+		id: number;
+		title: string;
+		status: string;
+		description: string;
+		contactInfo: string;
+		location: string;
+		language: string;
+	}[];
+	user: {
+		id: number;
+		email: string;
+		role: number;
+	};
+};

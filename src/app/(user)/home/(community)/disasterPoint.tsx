@@ -7,27 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { useDisaterPoints } from '@/services/api/community';
 import Loading from '@/components/Loading';
 
-const points = [
-	{
-		id: 1,
-		name: 'Hassan',
-		capacity: '300',
-		location: 'Karakol, Famagusta, Cyprus.',
-	},
-	{
-		id: 2,
-		name: 'Nour',
-		capacity: '300',
-		location: 'Karakol, Famagusta, Cyprus.',
-	},
-	{
-		id: 3,
-		name: 'Hassan',
-		capacity: '300',
-		location: 'Karakol, Famagusta, Cyprus.',
-	},
-];
-
 const disasterPoint = () => {
 	const { t, i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();

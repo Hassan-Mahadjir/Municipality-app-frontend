@@ -46,3 +46,54 @@ export const useDisaterPoints = () => {
 
 	return { disasterPointData, ...props };
 };
+
+export const useShelters = () => {
+	const { data: animalShelterData, ...props } = useQuery({
+		queryFn: () => communityService.getShelters(),
+		queryKey: ['animalShelters'],
+	});
+
+	return { animalShelterData, ...props };
+};
+
+export const useGetShelters = (id: number) => {
+	const { data: animalShelterData, ...props } = useQuery({
+		queryFn: () => communityService.getShelters(),
+		queryKey: ['animalShelter', id],
+	});
+
+	return { animalShelterData, ...props };
+};
+
+export const useReportedAnimal = () => {
+	const {
+		data: reportedAnimalData,
+		refetch: refetchAnimals,
+		isLoading: isLoadingAnimals,
+		isFetching: isFetchingAnimal,
+		...props
+	} = useQuery({
+		queryFn: () => communityService.getReportedAnimals(),
+		queryKey: ['reportedAnimals'],
+	});
+
+	return {
+		reportedAnimalData,
+		refetchAnimals,
+		isLoadingAnimals,
+		isFetchingAnimal,
+		...props,
+	};
+};
+
+export const useGetReportedAnimal = (id: number) => {
+	const { data: reportedAnimalData, ...props } = useQuery({
+		queryFn: () => communityService.getReportedAnimal(id),
+		queryKey: ['reportedAnimal', id],
+	});
+
+	return {
+		reportedAnimalData,
+		...props,
+	};
+};

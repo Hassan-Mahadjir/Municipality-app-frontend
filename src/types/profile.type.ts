@@ -1,4 +1,4 @@
-export type ProfileValue<T> = {
+export type ProfileValue = {
 	profileId: number;
 	firstName: string;
 	lastName?: string;
@@ -8,5 +8,5 @@ export type ProfileValue<T> = {
 	dateofBirth?: string;
 	description?: string;
 	address?: string;
-	user: T;
+	user: { id: number; email: string; role: string };
 };

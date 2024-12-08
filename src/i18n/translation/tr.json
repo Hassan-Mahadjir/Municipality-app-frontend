@@ -160,5 +160,12 @@
 	"organic": "Organik",
 	"recyclable": "Geri Dönüştürülebilir",
 	"nonRecyclable": "Geri Dönüştürülemez",
-	"disasterPoint": "Afet noktası numarası:"
+	"disasterPoint": "Afet noktası numarası:",
+	"animalService": "Hayvan Hizmetleri",
+	"lostFound": "Kayıp Eşya",
+	"shelter": "Barınak",
+	"animalNumber": "Hayvan Numarası",
+	"status": "Durum",
+	"searchShelter": "Barınak adına göre ara",
+	"searchAnimal": "Hayvan numarasına göre ara"
 }
