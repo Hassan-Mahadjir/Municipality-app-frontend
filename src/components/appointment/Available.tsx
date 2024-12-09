@@ -16,24 +16,52 @@ import SubmitButtonComponent from '../SubmitButton';
 import InputComponent from './inputComponent';
 import { FormProvider, useForm } from 'react-hook-form';
 import { appointment } from '@/types/appointmnet-report';
-const days = ['Mon', 'Tus', 'Wed', 'Thus', 'Fri', 'Sat', 'Sun'];
-const times = [
-	{ id: 1, time: '10:30AM', day: 'Mon' },
-	{ id: 2, time: '11:30AM', day: 'Mon' },
-	{ id: 3, time: '11:30AM', day: 'Fri' },
-	{ id: 4, time: '12:30AM', day: 'Mon' },
-	{ id: 5, time: '01:30AM', day: 'Mon' },
-	{ id: 6, time: '02:30AM', day: 'Fri' },
-	{ id: 7, time: '03:30AM', day: 'Mon' },
-	{ id: 8, time: '02:30AM', day: 'Mon' },
-	{ id: 9, time: '03:30PM', day: 'Mon' },
-	{ id: 10, time: '02:30PM', day: 'Mon' },
-];
+import { useTranslation } from 'react-i18next';
+import {
+	useGetResposible,
+	useGetScheduleSlots,
+} from '@/services/api/appointmnet';
+import { scheduleSlotsValues } from '@/types/appointment.type';
+
 const Available = () => {
+	const { i18n, t } = useTranslation();
+	const lang = i18n.language.toUpperCase();
 	const [selectedDay, setSelectedDay] = useState<string>('Mon');
 	const [selectedTime, setSelectedTime] = useState<string>();
 
-	const filtertime = times.filter((item) => item.day === selectedDay);
+	const { resposibleData } = useGetResposible(16);
+	const { scheduleData, isLoading, isFetching, refetch } =
+		useGetScheduleSlots();
+	const resposible = resposibleData?.data.data;
+	const slots = scheduleData?.data.data || [];
+
+	const reformatData = (data: scheduleSlotsValues[]) => {
+		return data.flatMap((dayItem) =>
+			dayItem.availabilities.map((availability, index) => ({
+				id: availability.id, // or `index + 1` if you prefer a sequential ID
+				startTime: availability.startTime,
+				day:
+					dayItem.language === lang
+						? dayItem.day
+						: dayItem.translations.find(
+								(translation) => translation.language === lang
+						  )?.day || dayItem.day,
+			}))
+		);
+	};
+
+	const days = [
+		t('monday'),
+		t('tuesday'),
+		t('wednesday'),
+		t('thursday'),
+		t('friday'),
+		t('saturday'),
+		t('sunday'),
+	];
+
+	const formattedSlots = reformatData(slots);
+	const filtertime = formattedSlots.filter((item) => item.day === selectedDay);
 
 	const methods = useForm<appointment>({
 		defaultValues: {
@@ -51,8 +79,10 @@ const Available = () => {
 					end={{ x: 1, y: 0 }}
 				/>
 				<View style={styles.container}>
-					<Text style={styles.mayor}>Mayor of Famagusta</Text>
-					<Text style={styles.mayorName}>Mahamat Hassan</Text>
+					<Text style={styles.mayor}>{t('mayor')}</Text>
+					<Text style={styles.mayorName}>
+						{resposible?.profile.firstName} {resposible?.profile.lastName}
+					</Text>
 				</View>
 				<Image
 					source={{
@@ -61,25 +91,50 @@ const Available = () => {
 					style={{
 						height: verticalScale(130),
 						width: scale(150),
-						marginLeft: scale(55),
+						marginLeft: scale(0),
 					}}
 					resizeMode='contain'
 				/>
 			</View>
 			<View style={styles.container}>
-				<Text style={styles.description}>Description</Text>
-				<Text style={{ textAlign: 'justify' }}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-					ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.
+				<Text style={styles.description}>{t('description')}</Text>
+				<Text style={{ textAlign: 'justify', marginTop: verticalScale(5) }}>
+					{resposible?.profile.language === lang
+						? resposible.profile.description
+								.split('. ')
+								.map((sentence, index) => (
+									<Text key={index}>
+										{sentence.trim()}
+										{index <
+										resposible.profile.description.split('. ').length - 1
+											? '.'
+											: ''}
+										{'\n\n'}
+									</Text>
+								))
+						: resposible?.profile.translation.description
+								.split('. ')
+								.map((sentence, index) => (
+									<Text key={index}>
+										{sentence.trim()}
+										{index <
+										resposible.profile.translation.description.split('. ')
+											.length -
+											1
+											? '.'
+											: ''}
+										{'\n\n'}
+									</Text>
+								))}
 				</Text>
+
 				<Text style={[styles.description, { marginTop: verticalScale(5) }]}>
-					Email: <Text style={{ color: '#000' }}>hm.mahadjir@gmail.com</Text>
+					{t('email')}:{' '}
+					<Text style={{ color: '#000' }}>{resposible?.email}</Text>
 				</Text>
 
 				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>Schedule Day</Text>
+					<Text style={styles.schedule}>{t('scheduleDay')}</Text>
 				</View>
 
 				<FlatList
@@ -114,7 +169,7 @@ const Available = () => {
 				/>
 
 				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>Schedule Time</Text>
+					<Text style={styles.schedule}>{t('scheduleTime')}</Text>
 				</View>
 
 				<FlatList
@@ -127,21 +182,21 @@ const Available = () => {
 						<View
 							style={[
 								styles.scheduleContainer,
-								selectedTime === item.time && {
+								selectedTime === item.startTime && {
 									backgroundColor: COLORS.primary,
 								},
 							]}
 						>
-							<TouchableOpacity onPress={() => setSelectedTime(item.time)}>
+							<TouchableOpacity onPress={() => setSelectedTime(item.startTime)}>
 								<Text
 									style={[
 										styles.scheduleText,
-										selectedTime === item.time && {
+										selectedTime === item.startTime && {
 											color: '#fff',
 										},
 									]}
 								>
-									{item.time}
+									{item.startTime}
 								</Text>
 							</TouchableOpacity>
 						</View>
@@ -149,7 +204,7 @@ const Available = () => {
 				/>
 
 				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>Purpose of appointment</Text>
+					<Text style={styles.schedule}>{t('purpose')}</Text>
 				</View>
 				<FormProvider {...methods}>
 					<InputComponent

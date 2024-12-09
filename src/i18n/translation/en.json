@@ -172,5 +172,12 @@
 	"searchAnimal": "Search by animal number",
 	"aboutMunicipality": "About Municipality",
 	"headofDepartment": "Head of department",
-	"inquiries": "If you have any inquiries, get in touch with us."
+	"inquiries": "If you have any inquiries, get in touch with us.",
+	"appointmentMessage": "Would you like to set a meeting?",
+	"available": "Available",
+	"myAppointment": "My Appointmnet",
+	"mayor": "Mayor of Famagusta",
+	"scheduleDay": "Schedule Day",
+	"scheduleTime": "Schedule Time",
+	"purpose": "Purpose of appointment"
 }

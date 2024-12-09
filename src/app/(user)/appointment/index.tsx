@@ -5,15 +5,20 @@ import MyAppointment from '@/components/appointment/MyAppointment';
 
 import History from '@/components/appointment/History';
 import Available from '@/components/appointment/Available';
+import { useTranslation } from 'react-i18next';
 
 export default function UserAppointmentIndx() {
-	const [selectedCategory, setSelectedCategory] = useState<string>('Available');
+	const { i18n, t } = useTranslation();
+
+	const [selectedCategory, setSelectedCategory] = useState<string>(
+		t('available')
+	);
 
 	const renderContent = () => {
 		switch (selectedCategory) {
-			case 'History':
+			case t('history'):
 				return <History />;
-			case 'My Appointment':
+			case t('myAppointment'):
 				return <MyAppointment />;
 			default:
 				return <Available />;

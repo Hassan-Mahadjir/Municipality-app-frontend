@@ -170,5 +170,12 @@
 	"searchAnimal": "Hayvan numarasına göre ara",
 	"aboutMunicipality": "Belediye Hakkında",
 	"headofDepartment": "Bölüm Başkanı",
-	"inquiries": "Sorularınız varsa bizimle iletişime geçin."
+	"inquiries": "Sorularınız varsa bizimle iletişime geçin.",
+	"appointmentMessage": "Bir toplantı ayarlamak ister misiniz?",
+	"available": "Uygun",
+	"myAppointment": "Randevum",
+	"mayor": "Gazimağusa Belediye Başkanı",
+	"scheduleDay": "Planlanan Gün",
+	"scheduleTime": "Planlanan Saat",
+	"purpose": "Randevu Amacı"
 }

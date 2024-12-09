@@ -58,6 +58,7 @@ const PharmacyScreen = () => {
 
 	const renderItem = (item: PharmacyValues) => (
 		<HealthItems
+			key={item.id}
 			name={item.name}
 			location={
 				item.language === lang

@@ -5,25 +5,31 @@ import { useRouter } from 'expo-router';
 import { styles } from '@/styles/Appointment-report-Header';
 import { verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
+import { useTranslation } from 'react-i18next';
+import { useProfile } from '@/services/api/profile';
 
 interface HeaderProps {
 	selectedCategory: string;
 	setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const category = ['Available', 'My Appointment', 'History'];
-
 const Header: React.FC<HeaderProps> = ({
 	setSelectedCategory,
 	selectedCategory,
 }) => {
 	const router = useRouter();
+	const { i18n, t } = useTranslation();
+	const lang = i18n.language;
+	const { profileData } = useProfile();
+	const hello = t('hello');
+	const firstName = profileData?.data.data.firstName;
+	const category = [t('available'), t('myAppointment'), t('history')];
 
 	return (
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Hassan</Text>
+					{hello},<Text style={styles.userName}> {firstName}</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>
@@ -38,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({
 				</View>
 			</View>
 			<View>
-				<Text style={styles.greetMsg}>Would you like to set a meeting!</Text>
+				<Text style={styles.greetMsg}>{t('appointmentMessage')}</Text>
 				<FlatList
 					data={category}
 					horizontal={true}
