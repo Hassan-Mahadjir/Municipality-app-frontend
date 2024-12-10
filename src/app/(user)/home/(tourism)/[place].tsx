@@ -53,8 +53,8 @@ const Place = () => {
 	const { placeData, isLoading } = usePlace(+place);
 	const placeinfo = placeData?.data.data;
 	const {commentData}= useComments('historicalPlace',+place)
-	const data = commentData?.data.data;
-
+	const { data } = commentData || {};
+	const comments = commentData?.data.historicalPlaceComments as CommentProps['comments'];
 	// Return early if no place information is available
 	if (!placeinfo || placeinfo.name === '') return null;
 
@@ -68,7 +68,7 @@ const Place = () => {
 
 	// Determine displayed paragraphs based on expansion state
 	const displayedHistory = expanded ? historyParagraphs : [historyParagraphs[0]];
-	console.log(commentData)
+	console.log(commentData?.data)
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -93,7 +93,7 @@ const Place = () => {
 	 alignSelf: 'flex-start', // Makes the rectangle shrink to fit its content
 	 minWidth: verticalScale(370),
 	  marginTop: verticalScale(8),
-	  marginLeft:verticalScale(6)
+	  marginLeft:scale(6)
     }}>
   <View
     style={{
@@ -162,7 +162,7 @@ const Place = () => {
 				<View style={{ height: 300, marginTop: verticalScale(20), marginHorizontal: scale(0) }}>
 					<ScrollView nestedScrollEnabled>
 
-						<CommentSection comments={data?.historicalPlaceComments||[]} />
+					<CommentSection comments={comments || []} />
 					</ScrollView>
 				</View>
 			</ScrollView>
