@@ -177,5 +177,7 @@
 	"mayor": "Gazimağusa Belediye Başkanı",
 	"scheduleDay": "Planlanan Gün",
 	"scheduleTime": "Planlanan Saat",
-	"purpose": "Randevu Amacı"
+	"purpose": "Randevu Amacı",
+	"date": "Tarih",
+	"with": "Kişi"
 }

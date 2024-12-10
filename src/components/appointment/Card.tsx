@@ -21,10 +21,10 @@ const Card: React.FC<CardProps> = ({ data }) => {
 			<Text style={styles.id}>ID: {data.id}</Text>
 
 			<View style={styles.textContainer}>
-				<Text style={styles.columnText}>Time</Text>
-				<Text style={styles.columnText}>Date</Text>
-				<Text style={[styles.columnText]}>With</Text>
-				<Text style={styles.columnText}>Status</Text>
+				<Text style={styles.columnText}>{t('time')}</Text>
+				<Text style={styles.columnText}>{t('date')}</Text>
+				<Text style={[styles.columnText]}>{t('with')}</Text>
+				<Text style={styles.columnText}>{t('status')}</Text>
 			</View>
 
 			<View style={styles.dataContainer}>

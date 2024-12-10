@@ -179,5 +179,7 @@
 	"mayor": "Mayor of Famagusta",
 	"scheduleDay": "Schedule Day",
 	"scheduleTime": "Schedule Time",
-	"purpose": "Purpose of appointment"
+	"purpose": "Purpose of appointment",
+	"date": "Date",
+	"with": "With"
 }
