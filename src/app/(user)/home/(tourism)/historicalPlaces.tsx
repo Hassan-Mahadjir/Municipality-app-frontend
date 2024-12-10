@@ -1,5 +1,5 @@
-import { View, Text, Image, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, Image, FlatList, RefreshControl } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import historicalplaces from '../../../../assets/data/historicalPlaces.json';
 import { router, Stack } from 'expo-router';
@@ -18,24 +18,44 @@ export default function historicalPlaces() {
 	const places = placeData?.data.data || [];
 	const [filteredPlaces, setFilteredPlaces] =
 	useState<PlaceValues[]>(places);
+	const [searchQuery, setSearchQuery] = useState('');
+
+	useEffect(() => {
+		if (searchQuery.trim() === '') {
+			setFilteredPlaces(places);
+		} else {
+			setFilteredPlaces(
+				places.filter((place) =>
+					place.name.toLowerCase().includes(searchQuery.toLowerCase())
+				)
+			);
+		}
+	}, [places, searchQuery]);
+	const onRefresh = async () => {
+		await refetch();
+	};
 	return (
 		<View style={{ flex: 1 }}>
 			<Stack.Screen options={{ title: histPlaces }} />
 			<SearchField
 				placeholder={searchbyplacename}
-				onChangeText={(text) => console.log('Search text:', text)}
+				onChangeText={setSearchQuery}
 			/>
 			<FlatList
 				numColumns={2}
-				data={places}
+				data={filteredPlaces}
 				contentContainerStyle={{ paddingVertical: 10 }}
 				keyExtractor={(item, index) => index.toString()}
+				refreshControl={
+					<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+				}
 				renderItem={({ item }) => (
 					<View style={styles.itemContainer}>
+						<TouchableOpacity onPress={() => router.push(`./${item.id}`)}>
 						<Image source={{ uri: item.images[0].imageUrl}} style={styles.pageImage} />
 						<TouchableOpacity
 							onPress={() => router.push(`./${item.id}`)}
-						>
+						></TouchableOpacity>
 							<Text style={styles.imageText}>{item.name}</Text>
 						</TouchableOpacity>
 					</View>

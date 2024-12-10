@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	SafeAreaView,
 	ScrollView,
+	StatusBar,
 } from 'react-native';
 import React, { useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -15,13 +16,15 @@ import ghostown from '../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
 import { scale, verticalScale } from 'react-native-size-matters';
 import ImagesContainer from '@/components/tourism/imagesContainer';
-import CommentSection from '@/components/tourism/CommentSection';
+import CommentSection, { CommentProps } from '@/components/tourism/CommentSection';
 import commentsData from '../../../../assets/data/comments.json';
 import { useTranslation } from 'react-i18next';
 import { usePlace } from '@/services/api/tourism';
+import { useComments } from '@/services/api/comments';
+import { Ionicons } from '@expo/vector-icons';
 
 // Function to split text into paragraphs
-const splitTextIntoParagraphs = (text:string) => {
+const splitTextIntoParagraphs = (text: string) => {
 	return text
 		.split('.')
 		.map((sentence) => sentence.trim())
@@ -29,7 +32,7 @@ const splitTextIntoParagraphs = (text:string) => {
 		.map((sentence) => sentence + '.');
 };
 
-const place = () => {
+const Place = () => {
 	// State for ReadMore/ReadLess
 	const [expanded, setExpanded] = useState(false);
 	const toggleExpansion = () => {
@@ -49,23 +52,28 @@ const place = () => {
 	const lang = i18n.language.toUpperCase();
 	const { placeData, isLoading } = usePlace(+place);
 	const placeinfo = placeData?.data.data;
+	const {commentData}= useComments('historicalPlace',+place)
+	const data = commentData?.data.data;
 
 	// Return early if no place information is available
-	if (!placeinfo || placeinfo.name === '') return;
+	if (!placeinfo || placeinfo.name === '') return null;
 
 	// Split history into paragraphs
-	const translated= placeinfo.language===lang
-	? placeinfo.history
-	:placeinfo.translations.find(translation => translation.language===lang)?.history|| placeinfo.history
-	
+	const translated =
+		placeinfo.language === lang
+			? placeinfo.history
+			: placeinfo.translations.find((translation) => translation.language === lang)?.history || placeinfo.history;
+
 	const historyParagraphs = splitTextIntoParagraphs(translated || '');
 
 	// Determine displayed paragraphs based on expansion state
 	const displayedHistory = expanded ? historyParagraphs : [historyParagraphs[0]];
+	console.log(commentData)
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			{/* Header */}
+			<StatusBar barStyle={'dark-content'} />
 			<View>
 				<Header
 					title={placeinfo?.name || t('defaultTitle')}
@@ -75,69 +83,57 @@ const place = () => {
 					onBackPress={() => router.back()}
 				/>
 				<View style={styles.shadowContainer}>
-					<FlatList
-						data={ghostown}
-						keyExtractor={(item, index) => index.toString()}
-						contentContainerStyle={{ justifyContent: 'center' }}
-						renderItem={({ item }) => (
-							<View
-								style={{
-									flexDirection: 'row',
-									justifyContent: 'center',
-									width: screenWidth,
-									height: 30,
-								}}
-							>
-								{Array.from({ length: 5 }).map((_, index) => (
-									<Image
-										key={index}
-										source={{ uri: item.stars }}
-										style={styles.starImage}
-									/>
-								))}
-							</View>
-						)}
-					/>
-				</View>
+	<View style={{
+     borderWidth: 2, // Orange border
+	 borderColor: '#F1722A', // Orange color for the border
+	 backgroundColor: '#fff', // White background
+	 borderRadius: 10, // Rounded corners
+	 paddingHorizontal: verticalScale(10), // Space inside the rectangle
+	 paddingVertical: verticalScale(5),
+	 alignSelf: 'flex-start', // Makes the rectangle shrink to fit its content
+	 minWidth: verticalScale(370),
+	  marginTop: verticalScale(8),
+	  marginLeft:verticalScale(6)
+    }}>
+  <View
+    style={{
+		flexDirection: 'row',
+        alignItems: 'center', // Center align icon and text vertically
+        justifyContent: 'flex-start', // Ensure elements are aligned to the start
+		marginLeft: verticalScale(100),
+		marginBottom: verticalScale(3)
+
+    }}
+  >
+    <Ionicons
+      name="location-sharp"
+      size={24}
+      color="#F1722A"
+      style={{ marginRight: verticalScale(6) ,marginTop: verticalScale(10)}} // Adds space between the icon and the text
+    />
+    <Text style={styles.locationText}>{placeinfo?.location}</Text>
+  </View>
+</View></View>
 			</View>
 
 			{/* Body */}
-			<ScrollView style={{ flexGrow: 1 }}>
-				<View style={{ flexDirection: 'row' }}>
+			<ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: verticalScale(20) }}>
+				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 					<Image
 						source={{
 							uri: 'https://firebasestorage.googleapis.com/v0/b/unify-v3-copy.appspot.com/o/01vrktrq36oe-39%3A726?alt=media&token=5e7fbab6-2e66-4e18-ac03-cfaf7865a40b',
 						}}
 						style={styles.clockIcon}
 					/>
-					<View style={{ flexDirection: 'row' }}>
-						<Text style={styles.openText}>{open}</Text>
-					</View>
+					<Text style={styles.openText}>{open}</Text>
 				</View>
 
-				<View
-					style={{
-						display: 'flex',
-						marginHorizontal: scale(25),
-						flexDirection: 'row',
-						alignItems: 'center',
-						justifyContent: 'space-between',
-						top: verticalScale(30),
-					}}
-				>
+				<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: scale(25), marginTop: verticalScale(20) }}>
 					<Text style={styles.weekText}>{weekdays}</Text>
 					<Text style={styles.weekText}>{weekends}</Text>
 				</View>
 
-				<View
-					style={{
-						display: 'flex',
-						marginHorizontal: scale(25),
-						flexDirection: 'row',
-						justifyContent: 'space-between',
-						top: verticalScale(30),
-					}}
-				>
+				<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: scale(25), marginTop: verticalScale(10) }}>
 					<Text style={styles.timeText}>
 						{placeinfo.openingHrWeekday}-{placeinfo.closingHrWeekday}
 					</Text>
@@ -147,7 +143,7 @@ const place = () => {
 				</View>
 
 				{/* History Section */}
-				<View style={{ paddingTop: verticalScale(30) }}>
+				<View style={{ marginTop: verticalScale(30), paddingHorizontal: scale(15) }}>
 					<Text style={styles.historyText}>{history}</Text>
 					{displayedHistory.map((paragraph, index) => (
 						<Text key={index} style={styles.classicText}>
@@ -155,20 +151,23 @@ const place = () => {
 						</Text>
 					))}
 					<TouchableOpacity onPress={toggleExpansion}>
-						<Text style={styles.orangeText}>
-							{expanded ? t('readLess') : t('readMore')}
-						</Text>
+						<Text style={styles.orangeText}>{expanded ? t('readLess') : t('readMore')}</Text>
 					</TouchableOpacity>
 				</View>
 
-				{/* Images and Comments */}
-				<ImagesContainer 
-    images={placeinfo.images.map((image) => ({ url: image.imageUrl }))}
-/>
-				<CommentSection comments={commentsData} />
+				{/* Images */}
+				<ImagesContainer images={placeinfo.images.map((image) => ({ url: image.imageUrl }))} />
+
+				{/* Scrollable Comment Section */}
+				<View style={{ height: 300, marginTop: verticalScale(20), marginHorizontal: scale(0) }}>
+					<ScrollView nestedScrollEnabled>
+
+						<CommentSection comments={data?.historicalPlaceComments||[]} />
+					</ScrollView>
+				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
 };
 
-export default place;
+export default Place;

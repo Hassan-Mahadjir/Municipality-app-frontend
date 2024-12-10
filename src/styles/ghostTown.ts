@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
@@ -20,12 +20,12 @@ export const styles = StyleSheet.create({
 	},
 	shadowContainer: {
 		height: verticalScale(60),
-		alignItems: 'center',
-		backgroundColor: '#fff',
-		shadowColor: '#000',
+		// alignItems: 'center',
+		// backgroundColor: '#fff',
+		// shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
-			height: -3,
+			height: 2,
 		},
 		shadowOpacity: 0.3,
 		shadowRadius: 3,
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
 		height: verticalScale(20),
 		width: scale(20),
 		position: 'absolute',
-		top: verticalScale(10),
+		top: verticalScale(7),
 		left: scale(15),
 		resizeMode: 'contain',
 	},
@@ -45,23 +45,29 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: 'bold',
 		position: 'absolute',
-		top: verticalScale(10),
+		top: verticalScale(8),
 		left: scale(40),
+		marginLeft: verticalScale(-7)
 	},
 	weekText: {
 		color: '#F1722A',
 		fontSize: 18,
+		marginTop: verticalScale(5),
+		marginLeft: verticalScale(-7)
 	},
 	timeText: {
 		color: '#4E7E95',
 		fontSize: 16,
+		marginTop: verticalScale(1),
+		marginBottom: verticalScale(-20),
+		marginLeft: verticalScale(-7)
 	},
 
 	historyText: {
 		fontSize: 18,
 		color: '#F1722A',
 		fontWeight: '600',
-		marginLeft: scale(15),
+	
 		marginTop: verticalScale(10),
 	},
 	classicText: {
@@ -71,8 +77,13 @@ export const styles = StyleSheet.create({
 		fontWeight: 'normal',
 		textAlign: 'justify',
 		color: 'black',
-		marginLeft: scale(15),
+		
 		marginRight: scale(15),
+	},
+	locationText:{
+		textAlign:'center',
+		fontSize: moderateScale(18),
+		marginTop:verticalScale(10),
 	},
 	orangeText: {
 		fontSize: 14,

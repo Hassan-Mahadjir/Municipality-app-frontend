@@ -8,17 +8,29 @@ import {
 } from 'react-native';
 import { styles } from '@/styles/commentSection';
 import { useTranslation } from 'react-i18next';
+import SubmitButtonComponent from '../SubmitButton';
+import VechileCard from '../services/VechileCard';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 // Define the type for props
-type CommentProps = {
+export type CommentProps = {
   comments: {
-    id: number;
-    userPic: string;
-    username: string;
-    contributions: number;
-    visited: string;
-    comment: string;
-  }[];
+    id : number;
+        body: string;
+        createAt: string;
+        language: string;
+        user:{
+            id: number;
+            email: string;
+            profile:{
+                id: number;
+                firstName:string;
+                lastName:string;
+                avatar: string;
+
+            }
+          }
+        }[]
 };
 
 const renderStars = (starUrl: string) => {
@@ -58,22 +70,6 @@ const CommentSection: React.FC<CommentProps> = ({ comments }) => {
   return (
     <View>
       <Text style={styles.headerText}>{t('Comments')}</Text>
-      {comments.map((comment) => (
-        <View key={comment.id} style={styles.box}>
-          <View style={{flexDirection: 'row'}}>
-            <Image source={{ uri: comment.userPic }} style={styles.userPic} />
-            <View style={styles.userInfoContainer}>
-              <Text style={styles.usernameText}>{comment.username}</Text>
-              <Text style={styles.contributionsText}>{comment.contributions} {t('contributions')}</Text>
-              <View style={styles.starsContainer}>
-                {renderStars(yellowStarImageUrl)}
-              </View>
-              <Text style={styles.visitedText}>{t('Visited')}: {comment.visited}</Text>
-            </View>
-          </View>
-          <Text style={styles.comment}>{comment.comment}</Text>
-        </View>
-      ))}
       <View style={styles.container2}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -83,16 +79,32 @@ const CommentSection: React.FC<CommentProps> = ({ comments }) => {
           />
         </View>
       </View>
-      <View style={styles.ratingContainer}>
-        <Text style={styles.rating}>{t('Recommend')}</Text>
-          {renderWhiteStars(whiteStarImageUrl)}
-        <TouchableOpacity style={styles.submitBox}>
-          <Text style={styles.submitText}>{t('Submit')}</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={styles.locationBox}>
-          <Text style={styles.locationText}>{t('See Location')}</Text>
-        </TouchableOpacity>
+  
+      <SubmitButtonComponent
+						title='Submit'
+						fullWidth
+            style={{ marginHorizontal: scale(12), height: verticalScale(33)}}
+						onPress={() => {}}
+					/>
+     
+      
+      {comments.map((comment) => (
+        
+        <View key={comment.id} style={styles.box}>
+          <View style={{flexDirection: 'row'}}>
+            <Image source={{ uri: comment.user.profile.avatar }} style={styles.userPic} />
+            <View style={styles.userInfoContainer}>
+              <Text style={styles.usernameText}>{comment.user.profile.firstName}</Text>
+              
+
+              <Text style={styles.visitedText}>{t('Visited')}: {comment.createAt}</Text>
+            </View>
+          </View>
+          <Text style={styles.comment}>{comment.body}</Text>
+        </View>
+      ))}
+      
+
     </View>
   );
 };
