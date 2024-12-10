@@ -6,40 +6,59 @@ import {
 	FlatList,
 	TouchableOpacity,
 	ScrollView,
+	RefreshControl,
 } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 import { COLORS } from '@/constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SubmitButtonComponent from '../SubmitButton';
 import InputComponent from './inputComponent';
 import { FormProvider, useForm } from 'react-hook-form';
 import { appointment } from '@/types/appointmnet-report';
 import { useTranslation } from 'react-i18next';
 import {
+	postAppointment,
 	useGetResposible,
 	useGetScheduleSlots,
 } from '@/services/api/appointmnet';
-import { scheduleSlotsValues } from '@/types/appointment.type';
+import {
+	createAppointmentValues,
+	scheduleSlotsValues,
+} from '@/types/appointment.type';
+import { useProfile } from '@/services/api/profile';
+import Loading from '../Loading';
 
 const Available = () => {
 	const { i18n, t } = useTranslation();
 	const lang = i18n.language.toUpperCase();
-	const [selectedDay, setSelectedDay] = useState<string>('Mon');
-	const [selectedTime, setSelectedTime] = useState<string>();
-
-	const { resposibleData } = useGetResposible(16);
-	const { scheduleData, isLoading, isFetching, refetch } =
-		useGetScheduleSlots();
+	const [selectedDay, setSelectedDay] = useState<string>('Monday');
+	const [selectedTime, setSelectedTime] = useState<string>('00:00');
+	const [selectedDate, setSelectedDate] = useState<string>('');
+	const { profileData } = useProfile();
+	const userId = profileData?.data.data.user.id;
+	const { resposibleData, refetch: refetchResponsible } = useGetResposible(16);
+	const {
+		scheduleData,
+		isLoading,
+		isFetching,
+		refetch: refetchSlots,
+	} = useGetScheduleSlots();
 	const resposible = resposibleData?.data.data;
 	const slots = scheduleData?.data.data || [];
+	// Fetch data when the component mounts
+	useEffect(() => {
+		refetchResponsible();
+		refetchSlots();
+	}, [refetchResponsible, refetchSlots]);
 
 	const reformatData = (data: scheduleSlotsValues[]) => {
 		return data.flatMap((dayItem) =>
 			dayItem.availabilities.map((availability, index) => ({
 				id: availability.id, // or `index + 1` if you prefer a sequential ID
 				startTime: availability.startTime,
+				date: dayItem.date,
 				day:
 					dayItem.language === lang
 						? dayItem.day
@@ -63,11 +82,37 @@ const Available = () => {
 	const formattedSlots = reformatData(slots);
 	const filtertime = formattedSlots.filter((item) => item.day === selectedDay);
 
-	const methods = useForm<appointment>({
+	const { mutateAppointment, isPending } = postAppointment(
+		userId ? +userId : 0
+	);
+
+	const methods = useForm<createAppointmentValues>({
 		defaultValues: {
 			purpose: '',
 		},
 	});
+
+	const onSubmit = (inputData: createAppointmentValues) => {
+		console.log(
+			'Appointment form: ',
+			inputData,
+			selectedDay,
+			selectedTime,
+			selectedDate
+		);
+		const data: createAppointmentValues = {
+			purpose: inputData.purpose,
+			language: lang,
+			appointmentWith: `${resposible?.profile.firstName} ${resposible?.profile.lastName}`,
+			date: selectedDate,
+			startTime: selectedTime,
+		};
+		console.log(data);
+		mutateAppointment(data);
+	};
+	if (!resposible) {
+		return <Loading />;
+	}
 
 	return (
 		<ScrollView style={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
@@ -109,7 +154,7 @@ const Available = () => {
 										resposible.profile.description.split('. ').length - 1
 											? '.'
 											: ''}
-										{'\n\n'}
+										{'\n'}
 									</Text>
 								))
 						: resposible?.profile.translation.description
@@ -187,7 +232,12 @@ const Available = () => {
 								},
 							]}
 						>
-							<TouchableOpacity onPress={() => setSelectedTime(item.startTime)}>
+							<TouchableOpacity
+								onPress={() => {
+									setSelectedTime(item.startTime);
+									setSelectedDate(item.date);
+								}}
+							>
 								<Text
 									style={[
 										styles.scheduleText,
@@ -206,23 +256,27 @@ const Available = () => {
 				<View style={{ marginVertical: verticalScale(10) }}>
 					<Text style={styles.schedule}>{t('purpose')}</Text>
 				</View>
-				<FormProvider {...methods}>
-					<InputComponent
-						name='purpose'
-						text=''
-						multiline={true}
-						numberOfLines={4}
-						height={100}
-						inputType='purpose'
-						returnKeyType='done'
-					/>
+				{isPending ? (
+					<Loading />
+				) : (
+					<FormProvider {...methods}>
+						<InputComponent
+							name='purpose'
+							text=''
+							multiline={true}
+							numberOfLines={4}
+							height={100}
+							inputType='purpose'
+							returnKeyType='done'
+						/>
 
-					<SubmitButtonComponent
-						title='Make Appointment'
-						fullWidth
-						onPress={() => {}}
-					/>
-				</FormProvider>
+						<SubmitButtonComponent
+							title='Make Appointment'
+							fullWidth
+							onPress={methods.handleSubmit(onSubmit)}
+						/>
+					</FormProvider>
+				)}
 			</View>
 		</ScrollView>
 	);

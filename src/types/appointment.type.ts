@@ -36,3 +36,39 @@ export type responsibleValues = {
 		};
 	};
 };
+
+export type createAppointmentValues = {
+	date: string;
+	startTime: string;
+	language: string;
+	purpose: string;
+	appointmentWith: string;
+};
+
+export type userAppointmentValues = {
+	id: number;
+	purpose: string;
+	status: string;
+	appointmentWith: string;
+	language: string;
+	startTime: string;
+	endTime: string;
+	translations: {
+		id: number;
+		purpose: string;
+		status: string;
+		appointmentWith: string;
+		language: string;
+	}[];
+	day: {
+		id: number;
+		date: string;
+		day: string;
+		language: string;
+		translations: {
+			id: number;
+			day: string;
+			language: string;
+		}[];
+	};
+};
