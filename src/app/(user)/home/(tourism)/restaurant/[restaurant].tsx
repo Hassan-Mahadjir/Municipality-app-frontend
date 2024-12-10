@@ -5,9 +5,10 @@ import {
 	Image,
 	Dimensions,
 	ScrollView,
+	StatusBar,
 } from 'react-native';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/services/Header';
 import ghostown from '../../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
@@ -16,7 +17,10 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import CommentSection from '@/components/tourism/CommentSection';
 import commentsData from '../../../../../assets/data/restaurantComments.json';
 import { useTranslation } from 'react-i18next';
+import { COLORS } from '@/constants/Colors';
 import { useRestaurant } from '@/services/api/tourism';
+import VechileCard from '@/components/services/VechileCard';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
@@ -35,40 +39,50 @@ const restaurant = () => {
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			{/* Header of the page */}
+			<StatusBar barStyle={'dark-content'} />
 			<View>
 				<Header
 					title={restinfo?.name || t('defaultTitle')}
 					backgroundImage={{
 						uri: restinfo?.images?.[0]?.imageUrl || 'default-image-url',
+						
 					}}
+					
 					onBackPress={() => router.back()}
 				/>
-				<View style={styles.shadowContainer}>
-					<FlatList
-						data={ghostown}
-						keyExtractor={(item, index) => index.toString()}
-						contentContainerStyle={{ justifyContent: 'center' }}
-						renderItem={({ item }) => (
-							<View
-								style={{
-									flexDirection: 'row',
-									justifyContent: 'center',
-									width: screenWidth,
-									height: 30,
-								}}
-							>
-								{Array.from({ length: 5 }).map((_, index) => (
-									<Image
-										key={index}
-										source={{ uri: item.stars }}
-										style={styles.starImage}
-									/>
-								))}
-							</View>
-						)}
-					/>
-					<Text style={styles.starText}>2,597 {reviews}</Text>
-				</View>
+<View style={styles.shadowContainer}>
+	<View style={{
+     borderWidth: 2, // Orange border
+	 borderColor: '#F1722A', // Orange color for the border
+	 backgroundColor: '#fff', // White background
+	 borderRadius: 10, // Rounded corners
+	 paddingHorizontal: verticalScale(10), // Space inside the rectangle
+	 paddingVertical: verticalScale(5),
+	 alignSelf: 'flex-start', // Makes the rectangle shrink to fit its content
+	 minWidth: verticalScale(370),
+	  marginTop: verticalScale(8),
+	  marginLeft:verticalScale(6)
+    }}>
+  <View
+    style={{
+		flexDirection: 'row',
+        alignItems: 'center', // Center align icon and text vertically
+        justifyContent: 'flex-start', // Ensure elements are aligned to the start
+		marginLeft: verticalScale(100),
+		marginBottom: verticalScale(3)
+
+    }}
+  >
+    <Ionicons
+      name="location-sharp"
+      size={24}
+      color="#F1722A"
+      style={{ marginRight: verticalScale(6) ,marginTop: verticalScale(10)}} // Adds space between the icon and the text
+    />
+    <Text style={styles.locationText}>{restinfo?.location}</Text>
+  </View>
+</View></View>
+
 			</View>
 			{/* Body of the page */}
 			<ScrollView style={{ flexGrow: 1 }}>
@@ -119,10 +133,10 @@ const restaurant = () => {
 					style={{
 						flexDirection: 'row',
 						margin: scale(15),
-						marginTop: verticalScale(45),
+						marginTop: verticalScale(55),
 					}}
 				>
-					<Text style={{ color: '#F1722A', fontSize: 18, fontWeight: '600' }}>
+					<Text style={{ color: '#F1722A', fontSize: 18, fontWeight: '600' , }}>
 						{phoneNo}:{' '}
 					</Text>
 					<Text style={{ color: '#4E7E95', fontSize: 18 }}>
@@ -130,7 +144,7 @@ const restaurant = () => {
 					</Text>
 				</View>
 
-				<CommentSection comments={commentsData} />
+				{/* <CommentSection comments={commentsData} /> */}
 			</ScrollView>
 		</SafeAreaView>
 	);

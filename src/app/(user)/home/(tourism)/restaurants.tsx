@@ -16,6 +16,7 @@ export default function Restaurants() {
 		useState<RestaurantValues[]>(rest);
 	const searchbyplacename = t('searchbyplacename');
 	const restaurant = t('restaurant');
+	console.log(rest)
 	return (
 		<View>
 			<Stack.Screen options={{ title: restaurant }} />
@@ -30,6 +31,7 @@ export default function Restaurants() {
 				keyExtractor={(item, index) => index.toString()}
 				renderItem={({ item }) => (
 					<View style={styles.itemContainer}>
+						<TouchableOpacity onPress={() => router.push(`./restaurant/${item.id}`)}>
 						<Image
 							source={{ uri: item.images[0].imageUrl }}
 							style={styles.pageImage}
@@ -37,7 +39,7 @@ export default function Restaurants() {
 						<TouchableOpacity
 							onPress={() => router.push(`./restaurant/${item.id}`)}
 						>
-							<Text style={styles.imageText}>{item.name}</Text>
+							<Text style={styles.imageText}>{item.name}</Text></TouchableOpacity>
 						</TouchableOpacity>
 					</View>
 				)}

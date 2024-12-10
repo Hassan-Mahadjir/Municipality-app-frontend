@@ -17,7 +17,7 @@ const tourismLayout = () => {
 		>
 			<Stack.Screen name='index' options={{ headerShown: false }} />
 			<Stack.Screen name='[place]' options={{ headerShown: false }} />
-			<Stack.Screen name='restaurant' options={{ headerShown: true }} />
+			<Stack.Screen name='restaurant' options={{ headerShown: false }} />
 			<Stack.Screen name='historicalPlaces' options={{ headerShown: true }} />
 			<Stack.Screen name='restaurants' options={{ headerShown: true }} />
 			<Stack.Screen name='paymentPoints' options={{ headerShown: true }} />

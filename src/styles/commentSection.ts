@@ -60,7 +60,8 @@ export const styles = StyleSheet.create({
       inputContainer: {
         borderWidth: 1,
         borderColor: '#F1722A',
-        borderRadius: 5
+        borderRadius: 5,
+        height: verticalScale(40),
       },
       textInput: {
         padding: 10
@@ -89,9 +90,10 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: verticalScale(120),
       },
       submitText: {
-        fontSize: 22,
+        fontSize: 20,
         color: 'white',
       },
       locationBox: {
