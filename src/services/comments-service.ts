@@ -1,7 +1,7 @@
 import { AppResponse } from '@/types/common.type';
 import http from './api/http';
 import BaseService from './base-service';
-import { CommentValues } from '@/types/comments.type';
+import { CommentValues, PostcommValues } from '@/types/comments.type';
 
 class CommentService extends BaseService {
 	async getComments(type: string, serviceid: number) {
@@ -10,5 +10,12 @@ class CommentService extends BaseService {
 		);
 		return response;
 	}
-}
+	async postComment(data: PostcommValues, userId: number) {
+		const response = await http.post<AppResponse<PostcommValues>>(
+			`comment/${userId}`,
+			data
+		);
+
+		return response;
+	}}
 export default new CommentService();

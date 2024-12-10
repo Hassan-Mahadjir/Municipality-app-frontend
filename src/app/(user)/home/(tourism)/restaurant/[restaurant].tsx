@@ -21,6 +21,7 @@ import { COLORS } from '@/constants/Colors';
 import { useRestaurant } from '@/services/api/tourism';
 import VechileCard from '@/components/services/VechileCard';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useComments } from '@/services/api/comments';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
@@ -35,6 +36,8 @@ const restaurant = () => {
 	const lang = i18n.language.toUpperCase();
 	const { restData, isLoading } = useRestaurant(+restaurant);
 	const restinfo = restData?.data.data;
+	const { commentData } = useComments('restaurant', +restaurant);
+	const data = commentData?.data.data;
 
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
@@ -144,7 +147,7 @@ const restaurant = () => {
 					</Text>
 				</View>
 
-				{/* <CommentSection comments={commentsData} /> */}
+				<CommentSection comments={data?.historicalPlaceComments|| []} />
 			</ScrollView>
 		</SafeAreaView>
 	);

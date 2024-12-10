@@ -18,4 +18,12 @@ export type CommentValues = {
 			};
 		};
 	}[];
+
 };
+export type PostcommValues={
+    historicalPlaceId?: number;
+    restaurantId?: number;
+    body: string;
+    commentedOn:string;
+    recommenation:number;
+}

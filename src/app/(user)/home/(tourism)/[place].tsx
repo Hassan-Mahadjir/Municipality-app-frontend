@@ -19,11 +19,13 @@ import ImagesContainer from '@/components/tourism/imagesContainer';
 import CommentSection, {
 	CommentProps,
 } from '@/components/tourism/CommentSection';
+import { FormProvider, useForm } from 'react-hook-form';
 import commentsData from '../../../../assets/data/comments.json';
 import { useTranslation } from 'react-i18next';
 import { usePlace } from '@/services/api/tourism';
 import { useComments } from '@/services/api/comments';
 import { Ionicons } from '@expo/vector-icons';
+import { PostcommValues } from '@/types/comments.type';
 
 // Function to split text into paragraphs
 const splitTextIntoParagraphs = (text: string) => {
@@ -76,6 +78,7 @@ const Place = () => {
 		: [historyParagraphs[0]];
 	// console.log(commentData);
 
+	
 	return (
 		<SafeAreaView style={{ flex: 1 }}>
 			{/* Header */}
@@ -97,7 +100,7 @@ const Place = () => {
 							backgroundColor: '#fff', // White background
 							borderRadius: 10, // Rounded corners
 							paddingHorizontal: scale(10), // Space inside the rectangle
-							paddingVertical: verticalScale(5),
+						
 							alignSelf: 'center', // Makes the rectangle shrink to fit its content
 							minWidth: scale(320),
 							marginTop: verticalScale(8),
@@ -109,7 +112,7 @@ const Place = () => {
 								flexDirection: 'row',
 								alignItems: 'center', // Center align icon and text vertically
 								justifyContent: 'flex-start', // Ensure elements are aligned to the start
-								marginLeft: verticalScale(100),
+								
 								marginBottom: verticalScale(3),
 							}}
 						>
@@ -119,7 +122,7 @@ const Place = () => {
 								color='#F1722A'
 								style={{
 									marginRight: verticalScale(6),
-									marginTop: verticalScale(10),
+									marginVertical: verticalScale(10),
 								}} // Adds space between the icon and the text
 							/>
 							<Text style={styles.locationText}>{placeinfo?.location}</Text>

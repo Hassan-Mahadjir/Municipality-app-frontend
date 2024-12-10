@@ -13,7 +13,8 @@ type CustomInputProps = TextInputProps & {
 		| 'purpose'
 		| 'message'
 		| 'subject'
-		| 'location';
+		| 'location'
+		| 'comment'
 	rules?: any;
 	returnKeyType?: TextInputProps['returnKeyType'];
 	onSubmitEditing?: () => void;
@@ -57,6 +58,8 @@ const InputComponent = forwardRef<TextInput, CustomInputProps>(
 					return 'Enter the subject';
 				case 'location':
 					return 'Enter your location';
+					case 'comment':
+					return 'Enter a comment';
 				default:
 					return '';
 			}
