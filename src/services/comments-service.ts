@@ -4,11 +4,11 @@ import BaseService from './base-service';
 import { CommentValues } from '@/types/comments.type';
 
 class CommentService extends BaseService {
-	async getComments(type:string, serviceid:number) {
+	async getComments(type: string, serviceid: number) {
 		const response = await http.get<AppResponse<CommentValues>>(
 			`comment/${type}/${serviceid}`
 		);
 		return response;
 	}
 }
-    export default new CommentService();
+export default new CommentService();

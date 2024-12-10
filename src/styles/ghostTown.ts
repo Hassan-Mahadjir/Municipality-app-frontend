@@ -47,27 +47,27 @@ export const styles = StyleSheet.create({
 		position: 'absolute',
 		top: verticalScale(8),
 		left: scale(40),
-		marginLeft: verticalScale(-7)
+		marginLeft: verticalScale(-7),
 	},
 	weekText: {
 		color: '#F1722A',
 		fontSize: 18,
 		marginTop: verticalScale(5),
-		marginLeft: verticalScale(-7)
+		marginLeft: verticalScale(-7),
 	},
 	timeText: {
 		color: '#4E7E95',
 		fontSize: 16,
 		marginTop: verticalScale(1),
 		marginBottom: verticalScale(-20),
-		marginLeft: verticalScale(-7)
+		marginLeft: verticalScale(-7),
 	},
 
 	historyText: {
 		fontSize: 18,
 		color: '#F1722A',
 		fontWeight: '600',
-	
+
 		marginTop: verticalScale(10),
 	},
 	classicText: {
@@ -77,13 +77,13 @@ export const styles = StyleSheet.create({
 		fontWeight: 'normal',
 		textAlign: 'justify',
 		color: 'black',
-		
+
 		marginRight: scale(15),
 	},
-	locationText:{
-		textAlign:'center',
+	locationText: {
+		textAlign: 'center',
 		fontSize: moderateScale(18),
-		marginTop:verticalScale(10),
+		paddingVertical: verticalScale(10),
 	},
 	orangeText: {
 		fontSize: 14,
