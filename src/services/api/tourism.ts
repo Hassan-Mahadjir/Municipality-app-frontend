@@ -45,5 +45,15 @@ export const useRestaurant = (id: number) => {
   console.log('Fetched Restaurant Data:', restData);
   return { restData, refetch, isLoading, isFetching, ...props };
 };
+export const usePayment = () => {
+  const { data: paymentData, ...props } = useQuery({
+      queryFn: () => {
+          return TourismService.getPaymentPoint();
+      },
+      queryKey: ['paymentPoint'],
+  });
+
+  return { paymentData, ...props };
+};
 
   

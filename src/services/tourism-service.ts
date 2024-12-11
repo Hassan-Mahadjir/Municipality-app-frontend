@@ -1,7 +1,7 @@
 import { AppResponse } from '@/types/common.type';
 import http from './api/http';
 import BaseService from './base-service';
-import { PlaceValues, RestaurantValues } from '@/types/tourism.type';
+import { PaymentValues, PlaceValues, RestaurantValues } from '@/types/tourism.type';
 
 class TourismService extends BaseService {
 	async getPlaces() {
@@ -26,6 +26,16 @@ class TourismService extends BaseService {
 	async getOneRestaurant(id: number) {
 		const response = await http.get<AppResponse<RestaurantValues>>(
 			`/tourism/restaurant/${id}` // Ensure this is correct
+		);
+		return response;
+	}
+
+
+
+
+	async getPaymentPoint() {
+		const response = await http.get<AppResponse<PaymentValues[]>>(
+			'/tourism/payment-point' // Ensure this is correct
 		);
 		return response;
 	}

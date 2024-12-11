@@ -40,6 +40,12 @@ export type RestaurantValues = {
 		location: string;
         language:string;
 	}[];
+}
 
 
+export type PaymentValues = {
+	id:number;
+	branch: string;
+	office: string;
+	phone:string;
 }

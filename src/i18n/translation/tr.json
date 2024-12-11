@@ -69,7 +69,7 @@
 	"phoneNo": "Telefon Numarası",
 	"Comments": "Yorumlar",
 	"contributions": "Katkılar",
-	"Visited": "Ziyaret Edildi",
+	"Visited": "Gönderildi",
 	"addComment": "Bir yorum ekleyin...",
 	"Recommend": "Tavsiye Et",
 	"Submit": "Gönder",
@@ -114,7 +114,7 @@
 	"map": "HARİTA",
 	"branch": "Şube",
 	"office": "Ofis",
-	"no": "No",
+	"phone": "Telefon",
 	"seeLocation": "Konumu Gör",
 
 	"traffic": "Trafik",
@@ -179,5 +179,6 @@
 	"scheduleTime": "Planlanan Saat",
 	"purpose": "Randevu Amacı",
 	"date": "Tarih",
-	"with": "Kişi"
+	"with": "Kişi",
+	"searchbypointname":"Ödeme noktasına göre arama"
 }

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { scale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
     map: {
@@ -16,8 +16,9 @@ export const styles = StyleSheet.create({
         borderRadius: 10
     },
     box: {
-        padding: scale(10),
-        margin: scale(10),
+        
+        marginHorizontal: scale(10),
+        marginVertical: verticalScale(8),
         borderRadius: 10,
         backgroundColor: 'white',
         shadowColor: '#000',
@@ -28,22 +29,23 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     pinImage: {
-        height: verticalScale(100),
-        width: scale(100),
-        padding: scale(15),
+        height: verticalScale(70),
+        width: scale(70),
+        padding: scale(16),
     },
     locationText: {
-        fontSize: 16,
+        fontSize: moderateScale(14),
         color: '#F1722A',
+        marginLeft: scale(12)
     },
     orangeText: {
-        fontSize: 16,
+        fontSize: moderateScale(16),
         color: '#F1722A',
-        padding: scale(8)
+        padding: scale(6)
     },
     blueText: {
-        fontSize: 16,
+        fontSize: moderateScale(15),
         color: '#4E7E95',
-        padding: scale(8)
+        padding: scale(6)
     }
 })

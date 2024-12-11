@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 3,
         elevation: 3,
+        marginBottom: verticalScale(-5)
     },
     userInfoContainer: {               
       marginLeft: scale(15)
@@ -27,7 +28,8 @@ export const styles = StyleSheet.create({
         width: scale(50),
         height: verticalScale(50),
         borderRadius: verticalScale(25),
-        resizeMode: 'contain',
+        resizeMode: 'cover',
+        marginTop: verticalScale(-7)
       },
       usernameText: {
         fontSize: 14,
@@ -48,11 +50,12 @@ export const styles = StyleSheet.create({
       },
       visitedText: {
         fontSize: 12,
-        color: '#888'
+        color: '#888',
+        marginTop:verticalScale(5),
       },
       comment: {
         fontSize: 16,
-        marginVertical: verticalScale(10),
+        // marginVertical: verticalScale(10),
       },
       container2: {
         padding: 15

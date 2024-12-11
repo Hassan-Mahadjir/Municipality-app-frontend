@@ -70,7 +70,7 @@
 	"phoneNo": "Phone Number",
 	"Comments": "Comments",
 	"contributions": "contributions",
-	"Visited": "Visited",
+	"Visited": "Posted",
 	"addComment": "Add a comment...",
 	"Recommend": "Recommend",
 	"Submit": "Submit",
@@ -114,7 +114,7 @@
 	"map": "MAP",
 	"branch": "Branch",
 	"office": "Office",
-	"no": "No",
+	"phone": "Phone",
 	"seeLocation": "See Location",
 
 	"traffic": "Traffic",
@@ -181,5 +181,6 @@
 	"scheduleTime": "Schedule Time",
 	"purpose": "Purpose of appointment",
 	"date": "Date",
-	"with": "With"
+	"with": "With",
+	"searchbypointname":"Search by payment point"
 }

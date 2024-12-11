@@ -1,28 +1,44 @@
-import { View, Text, Image, Linking, ScrollView } from 'react-native';
-import React from 'react';
+import { View, Text, Image, Linking, ScrollView, RefreshControl } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import paymentPoints from '../../../../assets/data/paymentPoints.json';
 import { Stack } from 'expo-router';
 import SearchField from '@/components/services/Search';
 import { useTranslation } from 'react-i18next';
 import { styles } from '@/styles/paymentPoints';
 import { TouchableOpacity } from 'react-native';
+import { scale } from 'react-native-size-matters';
+import { usePayment, usePlaces } from '@/services/api/tourism';
+import { PaymentValues } from '@/types/tourism.type';
 
 export default function PaymentPoints() {
 	const { t } = useTranslation();
-	const searchbyplacename = t('searchbyplacename');
+	const searchbyplacename = t('searchbypointname');
+    const { paymentData, isLoading, refetch, isFetching } = usePayment();
+    const pionts = paymentData?.data.data || [];
+    const [filteredPoints, setFilteredPoints] =
+	useState<PaymentValues[]>(pionts);
+	const [searchQuery, setSearchQuery] = useState('');
+    useEffect(() => {
+		if (searchQuery.trim() === '') {
+			setFilteredPoints(pionts);
+		} else {
+			setFilteredPoints(
+				pionts.filter((pionts) =>
+					pionts.branch.toLowerCase().includes(searchQuery.toLowerCase())
+				)
+			);
+		}
+	}, [pionts, searchQuery]);
+	const onRefresh = async () => {
+		await refetch();
+	};
 
     const handlePress = () => {
         const url = 'https://www.google.com/maps/d/u/0/viewer?mid=1MOJS9QrCHWNZCqD-79OaEkiacqrNuAmC&femb=1&ll=35.24891578265986%2C33.669542874735434&z=10'; 
         Linking.openURL(url).catch(err => console.error('An error occurred', err));
     };
 
-    type PaymentPoint = {
-        branch: string;
-        office: string;
-        'no.': string;
-        location: string;
-        seeLocation: string;
-    };
+    
 
     const handleSeeLocation = (url: string) => {
         if (url) {
@@ -32,7 +48,7 @@ export default function PaymentPoints() {
         }
     };
 
-    const renderPaymentPoint = ({ item }: {item: PaymentPoint}) => (
+    const renderPaymentPoint = ({ item }: {item: PaymentValues}) => (
         <View style={styles.box}>
             <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                 <Image
@@ -41,31 +57,31 @@ export default function PaymentPoints() {
                 }}
                 style={styles.pinImage}
                 />
-                <TouchableOpacity onPress={() => handleSeeLocation(item.seeLocation)}>
+                <TouchableOpacity onPress={() => handleSeeLocation("")}>
                     <Text style={styles.locationText}>{t('seeLocation')}</Text>
                 </TouchableOpacity>
             </View>
-            <View style={{flexDirection: 'column'}}>
+            <View style={{flexDirection: 'column',marginLeft:scale(14)}}>
                 <Text style={styles.orangeText}>{t('branch')}:</Text>
                 <Text style={styles.orangeText}>{t('office')}:</Text>
-                <Text style={styles.orangeText}>{t('no')}:</Text>
-                <Text style={styles.orangeText}>{t('location')}:</Text>
+                <Text style={styles.orangeText}>{t('phone')}:</Text>
+              
             </View>
             <View style={{flexDirection: 'column'}}>
                 <Text style={styles.blueText}>{item.branch}</Text>
                 <Text style={styles.blueText}>{item.office}</Text>
-                <Text style={styles.blueText}>{item['no.']}</Text>
-                <Text style={styles.blueText}>{item.location}</Text>
+                <Text style={styles.blueText}>{item.phone}</Text>
+               
             </View>
         </View>
       );
     
 	return (
-		<ScrollView style={{ flex: 1 }}>
+		<ScrollView style={{ flex: 1 }} refreshControl={<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />}>
 			<Stack.Screen options={{ title: t('paymentPoints') }} />
 			<SearchField
 				placeholder={searchbyplacename}
-				onChangeText={(text) => console.log('Search text:', text)}
+				onChangeText={setSearchQuery}
 			/>
             <Text style={styles.map}>{t('map')}</Text>
             <TouchableOpacity onPress={handlePress}>
@@ -74,7 +90,7 @@ export default function PaymentPoints() {
                     style={styles.mapImage}
                 />
             </TouchableOpacity>
-			{paymentPoints.map((item, index) => (
+			{filteredPoints.map((item, index) => (
                 <React.Fragment key={index.toString()}>
                     {renderPaymentPoint({ item })}
                 </React.Fragment>

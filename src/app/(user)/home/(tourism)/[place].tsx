@@ -1,3 +1,4 @@
+//[place].tsx
 import {
 	View,
 	Text,
@@ -54,9 +55,9 @@ const Place = () => {
 	const { place } = useLocalSearchParams();
 	const { i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
-	const { placeData, isLoading } = usePlace(+place);
+	const { placeData, isLoading ,refetch} = usePlace(+place);
 	const placeinfo = placeData?.data.data;
-	const { commentData } = useComments('historicalPlace', +place);
+	const { commentData,refetch:refetchcomment } = useComments('historicalPlace', +place);
 	const data = commentData?.data.data;
 
 	// Return early if no place information is available
@@ -205,7 +206,12 @@ const Place = () => {
 					}}
 				>
 					<ScrollView nestedScrollEnabled>
-						<CommentSection comments={data?.historicalPlaceComments || []} />
+					<CommentSection 
+  comments={data?.historicalPlaceComments || []} 
+  serviceId={+place || 0} 
+  refetch={refetch}
+  refetchcomment={refetchcomment}
+/>
 					</ScrollView>
 				</View>
 			</ScrollView>
