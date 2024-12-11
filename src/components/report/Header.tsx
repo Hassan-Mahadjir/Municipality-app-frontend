@@ -5,19 +5,21 @@ import { useRouter } from 'expo-router';
 import { styles } from '@/styles/Appointment-report-Header';
 import { verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
 	selectedCategory: string;
 	setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const category = ['Report', 'Request'];
-
 const Header: React.FC<HeaderProps> = ({
 	setSelectedCategory,
 	selectedCategory,
 }) => {
 	const router = useRouter();
+	const { t } = useTranslation();
+
+	const category = [t('report'), t('request')];
 
 	return (
 		<View style={styles.headerContainer}>

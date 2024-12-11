@@ -179,5 +179,15 @@
 	"scheduleTime": "Planlanan Saat",
 	"purpose": "Randevu Amacı",
 	"date": "Tarih",
-	"with": "Kişi"
+	"with": "Kişi",
+	"department": "Bölüm",
+	"category": "Kategori",
+	"message": "Mesaj",
+	"uploadImages": "Görseller Yükle (isteğe bağlı)",
+	"report": "Rapor",
+	"request": "Talep",
+	"chooseDepartment": "Departman seç",
+	"chooseCategory": "Kategori seç",
+	"searchDepartment": "Departman ara",
+	"searchCategory": "Kategori ara"
 }

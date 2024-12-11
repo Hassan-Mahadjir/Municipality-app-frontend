@@ -181,5 +181,15 @@
 	"scheduleTime": "Schedule Time",
 	"purpose": "Purpose of appointment",
 	"date": "Date",
-	"with": "With"
+	"with": "With",
+	"department": "Department",
+	"category": "Category",
+	"message": "Message",
+	"uploadImages": "Upload Images (optional)",
+	"report": "Report",
+	"request": "Request",
+	"chooseDepartment": "Chooose department",
+	"chooseCategory": "Choose category",
+	"searchDepartment": "Seach department",
+	"searchCategory": "Seach category"
 }

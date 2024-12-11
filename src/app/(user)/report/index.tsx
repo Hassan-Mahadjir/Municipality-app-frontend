@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import Request from '@/components/report/Request';
 import Report from '@/components/report/Report';
+import { useTranslation } from 'react-i18next';
 
 const userReportIndex = () => {
-	const [selectedCategory, setSelectedCategory] = useState<string>('Report');
+	const { t } = useTranslation();
+
+	const [selectedCategory, setSelectedCategory] = useState<string>(t('report'));
 	const renderContent = () => {
 		switch (selectedCategory) {
-			case 'Request':
+			case t('request'):
 				return <Request />;
 			default:
 				return <Report />;

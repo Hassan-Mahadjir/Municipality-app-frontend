@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362379594822",
+    "project_id": "municipality-graduation",
+    "storage_bucket": "municipality-graduation.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362379594822:android:2fb14f604d98d9d13d8e47",
+        "android_client_info": {
+          "package_name": "com.MunicipalityApplicationfrontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDYdsoAj0acO1kmGvySBpFb1KzDZnQJA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
