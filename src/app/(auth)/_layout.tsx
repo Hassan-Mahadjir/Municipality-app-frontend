@@ -8,7 +8,6 @@ export default function AuthLayout() {
 			<Stack.Screen name='signUp' />
 			<Stack.Screen name='verified' />
 			<Stack.Screen name='password' />
-			<Stack.Screen name='google-modal' />
 		</Stack>
 	);
 }

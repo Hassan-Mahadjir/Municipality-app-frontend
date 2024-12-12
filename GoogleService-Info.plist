@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA-lhwl1Cqt-qV-YGIlSH7QH-WYac5haBw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>362379594822</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hmahadjir.MunicipalityApplicationfrontend</string>
+	<key>PROJECT_ID</key>
+	<string>municipality-graduation</string>
+	<key>STORAGE_BUCKET</key>
+	<string>municipality-graduation.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:362379594822:ios:15c8209fe21772623d8e47</string>
+	<key>DATABASE_URL</key>
+	<string>https://municipality-graduation-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
