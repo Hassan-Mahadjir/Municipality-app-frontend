@@ -191,5 +191,25 @@
 	"chooseDepartment": "Chooose department",
 	"chooseCategory": "Choose category",
 	"searchDepartment": "Seach department",
-	"searchCategory": "Seach category"
+	"searchCategory": "Seach category",
+	"logout":"Log Out",
+	"myacc": "My Account",
+	"changestoacc":"Make changes to your account",
+	"langs":"Language" ,
+	"changelang":"Change the language of the app",
+	"pass":"Password",
+	"changepass":"Change your password",
+	"oldpass":"Old Password",
+	"newpass":"New Password",
+	"confirmpass":"Confirm Password",
+	"changep":"Change Password",
+	"firstname":"First Name",
+	"lastname":"Last Name",
+	"gender": "Gender",
+	"dob":"Date of Birth",
+	"address":"Address",
+	"home":"Home",
+	"app":"Appointment",
+	"profile":"Profile"
+	
 }

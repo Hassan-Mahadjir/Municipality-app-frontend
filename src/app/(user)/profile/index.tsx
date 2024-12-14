@@ -21,8 +21,11 @@ import RandomColoredBackground from '@/components/profile/RandomColoredBackgroun
 import LanguagePicker from '@/components/profile/LanguagePicker';
 import { useState } from 'react';
 import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function userProfileIndex() {
+	const { t } = useTranslation();
 	const { profileData } = useProfile();
 	const firstName = profileData?.data.data.firstName;
 	const lastName = profileData?.data.data.lastName || '';
@@ -39,7 +42,7 @@ export default function userProfileIndex() {
 		<ScrollView>
 			<View style={styles.headerContainer}>
 				<View style={styles.logoutContainer}>
-					<Text style={styles.logoutText}>Logout</Text>
+					<Text style={styles.logoutText}>{t('logout')}</Text>
 					<Pressable
 						onPress={() => {
 							removeItem('token');
@@ -78,9 +81,9 @@ export default function userProfileIndex() {
 							color={COLORS.secondary}
 						/>
 						<View style={styles.settingsText}>
-							<Text style={styles.settingsTitleText}>My Account</Text>
+							<Text style={styles.settingsTitleText}>{t('myacc')}</Text>
 							<Text style={{ color: COLORS.gray }}>
-								Make changes to your account
+								{t("changestoacc")}
 							</Text>
 						</View>
 
@@ -97,9 +100,9 @@ export default function userProfileIndex() {
 					<View style={styles.settingsCard}>
 						<FontAwesome name='language' size={34} color={COLORS.secondary} />
 						<View style={styles.settingsText}>
-							<Text style={styles.settingsTitleText}>Language</Text>
+							<Text style={styles.settingsTitleText}>{t('langs')}</Text>
 							<Text style={{ color: COLORS.gray }}>
-								Change the language of the app
+								{t('changelang')}
 							</Text>
 						</View>
 
@@ -121,8 +124,8 @@ export default function userProfileIndex() {
 					<View style={styles.settingsCard}>
 						<MaterialIcons name='password' size={34} color={COLORS.secondary} />
 						<View style={styles.settingsText}>
-							<Text style={styles.settingsTitleText}>Password</Text>
-							<Text style={{ color: COLORS.gray }}>Change your password</Text>
+							<Text style={styles.settingsTitleText}>{t("pass")}</Text>
+							<Text style={{ color: COLORS.gray }}>{t('changepass')}</Text>
 						</View>
 
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />

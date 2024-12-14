@@ -6,6 +6,7 @@ import CustomInputComponent from '@/components/CustomInput';
 import { styles } from '@/styles/password';
 import { useChangePassword } from '@/services/api/auth';
 import { ChangePassword } from '@/types/login.type';
+import { useTranslation } from 'react-i18next';
 
 type FormValues = {
   oldPassword: string;
@@ -14,6 +15,7 @@ type FormValues = {
 };
 
 export default function PasswordScreen() {
+  const { t } = useTranslation();
   const { mutateChangePassword, isPending } = useChangePassword();
   const methods = useForm<FormValues>();
   const { register, setValue, watch, formState: { errors } } = methods;
@@ -34,7 +36,7 @@ export default function PasswordScreen() {
     <FormProvider {...methods}>
       <Stack.Screen options={{ title: 'Change Password' }} />
       <View style={styles.container}>
-        <Text style={styles.label}>Old Password</Text>
+        <Text style={styles.label}>{t('oldpass')}</Text>
         <CustomInputComponent
           name="oldPassword"
           text=""
@@ -47,7 +49,7 @@ export default function PasswordScreen() {
         />
         {errors.oldPassword && <Text style={{ color: 'red', fontSize: 12 }}>{errors.oldPassword.message}</Text>}
 
-        <Text style={styles.label}>New Password</Text>
+        <Text style={styles.label}>{t('newpass')}</Text>
         <CustomInputComponent
           name="newPassword"
           text=""
@@ -60,7 +62,7 @@ export default function PasswordScreen() {
         />
         {errors.newPassword && <Text style={{ color: 'red', fontSize: 12 }}>{errors.newPassword.message}</Text>}
 
-        <Text style={styles.label}>Confirm Password</Text>
+        <Text style={styles.label}>{t('confirmpass')}</Text>
         <CustomInputComponent
           name="confirmPassword"
           text=""
@@ -77,7 +79,7 @@ export default function PasswordScreen() {
           style={styles.button}
           onPress={methods.handleSubmit(onSubmit)}
         >
-          <Text style={styles.buttonText}>Change Password</Text>
+          <Text style={styles.buttonText}>{t('changep')}</Text>
         </TouchableOpacity>
       </View>
     </FormProvider>

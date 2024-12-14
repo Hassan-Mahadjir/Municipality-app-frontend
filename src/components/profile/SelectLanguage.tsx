@@ -50,7 +50,7 @@ export default selectLanguage;
 
 const styles = StyleSheet.create({
 	imageStyle: {
-		width: scale(20),
+		width: scale(28),
 		height: verticalScale(20),
 		paddingRight: 10,
 	},
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(16),
 		textAlign: 'center',
 		marginLeft: scale(100),
-		marginBottom: verticalScale(10),
+		marginBottom: verticalScale(25),
 	},
 	languageContainer: {
 		marginHorizontal: scale(10),

@@ -189,5 +189,26 @@
 	"chooseDepartment": "Departman seç",
 	"chooseCategory": "Kategori seç",
 	"searchDepartment": "Departman ara",
-	"searchCategory": "Kategori ara"
+	"searchCategory": "Kategori ara",
+	"logout":"Çıkış yap",
+	"myacc":"Hesabım",
+	"changestoacc": "Hesabınızda değişiklik yapın",
+	"langs":"Dil",
+	"changelang":"Uygulamanın dilini değiştirin",
+	"pass":"Şifre",
+	"changepass":"Şifrenizi değiştirin",
+	"oldpass":"Eski Şifre",
+	"newpass":"Yeni Şifre",
+	"confirmpass":"Şifreyi Onayla",
+	"changep":"Şifre değiştir",
+	"firstname":"İlk adı",
+	"lastname":"Son adı",
+	"gender": "Cinsiyet",
+	"dob":"Doğum Tarihi",
+	"address":"adres",
+	"home":"Ev",
+	"app":"Randevu",
+	"profile":"Profil"
+
+
 }

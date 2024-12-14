@@ -5,8 +5,10 @@ import { Octicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { moderateScale } from 'react-native-size-matters';
+import { useTranslation } from 'react-i18next';
 
 export default function userLayout() {
+	const { t } = useTranslation();
 	return (
 		<Tabs
 			// used to change default backgroundColor
@@ -20,18 +22,18 @@ export default function userLayout() {
 			}}
 		>
 			<Tabs.Screen
-				name='home'
-				options={{
-					tabBarLabel: 'Home',
-					tabBarIcon: ({ color }) => (
-						<Octicons name='home' size={moderateScale(22)} color={color} />
-					),
-				}}
-			/>
+        name="home"
+        options={{
+          tabBarLabel: t('home'), // Use the translated string here
+          tabBarIcon: ({ color }) => (
+            <Octicons name="home" size={moderateScale(22)} color={color} />
+          ),
+        }}
+      />
 			<Tabs.Screen
 				name='appointment'
 				options={{
-					tabBarLabel: 'Appointment',
+					tabBarLabel: t('app'),
 					tabBarIcon: ({ color }) => (
 						<Fontisto name='date' size={moderateScale(22)} color={color} />
 					),
@@ -40,7 +42,7 @@ export default function userLayout() {
 			<Tabs.Screen
 				name='report'
 				options={{
-					tabBarLabel: 'Report',
+					tabBarLabel: t('report'),
 					tabBarIcon: ({ color }) => (
 						<Ionicons
 							name='alert-circle-outline'
@@ -54,7 +56,7 @@ export default function userLayout() {
 			<Tabs.Screen
 				name='profile'
 				options={{
-					tabBarLabel: 'Profile',
+					tabBarLabel: t('profile'),
 					tabBarIcon: ({ color }) => (
 						<Octicons name='person' size={moderateScale(24)} color={color} />
 					),

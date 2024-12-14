@@ -22,8 +22,10 @@ import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as ImagePicker from 'expo-image-picker';
 import RandomColoredBackground from '@/components/profile/RandomColoredBackground';
+import { useTranslation } from 'react-i18next';
 
 const UserProfile = () => {
+	const { t } = useTranslation();
 	const [images, setImages] = useState<string[]>([]); // Use an array for multiple images
 
 	const pickImage = async () => {
@@ -153,44 +155,44 @@ const UserProfile = () => {
 				<FormProvider {...methods}>
 					<CustomeProfileInput
 						name='firstName'
-						text='First Name'
+						text={t('firstname')}
 						inputType='firstName'
 						defaultValue={firstName}
 					/>
 					<CustomeProfileInput
 						name='lastName'
-						text='Last Name'
+						text={t('lastname')}
 						inputType='lastName'
 						defaultValue={lastName}
 					/>
 					<CustomeProfileInput
 						name='emailaddress'
-						text='Email'
+						text={t('email')}
 						inputType='email'
 						defaultValue={email}
 					/>
 					<PhoneInputComponent />
 					<CustomeProfileInput
 						name='gender'
-						text='Gender'
+						text={t('gender')}
 						inputType='gender'
 						defaultValue={gender}
 					/>
 					<CustomeProfileInput
 						name='dateofBirth'
-						text='Date of Birth'
+						text={t('dob')}
 						inputType='dateofBirth'
 						defaultValue={dateofBirth}
 					/>
 					<CustomeProfileInput
 						name='address'
-						text='Address'
+						text={t('address')}
 						inputType='address'
 						defaultValue={address}
 					/>
 					<CustomeProfileInput
 						name='description'
-						text='Description'
+						text={t('description')}
 						inputType='description'
 						defaultValue={description}
 					/>
