@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "362379594822",
+    "firebase_url": "https://municipality-graduation-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "municipality-graduation",
+    "storage_bucket": "municipality-graduation.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362379594822:android:ac7850a6fbf5678a3d8e47",
+        "android_client_info": {
+          "package_name": "com.hmahadjir.MunicipalityApplicationfrontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDYdsoAj0acO1kmGvySBpFb1KzDZnQJA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

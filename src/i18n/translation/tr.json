@@ -180,5 +180,14 @@
 	"purpose": "Randevu Amacı",
 	"date": "Tarih",
 	"with": "Kişi",
-	"searchbypointname":"Ödeme noktasına göre arama"
+	"department": "Bölüm",
+	"category": "Kategori",
+	"message": "Mesaj",
+	"uploadImages": "Görseller Yükle (isteğe bağlı)",
+	"report": "Rapor",
+	"request": "Talep",
+	"chooseDepartment": "Departman seç",
+	"chooseCategory": "Kategori seç",
+	"searchDepartment": "Departman ara",
+	"searchCategory": "Kategori ara"
 }

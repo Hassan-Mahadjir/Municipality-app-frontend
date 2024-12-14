@@ -182,5 +182,14 @@
 	"purpose": "Purpose of appointment",
 	"date": "Date",
 	"with": "With",
-	"searchbypointname":"Search by payment point"
+	"department": "Department",
+	"category": "Category",
+	"message": "Message",
+	"uploadImages": "Upload Images (optional)",
+	"report": "Report",
+	"request": "Request",
+	"chooseDepartment": "Chooose department",
+	"chooseCategory": "Choose category",
+	"searchDepartment": "Seach department",
+	"searchCategory": "Seach category"
 }

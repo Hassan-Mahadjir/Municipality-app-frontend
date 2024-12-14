@@ -14,15 +14,28 @@
 			"backgroundColor": "#ffffff"
 		},
 		"ios": {
-			"supportsTablet": true
+			"googleServicesFile": "./GoogleService-Info.plist",
+			"supportsTablet": true,
+			"bundleIdentifier": "com.hmahadjir.MunicipalityApplicationfrontend",
+			"infoPlist": {
+				"NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera.",
+				"NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photo library.",
+				"NSLocationWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to access your location while using the app."
+			}
 		},
 		"android": {
+			"googleServicesFile": "./google-services.json",
 			"adaptiveIcon": {
 				"foregroundImage": "./src/assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"permissions": ["android.permission.RECORD_AUDIO"],
-			"package": "com.hmahadjir.MunicipalityApplicationfrontend"
+			"permissions": [
+				"android.permission.RECORD_AUDIO",
+				"android.permission.ACCESS_FINE_LOCATION",
+				"android.permission.CAMERA"
+			],
+			"package": "com.hmahadjir.MunicipalityApplicationfrontend",
+			"versionCode": 1
 		},
 		"web": {
 			"bundler": "metro",
@@ -32,11 +45,32 @@
 		"plugins": [
 			"expo-router",
 			"expo-localization",
+			"@react-native-firebase/app",
 			[
 				"expo-image-picker",
 				{
-					"photosPermission": "The app accesses your photos to let you share them with your friends.",
-					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera"
+					"photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+				}
+			],
+			[
+				"expo-location",
+				{
+					"locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to access your location at all times."
+				}
+			],
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"deploymentTarget": "15.1",
+						"useFrameworks": "static"
+					},
+					"android": {
+						"compileSdkVersion": 34,
+						"targetSdkVersion": 34,
+						"minSdkVersion": 21
+					}
 				}
 			]
 		],
