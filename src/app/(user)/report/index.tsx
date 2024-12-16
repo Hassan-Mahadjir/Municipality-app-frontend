@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import Request from '@/components/report/Request';
 import Report from '@/components/report/Report';
 import { useTranslation } from 'react-i18next';
+import Animal from '@/components/report/Animal';
 
 const userReportIndex = () => {
 	const { t } = useTranslation();
@@ -13,6 +14,8 @@ const userReportIndex = () => {
 		switch (selectedCategory) {
 			case t('request'):
 				return <Request />;
+			case t('animal'):
+				return <Animal />;
 			default:
 				return <Report />;
 		}

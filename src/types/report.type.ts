@@ -18,3 +18,14 @@ export type categoryValues = {
 		language: string;
 	}[];
 };
+
+export type postAnimalReportValues = {
+	title: string;
+	description: string;
+	location: string;
+	contactInfo: string;
+	latitude: string;
+	longitude: string;
+	language: string;
+	imageUrls: string[];
+};

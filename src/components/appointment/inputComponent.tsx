@@ -3,6 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { Text, View, TextInput, TextInputProps } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import useBorderColor from '@/hooks/user-border-color';
+import { useTranslation } from 'react-i18next';
 
 type CustomInputProps = TextInputProps & {
 	name: string;
@@ -15,6 +16,9 @@ type CustomInputProps = TextInputProps & {
 		| 'subject'
 		| 'location'
 		| 'comment'
+		| 'title'
+		| 'description'
+		| 'contactInfo';
 	rules?: any;
 	returnKeyType?: TextInputProps['returnKeyType'];
 	onSubmitEditing?: () => void;
@@ -42,6 +46,7 @@ const InputComponent = forwardRef<TextInput, CustomInputProps>(
 		},
 		ref
 	) => {
+		const { t } = useTranslation();
 		const { control } = useFormContext();
 		const { handleOnBlur, handleOnFocus, isOnFocus, borderColor } =
 			useBorderColor();
@@ -49,17 +54,23 @@ const InputComponent = forwardRef<TextInput, CustomInputProps>(
 		const getPlaceholder = () => {
 			switch (inputType) {
 				case 'report':
-					return 'Enter report';
+					return t('enterReport');
 				case 'purpose':
-					return 'Enter purpose of the appointmnet';
+					return t('enterpurpose');
 				case 'message':
-					return 'Enter message';
+					return t('enterMessage');
 				case 'subject':
-					return 'Enter the subject';
+					return t('enterSubject');
 				case 'location':
-					return 'Enter your location';
-					case 'comment':
-					return 'Enter a comment';
+					return t('enterLocation');
+				case 'comment':
+					return t('enterComment');
+				case 'title':
+					return t('enterTitle');
+				case 'description':
+					return t('enterDescription');
+				case 'contactInfo':
+					return t('enterContactInfo');
 				default:
 					return '';
 			}

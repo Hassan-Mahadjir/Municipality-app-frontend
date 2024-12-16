@@ -6,6 +6,7 @@ import { styles } from '@/styles/Appointment-report-Header';
 import { verticalScale } from 'react-native-size-matters';
 import NewsCategory from '@/components/services/NewsCategory';
 import { useTranslation } from 'react-i18next';
+import { useProfile } from '@/services/api/profile';
 
 interface HeaderProps {
 	selectedCategory: string;
@@ -17,15 +18,17 @@ const Header: React.FC<HeaderProps> = ({
 	selectedCategory,
 }) => {
 	const router = useRouter();
-	const { t } = useTranslation();
-
-	const category = [t('report'), t('request')];
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language;
+	const { profileData } = useProfile();
+	const firstName = profileData?.data.data.firstName;
+	const category = [t('report'), t('request'), t('animal')];
 
 	return (
 		<View style={styles.headerContainer}>
 			<View style={styles.subHeaderContianer}>
 				<Text style={styles.greetMsg}>
-					Hello,<Text style={styles.userName}> Mel</Text>
+					{t('hello')},<Text style={styles.userName}> {firstName}</Text>
 				</Text>
 
 				<View style={[styles.subHeaderContianer, { gap: 25, marginRight: 10 }]}>
@@ -40,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({
 				</View>
 			</View>
 			<View>
-				<Text style={styles.greetMsg}>Let’s improve our city!</Text>
+				<Text style={styles.greetMsg}>{t('reportMessage')}</Text>
 				<FlatList
 					data={category}
 					horizontal={true}

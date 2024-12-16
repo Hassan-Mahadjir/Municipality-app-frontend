@@ -8,7 +8,6 @@ import {
 	FlatList,
 	ScrollView,
 	Alert,
-	Platform,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
@@ -16,17 +15,15 @@ import SubmitButtonComponent from '../SubmitButton';
 import InputComponent from '../appointment/inputComponent';
 import * as ImagePicker from 'expo-image-picker';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import DropdownComponent from './DropDownComponent';
-import { useDepartment } from '@/services/api/municipality';
-import { DepartmentValues } from '@/types/munitipality.type';
+
 import { useTranslation } from 'react-i18next';
-import { categoryValues, postReportValues } from '@/types/report.type';
+import { postAnimalReportValues } from '@/types/report.type';
 import * as Location from 'expo-location';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseConfig from '@/providers/firebase-config'; // Your Firebase config
-import { postReport, useCategory } from '@/services/api/report';
+import { postAnimalReport } from '@/services/api/report';
 import { useProfile } from '@/services/api/profile';
 
 // Initialize Firebase
@@ -48,7 +45,7 @@ const uploadImageToFirebase = async (uri: string) => {
 	}
 };
 
-const Report = () => {
+const Animal = () => {
 	const auth = getAuth(app);
 
 	if (!auth) {
@@ -61,57 +58,14 @@ const Report = () => {
 	const { t, i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
 
-	// Fetch department data
-	const { departmentData } = useDepartment();
-	const departments: DepartmentValues[] = departmentData?.data.data || [];
-
-	const { categoriesData } = useCategory();
-	const categories: categoryValues[] = categoriesData?.data.data || [];
-
 	// get userId
 	const { profileData } = useProfile();
 	const userId = profileData?.data.data.user.id;
 	// muntate report
-	const { mutateReport, isPending } = postReport(userId ? +userId : 0);
+	const { mutateAnimalReport, isPending } = postAnimalReport(
+		userId ? +userId : 0
+	);
 
-	// Format departments for dropdown
-	const formattedDepartments = departments.map((department) => ({
-		label:
-			department.language === lang
-				? department.name
-				: department.translations.find(
-						(translation) => translation.language === lang
-				  )?.name || department.name,
-		value:
-			department.language === lang
-				? department.name
-				: department.translations.find(
-						(translation) => translation.language === lang
-				  )?.name || department.name,
-	}));
-
-	// Format categories for dropdown
-	const formattedCategories = categories.map((category) => ({
-		label:
-			category.language === lang
-				? category.name
-				: category.translations.find(
-						(translation) => translation.language === lang
-				  )?.name || category.name,
-		value:
-			category.language === lang
-				? category.name
-				: category.translations.find(
-						(translation) => translation.language === lang
-				  )?.name || category.name,
-	}));
-
-	const [selectedDepartmentValue, setSelectedDepartmentValue] = useState<
-		string | null
-	>(null);
-	const [selectedCategoryValue, setSelectedCategoryValue] = useState<
-		string | null
-	>(null);
 	const [location, setLocation] = useState<Location.LocationObject | null>(
 		null
 	);
@@ -214,61 +168,70 @@ const Report = () => {
 		setImages((prevImages) => prevImages.filter((image) => image !== uri));
 	};
 
-	const methods = useForm<postReportValues>({});
-	const onSubmit = async (inputData: postReportValues) => {
+	const methods = useForm<postAnimalReportValues>({});
+	const onSubmit = async (inputData: postAnimalReportValues) => {
 		const uploadedImageUrls = await Promise.all(
 			images.map(uploadImageToFirebase)
 		);
 		const validImageUrls = uploadedImageUrls.filter((url) => url !== null);
 
-		const reportData: postReportValues = {
-			message: inputData.message,
-			subject: selectedCategoryValue ? selectedCategoryValue : '',
-			departmentName: selectedDepartmentValue ? selectedDepartmentValue : '',
+		const reportAnimalData: postAnimalReportValues = {
+			title: inputData.title,
+			description: inputData.description,
+			location: inputData.location,
+			contactInfo: inputData.contactInfo,
 			language: lang,
 			latitude: location?.coords.latitude?.toString() ?? '0',
 			longitude: location?.coords.longitude?.toString() ?? '0',
 			imageUrls: validImageUrls,
 		};
-		if (reportData) {
-			mutateReport(reportData);
+		if (reportAnimalData) {
+			mutateAnimalReport(reportAnimalData);
 		}
 
-		console.log(reportData);
+		console.log(reportAnimalData);
 	};
 
 	return (
 		<ScrollView style={{ margin: scale(10) }}>
-			<Text style={{ fontSize: 18, marginBottom: scale(5) }}>
-				{t('department')}
-			</Text>
-			<DropdownComponent
-				data={formattedDepartments}
-				value={selectedDepartmentValue}
-				onChange={(value) => setSelectedDepartmentValue(value)}
-				placeholder={t('chooseDepartment')}
-				searchPlaceholder={t('searchDepartment')}
-			/>
-			<Text style={{ fontSize: 18, marginBottom: scale(5) }}>
-				{t('category')}
-			</Text>
-			<DropdownComponent
-				data={formattedCategories}
-				value={selectedCategoryValue}
-				onChange={(value) => setSelectedCategoryValue(value)}
-				placeholder={t('chooseCategory')}
-				searchPlaceholder={t('searchCategory')}
-			/>
 			<FormProvider {...methods}>
 				<InputComponent
-					name='message'
-					text={t('message')}
+					name='title'
+					text={t('title')}
+					multiline={false}
+					numberOfLines={2}
+					height={50}
+					inputType='title'
+					returnKeyType='next'
+				/>
+				<InputComponent
+					name='description'
+					text={t('description')}
 					multiline={true}
 					numberOfLines={4}
 					height={100}
-					inputType='message'
+					inputType='description'
+					returnKeyType='next'
+				/>
+				<InputComponent
+					name='location'
+					text={t('location')}
+					multiline={false}
+					numberOfLines={2}
+					height={50}
+					inputType='location'
+					returnKeyType='next'
+				/>
+				<InputComponent
+					name='contactInfo'
+					text={t('contactInformation')}
+					multiline={false}
+					numberOfLines={2}
+					height={50}
+					inputType='contactInfo'
 					returnKeyType='done'
 				/>
+
 				{/* Image Upload Section */}
 				<View style={styles.imageUploadSection}>
 					<Text style={styles.imageUploadLabel}>{t('uploadImages')}</Text>
@@ -304,7 +267,7 @@ const Report = () => {
 				</View>
 				<SubmitButtonComponent
 					style={{ marginTop: verticalScale(10) }}
-					title={t('submitReport')}
+					title={t('submitAnimalReport')}
 					fullWidth
 					onPress={methods.handleSubmit(onSubmit)}
 				/>
@@ -313,7 +276,7 @@ const Report = () => {
 	);
 };
 
-export default Report;
+export default Animal;
 
 const styles = StyleSheet.create({
 	imageUploadSection: {
