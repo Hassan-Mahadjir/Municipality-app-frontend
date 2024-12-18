@@ -24,6 +24,7 @@ export const useLogin = () => {
 		onSuccess: async (data) => {
 			// console.log(`success from auth.ts ${data.data.data.accessToken}`);
 			setItem('token', data.data.data.accessToken);
+			setItem('refresh-token', data.data.data.refreshToken);
 			if (await getItem('token')) {
 				router.push('/(user)');
 			}

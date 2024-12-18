@@ -6,4 +6,5 @@ export type AppResponse<T> = {
 export type AuthDataType = {
 	id: number;
 	accessToken: string;
+	refreshToken: string;
 };
