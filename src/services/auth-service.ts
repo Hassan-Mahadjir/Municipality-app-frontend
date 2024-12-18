@@ -27,7 +27,7 @@ class AuthService extends BaseService {
 		return response;
 	}
 	async postSendEmail(data: sendEamilValues) {
-		const response = await http.post<AppResponse<AuthDataType>>(
+		const response = await http.post<AppResponse<sendEamilValues>>(
 			'auth/send-code-email',
 			data
 		);
@@ -49,7 +49,7 @@ class AuthService extends BaseService {
 	}
 	async putChangePassword(data: ChangePassword) {
 		const response = await http.put<AppResponse<AuthDataType>>(
-			'auth/validate-resetCode',
+			'auth/change-password',
 			data
 		);
 		return response;

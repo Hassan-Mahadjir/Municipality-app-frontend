@@ -7,6 +7,8 @@ import {
 	TouchableOpacity,
 	ScrollView,
 	RefreshControl,
+	KeyboardAvoidingView,
+	Platform,
 } from 'react-native';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
@@ -29,6 +31,7 @@ import {
 } from '@/types/appointment.type';
 import { useProfile } from '@/services/api/profile';
 import Loading from '../Loading';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Available = () => {
 	const { i18n, t } = useTranslation();
@@ -115,170 +118,178 @@ const Available = () => {
 	}
 
 	return (
-		<ScrollView style={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
-			<View style={{ flexDirection: 'row' }}>
-				<LinearGradient
-					colors={['rgba(224,224,224,0.9)', 'rgba(255,255,255,0.9)']}
-					style={styles.linearGradientSyley}
-					start={{ x: 0, y: 1 }}
-					end={{ x: 1, y: 0 }}
-				/>
+		<KeyboardAvoidingView
+			style={{ flex: 1 }}
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+		>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={{ flexDirection: 'row' }}>
+					<LinearGradient
+						colors={['rgba(224,224,224,0.9)', 'rgba(255,255,255,0.9)']}
+						style={styles.linearGradientSyley}
+						start={{ x: 0, y: 1 }}
+						end={{ x: 1, y: 0 }}
+					/>
+					<View style={styles.container}>
+						<Text style={styles.mayor}>{t('mayor')}</Text>
+						<Text style={styles.mayorName}>
+							{resposible?.profile.firstName} {resposible?.profile.lastName}
+						</Text>
+					</View>
+					<Image
+						source={{
+							uri: 'https://static.vecteezy.com/system/resources/thumbnails/026/497/734/small_2x/businessman-on-isolated-png.png',
+						}}
+						style={{
+							height: verticalScale(130),
+							width: scale(150),
+							marginLeft: scale(0),
+						}}
+						resizeMode='contain'
+					/>
+				</View>
 				<View style={styles.container}>
-					<Text style={styles.mayor}>{t('mayor')}</Text>
-					<Text style={styles.mayorName}>
-						{resposible?.profile.firstName} {resposible?.profile.lastName}
+					<Text style={styles.description}>{t('description')}</Text>
+					<Text style={{ textAlign: 'justify', marginTop: verticalScale(5) }}>
+						{resposible?.profile.language === lang
+							? resposible.profile.description
+									.split('. ')
+									.map((sentence, index) => (
+										<Text key={index}>
+											{sentence.trim()}
+											{index <
+											resposible.profile.description.split('. ').length - 1
+												? '.'
+												: ''}
+											{'\n'}
+										</Text>
+									))
+							: resposible?.profile.translation.description
+									.split('. ')
+									.map((sentence, index) => (
+										<Text key={index}>
+											{sentence.trim()}
+											{index <
+											resposible.profile.translation.description.split('. ')
+												.length -
+												1
+												? '.'
+												: ''}
+											{'\n\n'}
+										</Text>
+									))}
 					</Text>
-				</View>
-				<Image
-					source={{
-						uri: 'https://static.vecteezy.com/system/resources/thumbnails/026/497/734/small_2x/businessman-on-isolated-png.png',
-					}}
-					style={{
-						height: verticalScale(130),
-						width: scale(150),
-						marginLeft: scale(0),
-					}}
-					resizeMode='contain'
-				/>
-			</View>
-			<View style={styles.container}>
-				<Text style={styles.description}>{t('description')}</Text>
-				<Text style={{ textAlign: 'justify', marginTop: verticalScale(5) }}>
-					{resposible?.profile.language === lang
-						? resposible.profile.description
-								.split('. ')
-								.map((sentence, index) => (
-									<Text key={index}>
-										{sentence.trim()}
-										{index <
-										resposible.profile.description.split('. ').length - 1
-											? '.'
-											: ''}
-										{'\n'}
-									</Text>
-								))
-						: resposible?.profile.translation.description
-								.split('. ')
-								.map((sentence, index) => (
-									<Text key={index}>
-										{sentence.trim()}
-										{index <
-										resposible.profile.translation.description.split('. ')
-											.length -
-											1
-											? '.'
-											: ''}
-										{'\n\n'}
-									</Text>
-								))}
-				</Text>
 
-				<Text style={[styles.description, { marginTop: verticalScale(5) }]}>
-					{t('email')}:{' '}
-					<Text style={{ color: '#000' }}>{resposible?.email}</Text>
-				</Text>
+					<Text style={[styles.description, { marginTop: verticalScale(5) }]}>
+						{t('email')}:{' '}
+						<Text style={{ color: '#000' }}>{resposible?.email}</Text>
+					</Text>
 
-				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>{t('scheduleDay')}</Text>
-				</View>
+					<View style={{ marginVertical: verticalScale(10) }}>
+						<Text style={styles.schedule}>{t('scheduleDay')}</Text>
+					</View>
 
-				<FlatList
-					data={days}
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-					pagingEnabled={false}
-					contentContainerStyle={{ gap: scale(5) }}
-					renderItem={({ item }) => (
-						<View
-							style={[
-								styles.scheduleContainer,
-								selectedDay === item && {
-									backgroundColor: COLORS.primary,
-								},
-							]}
-						>
-							<TouchableOpacity onPress={() => setSelectedDay(item)}>
-								<Text
-									style={[
-										styles.scheduleText,
-										selectedDay === item && {
-											color: '#fff',
-										},
-									]}
-								>
-									{item}
-								</Text>
-							</TouchableOpacity>
-						</View>
-					)}
-				/>
-
-				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>{t('scheduleTime')}</Text>
-				</View>
-
-				<FlatList
-					data={filtertime}
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-					pagingEnabled={false}
-					contentContainerStyle={{ gap: scale(5) }}
-					renderItem={({ item }) => (
-						<View
-							style={[
-								styles.scheduleContainer,
-								selectedTime === item.startTime && {
-									backgroundColor: COLORS.primary,
-								},
-							]}
-						>
-							<TouchableOpacity
-								onPress={() => {
-									setSelectedTime(item.startTime);
-									setSelectedDate(item.date);
-								}}
+					<FlatList
+						data={days}
+						horizontal={true}
+						showsHorizontalScrollIndicator={false}
+						pagingEnabled={false}
+						contentContainerStyle={{ gap: scale(5) }}
+						renderItem={({ item }) => (
+							<View
+								style={[
+									styles.scheduleContainer,
+									selectedDay === item && {
+										backgroundColor: COLORS.primary,
+									},
+								]}
 							>
-								<Text
-									style={[
-										styles.scheduleText,
-										selectedTime === item.startTime && {
-											color: '#fff',
-										},
-									]}
+								<TouchableOpacity onPress={() => setSelectedDay(item)}>
+									<Text
+										style={[
+											styles.scheduleText,
+											selectedDay === item && {
+												color: '#fff',
+											},
+										]}
+									>
+										{item}
+									</Text>
+								</TouchableOpacity>
+							</View>
+						)}
+					/>
+
+					<View style={{ marginVertical: verticalScale(10) }}>
+						<Text style={styles.schedule}>{t('scheduleTime')}</Text>
+					</View>
+
+					<FlatList
+						data={filtertime}
+						horizontal={true}
+						showsHorizontalScrollIndicator={false}
+						pagingEnabled={false}
+						contentContainerStyle={{ gap: scale(5) }}
+						renderItem={({ item }) => (
+							<View
+								style={[
+									styles.scheduleContainer,
+									selectedTime === item.startTime && {
+										backgroundColor: COLORS.primary,
+									},
+								]}
+							>
+								<TouchableOpacity
+									onPress={() => {
+										setSelectedTime(item.startTime);
+										setSelectedDate(item.date);
+									}}
 								>
-									{item.startTime}
-								</Text>
-							</TouchableOpacity>
-						</View>
+									<Text
+										style={[
+											styles.scheduleText,
+											selectedTime === item.startTime && {
+												color: '#fff',
+											},
+										]}
+									>
+										{item.startTime}
+									</Text>
+								</TouchableOpacity>
+							</View>
+						)}
+					/>
+
+					<View style={{ marginVertical: verticalScale(10) }}>
+						<Text style={styles.schedule}>{t('purpose')}</Text>
+					</View>
+					{isPending ? (
+						<Loading />
+					) : (
+						<KeyboardAwareScrollView>
+							<FormProvider {...methods}>
+								<InputComponent
+									name='purpose'
+									text=''
+									multiline={true}
+									numberOfLines={4}
+									height={100}
+									inputType='purpose'
+									returnKeyType='done'
+								/>
+
+								<SubmitButtonComponent
+									title='Make Appointment'
+									fullWidth
+									onPress={methods.handleSubmit(onSubmit)}
+								/>
+							</FormProvider>
+						</KeyboardAwareScrollView>
 					)}
-				/>
-
-				<View style={{ marginVertical: verticalScale(10) }}>
-					<Text style={styles.schedule}>{t('purpose')}</Text>
 				</View>
-				{isPending ? (
-					<Loading />
-				) : (
-					<FormProvider {...methods}>
-						<InputComponent
-							name='purpose'
-							text=''
-							multiline={true}
-							numberOfLines={4}
-							height={100}
-							inputType='purpose'
-							returnKeyType='done'
-						/>
-
-						<SubmitButtonComponent
-							title='Make Appointment'
-							fullWidth
-							onPress={methods.handleSubmit(onSubmit)}
-						/>
-					</FormProvider>
-				)}
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	);
 };
 

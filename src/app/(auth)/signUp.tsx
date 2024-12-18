@@ -31,7 +31,8 @@ import { setItem } from '@/utils/storage';
 
 function signUp() {
 	const { mutateRegister, isPending } = useRegister();
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
 	const creatAcount = t('createAccount');
 	const createAccoutDescription = t('createAccoutDescription');
 	const firstName = t('firstName');
@@ -86,9 +87,15 @@ function signUp() {
 	const onSubmit = (data: RegisterFormValues) => {
 		console.log('Register form: ', data);
 		setItem('new-user-email', data.email);
-		console.log('This is user mail' + data.email);
-		mutateRegister(data);
-		// router.push('./verficationCode');
+		const registerData = {
+			firstName: data.firstName,
+			lastName: data.lastName,
+			email: data.email,
+			password: data.password,
+			confirmPassword: data.confirmPassword,
+			language: lang,
+		};
+		mutateRegister(registerData);
 	};
 
 	const [checked, setChecked] = useState(false);

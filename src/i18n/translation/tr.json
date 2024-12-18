@@ -223,5 +223,8 @@
 	"enterSubject": "Konu girin",
 	"enterMessage": "Mesaj girin",
 	"enterpurpose": "Randevunun amacını girin",
-	"enterReport": "Rapor girin"
+	"enterReport": "Rapor girin",
+	"updateProfile": "Profili Güncelle",
+	"accountInfo": "Hesap Bilgileri",
+	"changedob": "Doğum gününü değiştir"
 }

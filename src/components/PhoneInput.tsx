@@ -1,4 +1,5 @@
 import { COLORS } from '@/constants/Colors';
+import { setItem } from '@/utils/storage';
 import React, { useState, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +21,7 @@ const PhoneInputComponent = () => {
 			const callingCode = selectedCountry.callingCode || '';
 			const combinedPhoneNumber = `${callingCode} ${phone}`;
 			setValue('phoneNumber', combinedPhoneNumber);
+			setItem('phoneNumber', combinedPhoneNumber);
 		}
 	}, [phone, selectedCountry, setValue]);
 

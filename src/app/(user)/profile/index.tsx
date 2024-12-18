@@ -67,13 +67,7 @@ export default function userProfileIndex() {
 			<View
 				style={{ marginTop: verticalScale(10), marginHorizontal: scale(10) }}
 			>
-				<Pressable
-					onPress={() =>
-						router.push({
-							pathname: './profile/account',
-						})
-					}
-				>
+				<Pressable onPress={() => router.push('/(user)/profile/account')}>
 					<View style={styles.settingsCard}>
 						<MaterialCommunityIcons
 							name='account-circle-outline'
@@ -82,9 +76,7 @@ export default function userProfileIndex() {
 						/>
 						<View style={styles.settingsText}>
 							<Text style={styles.settingsTitleText}>{t('myacc')}</Text>
-							<Text style={{ color: COLORS.gray }}>
-								{t("changestoacc")}
-							</Text>
+							<Text style={{ color: COLORS.gray }}>{t('changestoacc')}</Text>
 						</View>
 
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
@@ -101,9 +93,7 @@ export default function userProfileIndex() {
 						<FontAwesome name='language' size={34} color={COLORS.secondary} />
 						<View style={styles.settingsText}>
 							<Text style={styles.settingsTitleText}>{t('langs')}</Text>
-							<Text style={{ color: COLORS.gray }}>
-								{t('changelang')}
-							</Text>
+							<Text style={{ color: COLORS.gray }}>{t('changelang')}</Text>
 						</View>
 
 						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
@@ -124,7 +114,7 @@ export default function userProfileIndex() {
 					<View style={styles.settingsCard}>
 						<MaterialIcons name='password' size={34} color={COLORS.secondary} />
 						<View style={styles.settingsText}>
-							<Text style={styles.settingsTitleText}>{t("pass")}</Text>
+							<Text style={styles.settingsTitleText}>{t('pass')}</Text>
 							<Text style={{ color: COLORS.gray }}>{t('changepass')}</Text>
 						</View>
 

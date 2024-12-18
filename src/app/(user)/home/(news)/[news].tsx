@@ -17,6 +17,7 @@ const NewsDetails = () => {
 	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
 	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
 	// Determine locale based on i18n.language
 	const localeMap: Record<string, Locale> = {
 		en: enUS,
@@ -35,7 +36,12 @@ const NewsDetails = () => {
 		if (!announcementInfo) return;
 
 		// Simulating an API call to fetch content
-		const fetchedContent = announcementInfo.body;
+		const fetchedContent =
+			announcementInfo.language === lang
+				? announcementInfo.body
+				: announcementInfo.translations.find(
+						(translation) => translation.language === lang
+				  )?.body || announcementInfo.body;
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
@@ -80,14 +86,26 @@ const NewsDetails = () => {
 	return (
 		<View>
 			<Header
-				title={announcementInfo.title}
+				title={
+					announcementInfo.language === lang
+						? announcementInfo.title
+						: announcementInfo.translations.find(
+								(translation) => translation.language === lang
+						  )?.title || announcementInfo.title
+				}
 				backgroundImage={{
 					uri: `${announcementInfo.images[0].imageUrl}`,
 				}}
 				onBackPress={() => router.back()}
 			/>
 			<View style={{ margin: scale(10) }}>
-				<Text style={styles.subject}>{announcementInfo.header}</Text>
+				<Text style={styles.subject}>
+					{announcementInfo.language === lang
+						? announcementInfo.header
+						: announcementInfo.translations.find(
+								(translation) => translation.language === lang
+						  )?.header || announcementInfo.header}
+				</Text>
 
 				<View
 					style={{
@@ -99,7 +117,11 @@ const NewsDetails = () => {
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
 						<Text style={{ color: COLORS.primary }}>
-							{announcementInfo.location}
+							{announcementInfo.language === lang
+								? announcementInfo.location
+								: announcementInfo.translations.find(
+										(translation) => translation.language === lang
+								  )?.location || announcementInfo.location}
 						</Text>
 					</View>
 					<View style={{ flexDirection: 'row' }}>

@@ -49,14 +49,15 @@ export const useRegister = () => {
 				email: data.email,
 				password: data.password,
 				confirmPassword: data.confirmPassword,
+				language: data.language,
 			}),
 		onSuccess: async (data) => {
 			const userEmail = data.data.data.email;
-			await authService.postSendEmail({ email: userEmail });
+			authService.postSendEmail({ email: userEmail });
 			router.push('/(auth)/password/confirmDigits');
 		},
 		onError: () => {
-			Alert.alert('email or password are incorrect');
+			Alert.alert('Create a new account was not successful.');
 		},
 	});
 
@@ -94,13 +95,8 @@ export const useChangePassword = () => {
 				oldPassword: data.oldPassword,
 			}),
 		onSuccess: async (data) => {
-			// console.log(`success from auth.ts ${data.data.data.accessToken}`);
-			// setItem('token', data.data.data.accessToken);
-			// if (await getItem('token')) {
-			// 	router.push('/(user)');
-			// }
+			Alert.alert('Password has changed successfully');
 			router.push('/(user)/profile');
-			console.log('Password changed successfully ');
 		},
 		onError: () => {
 			Alert.alert('Password change error ');

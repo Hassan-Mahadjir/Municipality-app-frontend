@@ -225,5 +225,8 @@
 	"enterSubject": "Enter the subject",
 	"enterMessage": "Enter a message",
 	"enterpurpose": "Enter the purpose of the appointment",
-	"enterReport": "Enter a report"
+	"enterReport": "Enter a report",
+	"updateProfile": "Update Profile",
+	"accountInfo": "Account Information",
+	"changedob": "Change birthday"
 }
