@@ -7,8 +7,13 @@ import moment from 'moment';
 
 type NewsData = {
   id: string;
+  author:string;
+  source:{
+    name: string;
+  };
   title: string;
   urlToImage: string;
+  description:string;
   publishedAt: string;
 };
 
@@ -18,28 +23,32 @@ interface CardProps {
 
 const NewsItem: React.FC<CardProps> = ({ data }) => {
   return (
-    <View style={{ flex: 1, marginHorizontal: scale(5) }}>
-      <Image
-        resizeMode="cover"
-        source={{ uri: data.urlToImage }}
-        style={styles.pageImage} // Ensure styles are correctly defined
-      />
-      <TouchableOpacity
-        onPress={() => {
-          router.push(`./${data.id}`);
-        }}
-      >
+    <TouchableOpacity
+    onPress={() => {
+      // Passing the necessary news data as query parameters
+      router.push({
+        pathname: `/(user)/home/(news)/[id]`, // Use a dynamic path for the article
+        params: { id: data.source.name, publishedAt:data.publishedAt, contents:data.description, url:data.urlToImage,author:data.author}
+      });
+    }}
+    style={{ flex: 1, marginHorizontal: scale(5) }}
+  >
+      <View>
+        <Image
+          resizeMode="cover"
+          source={{ uri: data.urlToImage }}
+          style={styles.pageImage} // Ensure styles are correctly defined
+        />
         <Text style={styles.imageText} numberOfLines={2}>
-          {data["title"]}
+          {data.title}
         </Text>
-      </TouchableOpacity>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-       
-        <Text style={styles.agoText}>
-          {moment(data.publishedAt).fromNow()} {/* Format as "5m ago" */}
-        </Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={styles.agoText}>
+            {moment(data.publishedAt).fromNow()} {/* Format as "5m ago" */}
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

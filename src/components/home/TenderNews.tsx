@@ -43,7 +43,7 @@ const renderItem = ({
 		<TouchableOpacity
 			onPress={() => {
 				if (item.id) {
-					router.push(`./(user)/home/${item.id}`);
+					router.push(`/(user)/home/${item.id}`);
 				} else {
 					console.warn('Item does not have a valid id');
 				}

@@ -226,5 +226,6 @@
 	"enterReport": "Rapor girin",
 	"updateProfile": "Profili Güncelle",
 	"accountInfo": "Hesap Bilgileri",
-	"changedob": "Doğum gününü değiştir"
+	"changedob": "Doğum gününü değiştir",
+	"author":"Yaratıcı: "
 }

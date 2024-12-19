@@ -12,7 +12,7 @@ export default function UserHomeLayout() {
 			<Stack.Screen name='(news)' options={{ headerShown: false }} />
 			<Stack.Screen name='(municipality)' options={{ headerShown: false }} />
 			<Stack.Screen name='service' />
-			<Stack.Screen name='[news]' />
+			<Stack.Screen name='[news]' options={{headerShown:false}}/>
 			<Stack.Screen name='(community)' options={{ headerShown: false }} />
 		</Stack>
 	);

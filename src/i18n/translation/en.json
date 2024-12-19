@@ -228,5 +228,6 @@
 	"enterReport": "Enter a report",
 	"updateProfile": "Update Profile",
 	"accountInfo": "Account Information",
-	"changedob": "Change birthday"
+	"changedob": "Change birthday",
+	"author":"Author: "
 }
