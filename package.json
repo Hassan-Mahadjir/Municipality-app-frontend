@@ -80,7 +80,9 @@
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "save-dev": "^0.0.1-security",
     "tailwindcss-react-native": "^1.7.10",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "expo-notifications": "~0.29.11",
+    "expo-device": "~7.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

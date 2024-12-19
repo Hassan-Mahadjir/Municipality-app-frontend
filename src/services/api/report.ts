@@ -4,6 +4,7 @@ import annoucementService from '../annoucement-service';
 import reportService from '../report-service';
 import { Alert } from 'react-native';
 import { postAnimalReportValues, postReportValues } from '@/types/report.type';
+import { sendNotification } from '../notificationService';
 
 export const useCategory = () => {
 	const { data: categoriesData, ...props } = useQuery({
@@ -35,6 +36,10 @@ export const postReport = (id: number) => {
 			),
 		onSuccess: async () => {
 			Alert.alert('Report has been submitted successfully.');
+			await sendNotification(
+				'Report Submitted',
+				'Your report has been submitted successfully.'
+			);
 		},
 		onError: (error) => {
 			// Check if the error contains a response message
@@ -71,6 +76,10 @@ export const postRequest = (id: number) => {
 			),
 		onSuccess: async () => {
 			Alert.alert('Request has been submitted successfully.');
+			await sendNotification(
+				'Report Submitted',
+				'Your request has been submitted successfully.'
+			);
 		},
 		onError: (error) => {
 			// Check if the error contains a response message
@@ -107,7 +116,11 @@ export const postAnimalReport = (id: number) => {
 				id
 			),
 		onSuccess: async () => {
-			Alert.alert('Request has been submitted successfully.');
+			Alert.alert('Animal report has been submitted successfully.');
+			await sendNotification(
+				'Animal report Submitted',
+				'Your report has been submitted successfully.'
+			);
 		},
 		onError: (error) => {
 			// Check if the error contains a response message

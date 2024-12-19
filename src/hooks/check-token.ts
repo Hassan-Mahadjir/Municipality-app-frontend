@@ -11,8 +11,6 @@ const useCheckToken = () => {
 		if (token) {
 			router.replace('/(user)');
 		} else {
-			if (await getItem('refresh-token')) {
-			}
 			router.replace('/');
 		}
 	};

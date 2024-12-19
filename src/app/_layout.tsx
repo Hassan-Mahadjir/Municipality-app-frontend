@@ -49,10 +49,13 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
 	const { t } = useTranslation();
+	const back_label = t('back');
 	useCheckToken();
 	return (
 		<APIProvider>
-			<Stack screenOptions={{ headerShown: false }}>
+			<Stack
+				screenOptions={{ headerShown: false, headerBackTitle: back_label }}
+			>
 				<Stack.Screen name='index' />
 				<Stack.Screen name='(user)' />
 				<Stack.Screen name='(auth)' />
