@@ -3,8 +3,22 @@ import React from 'react';
 import { Stack } from 'expo-router';
 import notifications from '../assets/data/notifications.json';
 import { COLORS } from '@/constants/Colors';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { getNotifications } from '@/services/api/notifications';
+import { useProfile } from '@/services/api/profile';
+import { useTranslation } from 'react-i18next';
 
 export default function notification() {
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
+	const { profileData } = useProfile();
+	const userId = profileData?.data.data.user.id;
+
+	const { notificationsData, isPending, isFetching } = getNotifications(
+		userId ? userId : 0
+	);
+	const notifications = notificationsData?.data.data;
+
 	return (
 		<View style={style.notificationContainer}>
 			<Stack.Screen
@@ -23,9 +37,13 @@ export default function notification() {
 				renderItem={({ item, index }) => (
 					<View style={style.notificationSubContainer}>
 						<Text style={{ fontSize: 16, marginBottom: 5 }}>
-							{item.message}
+							{item.langauge === lang
+								? item.body
+								: item.translations.find(
+										(translation) => translation.langauge === lang
+								  )?.body || item.body}
 						</Text>
-						<Text>{item.date}</Text>
+						<Text>{item.sendAt}</Text>
 					</View>
 				)}
 			/>
