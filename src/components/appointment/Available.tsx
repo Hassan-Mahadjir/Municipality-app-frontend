@@ -288,7 +288,7 @@ const Available = () => {
 								/>
 
 								<SubmitButtonComponent
-									title='Make Appointment'
+									title={t('makeAppointment')}
 									fullWidth
 									onPress={methods.handleSubmit(onSubmit)}
 								/>
