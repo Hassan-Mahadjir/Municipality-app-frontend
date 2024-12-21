@@ -4,12 +4,14 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { styles } from '@/styles/commentSection';
 import { useTranslation } from 'react-i18next';
 import SubmitButtonComponent from '../SubmitButton';
+import VechileCard from '../services/VechileCard';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import InputComponent from '../appointment/inputComponent';
 import { FormProvider, useForm } from 'react-hook-form';
 import { PostcommValues } from '@/types/comments.type';
-import { postCommentHistPlace } from '@/services/api/comments';
+import { postCommentHistPlace, postCommentRest } from '@/services/api/comments';
 import { useProfile } from '@/services/api/profile';
+import historicalPlaces from '@/app/(user)/home/(tourism)/historicalPlaces';
 
 // Define the type for props
 export type CommentProps = {
@@ -35,12 +37,12 @@ export type CommentProps = {
 };
 
 
-const CommentSection: React.FC<CommentProps> = ({ comments, serviceId ,refetch , refetchcomment}) => {
+const CommentPart: React.FC<CommentProps> = ({ comments, serviceId ,refetch , refetchcomment}) => {
   const { t } = useTranslation();
   const addComment = t('addComment');
   const {profileData}=useProfile()
 const userid= profileData?.data.data.user.id
-  const {mutateAppointment, reset} = postCommentHistPlace(userid?+userid:0)
+  const {mutateAppointment, reset} = postCommentRest(userid?+userid:0)
 
   // Move the hook calls inside the component
   const methods = useForm<PostcommValues>({
@@ -50,16 +52,16 @@ const userid= profileData?.data.data.user.id
    const onSubmit = (inputData: PostcommValues) => {
     
 	const commentBody= {
-		historicalPlaceId: serviceId,
+		restaurantId: serviceId,
     body: inputData.body,
-    commentedOn:"historicalPlace",
+    commentedOn:"restaruant",
     recommenation:5,
 	}
-  console.log(commentBody)
+  
    mutateAppointment(commentBody)
-   methods.reset()
    refetch()
    refetchcomment()
+   methods.reset()
    
   };
 
@@ -105,4 +107,4 @@ const userid= profileData?.data.data.user.id
   );
 };
 
-export default CommentSection;
+export default CommentPart;

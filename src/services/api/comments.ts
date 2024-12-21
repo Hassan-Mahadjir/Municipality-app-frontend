@@ -48,3 +48,36 @@ export const postCommentHistPlace = (id: number) => {
 
   return { mutateAppointment, isPending, ...props };
 };
+
+
+
+
+export const postCommentRest = (id: number) => {
+  const {
+    mutate: mutateAppointment,
+    isPending,
+    ...props
+  } = useMutation({
+    mutationFn: (data: PostcommValues) =>
+      CommentService.postComment(
+        {
+          restaurantId: data.restaurantId,
+          body: data.body,
+          commentedOn: data.commentedOn,
+          recommenation: data.recommenation,
+        },
+        id
+      ),
+    onSuccess: async () => {
+      Alert.alert('Comment has been posted successfully.');
+    },
+    onError: (error) => {
+      const errorMessage =
+        error?.response?.data?.message ||
+        'Something went wrong. Please try again.';
+      Alert.alert('Error', errorMessage);
+    },
+  });
+
+  return { mutateAppointment, isPending, ...props };
+};

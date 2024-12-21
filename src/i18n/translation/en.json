@@ -248,5 +248,6 @@
 	"appointment-Notification-Message": "has been submitted successfully. You will be notified once it is reviewed.",
 	"msg2": "Appointment and notification sent successfully",
 	"appointment-submitted": "Appointment Submitted",
-	"appointmentNotification": "Your appointment has been submitted successfully"
+	"appointmentNotification": "Your appointment has been submitted successfully",
+	"searchbyresname": "Search by restaurant name"
 }

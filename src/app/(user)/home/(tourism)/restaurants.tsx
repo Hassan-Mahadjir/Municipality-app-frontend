@@ -16,7 +16,8 @@ export default function Restaurants() {
 		useState<RestaurantValues[]>(rest);
 			const [searchQuery, setSearchQuery] = useState('');
 		
-	const searchbyplacename = t('searchbyplacename');
+	const searchbyresname = t('searchbyresname');
+	
 	const restaurant = t('restaurant');
 	console.log(rest)
 		useEffect(() => {
@@ -37,7 +38,7 @@ export default function Restaurants() {
 		<View style={{flex:1}}>
 			<Stack.Screen options={{ title: restaurant }} />
 			<SearchField
-				placeholder={searchbyplacename}
+				placeholder={searchbyresname}
 				onChangeText={setSearchQuery }
 			/>
 			<FlatList

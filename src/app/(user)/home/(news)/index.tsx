@@ -4,8 +4,10 @@ import Header from '@/components/services/Header';
 import { router } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
+import {COLORS} from '@/constants/Colors';
 import axios from 'axios';
 import NewsItem from '@/components/services/NewsItem';
+import Loading from '@/components/Loading';
 
 const newsIndex = () => {
   const [news, setNews] = useState<any[]>([]);
@@ -61,7 +63,7 @@ const newsIndex = () => {
       />
 
       {loading && page === 1 ? ( // Loading indicator only shown for the first page
-        <ActivityIndicator size="large" color="blue" />
+        <Loading />
       ) : news.length > 0 ? (
         <FlatList
           data={news}

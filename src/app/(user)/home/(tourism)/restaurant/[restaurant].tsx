@@ -10,17 +10,12 @@ import {
 import React from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/services/Header';
-import ghostown from '../../../../../assets/data/ghostTown.json';
 import { styles } from '@/styles/ghostTown';
 import { router, useLocalSearchParams } from 'expo-router';
 import { scale, verticalScale } from 'react-native-size-matters';
-import CommentSection from '@/components/tourism/CommentSection';
-import commentsData from '../../../../../assets/data/restaurantComments.json';
+import CommentPart from '@/components/tourism//CommentPart';
 import { useTranslation } from 'react-i18next';
-import { COLORS } from '@/constants/Colors';
 import { useRestaurant } from '@/services/api/tourism';
-import VechileCard from '@/components/services/VechileCard';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useComments } from '@/services/api/comments';
 
 const restaurant = () => {
@@ -34,9 +29,9 @@ const restaurant = () => {
 	const { restaurant } = useLocalSearchParams();
 	const { i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
-	const { restData, isLoading } = useRestaurant(+restaurant);
+	const { restData, isLoading,refetch } = useRestaurant(+restaurant);
 	const restinfo = restData?.data.data;
-	const { commentData } = useComments('restaurant', +restaurant);
+	const { commentData,refetch:refetchcomment } = useComments('restaurant', +restaurant);
 	const data = commentData?.data.data;
 
 	return (
@@ -146,11 +141,15 @@ alignItems: 'center',
 						{restinfo?.phone}
 					</Text>
 				</View>
-
-				<CommentSection comments={data?.historicalPlaceComments|| []} />
+				
+				<CommentPart comments={data?.restaurantComments|| []}
+				serviceId={+restaurant || 0} 
+				refetch={refetch}
+				refetchcomment={refetchcomment} />
 			</ScrollView>
 		</SafeAreaView>
 	);
+
 };
 
 export default restaurant;

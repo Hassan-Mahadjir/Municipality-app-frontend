@@ -40,6 +40,11 @@ export type RestaurantValues = {
 		location: string;
         language:string;
 	}[];
+	restaurantComments:{
+		id: number;
+		body: string;
+		createAt: string;	
+	}[];
 }
 
 

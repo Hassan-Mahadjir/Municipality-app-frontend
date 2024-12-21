@@ -40,9 +40,9 @@ const NewsDetails = () => {
 				}}
 				onBackPress={() => router.back()}
 			/>
-			<View style={{ marginVertical: verticalScale(15),justifyContent:'space-between' ,flexDirection: 'row'}}>
+			<View style={{ marginVertical: verticalScale(10),justifyContent:'space-between' ,flexDirection: 'row',alignItems:'center',paddingHorizontal:scale(10)}}>
 
-					<View style={{ flexDirection: 'row' }}>
+					<View style={{ flexDirection: 'row' ,paddingVertical:verticalScale(5)}}>
 						<EvilIcons name='clock' size={24} color={COLORS.gray} />
 						<Text style={{ color: COLORS.gray }}>
 							{formatDistanceToNow(new Date(publishedAt.toString()), {
@@ -52,7 +52,7 @@ const NewsDetails = () => {
 						</Text>
 				
 				</View>
-				<Text style={{ marginRight:scale(12) , fontWeight:'bold'}}> {t('author')} {author}</Text>
+				<Text style={{ marginRight:scale(12) , fontWeight:'bold',textAlign: 'center'}}> {t('author')} {author}</Text>
 			</View>
 			<View
 				style={{ borderBottomWidth: 2, borderBottomColor: COLORS.gray }}

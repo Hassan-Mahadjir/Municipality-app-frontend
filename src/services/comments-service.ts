@@ -6,7 +6,7 @@ import { CommentValues, PostcommValues } from '@/types/comments.type';
 class CommentService extends BaseService {
 	async getComments(type: string, serviceid: number) {
 		const response = await http.get<AppResponse<CommentValues>>(
-			`comment/${type}/${serviceid}`
+			`/comment/${type}/${serviceid}`
 		);
 		return response;
 	}
