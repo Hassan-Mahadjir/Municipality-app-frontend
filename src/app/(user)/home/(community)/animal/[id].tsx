@@ -162,13 +162,14 @@ const animalDetails = () => {
 					<Text style={{ color: '#000' }}>{reportDetails.contactInfo}</Text>
 				</Text>
 
-				{userId === reportDetails?.user?.id && (
-					<SubmitButtonComponent
-						title={t('changeStatus')}
-						fullWidth
-						onPress={() => mutateStatus({ status: 'Found', userId })}
-					/>
-				)}
+				{(userId === reportDetails?.user?.id && reportDetails.status != "Found") && (
+  <SubmitButtonComponent
+    title={t('changeStatus')}
+    fullWidth
+    onPress={() => mutateStatus({ status: 'Found', userId })}
+  />
+)}
+
 			</View>
 		</View>
 	);
