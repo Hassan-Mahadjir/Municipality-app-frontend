@@ -249,5 +249,7 @@
 	"msg2": "Appointment and notification sent successfully",
 	"appointment-submitted": "Appointment Submitted",
 	"appointmentNotification": "Your appointment has been submitted successfully",
-	"searchbyresname": "Search by restaurant name"
+	"searchbyresname": "Search by restaurant name",
+	"capacity": "Capacity: ",
+	"makeAppointment":"Make Appointment"
 }

@@ -54,7 +54,7 @@ const PhoneInputComponent = () => {
 					color: COLORS.secondary,
 				}}
 			>
-				phone nubmer
+				{t('phoneNo')}
 			</Text>
 			<Controller
 				name='phone'

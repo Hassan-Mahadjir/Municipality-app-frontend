@@ -247,6 +247,9 @@
 	"msg2": "Randevu ve bildirim başarıyla gönderildi",
 	"appointment-submitted": "Randevu Gönderildi",
 	"appointmentNotification": "Randevunuz başarıyla gönderildi",
-	"searchbyresname": "Restoran adına göre ara"
+	"searchbyresname": "Restoran adına göre ara",
+	"capacity": "Kapasite: ",
+	"histPlaces":"Tarihi Yerler",
+	"makeAppointment":"Randevu Al"
 
 }

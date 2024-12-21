@@ -14,6 +14,7 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import { useTranslation } from 'react-i18next';
 import { PharmacyValues } from '@/types/health.type';
 import { usePharmacy } from '@/services/api/health';
+import { t } from 'i18next';
 
 const screenWidth = Dimensions.get('window').width - scale(40);
 
@@ -90,7 +91,7 @@ const PharmacyCard = () => {
 				)}
 				<TouchableOpacity style={style.readMore}>
 					<Text style={[style.readMoreText, { color: COLORS.primary }]}>
-						See Location
+						{t('seeLocation')}
 					</Text>
 				</TouchableOpacity>
 			</ImageBackground>

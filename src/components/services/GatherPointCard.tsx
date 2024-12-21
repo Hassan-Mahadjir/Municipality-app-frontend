@@ -30,7 +30,7 @@ const GatherPointCard = ({
 					Location: <Text style={{ color: '#000' }}>{location}</Text>
 				</Text>
 				<Text style={styles.locationCapacity}>
-					Capacity: <Text style={{ color: '#000' }}>{capacity}</Text>
+					{t('capacity')} <Text style={{ color: '#000' }}>{capacity}</Text>
 				</Text>
 			</View>
 		</View>

@@ -1,6 +1,6 @@
 //CommentSection.tsx 
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { styles } from '@/styles/commentSection';
 import { useTranslation } from 'react-i18next';
 import SubmitButtonComponent from '../SubmitButton';
@@ -10,6 +10,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { PostcommValues } from '@/types/comments.type';
 import { postCommentHistPlace } from '@/services/api/comments';
 import { useProfile } from '@/services/api/profile';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Define the type for props
 export type CommentProps = {
@@ -65,9 +66,15 @@ const userid= profileData?.data.data.user.id
 
 
   return (
+    <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+        >
     <View>
       <Text style={styles.headerText}>{t('Comments')}</Text>
 	  <View style={{marginHorizontal:scale(15)}}>
+      <KeyboardAwareScrollView>
       <FormProvider {...methods}>
         <InputComponent
           name="body"
@@ -84,7 +91,7 @@ const userid= profileData?.data.data.user.id
           fullWidth
           onPress={methods.handleSubmit(onSubmit)}
         />
-      </FormProvider>
+      </FormProvider></KeyboardAwareScrollView>
 	  </View>
 
       {comments.map((comment) => (
@@ -101,7 +108,7 @@ const userid= profileData?.data.data.user.id
           <Text style={styles.comment}>{comment.body}</Text>
         </View>
       ))}
-    </View>
+    </View></KeyboardAvoidingView>
   );
 };
 
