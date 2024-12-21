@@ -57,7 +57,7 @@ export const patchProfile = (id: number) => {
 		onSuccess: async () => {
 			Alert.alert('Profile has been updated successfully.');
 		},
-		onError: (error) => {
+		onError: (error: any) => {
 			// Check if the error contains a response message
 			const errorMessage =
 				error?.response?.data?.message ||

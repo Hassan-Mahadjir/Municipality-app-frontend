@@ -15,7 +15,8 @@ import { useTranslation } from 'react-i18next';
 export default function service() {
 	const { servisesData } = useService();
 	const services = servisesData?.data.data;
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const lang = i18n.language.toUpperCase();
 	const back_label = t('back');
 	const services_lable = t('services');
 	return (
@@ -45,7 +46,12 @@ export default function service() {
 							/>
 
 							<Text style={style.servicesName}>
-								{item.name} {services_lable}
+								{item.language
+									? item.name
+									: item.translations.find(
+											(translation) => translation.language === lang
+									  )?.name || item.name}{' '}
+								{services_lable}
 							</Text>
 						</View>
 					</TouchableOpacity>

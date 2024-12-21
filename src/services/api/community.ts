@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import communityService from '../community-service';
+import { updateReportedAnimalValues } from '@/types/community.type';
 
 export const useEvent = () => {
 	const { data: eventData, ...props } = useQuery({
@@ -96,4 +97,22 @@ export const useGetReportedAnimal = (id: number) => {
 		reportedAnimalData,
 		...props,
 	};
+};
+
+export const patchStatus = (id: number) => {
+	const { mutate: mutateStatus, ...props } = useMutation({
+		mutationFn: (data: updateReportedAnimalValues) =>
+			communityService.updateReportedAnimal(id, {
+				status: data.status,
+				userId: data.userId,
+			}),
+		onSuccess: async () => {
+			console.log('Status has been updated successully.');
+		},
+		onError: (error: any) => {
+			console.log('There is an error. (update Status)');
+		},
+	});
+
+	return { mutateStatus };
 };

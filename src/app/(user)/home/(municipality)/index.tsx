@@ -22,6 +22,12 @@ const MunicipalityIndex = () => {
 			sectionName: t('contactInformation'),
 			pageName: 'contactInfo',
 		},
+		{
+			image:
+				'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDBV0NfJikz6mU0HbEFt6_aywequJEDwp49g&s',
+			sectionName: t('history'),
+			pageName: 'history',
+		},
 	];
 	return (
 		<View style={styles.container}>

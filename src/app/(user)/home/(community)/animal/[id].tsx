@@ -13,7 +13,7 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { COLORS } from '@/constants/Colors';
 import SubmitButtonComponent from '@/components/SubmitButton';
-import { useGetReportedAnimal } from '@/services/api/community';
+import { patchStatus, useGetReportedAnimal } from '@/services/api/community';
 import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
 import { Locale } from 'date-fns';
@@ -27,6 +27,8 @@ const animalDetails = () => {
 
 	const lang = i18n.language.toUpperCase();
 	const userId = profileData?.data.data.user.id || 0;
+
+	const { mutateStatus } = patchStatus(id ? +id : 0);
 
 	const localeMap: Record<string, Locale> = {
 		en: enUS,
@@ -162,9 +164,9 @@ const animalDetails = () => {
 
 				{userId === reportDetails?.user?.id && (
 					<SubmitButtonComponent
-						title='Change Status'
+						title={t('changeStatus')}
 						fullWidth
-						onPress={() => {}}
+						onPress={() => mutateStatus({ status: 'Found', userId })}
 					/>
 				)}
 			</View>

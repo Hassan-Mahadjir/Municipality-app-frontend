@@ -246,6 +246,7 @@
 	"appointment-Notification-Message": "başarıyla gönderildi. İncelendikten sonra bilgilendirileceksiniz.",
 	"msg2": "Randevu ve bildirim başarıyla gönderildi",
 	"appointment-submitted": "Randevu Gönderildi",
+	"changeStatus": "Durumu Değiştir",
 	"appointmentNotification": "Randevunuz başarıyla gönderildi",
 	"searchbyresname": "Restoran adına göre ara",
 	"capacity": "Kapasite: ",

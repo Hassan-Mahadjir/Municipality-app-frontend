@@ -111,3 +111,9 @@ export type ReportedanimalValues = {
 		role: number;
 	};
 };
+
+export type updateReportedAnimalValues = {
+	status: string;
+	userId: number;
+	contactInfo?: string;
+};
