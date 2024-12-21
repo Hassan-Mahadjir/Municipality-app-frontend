@@ -6,6 +6,8 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	Alert,
+	KeyboardAvoidingView,
+	Platform,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Stack } from 'expo-router';
@@ -28,6 +30,8 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseConfig from '@/providers/firebase-config'; // Your Firebase config
+import Loading from '@/components/Loading';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -151,7 +155,7 @@ const UserProfile = () => {
 		setImages((prevImages) => prevImages.filter((image) => image !== uri));
 	};
 
-	const { profileData } = useProfile();
+	const { profileData, isPending } = useProfile();
 	const information = profileData?.data.data;
 
 	const firstName = information?.firstName;
@@ -233,134 +237,157 @@ const UserProfile = () => {
 	});
 
 	return (
-		<View style={{ flex: 1 }}>
-			<Stack.Screen options={{ title: t('accountInfo') }} />
+		<KeyboardAvoidingView
+			style={{ flex: 1 }}
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+		>
+			<View style={{ flex: 1 }}>
+				<Stack.Screen options={{ title: t('accountInfo') }} />
 
-			<View
-				style={{
-					alignSelf: 'center',
-					alignItems: 'center',
-					marginTop: verticalScale(5),
-				}}
-			>
-				<View>
-					{avatar ? (
-						<Image source={{ uri: avatar }} style={styles.profileImage} />
-					) : (
-						<RandomColoredBackground name={fullName} />
-					)}
-					{/* Image Selection Button */}
-					<TouchableOpacity
-						style={{
-							position: 'absolute',
-							right: 1,
-						}}
-						onPress={pickImage} // Opens image library or camera
-					>
-						<MaterialIcons name='add-a-photo' size={24} color='black' />
-					</TouchableOpacity>
-
-					{/* Delete Image Button for each selected image */}
-					{images.map((imgUri, index) => (
+				<View
+					style={{
+						alignSelf: 'center',
+						alignItems: 'center',
+						marginTop: verticalScale(5),
+					}}
+				>
+					<View>
+						{avatar ? (
+							<Image source={{ uri: avatar }} style={styles.profileImage} />
+						) : (
+							<RandomColoredBackground name={fullName} />
+						)}
+						{/* Image Selection Button */}
 						<TouchableOpacity
-							key={index}
-							style={styles.deleteButton}
-							onPress={() => deleteImage(imgUri)} // Deletes the selected image
-						>
-							<MaterialIcons name='delete' size={24} color='red' />
-						</TouchableOpacity>
-					))}
-				</View>
-				<Text style={styles.profileName}>{fullName}</Text>
-			</View>
-
-			{/* Profile form */}
-			<ScrollView
-				style={styles.scrollContainer}
-				showsVerticalScrollIndicator={false}
-			>
-				<FormProvider {...methods}>
-					<CustomeProfileInput
-						name='firstName'
-						text={t('firstname')}
-						inputType='firstName'
-						defaultValue={firstName}
-					/>
-					<CustomeProfileInput
-						name='lastName'
-						text={t('lastname')}
-						inputType='lastName'
-						defaultValue={lastName}
-					/>
-					<CustomeProfileInput
-						name='email'
-						text={t('email')}
-						inputType='email'
-						defaultValue={email}
-					/>
-					<PhoneInputComponent />
-					<CustomeProfileInput
-						name='gender'
-						text={t('gender')}
-						inputType='gender'
-						defaultValue={gender}
-					/>
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							alignContent: 'center',
-						}}
-					>
-						<CustomeProfileInput
-							name='dateofBirth'
-							text={t('dob')}
-							inputType='dateofBirth'
-							defaultValue={dateofbirth}
-							editable={false}
-						/>
-
-						<TouchableOpacity
-							onPress={() => setShowDatePicker(true)}
 							style={{
-								marginTop: verticalScale(28),
-								marginHorizontal: scale(10),
+								position: 'absolute',
+								right: 1,
+							}}
+							onPress={pickImage} // Opens image library or camera
+						>
+							<MaterialIcons name='add-a-photo' size={24} color='black' />
+						</TouchableOpacity>
+
+						{/* Delete Image Button for each selected image */}
+						{images.map((imgUri, index) => (
+							<TouchableOpacity
+								key={index}
+								style={styles.deleteButton}
+								onPress={() => deleteImage(imgUri)} // Deletes the selected image
+							>
+								<MaterialIcons name='delete' size={24} color='red' />
+							</TouchableOpacity>
+						))}
+					</View>
+					<Text style={styles.profileName}>{fullName}</Text>
+				</View>
+
+				{/* Profile form */}
+				<ScrollView
+					style={styles.scrollContainer}
+					showsVerticalScrollIndicator={false}
+				>
+					{isPending ? (
+						<View
+							style={{
+								flex: 1,
+								justifyContent: 'center',
+								alignItems: 'center',
 							}}
 						>
-							<Text>{t('changedob')}</Text>
-						</TouchableOpacity>
-						{showDatePicker && (
-							<DateTimePicker
-								value={dateOfBirth || new Date()}
-								style={{ marginTop: verticalScale(20), marginLeft: scale(-15) }}
-								mode='date'
-								display='default'
-								onChange={handleDateChange}
-							/>
-						)}
-					</View>
+							<Loading />
+						</View>
+					) : (
+						<KeyboardAwareScrollView>
+							<FormProvider {...methods}>
+								<CustomeProfileInput
+									name='firstName'
+									text={t('firstname')}
+									inputType='firstName'
+									defaultValue={firstName}
+								/>
+								<CustomeProfileInput
+									name='lastName'
+									text={t('lastname')}
+									inputType='lastName'
+									defaultValue={lastName}
+								/>
+								<CustomeProfileInput
+									name='email'
+									text={t('email')}
+									inputType='email'
+									defaultValue={email}
+								/>
+								<PhoneInputComponent />
+								<CustomeProfileInput
+									name='gender'
+									text={t('gender')}
+									inputType='gender'
+									defaultValue={gender}
+								/>
+								<View
+									style={{
+										display: 'flex',
+										flexDirection: 'row',
+										alignContent: 'center',
+									}}
+								>
+									<CustomeProfileInput
+										name='dateofBirth'
+										text={t('dob')}
+										inputType='dateofBirth'
+										defaultValue={dateofbirth}
+										editable={false}
+									/>
 
-					<CustomeProfileInput
-						name='address'
-						text={t('address')}
-						inputType='address'
-						defaultValue={address}
-					/>
-					<CustomeProfileInput
-						name='description'
-						text={t('description')}
-						inputType='description'
-						defaultValue={description}
-					/>
-					<SubmitButtonComponent
-						style={{ marginTop: verticalScale(10) }}
-						title={t('updateProfile')}
-						onPress={methods.handleSubmit(onSubmit)}
-						fullWidth
-					/>
-				</FormProvider>
-			</ScrollView>
-		</View>
+									<TouchableOpacity
+										onPress={() => setShowDatePicker(true)}
+										style={{
+											marginTop: verticalScale(28),
+											marginHorizontal: scale(10),
+										}}
+									>
+										<Text>{t('changedob')}</Text>
+									</TouchableOpacity>
+									{showDatePicker && (
+										<DateTimePicker
+											value={dateOfBirth || new Date()}
+											style={{
+												marginTop: verticalScale(20),
+												marginLeft: scale(-15),
+											}}
+											mode='date'
+											display='default'
+											onChange={handleDateChange}
+										/>
+									)}
+								</View>
+
+								<CustomeProfileInput
+									name='address'
+									text={t('address')}
+									inputType='address'
+									defaultValue={address}
+								/>
+								<CustomeProfileInput
+									name='description'
+									text={t('description')}
+									inputType='description'
+									defaultValue={description}
+								/>
+								<SubmitButtonComponent
+									style={{ marginTop: verticalScale(10) }}
+									title={t('updateProfile')}
+									onPress={methods.handleSubmit(onSubmit)}
+									fullWidth
+								/>
+							</FormProvider>
+						</KeyboardAwareScrollView>
+					)}
+				</ScrollView>
+			</View>
+		</KeyboardAvoidingView>
 	);
 };
 

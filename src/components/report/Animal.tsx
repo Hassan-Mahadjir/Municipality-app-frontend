@@ -8,6 +8,8 @@ import {
 	FlatList,
 	ScrollView,
 	Alert,
+	KeyboardAvoidingView,
+	Platform,
 } from 'react-native';
 import { FormProvider, useForm } from 'react-hook-form';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
@@ -25,6 +27,8 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseConfig from '@/providers/firebase-config'; // Your Firebase config
 import { postAnimalReport } from '@/services/api/report';
 import { useProfile } from '@/services/api/profile';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Loading from '../Loading';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -193,86 +197,102 @@ const Animal = () => {
 	};
 
 	return (
-		<ScrollView style={{ margin: scale(10) }}>
-			<FormProvider {...methods}>
-				<InputComponent
-					name='title'
-					text={t('title')}
-					multiline={false}
-					numberOfLines={2}
-					height={50}
-					inputType='title'
-					returnKeyType='next'
-				/>
-				<InputComponent
-					name='description'
-					text={t('description')}
-					multiline={true}
-					numberOfLines={4}
-					height={100}
-					inputType='description'
-					returnKeyType='next'
-				/>
-				<InputComponent
-					name='location'
-					text={t('location')}
-					multiline={false}
-					numberOfLines={2}
-					height={50}
-					inputType='location'
-					returnKeyType='next'
-				/>
-				<InputComponent
-					name='contactInfo'
-					text={t('contactInformation')}
-					multiline={false}
-					numberOfLines={2}
-					height={50}
-					inputType='contactInfo'
-					returnKeyType='done'
-				/>
+		<KeyboardAvoidingView
+			style={{ flex: 1 }}
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			keyboardVerticalOffset={Platform.OS === 'ios' ? 10 : 0}
+		>
+			{isPending ? (
+				<View
+					style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+				>
+					<Loading />
+				</View>
+			) : (
+				<ScrollView style={{ margin: scale(10) }}>
+					<KeyboardAwareScrollView>
+						<FormProvider {...methods}>
+							<InputComponent
+								name='title'
+								text={t('title')}
+								multiline={false}
+								numberOfLines={2}
+								height={50}
+								inputType='title'
+								returnKeyType='next'
+							/>
+							<InputComponent
+								name='description'
+								text={t('description')}
+								multiline={true}
+								numberOfLines={4}
+								height={100}
+								inputType='description'
+								returnKeyType='next'
+							/>
+							<InputComponent
+								name='location'
+								text={t('location')}
+								multiline={false}
+								numberOfLines={2}
+								height={50}
+								inputType='location'
+								returnKeyType='next'
+							/>
+							<InputComponent
+								name='contactInfo'
+								text={t('contactInformation')}
+								multiline={false}
+								numberOfLines={2}
+								height={50}
+								inputType='contactInfo'
+								returnKeyType='done'
+							/>
 
-				{/* Image Upload Section */}
-				<View style={styles.imageUploadSection}>
-					<Text style={styles.imageUploadLabel}>{t('uploadImages')}</Text>
-					<View style={styles.imagePicker}>
-						<TouchableOpacity onPress={pickImage}>
-							<MaterialIcons name='add-a-photo' size={24} color='black' />
-						</TouchableOpacity>
-					</View>
-					{/* Display Selected Images */}
-					{images.length > 0 && (
-						<FlatList
-							data={images}
-							horizontal
-							keyExtractor={(uri) => uri}
-							renderItem={({ item }) => (
-								<View style={styles.imagePreview}>
-									<Image
-										source={{ uri: item }}
-										style={styles.selectedImage}
-										resizeMode='contain'
-									/>
-									<TouchableOpacity
-										style={styles.deleteButton}
-										onPress={() => deleteImage(item)}
-									>
-										<MaterialIcons name='delete' size={24} color='red' />
+							{/* Image Upload Section */}
+							<View style={styles.imageUploadSection}>
+								<Text style={styles.imageUploadLabel}>{t('uploadImages')}</Text>
+								<View style={styles.imagePicker}>
+									<TouchableOpacity onPress={pickImage}>
+										<MaterialIcons name='add-a-photo' size={24} color='black' />
 									</TouchableOpacity>
 								</View>
-							)}
-							contentContainerStyle={{ paddingHorizontal: scale(10) }}
-						/>
-					)}
-				</View>
-				<SubmitButtonComponent
-					style={{ marginTop: verticalScale(10) }}
-					title={t('submitAnimalReport')}
-					fullWidth
-					onPress={methods.handleSubmit(onSubmit)}
-				/>
-			</FormProvider>
-		</ScrollView>
+								{/* Display Selected Images */}
+								{images.length > 0 && (
+									<FlatList
+										data={images}
+										horizontal
+										keyExtractor={(uri) => uri}
+										renderItem={({ item }) => (
+											<View style={styles.imagePreview}>
+												<Image
+													source={{ uri: item }}
+													style={styles.selectedImage}
+													resizeMode='contain'
+												/>
+												<TouchableOpacity
+													style={styles.deleteButton}
+													onPress={() => deleteImage(item)}
+												>
+													<MaterialIcons name='delete' size={24} color='red' />
+												</TouchableOpacity>
+											</View>
+										)}
+										contentContainerStyle={{ paddingHorizontal: scale(10) }}
+									/>
+								)}
+							</View>
+							<SubmitButtonComponent
+								style={{ marginTop: verticalScale(10) }}
+								title={t('submitAnimalReport')}
+								fullWidth
+								onPress={methods.handleSubmit(onSubmit)}
+							/>
+						</FormProvider>
+					</KeyboardAwareScrollView>
+				</ScrollView>
+			)}
+		</KeyboardAvoidingView>
 	);
 };
 
