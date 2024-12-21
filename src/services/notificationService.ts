@@ -2,6 +2,15 @@ import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import { Alert } from 'react-native';
 
+// Configure notification behavior
+Notifications.setNotificationHandler({
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: true,
+		shouldSetBadge: false,
+	}),
+});
+
 // Function to register for push notifications
 export async function registerForPushNotificationsAsync() {
 	if (Device.isDevice) {
@@ -23,6 +32,8 @@ export async function registerForPushNotificationsAsync() {
 
 		const token = (await Notifications.getExpoPushTokenAsync()).data;
 		console.log('Push Token:', token);
+
+		// Optionally send the token to your backend server here
 		return token;
 	} else {
 		Alert.alert('Must use a physical device for push notifications');
@@ -30,17 +41,27 @@ export async function registerForPushNotificationsAsync() {
 	}
 }
 
-// Function to send a notification
+// Function to schedule a notification
 export async function sendNotification(title: string, body: string) {
 	try {
 		await Notifications.scheduleNotificationAsync({
-			content: {
-				title,
-				body,
-			},
-			trigger: { seconds: 2 }, // Trigger after 1 second
+			content: { title, body },
+			trigger: { seconds: 2 }, // Trigger after 2 seconds
 		});
 	} catch (error) {
 		console.error('Error scheduling notification:', error);
 	}
+}
+
+// Function to set up notification listeners
+export function setupNotificationListeners() {
+	Notifications.addNotificationReceivedListener((notification) => {
+		console.log('Notification received:', notification);
+		// Handle the received notification (e.g., update the UI)
+	});
+
+	Notifications.addNotificationResponseReceivedListener((response) => {
+		console.log('Notification response:', response);
+		// Handle the user's interaction with the notification
+	});
 }

@@ -3,6 +3,9 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import appointmentService from '../appointment-service';
 import { createAppointmentValues } from '@/types/appointment.type';
 import { Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import notificationService from '../notification-service';
+import { sendNotification } from '../notificationService';
 
 export const useGetScheduleSlots = () => {
 	const { data: scheduleData, ...props } = useQuery({
@@ -23,6 +26,8 @@ export const useGetResposible = (id: number) => {
 };
 
 export const postAppointment = (id: number) => {
+	const { i18n, t } = useTranslation();
+	const lang = i18n.language.toUpperCase();
 	const {
 		mutate: mutateAppointment,
 		isPending,
@@ -39,10 +44,40 @@ export const postAppointment = (id: number) => {
 				},
 				id
 			),
-		onSuccess: async () => {
-			Alert.alert('Appointment has been set successfully.');
+		onSuccess: async (response) => {
+			try {
+				// Get the report ID from the response
+				const appointmentId = response.data.data.id;
+
+				// Send the notification
+				await notificationService.postNotification(
+					{
+						body: `${t('yourAppointments')} ${id} ${t(
+							'appointment-Notification-Message'
+						)}`,
+						language: lang,
+						reportId: appointmentId, // Include the report ID in the notification
+					},
+					id // Pass the user ID
+				);
+
+				// Show a success alert
+				Alert.alert(t('success'), t('msg2'));
+
+				// Optionally send a push notification
+				await sendNotification(
+					`${t('appointment-submitted')}`,
+					`${t('appointmentNotification')}`
+				);
+			} catch (error: any) {
+				// Handle errors from the notification service
+				const errorMessage =
+					error?.response?.data?.message ||
+					'Notification could not be sent, but the report was submitted successfully.';
+				Alert.alert('Warning', errorMessage);
+			}
 		},
-		onError: (error) => {
+		onError: (error: any) => {
 			// Check if the error contains a response message
 			const errorMessage =
 				error?.response?.data?.message ||

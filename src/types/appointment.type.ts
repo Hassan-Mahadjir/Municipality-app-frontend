@@ -43,6 +43,7 @@ export type createAppointmentValues = {
 	language: string;
 	purpose: string;
 	appointmentWith: string;
+	id?: number;
 };
 
 export type userAppointmentValues = {

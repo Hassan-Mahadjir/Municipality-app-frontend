@@ -7,6 +7,7 @@ import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import { getNotifications } from '@/services/api/notifications';
 import { useProfile } from '@/services/api/profile';
 import { useTranslation } from 'react-i18next';
+import { verticalScale } from 'react-native-size-matters';
 
 export default function notification() {
 	const { t, i18n } = useTranslation();
@@ -24,7 +25,7 @@ export default function notification() {
 			<Stack.Screen
 				options={{
 					headerShown: true,
-					title: 'Notifications',
+					title: t('notifications'),
 					headerTintColor: '#fff',
 					headerStyle: { backgroundColor: COLORS.secondary },
 					headerTitleAlign: 'center',
@@ -37,13 +38,15 @@ export default function notification() {
 				renderItem={({ item, index }) => (
 					<View style={style.notificationSubContainer}>
 						<Text style={{ fontSize: 16, marginBottom: 5 }}>
-							{item.langauge === lang
+							{item.language === lang
 								? item.body
 								: item.translations.find(
-										(translation) => translation.langauge === lang
+										(translation) => translation.language === lang
 								  )?.body || item.body}
 						</Text>
-						<Text>{item.sendAt}</Text>
+						<Text style={{ marginTop: verticalScale(5) }}>
+							{item.sendAt.split('T')[0]}
+						</Text>
 					</View>
 				)}
 			/>

@@ -1,11 +1,19 @@
-import { View, Text } from 'react-native';
 import React, { useEffect } from 'react';
 import { Redirect } from 'expo-router';
-import { registerForPushNotificationsAsync } from '@/services/notificationService';
+import {
+	registerForPushNotificationsAsync,
+	setupNotificationListeners,
+} from '@/services/notificationService';
 
-export default function index() {
+export default function Index() {
 	useEffect(() => {
-		registerForPushNotificationsAsync();
+		const initializeNotifications = async () => {
+			await registerForPushNotificationsAsync();
+			setupNotificationListeners();
+		};
+
+		initializeNotifications();
 	}, []);
+
 	return <Redirect href={'./home'} />;
 }

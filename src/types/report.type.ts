@@ -6,6 +6,7 @@ export type postReportValues = {
 	imageUrls: string[];
 	departmentName: string;
 	language: string;
+	id?: number;
 };
 
 export type categoryValues = {
@@ -28,4 +29,5 @@ export type postAnimalReportValues = {
 	longitude: string;
 	language: string;
 	imageUrls: string[];
+	id?: number;
 };
