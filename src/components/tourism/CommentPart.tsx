@@ -89,7 +89,7 @@ const userid= profileData?.data.data.user.id
         />
 
         <SubmitButtonComponent
-          title="Submit"
+          title={t('Submit')}
           fullWidth
           onPress={methods.handleSubmit(onSubmit)}
         />

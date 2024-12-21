@@ -33,8 +33,10 @@ const restaurant = () => {
 	const restinfo = restData?.data.data;
 	const { commentData,refetch:refetchcomment } = useComments('restaurant', +restaurant);
 	const data = commentData?.data.data;
+	if(!restinfo) return;
 
 	return (
+	
 		<SafeAreaView style={{ flex: 1 }}>
 			{/* Header of the page */}
 			<StatusBar barStyle={'dark-content'} />
@@ -75,9 +77,9 @@ alignItems: 'center',
       name="location-sharp"
       size={24}
       color="#F1722A"
-      style={{ marginRight: verticalScale(6) ,marginTop: verticalScale(10)}} // Adds space between the icon and the text
+      style={{ marginRight: verticalScale(6) }} // Adds space between the icon and the text
     />
-    <Text style={styles.locationText}>{restinfo?.location}</Text>
+    <Text style={styles.locationText}>{restinfo?.language===lang ? restinfo.location : restinfo.translations.find((translation)=>translation.language===lang)?.location||restinfo.location}</Text>
   </View>
 </View></View>
 

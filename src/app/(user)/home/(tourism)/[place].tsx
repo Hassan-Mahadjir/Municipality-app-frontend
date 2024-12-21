@@ -123,10 +123,10 @@ const Place = () => {
 								color='#F1722A'
 								style={{
 									marginRight: verticalScale(6),
-									marginVertical: verticalScale(10),
+									
 								}} // Adds space between the icon and the text
 							/>
-							<Text style={styles.locationText}>{placeinfo?.location}</Text>
+							<Text style={styles.locationText}>{placeinfo?.language===lang ? placeinfo.location : placeinfo.translations.find((translation)=>translation.language===lang)?.location||placeinfo.location}</Text>
 						</View>
 					</View>
 				</View>
