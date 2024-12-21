@@ -265,7 +265,15 @@ const Available = () => {
 						<Text style={styles.schedule}>{t('purpose')}</Text>
 					</View>
 					{isPending ? (
-						<Loading />
+						<View
+							style={{
+								flex: 1,
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
+						>
+							<Loading />
+						</View>
 					) : (
 						<KeyboardAwareScrollView>
 							<FormProvider {...methods}>
