@@ -55,23 +55,23 @@ const restaurant = () => {
 				/>
 <View style={styles.shadowContainer}>
 	<View style={{
-     borderWidth: 2, // Orange border
-	 borderColor: '#F1722A', // Orange color for the border
-	 backgroundColor: '#fff', // White background
-	 borderRadius: 10, // Rounded corners
-	 paddingHorizontal: verticalScale(10), // Space inside the rectangle
-	 paddingVertical: verticalScale(5),
-	 alignSelf: 'flex-start', // Makes the rectangle shrink to fit its content
-	 minWidth: verticalScale(370),
-	  marginTop: verticalScale(8),
-	  marginLeft:verticalScale(6)
+alignItems: 'center',
+							borderWidth: 2, // Orange border
+							borderColor: '#F1722A', // Orange color for the border
+							backgroundColor: '#fff', // White background
+							borderRadius: 10, // Rounded corners
+							paddingHorizontal: scale(10), // Space inside the rectangle
+						
+							alignSelf: 'center', // Makes the rectangle shrink to fit its content
+							minWidth: scale(320),
+							marginTop: verticalScale(8),
+							marginLeft: scale(6),
     }}>
   <View
     style={{
 		flexDirection: 'row',
         alignItems: 'center', // Center align icon and text vertically
         justifyContent: 'flex-start', // Ensure elements are aligned to the start
-		marginLeft: verticalScale(100),
 		marginBottom: verticalScale(3)
 
     }}
@@ -96,7 +96,7 @@ const restaurant = () => {
 						}}
 						style={styles.clockIcon}
 					/>
-					<View style={{ flexDirection: 'row' }}>
+					<View style={{ flexDirection: 'row',marginLeft:scale(8) }}>
 						<Text style={styles.openText}>{open}</Text>
 					</View>
 				</View>

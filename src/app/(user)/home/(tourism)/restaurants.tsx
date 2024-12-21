@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import { View, Text, ScrollView, Image, FlatList ,RefreshControl} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { router, Stack } from 'expo-router';
 import SearchField from '@/components/services/Search';
@@ -14,21 +14,40 @@ export default function Restaurants() {
 	const rest = restData?.data.data || [];
 	const [filteredRestaurants, setFilteredPlaces] =
 		useState<RestaurantValues[]>(rest);
+			const [searchQuery, setSearchQuery] = useState('');
+		
 	const searchbyplacename = t('searchbyplacename');
 	const restaurant = t('restaurant');
 	console.log(rest)
+		useEffect(() => {
+			if (searchQuery.trim() === '') {
+				setFilteredPlaces(rest);
+			} else {
+				setFilteredPlaces(
+					rest.filter((rest) =>
+						rest.name.toLowerCase().includes(searchQuery.toLowerCase())
+					)
+				);
+			}
+		}, [rest, searchQuery]);
+		const onRefresh = async () => {
+			await refetch();
+		};
 	return (
-		<View>
+		<View style={{flex:1}}>
 			<Stack.Screen options={{ title: restaurant }} />
 			<SearchField
 				placeholder={searchbyplacename}
-				onChangeText={(text) => console.log('Search text:', text)}
+				onChangeText={setSearchQuery }
 			/>
 			<FlatList
 				numColumns={2}
-				data={rest}
+				data={filteredRestaurants}
 				contentContainerStyle={{ paddingVertical: 10 }}
 				keyExtractor={(item, index) => index.toString()}
+								refreshControl={
+									<RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+								}
 				renderItem={({ item }) => (
 					<View style={styles.itemContainer}>
 						<TouchableOpacity onPress={() => router.push(`./restaurant/${item.id}`)}>

@@ -227,5 +227,6 @@
 	"updateProfile": "Profili Güncelle",
 	"accountInfo": "Hesap Bilgileri",
 	"changedob": "Doğum gününü değiştir",
-	"author":"Yaratıcı: "
+	"author":"Yaratıcı: ",
+	"searchbypointname":"Nokta adına göre ara"
 }

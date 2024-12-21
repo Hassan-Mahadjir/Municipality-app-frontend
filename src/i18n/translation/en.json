@@ -229,5 +229,6 @@
 	"updateProfile": "Update Profile",
 	"accountInfo": "Account Information",
 	"changedob": "Change birthday",
-	"author":"Author: "
+	"author":"Author: ",
+	"searchbypointname":"Search by point name"
 }
