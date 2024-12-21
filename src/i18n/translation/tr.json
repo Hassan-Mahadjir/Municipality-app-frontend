@@ -246,5 +246,6 @@
 	"appointment-Notification-Message": "başarıyla gönderildi. İncelendikten sonra bilgilendirileceksiniz.",
 	"msg2": "Randevu ve bildirim başarıyla gönderildi",
 	"appointment-submitted": "Randevu Gönderildi",
-	"appointmentNotification": "Randevunuz başarıyla gönderildi"
+	"appointmentNotification": "Randevunuz başarıyla gönderildi",
+	"changeStatus": "Durumu Değiştir"
 }

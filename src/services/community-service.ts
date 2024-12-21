@@ -9,6 +9,7 @@ import {
 	EventValues,
 	ReportedanimalValues,
 	ShelterValues,
+	updateReportedAnimalValues,
 	WasteSheduleValues,
 } from '@/types/community.type';
 
@@ -74,6 +75,15 @@ class CommunityService extends BaseService {
 	async getReportedAnimal(id: number) {
 		const response = await http.get<AppResponse<ReportedanimalValues>>(
 			`community/animal-report/${id}`
+		);
+
+		return response;
+	}
+
+	async updateReportedAnimal(id: number, data: updateReportedAnimalValues) {
+		const response = await http.patch<AppResponse<updateReportedAnimalValues>>(
+			`community/animal-report/${id}`,
+			data
 		);
 
 		return response;
