@@ -46,7 +46,7 @@ export default function service() {
 							/>
 
 							<Text style={style.servicesName}>
-								{item.language
+								{item.language === lang
 									? item.name
 									: item.translations.find(
 											(translation) => translation.language === lang
