@@ -23,6 +23,7 @@ const municipalityLayout = () => {
 				<Stack.Screen name='municipalDepartment' />
 				<Stack.Screen name='contactInfo' />
 				<Stack.Screen name='department' options={{ headerShown: false }} />
+				<Stack.Screen name='history' options={{ headerShown: false }} />
 			</Stack>
 		</>
 	);
