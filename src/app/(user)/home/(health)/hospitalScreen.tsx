@@ -16,6 +16,7 @@ import { COLORS } from '@/constants/Colors';
 import { scale, verticalScale } from 'react-native-size-matters';
 import { useHospital } from '@/services/api/health';
 import { HospitalValues } from '@/types/health.type';
+import { openGoogleMaps } from '@/components/services/PharmacyCard';
 
 const hospitalScreen = () => {
 	const { i18n } = useTranslation();
@@ -60,7 +61,7 @@ const hospitalScreen = () => {
 							(translation) => translation.language === lang
 					  )?.location || item.location
 			}
-			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
+			onSeeLocation={() => openGoogleMaps(item.latitude, item.longitude)}
 			imageUri={item.imageUrl}
 		/>
 	);

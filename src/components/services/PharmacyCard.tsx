@@ -7,6 +7,7 @@ import {
 	StyleSheet,
 	TouchableOpacity,
 	Dimensions,
+	Linking,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '@/constants/Colors';
@@ -18,6 +19,12 @@ import { t } from 'i18next';
 
 const screenWidth = Dimensions.get('window').width - scale(40);
 
+export const openGoogleMaps = (lat: number, lng: number) => {
+	const url = `https://www.google.com/maps?q=${lat},${lng}`;
+	Linking.openURL(url).catch((err) =>
+		console.error('Failed to open Google Maps', err)
+	);
+};
 const PharmacyCard = () => {
 	const { i18n } = useTranslation();
 	const lang = i18n.language.toUpperCase();
@@ -89,7 +96,10 @@ const PharmacyCard = () => {
 						</Text>
 					</View>
 				)}
-				<TouchableOpacity style={style.readMore}>
+				<TouchableOpacity
+					style={style.readMore}
+					onPress={() => openGoogleMaps(item.latitude, item.longitude)}
+				>
 					<Text style={[style.readMoreText, { color: COLORS.primary }]}>
 						{t('seeLocation')}
 					</Text>

@@ -7,50 +7,47 @@ export type PlaceValues = {
 	openingHrWeekday: string;
 	openingHrWeekend: string;
 	closingHrWeekday: string;
-    closingHrWeekend: string;
-    departmentName:string;
-    images:{id: number;
-        imageUrl: string;
-     }[];
+	closingHrWeekend: string;
+	departmentName: string;
+	images: { id: number; imageUrl: string }[];
 	language: string;
-    translations: {
+	translations: {
 		id: number;
 		location: string;
 		history: string;
-        language:string;
+		language: string;
 	}[];
 };
 export type RestaurantValues = {
-	id:number;
+	id: number;
 	name: string;
 	open: string;
-	location:string;
+	location: string;
 	phone: string;
-	openingHrWeekday:string;
+	openingHrWeekday: string;
 	openingHrWeekend: string;
-	closingHrWeekday:string;
-	closingHrWeekend:string;
+	closingHrWeekday: string;
+	closingHrWeekend: string;
 	language: string;
-	images:{id: number;
-        imageUrl: string;
-     }[];
-	
-    translations: {
+	images: { id: number; imageUrl: string }[];
+
+	translations: {
 		id: number;
 		location: string;
-        language:string;
+		language: string;
 	}[];
-	restaurantComments:{
+	restaurantComments: {
 		id: number;
 		body: string;
-		createAt: string;	
+		createAt: string;
 	}[];
-}
-
+};
 
 export type PaymentValues = {
-	id:number;
+	id: number;
 	branch: string;
 	office: string;
-	phone:string;
-}
+	phone: string;
+	latitude: number;
+	longitude: number;
+};

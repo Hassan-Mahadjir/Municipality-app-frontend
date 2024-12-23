@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import SearchField from '@/components/services/Search';
 import HealthItems from '@/components/services/HealthItems';
-import PharmacyCard from '@/components/services/PharmacyCard';
+import PharmacyCard, {
+	openGoogleMaps,
+} from '@/components/services/PharmacyCard';
 import { useTranslation } from 'react-i18next';
 import { Stack, router } from 'expo-router';
 import { COLORS } from '@/constants/Colors';
@@ -67,7 +69,9 @@ const PharmacyScreen = () => {
 							(translation) => translation.language === lang
 					  )?.location || item.location
 			}
-			onSeeLocation={() => router.push(`/(user)/home/(health)/${item.id}`)}
+			onSeeLocation={() => {
+				openGoogleMaps(item.latitude, item.longitude);
+			}}
 			imageUri={item.imageUrl}
 		/>
 	);
