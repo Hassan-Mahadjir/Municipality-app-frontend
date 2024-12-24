@@ -15,6 +15,7 @@ import SubmitButtonComponent from '@/components/SubmitButton';
 import { useTranslation } from 'react-i18next';
 import { useVehicle } from '@/services/api/traffic';
 import { nan } from 'zod';
+import { openGoogleMaps } from '@/components/services/PharmacyCard';
 
 const vechicle = () => {
 	const { vechicle } = useLocalSearchParams();
@@ -32,7 +33,6 @@ const vechicle = () => {
 					// '#f4511e'
 					headerTintColor: '#ffff',
 					headerTitleAlign: 'center',
-					
 				}}
 			/>
 			<StatusBar barStyle={'default'} />
@@ -40,7 +40,7 @@ const vechicle = () => {
 				<Image
 					style={styles.image}
 					source={{
-						uri: vehicleinfo?.imageUrl
+						uri: vehicleinfo?.imageUrl,
 					}}
 				/>
 				<View style={styles.line}></View>
@@ -48,16 +48,17 @@ const vechicle = () => {
 					<Text style={styles.keyDiscription}>{vehicleinfo?.brand}</Text>
 					<Text style={styles.reason}>{t('reason')}</Text>
 					<Text style={{ textAlign: 'justify' }}>
-					{
-				vehicleinfo?.language === lang
-					? vehicleinfo?.reason
-					: vehicleinfo?.translations.find(
-							(translation) => translation.language === lang
-					  )?.reason || vehicleinfo?.reason
-			}
+						{vehicleinfo?.language === lang
+							? vehicleinfo?.reason
+							: vehicleinfo?.translations.find(
+									(translation) => translation.language === lang
+							  )?.reason || vehicleinfo?.reason}
 					</Text>
 					<Text style={{ marginTop: verticalScale(15), color: COLORS.primary }}>
-						{t('collecteddate')} <Text style={{ color: '#000' }}>{vehicleinfo?.collectedDate.split('T')[0]}</Text>
+						{t('collecteddate')}{' '}
+						<Text style={{ color: '#000' }}>
+							{vehicleinfo?.collectedDate.split('T')[0]}
+						</Text>
 					</Text>
 					<View
 						style={{
@@ -76,7 +77,13 @@ const vechicle = () => {
 						{t('fee')} <Text style={{ color: '#000' }}>{vehicleinfo?.fee}</Text>
 					</Text>
 
-					<SubmitButtonComponent title={t('payfee')} fullWidth onPress={() => {}} />
+					<SubmitButtonComponent
+						title={t('payfee')}
+						fullWidth
+						onPress={() => {
+							openGoogleMaps(35.11934806435366, 33.947009030378524);
+						}}
+					/>
 					<TouchableOpacity>
 						<Text style={styles.getCar}>{t('getyourcar')}</Text>
 					</TouchableOpacity>
