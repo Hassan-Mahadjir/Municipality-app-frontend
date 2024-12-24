@@ -62,7 +62,7 @@ const style = StyleSheet.create({
 		marginRight: scale(15),
 	},
 	seeall: {
-		fontSize: moderateScale(14),
+		fontSize: moderateScale(16),
 		marginTop: verticalScale(3),
 		fontWeight: '500',
 		marginBottom: scale(-3),

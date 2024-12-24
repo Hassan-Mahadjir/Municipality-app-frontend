@@ -45,9 +45,10 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: 'bold',
 		position: 'absolute',
-		top: verticalScale(8),
-		left: scale(40),
-		marginLeft: verticalScale(-7),
+
+		top: verticalScale(10),
+		left: scale(50),
+		marginLeft: verticalScale(-8),
 	},
 	weekText: {
 		color: '#F1722A',

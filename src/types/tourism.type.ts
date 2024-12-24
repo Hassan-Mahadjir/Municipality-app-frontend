@@ -3,6 +3,8 @@ export type PlaceValues = {
 	name: string;
 	open: boolean;
 	location: string;
+	longitude:number;
+	latitude:number;
 	history: string;
 	openingHrWeekday: string;
 	openingHrWeekend: string;
@@ -23,6 +25,8 @@ export type RestaurantValues = {
 	name: string;
 	open: string;
 	location: string;
+	longitude:number;
+	latitude:number;
 	phone: string;
 	openingHrWeekday: string;
 	openingHrWeekend: string;

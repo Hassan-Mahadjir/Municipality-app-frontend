@@ -5,6 +5,7 @@ import {
 	Image,
 	StyleSheet,
 	TouchableOpacity,
+	Linking,
 } from 'react-native';
 import React from 'react';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
@@ -81,10 +82,16 @@ const vechicle = () => {
 						title={t('payfee')}
 						fullWidth
 						onPress={() => {
-							openGoogleMaps(35.11934806435366, 33.947009030378524);
+							const url = `https://odeme.gazimagusabelediyesi.org/vezne/BorcSorgu.aspx`
+							Linking.openURL(url).catch((err) =>
+									console.error('Failed to open Google Maps', err)
+								);
 						}}
+
 					/>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => {
+							openGoogleMaps(35.11934806435366, 33.947009030378524);
+						}} >
 						<Text style={styles.getCar}>{t('getyourcar')}</Text>
 					</TouchableOpacity>
 				</View>

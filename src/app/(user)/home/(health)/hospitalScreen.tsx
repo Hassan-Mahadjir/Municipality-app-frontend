@@ -17,6 +17,7 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import { useHospital } from '@/services/api/health';
 import { HospitalValues } from '@/types/health.type';
 import { openGoogleMaps } from '@/components/services/PharmacyCard';
+import HospitalItem from '@/components/services/HospitalItem';
 
 const hospitalScreen = () => {
 	const { i18n } = useTranslation();
@@ -52,7 +53,7 @@ const hospitalScreen = () => {
 	};
 
 	const renderItem = ({ item }: { item: HospitalValues }) => (
-		<HealthItems
+		<HospitalItem
 			name={item.name}
 			location={
 				item.language === lang
@@ -63,6 +64,7 @@ const hospitalScreen = () => {
 			}
 			onSeeLocation={() => openGoogleMaps(item.latitude, item.longitude)}
 			imageUri={item.imageUrl}
+			phone={item.phone}
 		/>
 	);
 

@@ -35,7 +35,7 @@ const disasterPoint = () => {
 					showsVerticalScrollIndicator={false}
 					renderItem={({ item }) => (
 						<GatherPointCard
-							pointNumber={item.id}
+							name={item.name}
 							location={
 								item.language === lang
 									? item.location
@@ -44,6 +44,10 @@ const disasterPoint = () => {
 									  )?.location || item.location
 							}
 							capacity={item.capacity}
+							pointNumber={item.id}
+							longitude={item.longitude}
+							latitude={item.latitude}
+							
 						/>
 					)}
 				/>

@@ -7,6 +7,7 @@ import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 import HealthItems from '@/components/services/HealthItems';
 import SearchField from '@/components/services/Search';
+import { openGoogleMaps } from '../services/PharmacyCard';
 
 const Shelter = () => {
 	const { t, i18n } = useTranslation();
@@ -43,7 +44,7 @@ const Shelter = () => {
 								(translation) => translation.language === lang
 						  )?.location || item.location
 				}
-				onSeeLocation={() => {}}
+				onSeeLocation={() => openGoogleMaps(item.longitude,item.latitude) }
 				imageUri={item.logo}
 			/>
 		</View>
@@ -65,7 +66,7 @@ const Shelter = () => {
 				numColumns={1}
 				showsVerticalScrollIndicator={false}
 				contentContainerStyle={{
-					gap: scale(5),
+					
 					paddingBottom: verticalScale(200),
 				}}
 				ListEmptyComponent={
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: scale(10),
 	},
 	itemContainer: {
-		margin: scale(5),
+		marginHorizontal: scale(5),
 		flex: 1,
 	},
 	noResultText: {

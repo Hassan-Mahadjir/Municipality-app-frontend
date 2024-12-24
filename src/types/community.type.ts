@@ -3,6 +3,8 @@ export type EventValues = {
 	title: string;
 	header: string;
 	location: string;
+	longitude:number;
+	latitude:number;
 	description: string;
 	language: string;
 	category: string;
@@ -60,6 +62,9 @@ export type EmergencyContactValues = {
 
 export type DisasterPointValues = {
 	id: number;
+	name:string;
+	longitude:number;
+	latitude:number;
 	location: string;
 	language: string;
 	capacity: number;
@@ -74,6 +79,8 @@ export type ShelterValues = {
 	id: number;
 	name: string;
 	location: string;
+	longitude:number;
+	latitude:number;
 	logo: string;
 	language: string;
 	translations: {
