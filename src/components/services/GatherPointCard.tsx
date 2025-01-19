@@ -1,38 +1,47 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { COLORS } from '@/constants/Colors';
 import { useTranslation } from 'react-i18next';
+import { openGoogleMaps } from './PharmacyCard';
 
 const GatherPointCard = ({
 	location,
-	capacity,
-	pointNumber,
+    capacity,
+    pointNumber,
+    name,
+	longitude,
+	latitude,
 }: {
-	location: string;
-	capacity: number;
-	pointNumber: number;
+    location: string;
+    capacity: number;
+    pointNumber: number;
+    name: string;
+	longitude:number;
+	latitude:number;
 }) => {
 	const { t } = useTranslation();
 
 	return (
+		
 		<View style={styles.cardContianer}>
+			<TouchableOpacity onPress={()=>{openGoogleMaps(longitude,latitude) }}>
 			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
 				<FontAwesome6 name='arrows-down-to-people' size={24} color='black' />
 				<Text style={styles.name}>
-					{t('disasterPoint')} {pointNumber}
+					{t('disasterPoint')} {name}
 				</Text>
 			</View>
 
 			<View style={{ margin: scale(8) }}>
 				<Text style={styles.locationCapacity}>
-					Location: <Text style={{ color: '#000' }}>{location}</Text>
+					{t('location')} <Text style={{ color: '#000' }}>{location}</Text>
 				</Text>
 				<Text style={styles.locationCapacity}>
 					{t('capacity')} <Text style={{ color: '#000' }}>{capacity}</Text>
 				</Text>
-			</View>
+			</View></TouchableOpacity>
 		</View>
 	);
 };

@@ -2,6 +2,7 @@ export type HospitalValues = {
 	id: number;
 	name: string;
 	location: string;
+	phone:string;
 	imageUrl: string;
 	language: string;
 	logo: string;
@@ -17,6 +18,7 @@ export type PharmacyValues = {
 	id: number;
 	name: string;
 	location: string;
+	phone:string;
 	imageUrl: string;
 	language: string;
 	logo: string;

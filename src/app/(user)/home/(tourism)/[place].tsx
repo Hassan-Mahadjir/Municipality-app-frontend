@@ -27,6 +27,7 @@ import { usePlace } from '@/services/api/tourism';
 import { useComments } from '@/services/api/comments';
 import { Ionicons } from '@expo/vector-icons';
 import { PostcommValues } from '@/types/comments.type';
+import { openGoogleMaps } from '@/components/services/PharmacyCard';
 
 // Function to split text into paragraphs
 const splitTextIntoParagraphs = (text: string) => {
@@ -93,6 +94,7 @@ const Place = () => {
 					onBackPress={() => router.back()}
 				/>
 				<View style={styles.shadowContainer}>
+					<TouchableOpacity onPress={()=>{openGoogleMaps(placeinfo.longitude,placeinfo.latitude) }}>
 					<View
 						style={{
 							alignItems: 'center',
@@ -128,7 +130,7 @@ const Place = () => {
 							/>
 							<Text style={styles.locationText}>{placeinfo?.language===lang ? placeinfo.location : placeinfo.translations.find((translation)=>translation.language===lang)?.location||placeinfo.location}</Text>
 						</View>
-					</View>
+					</View></TouchableOpacity>
 				</View>
 			</View>
 

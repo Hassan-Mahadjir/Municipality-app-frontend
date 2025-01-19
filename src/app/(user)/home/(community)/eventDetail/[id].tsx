@@ -14,6 +14,8 @@ import EventScrollCard from '@/components/services/EventScrollCard';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import { useGetEvent } from '@/services/api/community';
+import SubmitButtonComponent from '@/components/SubmitButton';
+import { openGoogleMaps } from '@/components/services/PharmacyCard';
 
 const eventDetails = () => {
 	const { id } = useLocalSearchParams();
@@ -139,14 +141,21 @@ const eventDetails = () => {
 				style={{ marginHorizontal: scale(10), flexGrow: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
-				<EventScrollCard images={eventInfo.images} />
-				{/* Loop through the content array and display each paragraph */}
-				<Text style={styles.description}>{t('description')}</Text>
-				{content.map((paragraph, index) => (
-					<Text key={index} style={styles.paragraph}>
-						{paragraph}
-					</Text>
-				))}
+	<EventScrollCard images={eventInfo.images} />
+{/* Loop through the content array and display each paragraph */}
+<Text style={styles.description}>{t('description')}</Text>
+{content.map((paragraph, index) => (
+  <Text key={index} style={styles.paragraph}>
+    {paragraph}
+  </Text>
+))}
+<SubmitButtonComponent
+  title={t('location')}
+  fullWidth
+  onPress={()=>{openGoogleMaps(eventInfo.longitude,eventInfo.latitude) }}
+
+/>
+
 			</ScrollView>
 		</View>
 	);

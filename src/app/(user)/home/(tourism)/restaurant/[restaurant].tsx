@@ -6,6 +6,8 @@ import {
 	Dimensions,
 	ScrollView,
 	StatusBar,
+	Touchable,
+	TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,6 +19,7 @@ import CommentPart from '@/components/tourism//CommentPart';
 import { useTranslation } from 'react-i18next';
 import { useRestaurant } from '@/services/api/tourism';
 import { useComments } from '@/services/api/comments';
+import { openGoogleMaps } from '@/components/services/PharmacyCard';
 
 const restaurant = () => {
 	const screenWidth = Dimensions.get('window').width;
@@ -51,6 +54,7 @@ const restaurant = () => {
 					onBackPress={() => router.back()}
 				/>
 <View style={styles.shadowContainer}>
+	<TouchableOpacity onPress={()=>{openGoogleMaps(restinfo.longitude,restinfo.latitude) }}>
 	<View style={{
 alignItems: 'center',
 							borderWidth: 2, // Orange border
@@ -81,7 +85,7 @@ alignItems: 'center',
     />
     <Text style={styles.locationText}>{restinfo?.language===lang ? restinfo.location : restinfo.translations.find((translation)=>translation.language===lang)?.location||restinfo.location}</Text>
   </View>
-</View></View>
+</View></TouchableOpacity></View>
 
 			</View>
 			{/* Body of the page */}
