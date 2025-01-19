@@ -84,14 +84,14 @@ const NewsDetails = () => {
 	}
 
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Header
 				title={
 					announcementInfo.language === lang
-						? announcementInfo.title
+						? announcementInfo.header
 						: announcementInfo.translations.find(
 								(translation) => translation.language === lang
-						  )?.title || announcementInfo.title
+						  )?.header || announcementInfo.header
 				}
 				backgroundImage={{
 					uri: `${announcementInfo.images[0].imageUrl}`,
@@ -101,10 +101,10 @@ const NewsDetails = () => {
 			<View style={{ margin: scale(10) }}>
 				<Text style={styles.subject}>
 					{announcementInfo.language === lang
-						? announcementInfo.header
+						? announcementInfo.title
 						: announcementInfo.translations.find(
 								(translation) => translation.language === lang
-						  )?.header || announcementInfo.header}
+						  )?.title || announcementInfo.title}
 				</Text>
 
 				<View
@@ -139,7 +139,7 @@ const NewsDetails = () => {
 				style={{ borderBottomWidth: 2, borderBottomColor: COLORS.gray }}
 			></View>
 			<ScrollView
-				style={{ marginHorizontal: scale(10), flexGrow: 1 }}
+				style={{ marginHorizontal: scale(10), flexGrow: 1, flex: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
 				{/* Loop through the content array and display each paragraph */}
