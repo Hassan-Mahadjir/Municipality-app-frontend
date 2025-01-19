@@ -115,12 +115,13 @@ const eventDetails = () => {
 										(translation) => translation.language === lang
 								  )?.location || eventInfo.location}
 						</Text>
-					</View>
+					</View></View>
 
 					<View
 						style={{
 							flexDirection: 'row',
 							alignItems: 'center',
+							marginVertical: verticalScale(10),
 						}}
 					>
 						<Fontisto name='date' size={20} color={COLORS.primary} />
@@ -131,7 +132,7 @@ const eventDetails = () => {
 						<FontAwesome6 name='clock' size={20} color={COLORS.primary} />
 						<Text style={{ marginLeft: scale(5) }}>{eventInfo.startTime}</Text>
 					</View>
-				</View>
+				
 			</View>
 			<View
 				style={{ borderBottomWidth: 2, borderBottomColor: COLORS.gray }}
