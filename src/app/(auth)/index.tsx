@@ -134,12 +134,12 @@ function Login() {
 									fullWidth
 								/>
 
-								<View style={styles.horizontalLineContainer}>
+								{/* <View style={styles.horizontalLineContainer}>
 									<View style={styles.horizontalLine} />
 									<Text style={styles.orText}>{signInWith}</Text>
 									<View style={styles.horizontalLine} />
-								</View>
-								<TouchableOpacity
+								</View> */}
+								{/* <TouchableOpacity
 									style={[styles.buttonContainer, styles.googleButton]}
 									onPress={openGoogleLogin}
 								>
@@ -150,7 +150,7 @@ function Login() {
 										style={styles.icon}
 									/>
 									<Text style={styles.googleText}>Google</Text>
-								</TouchableOpacity>
+								</TouchableOpacity> */}
 
 								<View style={styles.signupContainer}>
 									<Text style={styles.noAccountText}>{donotHave} </Text>

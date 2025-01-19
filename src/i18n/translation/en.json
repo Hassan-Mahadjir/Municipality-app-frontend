@@ -253,5 +253,8 @@
 	"appointmentNotification": "Your appointment has been submitted successfully",
 	"searchbyresname": "Search by restaurant name",
 	"capacity": "Capacity: ",
-	"makeAppointment":"Make Appointment"
+	"makeAppointment":"Make Appointment",
+	"music": "Music",
+	"culture": "Culture",
+	"science": "Science"
 }

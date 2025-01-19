@@ -10,41 +10,37 @@ import { useTranslation } from 'react-i18next';
 import { formatDistanceToNow } from 'date-fns';
 import { useGetAnnouncement } from '@/services/api/announcement';
 import Loading from '@/components/Loading';
-import EventScrollCard from '@/components/services/EventScrollCard';
-import Fontisto from '@expo/vector-icons/Fontisto';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
-import { useGetEvent } from '@/services/api/community';
-import SubmitButtonComponent from '@/components/SubmitButton';
-import { openGoogleMaps } from '@/components/services/PharmacyCard';
+import { tr, enUS } from 'date-fns/locale';
+import type { Locale } from 'date-fns';
 
-const eventDetails = () => {
-	const { id } = useLocalSearchParams();
+const NewsDetails = () => {
+	const { news } = useLocalSearchParams();
 	const [content, setContent] = useState<string[]>([]);
 	const { t, i18n } = useTranslation();
-	const lang = i18n.language.toUpperCase(); // Device language
+	// Determine locale based on i18n.language
+	const localeMap: Record<string, Locale> = {
+		en: enUS,
+		tr: tr,
+	};
+	const currentLocale = localeMap[i18n.language] || enUS; // Default to English if not found
 
 	// Ensure `news` is a valid number
-	const eventId = id ? +id : 0;
+	const newsId = news ? +news : null;
 
 	// Fetch only if `newsId` is valid
-	const { eventData, isLoading } = useGetEvent(eventId);
-	const eventInfo = eventData?.data.data;
+	const { AnnouncementData, isLoading } = useGetAnnouncement(newsId || 0);
+	const announcementInfo = AnnouncementData?.data.data;
 
 	useEffect(() => {
-		if (!eventInfo) return;
+		if (!announcementInfo) return;
 
 		// Simulating an API call to fetch content
-		const fetchedContent =
-			eventInfo.language === lang
-				? eventInfo.description
-				: eventInfo.translations.find(
-						(translation) => translation.language === lang
-				  )?.description || eventInfo.description;
+		const fetchedContent = announcementInfo.body;
 
 		// Split the content into paragraphs where a period is encountered
 		const paragraphs = splitTextIntoParagraphs(fetchedContent);
 		setContent(paragraphs);
-	}, [eventInfo]);
+	}, [announcementInfo]);
 
 	// Function to split text into paragraphs by period ('.')
 	const splitTextIntoParagraphs = (text: string): string[] => {
@@ -57,7 +53,7 @@ const eventDetails = () => {
 	};
 
 	// Return a loading or fallback UI if `newsId` is invalid
-	if (!eventId) {
+	if (!newsId) {
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>{t('Invalid News ID')}</Text>
@@ -73,7 +69,7 @@ const eventDetails = () => {
 		);
 	}
 
-	if (!eventInfo) {
+	if (!announcementInfo) {
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>{t('No announcement found')}</Text>
@@ -82,22 +78,16 @@ const eventDetails = () => {
 	}
 
 	return (
-		<View style={{ flex: 1 }}>
+		<View>
 			<Header
-				title={eventInfo.title}
+				title={announcementInfo.title}
 				backgroundImage={{
-					uri: `${eventInfo.images[0].imageUrl}`,
+					uri: `${announcementInfo.images[0].imageUrl}`,
 				}}
 				onBackPress={() => router.back()}
 			/>
 			<View style={{ margin: scale(10) }}>
-				<Text style={styles.subject}>
-					{eventInfo.language === lang
-						? eventInfo.header
-						: eventInfo.translations.find(
-								(translation) => translation.language === lang
-						  )?.header || eventInfo.header}
-				</Text>
+				<Text style={styles.subject}>{announcementInfo.header}</Text>
 
 				<View
 					style={{
@@ -109,60 +99,39 @@ const eventDetails = () => {
 					<View style={{ flexDirection: 'row' }}>
 						<EvilIcons name='location' size={24} color={COLORS.primary} />
 						<Text style={{ color: COLORS.primary }}>
-							{eventInfo.language === lang
-								? eventInfo.location
-								: eventInfo.translations.find(
-										(translation) => translation.language === lang
-								  )?.location || eventInfo.location}
+							{announcementInfo.location}
 						</Text>
-					</View></View>
-
-					<View
-						style={{
-							flexDirection: 'row',
-							alignItems: 'center',
-							marginVertical: verticalScale(10),
-						}}
-					>
-						<Fontisto name='date' size={20} color={COLORS.primary} />
-						<Text style={{ marginLeft: scale(5) }}>{eventInfo.date}</Text>
 					</View>
-
-					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<FontAwesome6 name='clock' size={20} color={COLORS.primary} />
-						<Text style={{ marginLeft: scale(5) }}>{eventInfo.startTime}</Text>
+					<View style={{ flexDirection: 'row' }}>
+						<EvilIcons name='clock' size={24} color={COLORS.gray} />
+						<Text style={{ color: COLORS.gray }}>
+							{formatDistanceToNow(new Date(announcementInfo.createAt), {
+								addSuffix: true, // Adds "ago" to the string
+								locale: currentLocale, //Specify the locale dynamically
+							})}
+						</Text>
 					</View>
-				
+				</View>
 			</View>
 			<View
 				style={{ borderBottomWidth: 2, borderBottomColor: COLORS.gray }}
 			></View>
-
 			<ScrollView
 				style={{ marginHorizontal: scale(10), flexGrow: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
-	<EventScrollCard images={eventInfo.images} />
-{/* Loop through the content array and display each paragraph */}
-<Text style={styles.description}>{t('description')}</Text>
-{content.map((paragraph, index) => (
-  <Text key={index} style={styles.paragraph}>
-    {paragraph}
-  </Text>
-))}
-<SubmitButtonComponent
-  title={t('location')}
-  fullWidth
-  onPress={()=>{openGoogleMaps(eventInfo.longitude,eventInfo.latitude) }}
-
-/>
-
+				{/* Loop through the content array and display each paragraph */}
+				{content.map((paragraph, index) => (
+					<Text key={index} style={styles.paragraph}>
+						{paragraph}
+					</Text>
+				))}
 			</ScrollView>
 		</View>
 	);
 };
 
-export default eventDetails;
+export default NewsDetails;
 
 const styles = StyleSheet.create({
 	subject: {
@@ -175,10 +144,5 @@ const styles = StyleSheet.create({
 		fontSize: moderateScale(14),
 		lineHeight: verticalScale(22),
 		textAlign: 'justify',
-	},
-	description: {
-		fontSize: moderateScale(14),
-		color: COLORS.primary,
-		fontWeight: '600',
 	},
 });

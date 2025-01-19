@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		alignSelf: 'center',
-		marginTop: scale(3),
+		marginTop: scale(15),
 	},
 	noAccountText: {
 		color: COLORS.gray,

@@ -251,6 +251,9 @@
 	"searchbyresname": "Restoran adına göre ara",
 	"capacity": "Kapasite: ",
 	"histPlaces":"Tarihi Yerler",
-	"makeAppointment":"Randevu Al"
+	"makeAppointment":"Randevu Al",
+	"music": "Müzik",
+	"culture": "Kültür",
+	"science": "Bilim"
 
 }

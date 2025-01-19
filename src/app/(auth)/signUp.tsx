@@ -212,7 +212,7 @@ function signUp() {
 									fullWidth
 									// disabled={!checked}
 								/>
-								<View style={styles.horizontalLineContainer}>
+								{/* <View style={styles.horizontalLineContainer}>
 									<View style={styles.horizontalLine} />
 									<Text style={styles.orText}>{signUpWith}</Text>
 									<View style={styles.horizontalLine} />
@@ -227,7 +227,7 @@ function signUp() {
 										style={styles.icon}
 									/>
 									<Text style={styles.googleText}>Google</Text>
-								</TouchableOpacity>
+								</TouchableOpacity> */}
 
 								<View style={styles.signupContainer}>
 									<Text style={styles.noAccountText}>{haveAccount} </Text>

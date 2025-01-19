@@ -17,6 +17,9 @@ const event = () => {
 		sport: t('sport'),
 		concert: t('concert'),
 		theater: t('theater'),
+		music: t('music'),
+		culture: t('culture'),
+		science: t('science'),
 	};
 	const types = Object.values(categories);
 	const [selectedCategory, setSelectedCategory] = useState(t('all'));
