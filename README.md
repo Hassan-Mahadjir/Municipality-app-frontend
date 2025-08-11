@@ -186,7 +186,7 @@ A comprehensive **Municipality Management System** mobile application built with
 ![Appointment History](screenshots/appointment-history.png)
 ![Available Slots](screenshots/available-slots.png)
 
-_Note: Screenshots will be added as the application is developed. These placeholders show the planned UI structure._
+_Note: Screenshots do not cover the entire project. You should run the applicaion to all the UI._
 
 ## ⚙️ Prerequisites
 
@@ -648,12 +648,22 @@ git push origin feature/amazing-feature
 
   - Full Stack Developer
   - Frontend & Backend Development
-  - Project Lead
+  - Project Lead & Documentation
 
 - **Nour Barakat** - [@nour-barakat](https://github.com/nour-barakat)
+
   - Full Stack Developer
   - UI/UX Design
-  - Testing & Documentation
+  - Testing
+
+- **Ayesha Atif** - [@Aysha-atif]
+
+  - UI/UX Design
+  - Frontend Developer
+
+- **Melisa Mehrübeoğlu** - [@Melisa-Mehrübeoğlu]
+  - UI/UX Design
+  - Frontend Developer
 
 ### Contact Information
 
