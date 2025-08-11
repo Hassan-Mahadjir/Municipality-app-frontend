@@ -650,7 +650,7 @@ git push origin feature/amazing-feature
   - Frontend & Backend Development
   - Project Lead & Documentation
 
-- **Nour Barakat** - [@nour-barakat](https://github.com/nour-barakat)
+- **Nour Barakat** - [@nour-barakat](https://github.com/nour-barakat15)
 
   - Full Stack Developer
   - UI/UX Design
