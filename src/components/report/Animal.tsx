@@ -21,18 +21,15 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
 import { postAnimalReportValues } from '@/types/report.type';
 import * as Location from 'expo-location';
-import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import firebaseConfig from '@/providers/firebase-config'; // Your Firebase config
 import { postAnimalReport } from '@/services/api/report';
 import { useProfile } from '@/services/api/profile';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Loading from '../Loading';
+import firebaseApp from '@/providers/firebase';
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+const storage = getStorage(firebaseApp);
 
 const uploadImageToFirebase = async (uri: string) => {
 	try {
@@ -50,7 +47,7 @@ const uploadImageToFirebase = async (uri: string) => {
 };
 
 const Animal = () => {
-	const auth = getAuth(app);
+	const auth = getAuth(firebaseApp);
 
 	if (!auth) {
 		console.log('User is not authenticated');
@@ -73,7 +70,6 @@ const Animal = () => {
 	const [location, setLocation] = useState<Location.LocationObject | null>(
 		null
 	);
-	const [errorMsg, setErrorMsg] = useState<string | null>(null);
 	const [images, setImages] = useState<string[]>([]);
 
 	const [cameraPermission, setCameraPermission] = useState<boolean | null>(
@@ -87,7 +83,7 @@ const Animal = () => {
 	const getCurrentLocation = async () => {
 		const { status } = await Location.requestForegroundPermissionsAsync();
 		if (status !== 'granted') {
-			setErrorMsg('Permission to access location was denied');
+			Alert.alert('Permission Required', 'Location access is required.');
 			return;
 		}
 		const loc = await Location.getCurrentPositionAsync({});

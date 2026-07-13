@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-	View,
 	Text,
 	StyleSheet,
 	ImageBackground,
 	TouchableOpacity,
-	Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { scale, verticalScale } from 'react-native-size-matters';
@@ -27,7 +25,7 @@ const Header = ({ title, backgroundImage, onBackPress }: HeaderProps) => {
 				style={styles.gradient}
 			>
 				<TouchableOpacity onPress={onBackPress} style={styles.backButton}>
-					<AntDesign name='arrowleft' size={36} color='#fff' />
+					<AntDesign name='arrow-left' size={36} color='#fff' />
 				</TouchableOpacity>
 				<Text style={styles.headerText}>{title}</Text>
 			</LinearGradient>

@@ -28,7 +28,7 @@ const DropdownComponent = ({
 		<View style={styles.item}>
 			<Text style={styles.textItem}>{item.label}</Text>
 			{item.value === value && (
-				<AntDesign style={styles.icon} color='black' name='Safety' size={20} />
+				<AntDesign style={styles.icon} color='black' name='safety' size={20} />
 			)}
 		</View>
 	);
@@ -50,7 +50,7 @@ const DropdownComponent = ({
 			value={value}
 			onChange={(item) => onChange(item.value)}
 			renderLeftIcon={() => (
-				<AntDesign style={styles.icon} color='black' name='Safety' size={20} />
+				<AntDesign style={styles.icon} color='black' name='safety' size={20} />
 			)}
 			renderItem={renderItem}
 		/>

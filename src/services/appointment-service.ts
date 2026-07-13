@@ -25,7 +25,7 @@ class AppoitmentService extends BaseService {
 
 	async postAppointment(data: createAppointmentValues, userId: number) {
 		const response = await http.post<AppResponse<createAppointmentValues>>(
-			`appointment/${userId}`,
+			`/appointment/${userId}`,
 			data
 		);
 
@@ -34,7 +34,7 @@ class AppoitmentService extends BaseService {
 
 	async getUserAppointment(id: number) {
 		const response = await http.get<AppResponse<userAppointmentValues[]>>(
-			`appointment/user/${id}`
+			`/appointment/user/${id}`
 		);
 		return response;
 	}

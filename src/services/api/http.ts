@@ -1,8 +1,8 @@
 import { getItem, removeItem } from '@/utils/storage';
-import axios from 'axios';
+import { create } from 'axios';
 
-const http = axios.create({
-	baseURL: 'http://192.168.3.143:3000',
+const http = create({
+	baseURL: 'http://192.168.3.247:3000',
 
 	headers: {
 		Accept: 'application/json',
@@ -14,7 +14,7 @@ http.interceptors.request.use(async (config) => {
 	const token = await getItem('token');
 	console.log(
 		`${config.method?.toUpperCase()}`,
-		`${config.baseURL}${config.url}`
+		`${config.baseURL}${config.url}`,
 	);
 	if (token) {
 		config.headers.Authorization = `Bearer ${token}`;
@@ -29,13 +29,16 @@ http.interceptors.response.use(
 		return response;
 	},
 	async (error) => {
-		console.error('ERROR', JSON.stringify(error.response, undefined, 4));
-		if (error.response.status === 401) {
+		console.error(
+			'ERROR',
+			JSON.stringify(error.response ?? error.message, undefined, 4),
+		);
+		if (error.response?.status === 401) {
 			removeItem('token');
 		}
 
 		return Promise.reject(error);
-	}
+	},
 );
 
 export default http;

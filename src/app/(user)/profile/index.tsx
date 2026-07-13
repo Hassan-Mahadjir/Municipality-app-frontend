@@ -1,15 +1,14 @@
 import {
 	View,
 	Text,
-	StyleSheet,
 	Pressable,
 	Image,
 	ScrollView,
 } from 'react-native';
-import React from 'react';
-import { removeItem, setItem } from '@/utils/storage';
+import React, { useState } from 'react';
+import { removeItem } from '@/utils/storage';
 import { router } from 'expo-router';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { scale, verticalScale } from 'react-native-size-matters';
 import { COLORS } from '@/constants/Colors';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -19,12 +18,10 @@ import { styles } from '@/styles/settings.profile';
 import { useProfile } from '@/services/api/profile';
 import RandomColoredBackground from '@/components/profile/RandomColoredBackground';
 import LanguagePicker from '@/components/profile/LanguagePicker';
-import { useState } from 'react';
 import { generateRandomAvatarUrl } from '@/utils/generateAvatar';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
-export default function userProfileIndex() {
+export default function UserProfileIndex() {
 	const { t } = useTranslation();
 	const { profileData } = useProfile();
 	const firstName = profileData?.data.data.firstName;
@@ -79,7 +76,7 @@ export default function userProfileIndex() {
 							<Text style={{ color: COLORS.gray }}>{t('changestoacc')}</Text>
 						</View>
 
-						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
+						<AntDesign name='arrow-right' size={28} color={COLORS.gray} />
 					</View>
 				</Pressable>
 			</View>
@@ -96,7 +93,7 @@ export default function userProfileIndex() {
 							<Text style={{ color: COLORS.gray }}>{t('changelang')}</Text>
 						</View>
 
-						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
+						<AntDesign name='arrow-right' size={28} color={COLORS.gray} />
 
 						<LanguagePicker
 							visible={isPickerVisible}
@@ -118,7 +115,7 @@ export default function userProfileIndex() {
 							<Text style={{ color: COLORS.gray }}>{t('changepass')}</Text>
 						</View>
 
-						<AntDesign name='arrowright' size={28} color={COLORS.gray} />
+						<AntDesign name='arrow-right' size={28} color={COLORS.gray} />
 					</View>
 				</Pressable>
 			</View>

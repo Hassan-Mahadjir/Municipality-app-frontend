@@ -6,7 +6,6 @@ import {
 	postAnimalReportValues,
 	postReportValues,
 } from '@/types/report.type';
-import { PostcommValues } from '@/types/comments.type';
 
 class ReportService extends BaseService {
 	async getCategories() {
@@ -16,7 +15,7 @@ class ReportService extends BaseService {
 
 	async postReport(data: postReportValues, userId: number) {
 		const response = await http.post<AppResponse<postReportValues>>(
-			`report/${userId}`,
+			`/report/${userId}`,
 			data
 		);
 
@@ -25,7 +24,7 @@ class ReportService extends BaseService {
 
 	async postRequest(data: postReportValues, userId: number) {
 		const response = await http.post<AppResponse<postReportValues>>(
-			`request/${userId}`,
+			`/request/${userId}`,
 			data
 		);
 
@@ -34,7 +33,7 @@ class ReportService extends BaseService {
 
 	async postAnimalReport(data: postAnimalReportValues, userId: number) {
 		const response = await http.post<AppResponse<postAnimalReportValues>>(
-			`community/animal-report/${userId}`,
+			`/community/animal-report/${userId}`,
 			data
 		);
 

@@ -6,7 +6,6 @@ import {
 	LoginFormValues,
 	validationValues,
 	ResetPassword,
-	googleLoginResponse,
 } from '@/types/login.type';
 import { AppResponse, AuthDataType } from '@/types/common.type';
 import { RegisterFormValues } from '@/types/register.type';
@@ -28,28 +27,28 @@ class AuthService extends BaseService {
 	}
 	async postSendEmail(data: sendEamilValues) {
 		const response = await http.post<AppResponse<sendEamilValues>>(
-			'auth/send-code-email',
+			'/auth/send-code-email',
 			data
 		);
 		return response;
 	}
 	async postValidateResetCode(data: validationValues) {
 		const response = await http.post<AppResponse<validationValues>>(
-			'auth/validate-resetCode',
+			'/auth/validate-resetCode',
 			data
 		);
 		return response;
 	}
 	async patchResetPassword(data: ResetPassword) {
 		const response = await http.patch<AppResponse<ResetPassword>>(
-			'auth/reset-password',
+			'/auth/reset-password',
 			data
 		);
 		return response;
 	}
 	async putChangePassword(data: ChangePassword) {
 		const response = await http.put<AppResponse<AuthDataType>>(
-			'auth/change-password',
+			'/auth/change-password',
 			data
 		);
 		return response;

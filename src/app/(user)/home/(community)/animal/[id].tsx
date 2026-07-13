@@ -1,7 +1,6 @@
 import {
 	StyleSheet,
 	Text,
-	TouchableOpacity,
 	View,
 	ActivityIndicator,
 } from 'react-native';
@@ -15,12 +14,11 @@ import { COLORS } from '@/constants/Colors';
 import SubmitButtonComponent from '@/components/SubmitButton';
 import { patchStatus, useGetReportedAnimal } from '@/services/api/community';
 import { useTranslation } from 'react-i18next';
-import { formatDistanceToNow } from 'date-fns';
-import { Locale } from 'date-fns';
+import { formatDistanceToNow, Locale } from 'date-fns';
 import { enUS, tr } from 'date-fns/locale';
 import { useProfile } from '@/services/api/profile';
 
-const animalDetails = () => {
+const AnimalDetails = () => {
 	const { id } = useLocalSearchParams();
 	const { t, i18n } = useTranslation();
 	const { profileData } = useProfile();
@@ -113,7 +111,7 @@ const animalDetails = () => {
 						</Text>
 					</View>
 					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<AntDesign name='questioncircleo' size={20} color={COLORS.gray} />
+						<AntDesign name='question-circle' size={20} color={COLORS.gray} />
 						<Text style={{ color: COLORS.gray, marginLeft: scale(5) }}>
 							{reportDetails?.language === lang
 								? reportDetails?.status
@@ -162,20 +160,21 @@ const animalDetails = () => {
 					<Text style={{ color: '#000' }}>{reportDetails.contactInfo}</Text>
 				</Text>
 
-				{(userId === reportDetails?.user?.id && reportDetails.status != "Found") && (
-  <SubmitButtonComponent
-    title={t('changeStatus')}
-    fullWidth
-    onPress={() => mutateStatus({ status: 'Found', userId })}
-  />
-)}
+				{userId === reportDetails?.user?.id &&
+					reportDetails.status !== 'Found' && (
+						<SubmitButtonComponent
+							title={t('changeStatus')}
+							fullWidth
+							onPress={() => mutateStatus({ status: 'Found', userId })}
+						/>
+					)}
 
 			</View>
 		</View>
 	);
 };
 
-export default animalDetails;
+export default AnimalDetails;
 
 const styles = StyleSheet.create({
 	subject: {
